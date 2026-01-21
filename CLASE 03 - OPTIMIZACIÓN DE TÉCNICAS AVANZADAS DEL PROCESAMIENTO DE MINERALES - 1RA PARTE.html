@@ -1,0 +1,2539 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        /* Colores Principales del Diseño (Acentos y Degradados) */
+        /* ======================================================= */
+        --color-principal: #00beff; /* Cian Brillante para acentos, bordes y el inicio del degradado principal */
+        --color-secundario: #1e50cd; /* Azul Medio, parte final del degradado de acento */
+
+        /* Fondos Oscuros de la Interfaz */
+        /* ======================================================= */
+        --fondo-oscuro-claro: #002a52; /* Fondo de secciones y contenido */
+        --fondo-oscuro-fuerte: #001a33; /* Fondo del encabezado (header) y pie de página (footer) */
+        /* ======================================================= */
+        --fondo-oscuro-medio: #003366; /* Fondo de encabezados y cajas de contenido */
+        --fondo-borde-claro: #004080; /* Bordes ligeros y color de fondo al hacer hover en encabezados */
+        --fondo-sombra-azul-header: #0050a0; /* ¡NUEVO! Sombra en el header */
+
+        /* Colores de Texto y Fondo General del Body */
+        /* ======================================================= */
+        --texto-blanco-1: #ffffff; /* Blanco puro para títulos y texto en fondo muy oscuro */
+        --texto-claro-2: #e6e6e6; /* Texto principal y claro */
+        --texto-medio-3: #cccccc; /* Texto de contenido de item (un poco más tenue) */
+
+        /* ======================================================= */
+        --fondo-body-inicio: #99e5ff; /* Color de inicio del degradado de fondo del body */
+        --fondo-body-fin: #a5b9eb; /* Color de final del degradado de fondo del body */
+
+        /* Colores de Acento Específicos (YouTube, Búsqueda) */
+        /* ======================================================= */
+        --rojo-youtube-claro: #e60000;
+        --rojo-youtube-fuerte: #a30000;
+        --timestamp-youtube: #ffcccc;
+        --fondo-resaltado: #00c339; /* Verde para el fondo del texto buscado */
+
+        /* Bases RGB para Transparencias (RGBA) */
+        /* ======================================================= */
+        --sombra-rgb: 0, 0, 0; /* Negro puro: Usado para sombras generales y profundidad */
+        --acento-rgb: 0, 190, 255; /* Cian Brillante: Usado para brillos y sombras de acento */
+        --rojo-rgb: 230, 0, 0; /* Rojo Puro: Usado para sombras de enlaces de YouTube */
+        /* ======================================================= */
+        --gradient-principal: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--fondo-body-inicio) 0%, var(--fondo-body-fin) 100%);
+        line-height: 1.2;
+        scroll-behavior: smooth;
+      }
+
+      strong#tituloDiplomado {
+        font-weight: 900;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      @keyframes slideDownSutil {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header.animacion-inicial {
+        animation: slideDownSutil 0.4s ease-out 1;
+        animation-fill-mode: forwards;
+        will-change: transform, opacity;
+      }
+
+      .header {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        box-shadow: 0 5px 15px rgba(var(--sombra-rgb), 0.5);
+        text-align: center;
+        will-change: transform;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header-text-box {
+        display: grid;
+        gap: 10px;
+        word-break: break-word;
+        margin: 0 15px;
+      }
+
+      .header.compact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+      }
+
+      .header-spacer {
+        display: none;
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header.compact + .header-spacer {
+        display: block;
+      }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .header.compact .header-top {
+        display: none;
+      }
+
+      .logo {
+        width: 140px;
+        height: auto;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+      }
+
+      .header.compact .logo {
+        width: 90px;
+        margin: 0 10px;
+      }
+
+      .header .logo.compact-logo {
+        display: none;
+      }
+
+      .header.compact .logo.compact-logo {
+        display: block;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 900;
+      }
+
+      .header.compact h1 {
+        font-size: 1rem;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+      }
+
+      .header-content-box {
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 20px 20px;
+        box-shadow: 0 8px 20px rgba(var(--acento-rgb), 0.6);
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        opacity: 1;
+        transform: translateY(0);
+        will-change: transform;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .header-content-box {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: 0;
+        transform: translateY(-10px);
+      }
+
+      .header-content-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(var(--acento-rgb), 0.8);
+      }
+
+      .header-bottom-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header-second-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header.compact .header-bottom-row {
+        flex-grow: 1;
+      }
+
+      .logo-and-title {
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .logo-and-title {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .header.compact .header-bottom-row .logo-and-title {
+        will-change: transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        width: 100%;
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        gap: 10px;
+      }
+
+      .header.compact .header-bottom-row .logo-and-title:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .header-compact-title {
+        display: none;
+        color: var(--texto-blanco-1);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 10px;
+        white-space: normal;
+      }
+
+      .header.compact .header-compact-title {
+        display: block;
+      }
+
+      .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 450px;
+        background-color: var(--fondo-oscuro-medio);
+        border: 2px solid var(--fondo-borde-claro);
+        border-radius: 30px;
+        box-shadow: 0 4px 10px rgba(var(--sombra-rgb), 0.25);
+        will-change: border-color, background-color;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      }
+
+      .search-bar:focus-within {
+        border-color: var(--fondo-sombra-azul-header);
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .clear-search {
+        cursor: pointer;
+        color: var(--texto-claro-2);
+        padding: 5px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        display: none;
+        transition: color 0.2s ease;
+        transform: scale(1.5);
+      }
+
+      .clear-search:hover {
+        color: var(--texto-blanco-1);
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 10px 18px;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--texto-claro-2);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        min-width: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .header.compact .search-bar input {
+        padding: 10px 20px;
+      }
+
+      .search-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-button {
+        background: var(--gradient-principal);
+        border: none;
+        color: var(--texto-blanco-1);
+        padding: 8px 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        will-change: transform;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        max-width: 150px;
+        white-space: normal;
+      }
+
+      .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .search-bar .action-button {
+        margin: 5px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      @keyframes fadeInUpContent {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .mind-map {
+        transition: margin-top 0.4s ease;
+        margin: 50px 0;
+      }
+
+      .mind-map.animacion-contenido {
+        animation: fadeInUpContent 0.4s ease-out 1 forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        will-change: opacity, transform;
+      }
+
+      .section {
+        margin-bottom: 20px;
+        background-color: var(--fondo-oscuro-claro);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-oscuro-medio);
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(var(--sombra-rgb), 0.25);
+        transition: border-color 0.3s ease;
+      }
+
+      .section-header {
+        padding: 20px;
+        background-color: var(--fondo-oscuro-medio);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .section-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 5px 12px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 15px;
+      }
+
+      .toggle-icon {
+        font-size: 1.2rem;
+        color: var(--texto-claro-2);
+        will-change: transform;
+        transition: transform 0.3s ease;
+      }
+
+      .section.active > .section-header .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .section-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .section.active .section-content {
+        max-height: fit-content;
+        padding-bottom: 10px;
+        opacity: 1;
+      }
+
+      .subsection {
+        margin: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-borde-claro);
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+
+      .subsection:hover {
+        border-color: var(--fondo-sombra-azul-header);
+      }
+
+      .subsection:hover .subsection-header {
+        background-color: var(--fondo-sombra-azul-header);
+      }
+
+      .section:hover {
+        border-color: var(--fondo-borde-claro);
+      }
+
+      .section:hover .section-header {
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .subsection-header {
+        padding: 15px;
+        background-color: var(--fondo-borde-claro);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .subsection-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .subsection-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 12px;
+      }
+
+      .subsection-content {
+        max-height: 0;
+        overflow: hidden;
+        background-color: var(--fondo-oscuro-claro);
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .subsection.active .subsection-content {
+        max-height: fit-content;
+        padding: 15px;
+        opacity: 1;
+      }
+
+      .subsection.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .content-item {
+        margin-bottom: 10px;
+        padding: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border-left: 4px solid var(--color-principal);
+        box-shadow: 0 1px 5px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .content-text {
+        color: var(--texto-medio-3);
+        margin-bottom: 5px;
+        line-height: 1.4;
+        font-size: 1rem;
+        font-weight: 500;
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .content-text::before {
+        content: "•";
+        color: var(--color-principal);
+        font-weight: 700;
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+      }
+
+      .youtube-link {
+        display: inline-block;
+        padding: 10px 18px;
+        background: linear-gradient(135deg, var(--rojo-youtube-claro) 0%, var(--rojo-youtube-fuerte) 100%);
+        color: var(--texto-blanco-1);
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1rem;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(var(--rojo-rgb), 0.4);
+        will-change: transform;
+      }
+
+      .youtube-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 3px 7.5px rgba(var(--rojo-rgb), 0.5);
+        will-change: transform;
+      }
+
+      .timestamp {
+        color: var(--timestamp-youtube);
+        font-size: 0.85rem;
+        margin-left: 10px;
+        font-weight: 400;
+      }
+
+      .highlight {
+        background-color: var(--fondo-resaltado);
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+        padding: 4px;
+        border-radius: 6px;
+      }
+
+      .footer {
+        padding: 30px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        border-top: 1px solid var(--fondo-oscuro-medio);
+        text-align: center;
+        box-shadow: 0 -2px 10px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .footer-text {
+        color: var(--texto-claro-2);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .footer-logo {
+        width: 140px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .header-top {
+          flex-direction: column;
+        }
+
+        .logo {
+          margin: 0;
+        }
+
+        .header-text-box {
+          margin: 0;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .header.compact .header-bottom-row .logo-and-title {
+          gap: 5px;
+        }
+        .logo,
+        .footer-logo {
+          width: 105px;
+        }
+
+        .header.compact .header-bottom-row {
+          flex-direction: column;
+        }
+
+        .header.compact .header-compact-title {
+          margin: 0 5px;
+          font-size: 0.8rem;
+        }
+
+        .header.compact .logo.compact-logo {
+          width: 65px;
+          margin: 5px;
+        }
+
+        .action-button,
+        .search-bar input,
+        .clear-search {
+          font-size: 0.9rem;
+        }
+
+        .section-header {
+          padding: 15px;
+        }
+
+        .header.compact .controls {
+          flex-direction: row;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .subsection-title {
+          font-size: 1rem;
+        }
+        .section-number,
+        .subsection-number {
+          font-size: 13px;
+        }
+
+        .content-text {
+          font-size: 0.9rem;
+        }
+
+        .youtube-link {
+          font-size: 0.8rem;
+        }
+
+        .timestamp {
+          font-size: 0.75rem;
+        }
+
+        .header.compact .action-button {
+          padding: 6px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header animacion-inicial">
+      <div class="header-content-box">
+        <div class="header-top">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo" />
+          </a>
+          <div class="header-text-box">
+            <h1>
+              DIPLOMADO DE ALTA ESPECIALIZACIÓN EN<br />
+              <strong id="tituloDiplomado"></strong>
+            </h1>
+            <p id="tituloPrincipal"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-bottom-row">
+        <div class="logo-and-title">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo compact-logo" />
+          </a>
+          <span class="header-compact-title" id="tituloCompacto"></span>
+        </div>
+        <div class="header-second-row">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar en el resumen interactivo…" autocomplete="off" />
+            <div class="search-actions">
+              <span class="clear-search" onclick="clearSearch()">&times;</span>
+              <button class="action-button" onclick="searchContent()">Buscar</button>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="action-button" onclick="expandAll()">Mostrar todo</button>
+            <button class="action-button" onclick="collapseAll()">Colapsar todo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-spacer"></div>
+
+    <div class="container">
+      <div class="mind-map animacion-contenido" id="mindMap">
+        <div class="section" data-section="1">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">1</span>
+              <span class="section-title">Introducción a la sesión y presentación del tema</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.1</span>
+                  <span class="subsection-title">Bienvenida, logística y propósito de la clase</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Presentación del moderador y del profesor, indicaciones sobre el chat y el formulario de asistencia durante el break a las 8:30.</div>
+                  <div class="content-text">Aclaración del curso: diplomado de operaciones en minería planta y la posición del profesor como expositor.</div>
+                  <div class="content-text">Objetivo general: conversar sobre inteligencia artificial y planeamiento en geometalurgia en operaciones mineras.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=484" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:08:04)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.2</span>
+                  <span class="subsection-title">Contexto general sobre la evolución del control de operaciones</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Exposición de cómo la gestión de geometalurgia se ha vuelto más eficiente gracias a la migración hacia control vía inteligencia artificial.</div>
+                  <div class="content-text">Mención de herramientas necesarias: software, machine learning, programación (por ejemplo Python) e integración de bases de datos organizacionales.</div>
+                  <div class="content-text">Señalamiento de la rápida adopción de estos sistemas en operaciones mineras a nivel mundial.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=560" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:09:20)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.3</span>
+                  <span class="subsection-title">Ejemplos de operaciones que implementan control remoto e IA</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Citas de operaciones que publicitan control inteligente y espejos de operación, permitiendo gestionar la planta desde lugares remotos.</div>
+                  <div class="content-text">Ejemplos concretos: operación del sur Queladeco, cuarto de control de Las Bambas ubicado fuera de sitio, Antamina usando IA como soporte.</div>
+                  <div class="content-text">Implicación: posibilidad de centralizar cuartos de control en ciudades como Lima, Londres o Pekín.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=629" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:10:29)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="2">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">2</span>
+              <span class="section-title">Conceptos básicos y accesibilidad de la inteligencia artificial en minería</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.1</span>
+                  <span class="subsection-title">Percepción inicial y complejidad aparente de IA y programación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Reconocimiento de que términos como machine learning, aprendizaje supervisado y Python pueden parecer novedosos o confusos para muchos metalurgistas.</div>
+                  <div class="content-text">Comparación con una consulta médica para ilustrar la sensación de no comprensión inicial.</div>
+                  <div class="content-text">Observación de diferencias generacionales y académicas en la familiaridad con estas herramientas.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=784" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:13:04)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.2</span>
+                  <span class="subsection-title">Acceso y facilidad de aprendizaje para profesionales de planta</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Relato personal sobre aprender IA con apoyo de una especialista durante actividades cotidianas, destacando que la programación no es inalcanzable.</div>
+                  <div class="content-text">Argumento de que comprender la lógica de programación permite interpretar y supervisar sistemas de control.</div>
+                  <div class="content-text">Conclusión: no es estrictamente necesario que todo metalurgista sea programador experto para interactuar con sistemas amigables para operadores.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=908" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:15:08)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.3</span>
+                  <span class="subsection-title">Rol del operador y diseño amigable del software</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Afirmación de que los softwares están diseñados para ser manejados por operadores con formación secundaria o técnica.</div>
+                  <div class="content-text">Importancia de interfaces usables para que el panelista o el operador pueda gestionar la planta.</div>
+                  <div class="content-text">Aclaración de que el objetivo es que el sistema sea operable por personal de planta sin conocimientos profundos de programación.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=981" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:16:21)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="3">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">3</span>
+              <span class="section-title">Historia, arquitectura y ejemplos prácticos de sistemas expertos en planta</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.1</span>
+                  <span class="subsection-title">Experiencia histórica: sistema experto en concentradora de Tintaya</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Narración de la ampliación de Tintaya y la instalación de un molino adicional con un sistema experto de control.</div>
+                  <div class="content-text">Participación en eventos académicos y presentación de esa experiencia cuando los sistemas expertos eran poco comprendidos por la audiencia.</div>
+                  <div class="content-text">Relato de cómo se modeló una relación simple de sólidos y agua para controlar la alimentación del molino.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=1064" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:17:44)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.2</span>
+                  <span class="subsection-title">Funcionamiento básico del control automático con PLS/PLC y hardware asociado</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Explicación del cálculo de porcentaje de sólidos y cómo se traducía en tonelaje seco y cantidad de agua mediante programación lógica en PLC (PLS mencionado en la charla).</div>
+                  <div class="content-text">Descripción de las señales enviadas por el PLC para controlar válvulas y alimentadores, manteniendo proporciones de sólidos y agua.</div>
+                  <div class="content-text">Listado de hardware necesario: válvulas, actuadores, flujómetros, básculas (hidrómetros o belt weighers) y cableado para transmitir señales al PLC.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=1166" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:19:26)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.3</span>
+                  <span class="subsection-title">Arquitectura del sistema experto y evolución tecnológica</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Concepto de arquitectura de control: configuración de dispositivos de control y enlaces entre mediciones y sistema de control.</div>
+                  <div class="content-text">Evolución: múltiples PLCs originalmente, calibración y necesidad de tuning del control para lidiar con fallos de actuadores o variaciones.</div>
+                  <div class="content-text">Importancia del departamento de control de proceso que integra metalurgistas, instrumentistas y electrónicos para mantener sistemas afinados.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=1484" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:24:44)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="4">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">4</span>
+              <span class="section-title">Retos operativos, calibración y mantenimiento del sistema experto</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.1</span>
+                  <span class="subsection-title">Importancia del tuning y calibración del hardware y actuadores</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Explicación de que válvulas y actuadores pueden fallar o requerir ajuste fino para mantener variables dentro de rangos aceptables.</div>
+                  <div class="content-text">Descripción de cómo fallos en actuadores pueden producir sobrealimentación de agua o mineral, desestabilizando el circuito de control.</div>
+                  <div class="content-text">Necesidad de mantenimiento constante y ajuste del control para evitar degradación del rendimiento del sistema experto.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=1744" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:29:04)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.2</span>
+                  <span class="subsection-title">Problemas históricos y aprendizaje del sistema</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Testimonio de que los sistemas expertos iniciales enfrentaron circuitos desordenados y fallos, pero con la acumulación de data el PLC aprendió a compensar en parte los defectos.</div>
+                  <div class="content-text">Limitación: la programación y bucles deben ser bien diseñados para que el sistema pueda autoajustarse ante variaciones del hardware.</div>
+                  <div class="content-text">Deducción: las plantas requieren equipos especializados para asegurar la confiabilidad del control automatizado.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=1844" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:30:44)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.3</span>
+                  <span class="subsection-title">Organización del área de control de proceso en plantas modernas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Descripción de la existencia de departamentos especializados con metalurgistas, instrumentistas y electrónicos dedicados al control de proceso.</div>
+                  <div class="content-text">Contraste con el pasado, donde los mismos profesionales debían aprender múltiples disciplinas y apañarse con programación y cableado.</div>
+                  <div class="content-text">Función actual: diseñar, configurar y mantener la arquitectura del sistema de control, integrando hardware, software y bases de datos.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=1871" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:31:11)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="5">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">5</span>
+              <span class="section-title">Software, plataformas y expansión del control remoto</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.1</span>
+                  <span class="subsection-title">Plataformas y entornos de programación utilizados en control</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Mención de entornos Linux y Windows y elección según fabricante del sistema de control.</div>
+                  <div class="content-text">Función de la plataforma en la gestión de la base de datos que alimenta el sistema de control.</div>
+                  <div class="content-text">Observación de que la selección de la plataforma condiciona la arquitectura del software y las capacidades de integración.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=2108" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:35:08)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.2</span>
+                  <span class="subsection-title">Transición desde control local a control remoto vía internet</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Descripción de cómo la información de planta viaja desde la mina a una computadora central ubicada en otra ciudad mediante internet.</div>
+                  <div class="content-text">Ejemplo: datos de tonelaje, flujo de agua, P80 y otras variables llegan digitalmente y el modelo central toma decisiones y envía señales al campo.</div>
+                  <div class="content-text">Consecuencia: posibilidad de ubicar el cuarto de control en Lima, Londres, Pekín o cualquier otra ubicación decidida por el propietario de la operación.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=2377" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:39:37)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.3</span>
+                  <span class="subsection-title">Beneficios operativos y ahorro por centralización del cuarto de control</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Relato de colegas que trasladaron su cuarto de control a Lima, destacando ahorro en viajes, hospedaje y logística para el personal.</div>
+                  <div class="content-text">Implicación de que el centro de control centralizado optimiza recursos humanos y costos operativos.</div>
+                  <div class="content-text">Observación de que los cuartos de control actuales son más compactos y estructurados que antes, con menos pantallas y mayor eficiencia.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=2578" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:42:58)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="6">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">6</span>
+              <span class="section-title">Aplicación práctica: variables críticas, datos y toma de decisiones por IA</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.1</span>
+                  <span class="subsection-title">Variables de proceso que alimentan los modelos y condicionan decisiones</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Enumeración de variables que el sistema utiliza: porcentaje de sólidos, flujo de agua, tonelaje, consumo de energía del molino y P80.</div>
+                  <div class="content-text">Uso de estas variables para establecer set points que permitan procesar toneladas por hora con tamaños de molienda deseados.</div>
+                  <div class="content-text">Observación de que el sistema acumula información hora a hora para ajustar y aprender a mantener parámetros de proceso.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=2194" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:36:34)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.2</span>
+                  <span class="subsection-title">Implementación de algoritmos, Python y métodos geoestadísticos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Indicación de que Python y machine learning son herramientas para procesar datos y construir modelos que predigan comportamientos y tomen decisiones.</div>
+                  <div class="content-text">Empleo de métodos geoestadísticos para modelar y relacionar variables geometalúrgicas con desempeño de la planta.</div>
+                  <div class="content-text">Resultado: la computadora central ejecuta cálculos y envía señales de control al campo para ajustar válvulas, correas transportadoras y alarmas.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=2271" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:37:51)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.3</span>
+                  <span class="subsection-title">Conversión del control automático en inteligencia artificial operativa</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Momento clave: cuando la computadora comienza a tomar decisiones sobre abrir o cerrar equipos en función de parámetros y datos, se considera IA en operación.</div>
+                  <div class="content-text">Definición operativa: IA como el software y los algoritmos que permiten decisiones autónomas basadas en información de campo.</div>
+                  <div class="content-text">Necesidad de supervisión y validación inicial para garantizar que las acciones automáticas sean correctas y seguras.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=2326" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:38:46)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="7">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">7</span>
+              <span class="section-title">Modelamiento geometalúrgico, paquetes de software y velocidad de procesamiento</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.1</span>
+                  <span class="subsection-title">Herramientas para modelamiento y geometalurgia</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Enumeración de paquetes de modelamiento utilizados en la industria: Leapfrog, Datamine, Volcano (Volcan mencionado).</div>
+                  <div class="content-text">Comentario sobre la capacidad de estos paquetes para agilizar tareas de modelamiento geológico y cálculo de reservas.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=2710" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:45:10)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.2</span>
+                  <span class="subsection-title">Aceleración del modelamiento con nuevas plataformas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Afirmación de que lo que antes tardaba días o meses ahora puede realizarse en horas o días gracias a mejoras en software y capacidad de cómputo.</div>
+                  <div class="content-text">Ejemplo: modelar un yacimiento que antes demoraba 15 días ahora podría tomar 2 horas, o cálculos de reservas que antes requerían meses ahora en un día.</div>
+                  <div class="content-text">Implicación de que esta rapidez facilita iteraciones más frecuentes y decisiones de planeamiento más ágiles.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=2746" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:45:46)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.3</span>
+                  <span class="subsection-title">Integración entre modelamiento y operación mediante IA</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Observación de que la inteligencia artificial se está implementando en distintas operaciones unitarias, desde perforación hasta planta de concentración.</div>
+                  <div class="content-text">Señalamiento de la necesidad de integrar modelos geometalúrgicos con sistemas de control para evitar sorpresas en operación.</div>
+                  <div class="content-text">Importancia de mantener la relación entre la predicción geológica y las respuestas de control automatizado en planta.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=2784" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:46:24)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="8">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">8</span>
+              <span class="section-title">Supervisión humana, limitaciones de la IA y aprendizaje supervisado</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.1</span>
+                  <span class="subsection-title">Papel insustituible del conocimiento humano en geología y metalurgia</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Distinción entre la capacidad de cálculo de la IA y el conocimiento privilegiado del ser humano que interpreta muestras, litologías e inclusiones minerales.</div>
+                  <div class="content-text">Ejemplos: geólogo que identifica texturas, cristalinidad o inclusiones que pueden afectar el proceso y que la IA no detectará sin sensores específicos.</div>
+                  <div class="content-text">Conclusión: la experiencia humana es necesaria para interpretar contextos que aún no están codificados en los modelos.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=2912" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:48:32)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.2</span>
+                  <span class="subsection-title">Necesidad de sensores y hardware para alimentar la IA con litología</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Explicación de que la IA puede ajustar reactivos o parámetros si recibe información litológica mediante hardware de escaneo en planta.</div>
+                  <div class="content-text">Observación de que la IA requiere aprendizaje y datos para asociar señales nuevas a modelos geometalúrgicos específicos.</div>
+                  <div class="content-text">Limitación: cambios de frente o condiciones no contempladas inicialmente exigirán supervisión humana hasta que el sistema aprenda.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=3026" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:50:26)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.3</span>
+                  <span class="subsection-title">Aprendizaje supervisado y etapas de implementación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Definición implícita: etapa inicial donde los operadores supervisan el aprendizaje del sistema para validar decisiones y evitar acciones erróneas.</div>
+                  <div class="content-text">Proceso gradual: el modelo acumula data y aprende a ajustar variables, reduciendo necesidad de intervención humana con el tiempo.</div>
+                  <div class="content-text">Enunciado de que la terminología técnica se explica en términos sencillos para facilitar la comprensión y posterior lectura de papers técnicos.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=3412" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:56:52)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="9">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">9</span>
+              <span class="section-title">Protocolos de seguridad, respaldo y gestión de fallos remotos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.1</span>
+                  <span class="subsection-title">Riesgos de caída de red o servidor en control remoto y su impacto</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Consulta sobre la complicación que implicaría una caída de servidor o red cuando el centro de control está lejos de la mina.</div>
+                  <div class="content-text">Reconocimiento de que tales eventos pueden detener la planta si no existen protocolos y sistemas de respaldo adecuados.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=3091" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:51:31)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.2</span>
+                  <span class="subsection-title">Estrategias de respaldo: espejos de operación y protocolos de energía</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Explicación del uso de espejos (mirrors) de operación y sistemas duplicados para asegurar continuidad en caso de fallo.</div>
+                  <div class="content-text">Mecanismos de respaldo energético: grupos electrógenos y dispositivos que atenúan variaciones de tensión para evitar paradas inmediatas.</div>
+                  <div class="content-text">Ejemplo del pasado donde las caídas eléctricas generaban largos reinicios y caos operativo, contrastado con la mejora de hoy.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=3135" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:52:15)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.3</span>
+                  <span class="subsection-title">Protocolos de seguridad digital y respuesta ante hackeos o fallos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Mención de protocolos establecidos en sistemas inteligentes para cambiar a datos de respaldo o activar sistemas de contingencia cuando falla la data real.</div>
+                  <div class="content-text">Afirmación de que cada sistema tiene normas de seguridad digital y medidas automáticas para mantener la operación ante interrupciones.</div>
+                  <div class="content-text">Referencia a la necesidad de tiempos de reparación cortos (minutos) para restablecer operaciones normales mediante procedimientos automáticos y manuales.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=3284" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:54:44)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="10">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">10</span>
+              <span class="section-title">Cierre de la sesión: preguntas, supervisión y perspectivas futuras</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.1</span>
+                  <span class="subsection-title">Interacción con alumnos y preguntas sobre implementaciones</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Invitación abierta a comentarios, experiencias y preguntas de los asistentes sobre la implementación de IA en planta.</div>
+                  <div class="content-text">Participación de asistentes que reconocen la necesidad de enfrentarse a estas tecnologías en el futuro cercano.</div>
+                  <div class="content-text">Reconocimiento de que la exposición busca dar fundamentos para entender papers técnicos posteriores.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=2803" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:46:43)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.2</span>
+                  <span class="subsection-title">Importancia del planeamiento geometalúrgico vinculado a IA</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Afirmación de que para que la IA rinda frutos es necesario un planeamiento de minado y geometalúrgico adecuado y coordinado con la planta.</div>
+                  <div class="content-text">Cambio de terminología: tendencia a hablar de planeamiento geometalúrgico como concepto más completo que el planeamiento de minado tradicional.</div>
+                  <div class="content-text">Meta: extraer material de la mina con predictibilidad suficiente para que la planta no sufra sorpresas y la IA pueda operar eficazmente.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=3350" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:55:50)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.3</span>
+                  <span class="subsection-title">Etapas futuras y expectativas de aprendizaje</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Reiteración de que el aprendizaje del modelo requiere suficiente información de variables y supervisión humana ante cambios de frente.</div>
+                  <div class="content-text">Invitación a leer papers técnicos para profundizar en terminología y metodologías, una vez comprendidos los conceptos básicos expuestos.</div>
+                  <div class="content-text">Cierre implícito en la continuidad del tema en sesiones posteriores, con énfasis en la implementación práctica y controlada de la inteligencia artificial en operaciones mineras.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=3572" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:59:32)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="11">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">11</span>
+              <span class="section-title">Rol de la inteligencia artificial en la gestión operacional y geometalúrgica</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.1</span>
+                  <span class="subsection-title">Necesidad de poblar modelos con datos geológicos y metalúrgicos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El software y la inteligencia artificial requieren incorporar la base de datos del modelo geometalúrgico para operar correctamente.</div>
+                  <div class="content-text">La información de frentes, cuerpos y modelos del yacimiento debe integrarse para que el sistema compare y actúe.</div>
+                  <div class="content-text">Sensores de campo, como escáneres XRF, alimentan en tiempo real datos de litología, alteración y leyes de metales para el sistema.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=3606" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:00:06)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.2</span>
+                  <span class="subsection-title">Aprendizaje automático orientado a dosificación y cinética metalúrgica</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El sistema puede aprender la dosificación óptima de reactivos según la caracterización del frente y respuesta metalúrgica.</div>
+                  <div class="content-text">Las unidades geometalúrgicas tienen diferentes cinéticas (rápida o lenta) que el modelo debe reconocer y usar para operar.</div>
+                  <div class="content-text">La IA usa la información de caracterización para tomar decisiones de operación en planta automáticamente.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=3699" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:01:39)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.3</span>
+                  <span class="subsection-title">Decisiones operativas automáticas y ajustes en planta</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La inteligencia artificial puede ordenar aumentar o reducir agua, reactivos y tonelaje según pronósticos de producción.</div>
+                  <div class="content-text">Puede indicar modificaciones físicas como reducir malla en chancado primario o ajustar molino SAG en respuesta a dureza.</div>
+                  <div class="content-text">Estas decisiones automatizadas implican la necesidad de robustez y verificación constante del modelo.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=3817" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:03:37)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="12">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">12</span>
+              <span class="section-title">Impacto sobre roles humanos, planeamiento y gobernanza minera</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.1</span>
+                  <span class="subsection-title">Efecto en el empleo de metalurgistas y necesidad de intervención humana</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La automatización podría reducir tareas tradicionales de metalurgistas en decenas de años, aunque el concurso humano seguirá siendo necesario.</div>
+                  <div class="content-text">El conocimiento del geólogo y metalurgista humano mantiene relevancia para validación y decisiones estratégicas.</div>
+                  <div class="content-text">La implementación requiere mantener participación humana para supervisión y ajuste de modelos.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=3843" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:04:03)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.2</span>
+                  <span class="subsection-title">Mejora del planeamiento y riesgos de manipulación por la alta dirección</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Integrar datos en IA genera planeamiento más estable y menos sorpresas si el humano no interfiere.</div>
+                  <div class="content-text">Cambios en la alta dirección pueden inducir prácticas de descremado del mejor mineral para mostrar resultados a corto plazo.</div>
+                  <div class="content-text">Alteraciones del plan minado por decisiones político-económicas provocan desajustes y problemas operativos a mediano plazo.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=3869" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:04:29)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.3</span>
+                  <span class="subsection-title">Aspectos sociales y manejo de frentes mineros</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Restituir continuidad de frente a través de acuerdos con comunidades evita replegues operativos y paradas no planificadas.</div>
+                  <div class="content-text">Formación de empresas comunales responsables y contratación de mano de obra local con capacitación técnica es propuesta para mitigar conflicto.</div>
+                  <div class="content-text">Los problemas sociales suelen convertirse finalmente en costos monetarios dentro del OPEX y requieren soluciones sostenibles.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=4044" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:07:24)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section" data-section="13">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">13</span>
+              <span class="section-title">Implementación de inteligencia artificial en pequeña minería y minería artesanal</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.1</span>
+                  <span class="subsection-title">Posibilidad de aplicar geometalurgia en pequeña minería con capacitación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La pequeña minería puede practicar geometalurgia si recibe capacitación adecuada y orientación técnica.</div>
+                  <div class="content-text">Requiere contratar geólogo para levantamiento de yacimiento, muestreo y definición de perforaciones y explotaciones.</div>
+                  <div class="content-text">La caracterización permitirá entender tipo de mineralización y diseñar soluciones metalúrgicas apropiadas.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=4552" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:15:52)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.2</span>
+                  <span class="subsection-title">Ejemplo práctico de mejora mediante caracterización y equipos simples</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Caso donde la caracterización reveló oro grueso y relaves con valores residuales que justificaron pruebas de gravimetría.</div>
+                  <div class="content-text">Instalación de mesa vibratoria, jig o espiral mejoró recuperación y permitió optar por lixiviación de relaves si conviene.</div>
+                  <div class="content-text">El coste de la caracterización y del equipo de segunda mano fue recuperado con aumento de recuperación y valor producido.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=4621" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:17:01)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.3</span>
+                  <span class="subsection-title">Automatización y control remoto accesible para plantas pequeñas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">PLCs (PLS en la transcripción) y tarjetas de adquisición permiten controlar válvulas, motorizaciones y dosificaciones en mesas vibratorias.</div>
+                  <div class="content-text">Señales digitalizadas pueden transmitirse por internet para supervisión remota desde un celular o computadora.</div>
+                  <div class="content-text">Inversión estimada razonable (orden de miles de dólares) permite acceso a automatización y sistemas expertos en pequeña minería.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=4990" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:23:10)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="14">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">14</span>
+              <span class="section-title">Automatización, tecnologías de control y beneficios operativos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.1</span>
+                  <span class="subsection-title">Componentes básicos para automatizar y mejorar recuperación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Sensores de peso, válvulas automáticas y controladores modernos permiten dosificar agua y vibración para optimizar recuperación.</div>
+                  <div class="content-text">La automatización puede ajustar alimentación, granulometría y parámetros de la mesa para mejorar recuperación relativa.</div>
+                  <div class="content-text">Requisitos técnicos incluyen suministro eléctrico estable y mantenimiento del hardware de control.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=5053" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:24:13)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.2</span>
+                  <span class="subsection-title">Ejemplos de adopción y resistencia cultural a nuevas prácticas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Existen casos donde pequeñas chancadoras y equipos se han automatizado con éxito, mejorando operaciones de 10 toneladas.</div>
+                  <div class="content-text">La resistencia del pequeño minero a contratar especialistas o cambiar prácticas tradicionales es un reto cultural.</div>
+                  <div class="content-text">Cambios en prácticas como reemplazar mercurio por cianuro o glicina enfrentan barreras por costumbres y falta de control regulatorio.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=5230" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:27:10)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.3</span>
+                  <span class="subsection-title">Beneficio económico y necesidad de cambio de actitud</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Inversión relativamente baja puede multiplicar ingresos, ejemplo de relación inversión-recuperación favorable.</div>
+                  <div class="content-text">Cambio cultural, educación y adopción de buenas prácticas son críticos para que la pequeña minería adopte geometalurgia e IA.</div>
+                  <div class="content-text">La seguridad y valores humanos deben priorizarse sobre la producción inmediata para evitar riesgos y degradación ambiental.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=5507" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:31:47)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="15">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">15</span>
+              <span class="section-title">Preparación de datos, modelamiento geometalúrgico y entrenamiento de sistemas inteligentes</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.1</span>
+                  <span class="subsection-title">Integración de parámetros geológicos, mineralógicos y metalúrgicos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La caracterización de yacimiento incluye geología, química, mineralogía, propiedades físicas, respuesta metalúrgica y geotecnia ambiental.</div>
+                  <div class="content-text">Cada parámetro (dureza, mineralogía, alteraciones) se debe recolectar y almacenar para que el sistema lo use en entrenamiento.</div>
+                  <div class="content-text">El sistema necesita identificar unidades geometalúrgicas y asociar respuestas metalúrgicas específicas para cada unidad.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=5718" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:35:18)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.2</span>
+                  <span class="subsection-title">Creación y poblamiento de modelos y manejo de variables faltantes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Millones de registros de pruebas y ensayos alimentan modelos estadísticos y de machine learning para predecir comportamientos.</div>
+                  <div class="content-text">Si una variable relevante (por ejemplo arcilla) no está en el modelo, las predicciones fallan y es necesario alimentar la información faltante.</div>
+                  <div class="content-text">La auditoría y conciliación entre predicho y producido permite identificar brechas y poblar el modelo con nueva información.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=5862" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:37:42)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.3</span>
+                  <span class="subsection-title">Consideraciones de mantenimiento, paradas y datos operacionales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Variables no metalúrgicas como paradas no programadas y fallas de hardware deben incorporarse al modelo como limitaciones.</div>
+                  <div class="content-text">Los datos de mantenimiento, disponibilidad de bombas y controladores son necesarios para que la IA gestione alteraciones operativas.</div>
+                  <div class="content-text">El muestreo continuo, sistemático y planificado garantiza la actualización del modelo y su optimización dinámica.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=6202" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:43:22)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="16">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">16</span>
+              <span class="section-title">Flujo de trabajo: desde modelamiento hasta operación con machine learning</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.1</span>
+                  <span class="subsection-title">Proceso de modelamiento geometalúrgico y control de calidad de datos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se genera un modelo geometalúrgico mediante análisis geoestadístico y se limpian los datos antes de introducirlos en unidades geometalúrgicas.</div>
+                  <div class="content-text">El muestreo debe ser representativo, con selección adecuada, caracterización química, mineralógica y metalúrgica.</div>
+                  <div class="content-text">Se requiere control de calidad de datos (QA/QC) para asegurar integridad antes del entrenamiento de modelos.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=6350" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:45:50)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.2</span>
+                  <span class="subsection-title">Parámetros críticos en concentración y su modelado</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Variables como litología, dureza, cinética de molienda y reología influyen en consumo energético y respuesta a flotación.</div>
+                  <div class="content-text">Modelos estiman parámetros para cada bloque geológico: recuperación, dureza, alteraciones penalizables y comportamiento reológico.</div>
+                  <div class="content-text">Estos parámetros se cargan en la arquitectura de datos que alimenta los modelos de machine learning.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=6454" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:47:34)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.3</span>
+                  <span class="subsection-title">Implementación, actualización y auditoría de modelos en planta</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Una vez en operación, el sistema inteligente operará con información previa y nueva recolectada diariamente por análisis en línea.</div>
+                  <div class="content-text">Los modelos se actualizan periódicamente y se auditian conciliando predicciones con resultados reales para afinar su desempeño.</div>
+                  <div class="content-text">La metodología ágil y equipos multidisciplinarios facilitan hitos rápidos y capitalización temprana de beneficios, como se muestra en casos reales.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=6587" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:49:47)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="17">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">17</span>
+              <span class="section-title">Casos prácticos y experiencias reales de aplicación en minería</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.1</span>
+                  <span class="subsection-title">Video y caso Antamina: implementación de machine learning en planta concentradora</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Antamina desarrolló modelos estadísticos y machine learning para incrementar producción metálica de cobre equivalente en su concentradora.</div>
+                  <div class="content-text">Proyecto multidisciplinario integró metalurgia, operaciones, control de procesos, TI, mantenimiento, mina y geología con consultoría externa.</div>
+                  <div class="content-text">Modelos generan recomendaciones operativas y muestran en pantallas valores óptimos de variables en molienda y flotación para los operadores.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=6678" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:51:18)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.2</span>
+                  <span class="subsection-title">Arquitectura de datos, ciberseguridad y actualización periódica de modelos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se implementó una arquitectura de datos para almacenar y procesar grandes volúmenes online y en batch, con componentes de ciberseguridad.</div>
+                  <div class="content-text">La incorporación de nuevas fuentes de datos permite mantener el machine learning relevante y entregando valor continuo.</div>
+                  <div class="content-text">Las recomendaciones del ML se revisan e implementan por los operadores, logrando mejora continua y sinergia hombre-máquina.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=6774" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:52:54)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.3</span>
+                  <span class="subsection-title">Difusión y liderazgo en minería polimetálica con ML</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Antamina y otras operaciones en Perú muestran liderazgo en aplicar ML en minería polimetálica con resultados reales.</div>
+                  <div class="content-text">Implementaciones similares avanzan en minas como Quellaveco, Las Bambas y Antapaccay, evidenciando una tendencia en la industria.</div>
+                  <div class="content-text">El proyecto implica cambio de hábitos, socialización interna y definición técnica de beneficios esperados para su aceptación.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=6922" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:55:22)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="18">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">18</span>
+              <span class="section-title">Aspectos finales sobre la dinámica del sistema inteligente y requisitos de muestreo</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.1</span>
+                  <span class="subsection-title">Dinámica del aprendizaje y necesidad de muestreo constante</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El sistema aprende con la operación diaria y requiere muestreo planificado, sistemático y representativo para optimizar su precisión.</div>
+                  <div class="content-text">Las unidades geometalúrgicas deben ser actualizadas conforme se obtienen nuevos datos operacionales y de laboratorio.</div>
+                  <div class="content-text">Métricas de éxito y verificación constante permiten controlar la brecha entre predicción y operación real.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=5789" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:36:29)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.2</span>
+                  <span class="subsection-title">Modelos múltiples para distintos parámetros y bloques geológicos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Cada variable y unidad geometalúrgica puede obedecer a un modelo distinto según mineralización, dureza y respuesta metalúrgica.</div>
+                  <div class="content-text">Se necesitan cientos o miles de pruebas para poblar modelos que describan comportamiento por bloque o volumen de yacimiento.</div>
+                  <div class="content-text">El resultado es un sistema integrado que utiliza machine learning para pronosticar producción y optimizar decisiones en tiempo real.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=5876" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:37:56)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.3</span>
+                  <span class="subsection-title">Requerimientos finales: datos, validación y equipo multidisciplinario</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La implementación exitosa exige caracterización, datos limpios, infraestructura de datos y equipos multidisciplinarios comprometidos.</div>
+                  <div class="content-text">Validación y conciliación entre predicho y producido junto con auditoría continua son imprescindibles para mantener confianza en el sistema.</div>
+                  <div class="content-text">La adopción integrada de geometalurgia e inteligencia artificial promete optimizar CAPEX y OPEX, y mejorar la estabilidad del planeamiento minero.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=6548" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:49:08)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="19">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">19</span>
+              <span class="section-title">Introducción al flujo de trabajo y objetivo del estudio</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.1</span>
+                  <span class="subsection-title">Presentación del proceso desde MFT hasta simulación IGS</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Descripción de los tres parámetros obtenidos por MFT que se integran inicialmente en el modelo de bloques para simulación.</div>
+                  <div class="content-text">Papel del software propietario IGS (integrated geometallurgical simulator) en convertir parámetros cinéticos en leyes y recuperaciones finales.</div>
+                  <div class="content-text">Objetivo central del estudio: mejorar la resolución de la base de datos de parámetros cinéticos MFT para afinar estimaciones de producción.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=7201" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:01)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.2</span>
+                  <span class="subsection-title">Motivación para ampliar resultados MFT mediante predicción</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Restricciones técnicas y económicas impiden realizar MFT en todas las muestras disponibles, limitando la cobertura de parámetros cinéticos.</div>
+                  <div class="content-text">Necesidad de estimar la posible respuesta metalúrgica en muestras no sometidas a MFT para incluirlas en el forecast de producción.</div>
+                  <div class="content-text">Idea de explotar correlaciones entre variables medidas y variables MFT para extrapolar resultados faltantes.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=7221" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:21)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.3</span>
+                  <span class="subsection-title">Variables de interés y alcance de la estimación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Tres parámetros cinéticos objetivo: recuperación máxima (Rmax), K promedio (velocidad de flotabilidad) y alfa (dispersión de flotabilidad).</div>
+                  <div class="content-text">Importancia práctica: estos parámetros alimentan simulaciones de flotación en IGS para obtener recuperación y ley de concentrado.</div>
+                  <div class="content-text">Alcance: estimación para cuatro fracciones minerales (cobre sulfurado, molibdenita, pirita y ganga no sulfurada), totalizando 12 variables objetivo.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=7340" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:02:20)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="20">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">20</span>
+              <span class="section-title">Datos disponibles, retos de la base de datos y preparación</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.1</span>
+                  <span class="subsection-title">Descripción de la base de datos y tipos de variables disponibles</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Amplia sábana de datos con más de 500 variables incluyendo geología, geometalurgia, caracterización y resultados metalúrgicos.</div>
+                  <div class="content-text">Ejemplos de variables: ubicación X-Z, litología, alteración, mineralogía, leyes de cabeza, pruebas de flotación estándar, difracción de rayos X e ICP.</div>
+                  <div class="content-text">Presencia de datos de pilotaje y balances que enriquecen la información para modelado.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=7505" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:05:05)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.2</span>
+                  <span class="subsection-title">Problemas de completitud, faltantes y distribuciones de muestras</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Existencia de valores faltantes dispersos; algunas variables no medidas en todas las muestras.</div>
+                  <div class="content-text">Diferenciación clara entre 300 muestras con parámetros MFT y 700 muestras sin MFT que se desean estimar.</div>
+                  <div class="content-text">Importancia de identificar qué celdas están medidas (visto bueno) y cuáles no (X) para planificar imputación y modelado.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=7653" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:07:33)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.3</span>
+                  <span class="subsection-title">Consideraciones sobre aditividad y transformaciones necesarias</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Distinción entre variables aditivas (por ejemplo, ley bajo ciertos supuestos) y no aditivas (por ejemplo, recuperación al mezclar bloques).</div>
+                  <div class="content-text">Problema de modelado geometalúrgico: muchas variables metalúrgicas no son aditivas y dificultan agregaciones en modelos de bloques.</div>
+                  <div class="content-text">Solución propuesta: transformar variables no aditivas a formas aditivas mediante transformaciones bidireccionales antes y después de la predicción.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=7741" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:09:01)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="21">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">21</span>
+              <span class="section-title">Metodología de modelado y elección del algoritmo</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">21.1</span>
+                  <span class="subsection-title">Proceso general: transformaciones, modelado y reinversión</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Flujo: transformar variables originales a versiones aditivas, estimar estas transformaciones con el modelo de machine learning y aplicar la transformación inversa para obtener parámetros originales.</div>
+                  <div class="content-text">Justificación: trabajar sobre variables transformadas permite poblar modelo de bloques preservando condiciones de aditividad.</div>
+                  <div class="content-text">Resultado final: parámetros originales listos para integrar en simulaciones IGS y obtener forecast.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=7940" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:12:20)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">21.2</span>
+                  <span class="subsection-title">Requisitos del modelo y desafíos que debe abordar</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Necesidad de manejar alta dimensionalidad, correlaciones complejas entre variables y mediciones con incertidumbre.</div>
+                  <div class="content-text">Capacidad para trabajar con valores faltantes y múltiples variables objetivo (las 12 variables cinéticas).</div>
+                  <div class="content-text">Preferencia por un modelo supervisado que aporte predicción y una medida de incertidumbre asociada.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=8027" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:13:47)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">21.3</span>
+                  <span class="subsection-title">Selección del Proceso Gaussiano Valleciano con variables latentes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Descomposición del nombre: proceso gaussiano (modelo probabilístico con estimación e incertidumbre), valleciano (regularización bayesiana para evitar sobreajuste), variables latentes (reducción dimensional manteniendo variabilidad).</div>
+                  <div class="content-text">Ventajas: entrega de predicción puntual y distribución de incertidumbre, incorpora información a priori para mayor robustez y evita overfitting.</div>
+                  <div class="content-text">Relación con técnicas conocidas: variables latentes similares a PCA pero integradas en el modelo probabilístico para capturar covarianzas complejas.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=8103" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:15:03)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="22">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">22</span>
+              <span class="section-title">Validación, entrenamiento y métricas de desempeño</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">22.1</span>
+                  <span class="subsection-title">División de datos y estrategia de entrenamiento versus prueba</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Para entrenar se utilizan únicamente las 300 muestras con resultados MFT; las 700 sin MFT se reservarán para aplicar el modelo final.</div>
+                  <div class="content-text">Se separa internamente una porción de datos para validar modelo antes de imputar a muestras sin resultados.</div>
+                  <div class="content-text">Razonamiento: no se entrena con muestras sin MFT pues carecen de etiqueta contra la cual evaluar desempeño.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=8342" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:19:02)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">22.2</span>
+                  <span class="subsection-title">Validación cruzada k-fold para robustecer evaluación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Empleo de validación cruzada con k = 5 para evitar sesgos en la selección de entrenamiento y testing.</div>
+                  <div class="content-text">Procedimiento iterativo: en cada iteración se usan cuatro subconjuntos para entrenar y uno para testear, rotando hasta completar cinco iteraciones.</div>
+                  <div class="content-text">Resultado: promedio del rendimiento en las cinco iteraciones como estimador del desempeño general del modelo.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=8410" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:20:10)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">22.3</span>
+                  <span class="subsection-title">Métrica de evaluación y análisis de bondad de ajuste</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Métrica principal: error cuadrático medio (ECM) que promedia las diferencias al cuadrado entre valor estimado y valor real.</div>
+                  <div class="content-text">Interpretación: valores de ECM más pequeños indican mayor precisión media del modelo en las estimaciones.</div>
+                  <div class="content-text">Complemento: además de ECM, el modelo entrega intervalos de incertidumbre que permiten evaluar precisión y dispersión de las predicciones.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=8578" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:22:58)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="23">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">23</span>
+              <span class="section-title">Resultados prácticos, integración en IGS y conclusiones</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">23.1</span>
+                  <span class="subsection-title">Resultados de predicción sobre variables transformadas y visualización</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Presentación de gráficos comparativos del valor real (eje X) versus el estimado (eje Y) para variables transformadas como R1, R3 y R3 Delta.</div>
+                  <div class="content-text">Modelo entrega predicciones puntuales acompañadas de intervalos de incertidumbre, evidenciando la estimación probabilística.</div>
+                  <div class="content-text">Observación: buena concordancia general entre valores reales y estimados para las transformaciones analizadas.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=8643" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:24:03)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">23.2</span>
+                  <span class="subsection-title">Transformación inversa y comportamiento de parámetros cinéticos estimados</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Aplicación de la transformación inversa para obtener Rmax, K promedio y alfa en unidades originales.</div>
+                  <div class="content-text">Gráficos muestran correlación estrecha entre valores reales y estimados para varias combinaciones, destacando buen ajuste en cobre sulfurado y pirita.</div>
+                  <div class="content-text">Notas sobre dispersiones: algunas muestras presentan mayor discrepancia, posible pertenencia a dominios distintos o características no captadas por el modelo.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=8728" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:25:28)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">23.3</span>
+                  <span class="subsection-title">Integración de estimaciones en IGS y efectos sobre forecast</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Inserción de parámetros cinéticos estimados en el modelo de bloques y posterior simulación en IGS para calcular recuperación final y ley de concentrado.</div>
+                  <div class="content-text">Ampliación de la base de datos de parámetros reduce la incertidumbre geoestadística en las estimaciones de parámetros cinéticos.</div>
+                  <div class="content-text">Beneficio final: mejora en la resolución del forecast de producción y en la capacidad de optimizar decisiones de muestreo y pruebas futuras.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=8805" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:26:45)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">23.4</span>
+                  <span class="subsection-title">Conclusiones del estudio y recomendaciones prácticas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Con adecuada selección de muestras y conjunto de datos es posible estimar resultados metalúrgicos y reducir incertidumbres en modelación y forecast.</div>
+                  <div class="content-text">Importancia de la selección informada de muestras para optimizar recursos y definir pruebas metalúrgicas.</div>
+                  <div class="content-text">Recomendación de atreverse a probar distintos modelos de machine learning y validar si cumplen supuestos; incluso el fracaso aporta información valiosa.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=8836" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:27:16)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="24">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">24</span>
+              <span class="section-title">Modelos alternativos, consideraciones prácticas y cierre</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">24.1</span>
+                  <span class="subsection-title">Preguntas frecuentes y aplicabilidad con menos variables</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Respuesta a duda común: no es obligatorio disponer de cientos de variables; modelos pueden aplicarse con pocas variables siempre que se cumplan supuestos.</div>
+                  <div class="content-text">Importancia de validar los supuestos del modelo para cada caso particular y ajustar la estrategia de muestreo si es necesario.</div>
+                  <div class="content-text">Enfatiza que la calidad y representatividad de las variables pueden ser más importantes que la cantidad absoluta.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=8929" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:28:49)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">24.2</span>
+                  <span class="subsection-title">Otros modelos de machine learning empleados por SGS y su papel</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Mención de algoritmos alternativos: algoritmos filogenéticos especializados para interpretación y clasificación geológica.</div>
+                  <div class="content-text">Árboles de decisión potenciados (boosted trees) útiles para relaciones no lineales entre variables.</div>
+                  <div class="content-text">Indicación de que el modelo usado (proceso gaussiano valleciano) ha sido aplicado en otros objetivos y obtuvo reconocimientos en concursos internacionales.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=8965" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:29:25)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">24.3</span>
+                  <span class="subsection-title">Cierre de la sesión, agradecimientos y llamadas a la acción</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Reconocimiento a colaboradores principales del desarrollo del modelo y mención de aporte intelectual y práctico.</div>
+                  <div class="content-text">Invitación a comunicarse para consultas adicionales y ofrecer contacto vía WhatsApp o correo para seguimiento.</div>
+                  <div class="content-text">Mensaje final animando a probar nuevas tecnologías de machine learning y experimentar con distintos enfoques en proyectos geometalúrgicos.</div>
+                  <a href="https://www.youtube.com/watch?v=2W6sZNbLG-8&start=9059" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:30:59)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://www.edumin.pe/" target="_blank">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="footer-logo" />
+      </a>
+      <p class="footer-text">
+        <b>Contenido desarrollado por EDUMIN - Centro de Capacitación Especializado en Minería, Industria y Negocios</b><br />
+        <i>Material exclusivo para estudiantes de EDUMIN</i><br />
+        <a href="https://www.edumin.pe/" target="_blank" style="color: var(--color-principal); text-decoration: none">https://www.edumin.pe/</a>
+      </p>
+    </div>
+
+    <script>
+      const TITULO_DIPLOMADO = "GEometalurgia".toUpperCase();
+      const TITULO_CLASE = "CLASE 03: OPTIMIZACIÓN DE TÉCNICAS AVANZADAS DEL PROCESAMIENTO DE MINERALES - 1ra parte".toUpperCase();
+
+      const elementoDiplomado = document.getElementById("tituloDiplomado");
+      if (elementoDiplomado) {
+        elementoDiplomado.innerText = TITULO_DIPLOMADO;
+      }
+
+      document.title = TITULO_CLASE;
+      const tituloPrincipal = document.getElementById("tituloPrincipal");
+      if (tituloPrincipal) {
+        tituloPrincipal.innerText = TITULO_CLASE;
+      }
+
+      const tituloCompacto = document.getElementById("tituloCompacto");
+      if (tituloCompacto) {
+        tituloCompacto.innerText = TITULO_CLASE;
+      }
+
+      function toggleSection(element) {
+        const section = element.closest(".section");
+        const wasActive = section.classList.contains("active");
+
+        section.classList.toggle("active");
+
+        if (wasActive) {
+          const subsections = section.querySelectorAll(".subsection");
+          subsections.forEach((subsection) => {
+            subsection.classList.remove("active");
+          });
+        }
+      }
+
+      function toggleSubsection(element) {
+        const subsection = element.closest(".subsection");
+        subsection.classList.toggle("active");
+      }
+
+      function expandAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.add("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.add("active");
+        });
+      }
+
+      function collapseAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.remove("active");
+        });
+      }
+
+      function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, delay);
+        };
+      }
+
+      function clearSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        searchInput.value = "";
+        clearBtn.style.display = "none";
+        searchContent();
+        searchInput.focus();
+      }
+
+      const createDiacriticInsensitiveRegex = (term) => {
+        const charMap = {
+          a: "[aáAÁ]",
+          e: "[eéEÉ]",
+          i: "[iíIÍ]",
+          o: "[oóOÓ]",
+          u: "[uúUÚ]",
+        };
+
+        const regexString = term
+          .split("")
+          .map((char) => {
+            const lowerChar = char.toLowerCase();
+            return charMap[lowerChar] || char;
+          })
+          .join("");
+
+        return new RegExp(`(${regexString})`, "gi");
+      };
+
+      function searchContent() {
+        const inputElement = document.getElementById("searchInput");
+        const searchTerm = inputElement.value.trim();
+
+        const searchableElements = document.querySelectorAll(".content-text, .section-title, .subsection-title");
+        let found = false;
+        let firstMatchElement = null;
+
+        document.querySelectorAll(".section.active").forEach((el) => el.classList.remove("active"));
+        document.querySelectorAll(".subsection.active").forEach((el) => el.classList.remove("active"));
+        searchableElements.forEach((element) => {
+          element.innerHTML = element.getAttribute("data-original-text") || element.textContent;
+        });
+
+        if (searchTerm.length < 3) {
+          return;
+        }
+
+        const searchRegex = createDiacriticInsensitiveRegex(searchTerm);
+
+        searchableElements.forEach((element) => {
+          const originalText = element.getAttribute("data-original-text") || element.textContent;
+
+          if (searchRegex.test(originalText)) {
+            found = true;
+
+            element.innerHTML = originalText.replace(searchRegex, `<span class="highlight">$1</span>`);
+
+            const subsection = element.closest(".subsection");
+            if (subsection) {
+              subsection.classList.add("active");
+              subsection.closest(".section")?.classList.add("active");
+            } else if (element.classList.contains("section-title")) {
+              element.closest(".section")?.classList.add("active");
+            }
+
+            if (!firstMatchElement) {
+              firstMatchElement = element;
+            }
+          }
+        });
+
+        if (firstMatchElement) {
+          requestAnimationFrame(() => {
+            firstMatchElement.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          });
+        } else if (searchTerm.length >= 3) {
+          alert("No se encontraron resultados para: " + searchTerm);
+        }
+      }
+
+      const debouncedSearch = debounce(searchContent, 300);
+
+      document.getElementById("searchInput").addEventListener("input", function () {
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        clearBtn.style.display = this.value.length > 0 ? "block" : "none";
+        debouncedSearch();
+      });
+
+      document.getElementById("searchInput").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          clearTimeout(this._timeoutId);
+          searchContent();
+        }
+      });
+
+      // --- Lógica del Header Compacto ---
+      const header = document.querySelector(".header");
+      const headerSpacer = document.querySelector(".header-spacer");
+      let initialHeaderHeight = 0; // Altura del header original
+      let compactHeaderHeight = 0; // Altura del header en modo compacto
+      let scrollTriggerPoint = 0; // Punto de scroll para activar el cambio
+
+      function handleHeaderState() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollY > scrollTriggerPoint) {
+          if (!header.classList.contains("compact")) {
+            header.classList.add("compact");
+            headerSpacer.style.height = `${initialHeaderHeight}px`;
+          }
+        } else {
+          if (header.classList.contains("compact")) {
+            header.classList.remove("compact");
+            headerSpacer.style.height = "0px";
+          }
+        }
+      }
+
+      function initializeHeader() {
+        initialHeaderHeight = header.offsetHeight;
+        const headerClone = header.cloneNode(true);
+        headerClone.classList.add("compact");
+        headerClone.style.visibility = "hidden";
+        headerClone.style.position = "absolute";
+        document.body.appendChild(headerClone);
+        compactHeaderHeight = headerClone.offsetHeight;
+        document.body.removeChild(headerClone);
+
+        scrollTriggerPoint = initialHeaderHeight - compactHeaderHeight;
+      }
+
+      document.addEventListener("DOMContentLoaded", initializeHeader);
+      window.addEventListener("scroll", handleHeaderState);
+      window.addEventListener("resize", debounce(initializeHeader, 200));
+    </script>
+  </body>
+</html>
