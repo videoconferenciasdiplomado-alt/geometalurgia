@@ -1,0 +1,2051 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        /* Colores Principales del Diseño (Acentos y Degradados) */
+        /* ======================================================= */
+        --color-principal: #00beff; /* Cian Brillante para acentos, bordes y el inicio del degradado principal */
+        --color-secundario: #1e50cd; /* Azul Medio, parte final del degradado de acento */
+
+        /* Fondos Oscuros de la Interfaz */
+        /* ======================================================= */
+        --fondo-oscuro-claro: #002a52; /* Fondo de secciones y contenido */
+        --fondo-oscuro-fuerte: #001a33; /* Fondo del encabezado (header) y pie de página (footer) */
+        /* ======================================================= */
+        --fondo-oscuro-medio: #003366; /* Fondo de encabezados y cajas de contenido */
+        --fondo-borde-claro: #004080; /* Bordes ligeros y color de fondo al hacer hover en encabezados */
+        --fondo-sombra-azul-header: #0050a0; /* ¡NUEVO! Sombra en el header */
+
+        /* Colores de Texto y Fondo General del Body */
+        /* ======================================================= */
+        --texto-blanco-1: #ffffff; /* Blanco puro para títulos y texto en fondo muy oscuro */
+        --texto-claro-2: #e6e6e6; /* Texto principal y claro */
+        --texto-medio-3: #cccccc; /* Texto de contenido de item (un poco más tenue) */
+
+        /* ======================================================= */
+        --fondo-body-inicio: #99e5ff; /* Color de inicio del degradado de fondo del body */
+        --fondo-body-fin: #a5b9eb; /* Color de final del degradado de fondo del body */
+
+        /* Colores de Acento Específicos (YouTube, Búsqueda) */
+        /* ======================================================= */
+        --rojo-youtube-claro: #e60000;
+        --rojo-youtube-fuerte: #a30000;
+        --timestamp-youtube: #ffcccc;
+        --fondo-resaltado: #00c339; /* Verde para el fondo del texto buscado */
+
+        /* Bases RGB para Transparencias (RGBA) */
+        /* ======================================================= */
+        --sombra-rgb: 0, 0, 0; /* Negro puro: Usado para sombras generales y profundidad */
+        --acento-rgb: 0, 190, 255; /* Cian Brillante: Usado para brillos y sombras de acento */
+        --rojo-rgb: 230, 0, 0; /* Rojo Puro: Usado para sombras de enlaces de YouTube */
+        /* ======================================================= */
+        --gradient-principal: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--fondo-body-inicio) 0%, var(--fondo-body-fin) 100%);
+        line-height: 1.2;
+        scroll-behavior: smooth;
+      }
+
+      strong#tituloDiplomado {
+        font-weight: 900;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      @keyframes slideDownSutil {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header.animacion-inicial {
+        animation: slideDownSutil 0.4s ease-out 1;
+        animation-fill-mode: forwards;
+        will-change: transform, opacity;
+      }
+
+      .header {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        box-shadow: 0 5px 15px rgba(var(--sombra-rgb), 0.5);
+        text-align: center;
+        will-change: transform;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header-text-box {
+        display: grid;
+        gap: 10px;
+        word-break: break-word;
+        margin: 0 15px;
+      }
+
+      .header.compact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+      }
+
+      .header-spacer {
+        display: none;
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header.compact + .header-spacer {
+        display: block;
+      }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .header.compact .header-top {
+        display: none;
+      }
+
+      .logo {
+        width: 140px;
+        height: auto;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+      }
+
+      .header.compact .logo {
+        width: 90px;
+        margin: 0 10px;
+      }
+
+      .header .logo.compact-logo {
+        display: none;
+      }
+
+      .header.compact .logo.compact-logo {
+        display: block;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 900;
+      }
+
+      .header.compact h1 {
+        font-size: 1rem;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+      }
+
+      .header-content-box {
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 20px 20px;
+        box-shadow: 0 8px 20px rgba(var(--acento-rgb), 0.6);
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        opacity: 1;
+        transform: translateY(0);
+        will-change: transform;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .header-content-box {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: 0;
+        transform: translateY(-10px);
+      }
+
+      .header-content-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(var(--acento-rgb), 0.8);
+      }
+
+      .header-bottom-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header-second-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header.compact .header-bottom-row {
+        flex-grow: 1;
+      }
+
+      .logo-and-title {
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .logo-and-title {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .header.compact .header-bottom-row .logo-and-title {
+        will-change: transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        width: 100%;
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        gap: 10px;
+      }
+
+      .header.compact .header-bottom-row .logo-and-title:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .header-compact-title {
+        display: none;
+        color: var(--texto-blanco-1);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 10px;
+        white-space: normal;
+      }
+
+      .header.compact .header-compact-title {
+        display: block;
+      }
+
+      .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 450px;
+        background-color: var(--fondo-oscuro-medio);
+        border: 2px solid var(--fondo-borde-claro);
+        border-radius: 30px;
+        box-shadow: 0 4px 10px rgba(var(--sombra-rgb), 0.25);
+        will-change: border-color, background-color;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      }
+
+      .search-bar:focus-within {
+        border-color: var(--fondo-sombra-azul-header);
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .clear-search {
+        cursor: pointer;
+        color: var(--texto-claro-2);
+        padding: 5px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        display: none;
+        transition: color 0.2s ease;
+        transform: scale(1.5);
+      }
+
+      .clear-search:hover {
+        color: var(--texto-blanco-1);
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 10px 18px;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--texto-claro-2);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        min-width: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .header.compact .search-bar input {
+        padding: 10px 20px;
+      }
+
+      .search-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-button {
+        background: var(--gradient-principal);
+        border: none;
+        color: var(--texto-blanco-1);
+        padding: 8px 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        will-change: transform;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        max-width: 150px;
+        white-space: normal;
+      }
+
+      .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .search-bar .action-button {
+        margin: 5px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      @keyframes fadeInUpContent {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .mind-map {
+        transition: margin-top 0.4s ease;
+        margin: 50px 0;
+      }
+
+      .mind-map.animacion-contenido {
+        animation: fadeInUpContent 0.4s ease-out 1 forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        will-change: opacity, transform;
+      }
+
+      .section {
+        margin-bottom: 20px;
+        background-color: var(--fondo-oscuro-claro);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-oscuro-medio);
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(var(--sombra-rgb), 0.25);
+        transition: border-color 0.3s ease;
+      }
+
+      .section-header {
+        padding: 20px;
+        background-color: var(--fondo-oscuro-medio);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .section-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 5px 12px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 15px;
+      }
+
+      .toggle-icon {
+        font-size: 1.2rem;
+        color: var(--texto-claro-2);
+        will-change: transform;
+        transition: transform 0.3s ease;
+      }
+
+      .section.active > .section-header .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .section-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .section.active .section-content {
+        max-height: fit-content;
+        padding-bottom: 10px;
+        opacity: 1;
+      }
+
+      .subsection {
+        margin: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-borde-claro);
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+
+      .subsection:hover {
+        border-color: var(--fondo-sombra-azul-header);
+      }
+
+      .subsection:hover .subsection-header {
+        background-color: var(--fondo-sombra-azul-header);
+      }
+
+      .section:hover {
+        border-color: var(--fondo-borde-claro);
+      }
+
+      .section:hover .section-header {
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .subsection-header {
+        padding: 15px;
+        background-color: var(--fondo-borde-claro);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .subsection-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .subsection-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 12px;
+      }
+
+      .subsection-content {
+        max-height: 0;
+        overflow: hidden;
+        background-color: var(--fondo-oscuro-claro);
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .subsection.active .subsection-content {
+        max-height: fit-content;
+        padding: 15px;
+        opacity: 1;
+      }
+
+      .subsection.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .content-item {
+        margin-bottom: 10px;
+        padding: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border-left: 4px solid var(--color-principal);
+        box-shadow: 0 1px 5px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .content-text {
+        color: var(--texto-medio-3);
+        margin-bottom: 5px;
+        line-height: 1.4;
+        font-size: 1rem;
+        font-weight: 500;
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .content-text::before {
+        content: "•";
+        color: var(--color-principal);
+        font-weight: 700;
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+      }
+
+      .youtube-link {
+        display: inline-block;
+        padding: 10px 18px;
+        background: linear-gradient(135deg, var(--rojo-youtube-claro) 0%, var(--rojo-youtube-fuerte) 100%);
+        color: var(--texto-blanco-1);
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1rem;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(var(--rojo-rgb), 0.4);
+        will-change: transform;
+      }
+
+      .youtube-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 3px 7.5px rgba(var(--rojo-rgb), 0.5);
+        will-change: transform;
+      }
+
+      .timestamp {
+        color: var(--timestamp-youtube);
+        font-size: 0.85rem;
+        margin-left: 10px;
+        font-weight: 400;
+      }
+
+      .highlight {
+        background-color: var(--fondo-resaltado);
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+        padding: 4px;
+        border-radius: 6px;
+      }
+
+      .footer {
+        padding: 30px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        border-top: 1px solid var(--fondo-oscuro-medio);
+        text-align: center;
+        box-shadow: 0 -2px 10px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .footer-text {
+        color: var(--texto-claro-2);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .footer-logo {
+        width: 140px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .header-top {
+          flex-direction: column;
+        }
+
+        .logo {
+          margin: 0;
+        }
+
+        .header-text-box {
+          margin: 0;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .header.compact .header-bottom-row .logo-and-title {
+          gap: 5px;
+        }
+        .logo,
+        .footer-logo {
+          width: 105px;
+        }
+
+        .header.compact .header-bottom-row {
+          flex-direction: column;
+        }
+
+        .header.compact .header-compact-title {
+          margin: 0 5px;
+          font-size: 0.8rem;
+        }
+
+        .header.compact .logo.compact-logo {
+          width: 65px;
+          margin: 5px;
+        }
+
+        .action-button,
+        .search-bar input,
+        .clear-search {
+          font-size: 0.9rem;
+        }
+
+        .section-header {
+          padding: 15px;
+        }
+
+        .header.compact .controls {
+          flex-direction: row;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .subsection-title {
+          font-size: 1rem;
+        }
+        .section-number,
+        .subsection-number {
+          font-size: 13px;
+        }
+
+        .content-text {
+          font-size: 0.9rem;
+        }
+
+        .youtube-link {
+          font-size: 0.8rem;
+        }
+
+        .timestamp {
+          font-size: 0.75rem;
+        }
+
+        .header.compact .action-button {
+          padding: 6px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header animacion-inicial">
+      <div class="header-content-box">
+        <div class="header-top">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo" />
+          </a>
+          <div class="header-text-box">
+            <h1>
+              DIPLOMADO DE ALTA ESPECIALIZACIÓN EN<br />
+              <strong id="tituloDiplomado"></strong>
+            </h1>
+            <p id="tituloPrincipal"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-bottom-row">
+        <div class="logo-and-title">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo compact-logo" />
+          </a>
+          <span class="header-compact-title" id="tituloCompacto"></span>
+        </div>
+        <div class="header-second-row">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar en el resumen interactivo…" autocomplete="off" />
+            <div class="search-actions">
+              <span class="clear-search" onclick="clearSearch()">&times;</span>
+              <button class="action-button" onclick="searchContent()">Buscar</button>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="action-button" onclick="expandAll()">Mostrar todo</button>
+            <button class="action-button" onclick="collapseAll()">Colapsar todo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-spacer"></div>
+
+    <div class="container">
+      <div class="mind-map animacion-contenido" id="mindMap">
+        <div class="section" data-section="1">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">1</span>
+              <span class="section-title">Introducción al módulo y objetivos del curso</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.1</span>
+                  <span class="subsection-title">Presentación del módulo y propósito del diplomado</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El módulo dos aborda geoestadística aplicada a predicción y modelado dentro del diplomado de geometalurgia, con énfasis en modelamiento geometalúrgico y herramientas de tratamiento de datos.</div>
+                  <div class="content-text">El objetivo es revisar análisis exploratorio, validación de datos geológicos, estimación de recursos con precisión y modelado geológico integrando un enfoque geometalúrgico.</div>
+                  <div class="content-text">Se busca que los alumnos adquieran competencias para diseñar modelos geometalúrgicos que integren distintas disciplinas y datos.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=960" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:16:00)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.2</span>
+                  <span class="subsection-title">Contexto y evolución histórica del modelamiento geológico y geometalúrgico</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El modelamiento geológico ha sido desarrollado durante décadas con metodologías geoestadísticas para estimación de recursos, y su uso se consolidó en los últimos 20-30 años.</div>
+                  <div class="content-text">En los últimos 5-10 años ha emergido el modelamiento geometalúrgico que integra metalurgia y geología para gestión operacional más holística.</div>
+                  <div class="content-text">La geometalurgia se plantea como herramienta transversal para exploración, cálculo de recursos, planificación de minado y producción.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=1072" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:17:52)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.3</span>
+                  <span class="subsection-title">Importancia de la formación y actualización en geometalurgia</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las currículas universitarias y programas de posgrado deben actualizarse para incorporar avances en modelamiento y geometalurgia, respondiendo a la demanda operacional.</div>
+                  <div class="content-text">Se espera que profesionales interactúen con diversos softwares de modelamiento geológico y geometalúrgico, y que haya una adopción creciente de herramientas comerciales.</div>
+                  <div class="content-text">La formación práctica y el intercambio entre estudiantes y profesionales facilitan la aplicación de técnicas en proyectos reales y generan oportunidades laborales.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=1457" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:24:17)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="2">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">2</span>
+              <span class="section-title">Problemática de la caracterización del yacimiento y necesidad de modelado</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.1</span>
+                  <span class="subsection-title">Variabilidad del yacimiento y limitaciones de muestreo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Un yacimiento es un volumen espacial con coordenadas X, Y, Z que presenta variabilidad en leyes y características, y no es posible perforar todo por costos.</div>
+                  <div class="content-text">Los puntos muestreados (taladros) generan información puntual que necesita ser interpolada para estimar toneladas y leyes en volúmenes no muestreados.</div>
+                  <div class="content-text">La falta de información completa históricamente causó errores en estimaciones y problemas operacionales durante la explotación.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=1969" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:32:49)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.2</span>
+                  <span class="subsection-title">Métodos estadísticos y geoestadísticos para estimación de recursos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se emplean métodos matemáticos y geoestadísticos como kriging, polígono de aproximación y otros para estimar volumen y ley del yacimiento.</div>
+                  <div class="content-text">La estadística tradicional y diseños experimentales han evolucionado hacia geoestadística y modelos más sofisticados para reducir incertidumbre en estimaciones.</div>
+                  <div class="content-text">Herramientas de cálculo permiten cuantificar reservas medidas, indicadas e inferidas con mayor precisión y utilidad para planificación.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=2352" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:39:12)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.3</span>
+                  <span class="subsection-title">Objetivo del modelamiento: predecir y controlar el desempeño</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El modelamiento no solo estima la distribución espacial del recurso, sino que debe permitir predecir el comportamiento del material en procesos minero-metalúrgicos.</div>
+                  <div class="content-text">Se busca construir modelos que permitan planificar frentes de extracción con expectativas de ley, recuperación y tonelaje para operación diaria.</div>
+                  <div class="content-text">Un modelamiento robusto reduce la incertidumbre operativa y las pérdidas por variaciones inesperadas del material.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=2669" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:44:29)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="3">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">3</span>
+              <span class="section-title">Integración de geología, metalurgia y operaciones en el modelo geometalúrgico</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.1</span>
+                  <span class="subsection-title">Incorporación de datos metalúrgicos al modelo geológico</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las pruebas metalúrgicas por bloque representan la respuesta del material y permiten asignar procesos y parámetros específicos a cada área del yacimiento.</div>
+                  <div class="content-text">Integrar litología, mineralización, dureza y resultados metalúrgicos completa la información necesaria para modelar el comportamiento en planta.</div>
+                  <div class="content-text">El resultado es un modelo geometalúrgico que combina datos geológicos y metalúrgicos para una gestión operativa coherente.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=2818" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:46:58)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.2</span>
+                  <span class="subsection-title">Naturaleza y calidad de la información integrada en el modelo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El modelo debe integrar datos de distintas fuentes, naturaleza y calidad: cuantitativos, cualitativos y semicuantitativos.</div>
+                  <div class="content-text">Existen metodologías matemáticas para transformar variables no aditivas en variables aditivas cuando sea necesario para la estimación.</div>
+                  <div class="content-text">La representación adecuada de datos aditivos y no aditivos es clave para una estimación fiable y su aplicación operacional.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=2995" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:49:55)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.3</span>
+                  <span class="subsection-title">Requisitos del modelo para uso operacional y predictivo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El modelo debe permitir ingresar planificación diaria (frentes, proporciones, leyes) y predecir recuperaciones, tonelajes y concentrados esperados en la planta.</div>
+                  <div class="content-text">Debe ser capaz de integrar información histórica y mediciones en línea para ajustar predicciones y validar el modelo continuamente.</div>
+                  <div class="content-text">La trazabilidad del material desde el yacimiento hasta planta es esencial para controlar variaciones y minimizar pérdidas.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=3112" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:51:52)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="4">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">4</span>
+              <span class="section-title">Rol de la tecnología, software y mediciones en tiempo real</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.1</span>
+                  <span class="subsection-title">Capacidad de software para construir y simular modelos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los paquetes de software con mayores funcionalidades y capacidad de cálculo permiten simular la realidad y construir modelos geometalúrgicos más precisos.</div>
+                  <div class="content-text">La forma de construir bloques, la integración de pruebas metalúrgicas y las herramientas del software influyen en el éxito del modelo.</div>
+                  <div class="content-text">Proveedores de software y evolución tecnológica han impulsado la adopción de soluciones para modelamiento geológico y geometalúrgico.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=3436" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:57:16)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.2</span>
+                  <span class="subsection-title">Implementación de mediciones en línea y sistemas de control</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Instrumentación como XRF y analizadores en línea permiten obtener datos de ley, alteración y concentrados en tiempo real para nutrir el modelo.</div>
+                  <div class="content-text">La combinación de datos históricos con mediciones en línea permite ajustes dinámicos del modelo y mejor validación de predicciones.</div>
+                  <div class="content-text">La calidad y calibración de equipos en línea influye en la confiabilidad de la información y en la capacidad de respuesta operacional.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=3194" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:53:14)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.3</span>
+                  <span class="subsection-title">Validación continua y ajuste del modelo en planta</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Validar el modelo con datos operacionales y mediciones permite detectar desviaciones y corregir estimaciones para mantener control de la operación.</div>
+                  <div class="content-text">Un modelo validado reduce la variabilidad operativa y evita sorpresas en días o semanas de producción, mejorando la toma de decisiones.</div>
+                  <div class="content-text">La integración de controles diarios y retroalimentación entre planta y modelamiento es una práctica esencial en geometalurgia moderna.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=3319" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:55:19)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="5">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">5</span>
+              <span class="section-title">Condiciones, alcance y beneficios del modelamiento geometalúrgico</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.1</span>
+                  <span class="subsection-title">Condiciones que debe cumplir un modelo geometalúrgico</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Debe integrar información de distintas etapas del proyecto: exploración, pruebas metalúrgicas, minería y producción, con trazabilidad completa.</div>
+                  <div class="content-text">Debe permitir predecir comportamientos tanto en laboratorio como en planta, apoyando decisiones de proceso y planificación.</div>
+                  <div class="content-text">Debe manejar datos de distinta naturaleza y calidad, asegurando transformaciones matemáticas adecuadas para estimaciones.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=3465" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:57:45)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.2</span>
+                  <span class="subsection-title">Alcance y aplicación del modelo en la planificación y operación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El modelo sirve para planificar extracción diaria, estimar recuperaciones y leyes de concentrado, y optimizar la gestión de frentes y bloques.</div>
+                  <div class="content-text">Facilita la comunicación entre geología, minería y metalurgia suministrando una base común de datos y predicciones operacionales.</div>
+                  <div class="content-text">Permite anticipar problemas metalúrgicos y proponer soluciones antes de que afecten significativamente la producción.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=3532" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:58:52)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.3</span>
+                  <span class="subsection-title">Beneficios esperados de un modelamiento geometalúrgico robusto</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Mejora el control de la operación, reduce pérdidas históricas y permite una operación más predecible y eficiente.</div>
+                  <div class="content-text">Contribuye a decisiones informadas sobre procesos, selección de frentes y ajustes de planta, incrementando la recuperación y calidad del concentrado.</div>
+                  <div class="content-text">Favorece la integración disciplinaria y la estandarización de protocolos para la gestión del yacimiento y la producción.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=3595" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:59:55)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="6">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">6</span>
+              <span class="section-title">Introducción al objetivo y problemática del modelamiento geometalúrgico</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.1</span>
+                  <span class="subsection-title">Concepto general del modelamiento geometalúrgico y su propósito</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Explicar que el modelamiento aspira a reproducir en planta las recuperaciones y leyes obtenidas en laboratorio para bloques de mineral de distinto tonelaje.</div>
+                  <div class="content-text">Señalar que se acepta una ligera variación estadística alrededor del 5% como margen de error entre laboratorio y planta.</div>
+                  <div class="content-text">Indicar que la finalidad es anticipar las respuestas minerometalúrgicas del yacimiento y asegurar trazabilidad.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=3607" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:00:07)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.2</span>
+                  <span class="subsection-title">Flujo integral entre geología, minería y metalurgia</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Describir la secuencia lógica: geología define el recurso, minería lo extrae y metalurgia procesa, requiriendo integración para modelado efectivo.</div>
+                  <div class="content-text">Aclarar que la solución pasa por un modelamiento conjunto que reconozca esa interdependencia entre disciplinas.</div>
+                  <div class="content-text">Recordar la necesidad de participación activa y colaboración entre profesionales para aprendizaje y mejora.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=3676" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:01:16)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.3</span>
+                  <span class="subsection-title">Importancia de participar y formarse en geometalurgia</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Relatar la experiencia del expositor como ejemplo de aprendizaje continuo y la importancia de preguntar y participar en formación.</div>
+                  <div class="content-text">Señalar la existencia y valor de diplomados y posgrados en geometalurgia como plataformas de especialización.</div>
+                  <div class="content-text">Destacar que la participación y trabajo en grupo son claves para adquirir competencias prácticas en geometalurgia.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=3799" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:03:19)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="7">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">7</span>
+              <span class="section-title">Adquisición de datos y análisis exploratorio de datos (EDA) para modelamiento espacial</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.1</span>
+                  <span class="subsection-title">Requisitos del modelo y papel de la geoestadística</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Indicar que el modelo debe cubrir expectativas y que está construido sobre matemática geoestadística, materia compleja que requiere estudio adicional.</div>
+                  <div class="content-text">Mencionar que la terminología puede ser árida y que con esfuerzo práctico se llega a entenderla.</div>
+                  <div class="content-text">Afirmar que, idealmente, existiría un curso específico de geoestadística para profundizar en estas herramientas.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=4430" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:13:50)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.2</span>
+                  <span class="subsection-title">Adquisición y caracterización de la data en campo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Enumerar los componentes de un programa de exploración: perforación, campamento, almacén de testigos y sala de logueo para obtener coordenadas y leyes.</div>
+                  <div class="content-text">Explicar que se registra información de coordenadas (x, y, z), leyes, litología y otros atributos necesarios para modelamiento espacial.</div>
+                  <div class="content-text">Resaltar que la data debe incluir parámetros útiles para modelar atributos espaciales y heterogeneidad del yacimiento.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=4576" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:16:16)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.3</span>
+                  <span class="subsection-title">Análisis exploratorio de datos y control de calidad (QA/QC)</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Definir el EDA como la fase donde se depura la data, detectando outliers y tendencias para garantizar limpieza antes de modelar.</div>
+                  <div class="content-text">Señalar la necesidad de aplicar QA/QC para evitar que datos erróneos distorsionen el modelo y la clasificación de bloques.</div>
+                  <div class="content-text">Explicar que sin un análisis de datos adecuado, el modelado de cuerpos y bloques será problemático y poco confiable.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=4926" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:22:06)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="8">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">8</span>
+              <span class="section-title">Modelamiento espacial de atributos y definición de dominios</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.1</span>
+                  <span class="subsection-title">Modelamiento espacial de atributos y variables aditivas/no aditivas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Definir modelamiento espacial de atributos como la ubicación en el espacio de variables como la ley de cobre u otros atributos.</div>
+                  <div class="content-text">Diferenciar variables aditivas (por ejemplo, ley que puede promediarse por bloque) y no aditivas (por ejemplo, recuperaciones que no se suman directamente).</div>
+                  <div class="content-text">Aclarar que geólogos y geoestadísticos manejan estas terminologías y que los metalurgistas son usuarios de esos modelos.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=4647" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:17:27)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.2</span>
+                  <span class="subsection-title">Definición de dominios, clústeres y métodos de estimación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Explicar que tras el EDA se definen dominios de estimación o bloques usando métodos como kriging, cokriging y polígonos de aproximación.</div>
+                  <div class="content-text">Describir que se forman clústeres o zonas con asociacion de atributos (ley, litología, dureza) que permiten segmentar el yacimiento.</div>
+                  <div class="content-text">Indicar que esos dominios serán la base para construir modelos y estimaciones de recursos.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=5087" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:24:47)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.3</span>
+                  <span class="subsection-title">Construcción de modelos y trazabilidad geometalúrgica</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Afirmar que el paso final es construir modelos geometalúrgicos que integren variables geológicas, mineras y metalúrgicas.</div>
+                  <div class="content-text">Definir trazabilidad como la capacidad de reproducir en planta la respuesta metalúrgica observada en laboratorio por bloques identificados.</div>
+                  <div class="content-text">Señalar que la trazabilidad exige buena conceptualización y limpieza del modelo para proteger la economía del proyecto.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=5141" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:25:41)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="9">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">9</span>
+              <span class="section-title">Caracterización mineral, pruebas metalúrgicas y escalamiento a planta</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.1</span>
+                  <span class="subsection-title">Necesidad de trazabilidad y caracterización mineral</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Indicar que cada proceso unitario requiere trazabilidad y caracterización del mineral para vincular atributos a respuestas de proceso.</div>
+                  <div class="content-text">Explicar que la respuesta metalúrgica de una muestra de bloque debe replicarse cuando ese bloque ingresa a planta.</div>
+                  <div class="content-text">Subrayar el impacto económico si las recuperaciones estimadas no se alcanzan en operación.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=5159" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:25:59)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.2</span>
+                  <span class="subsection-title">Pruebas de laboratorio, pilotaje y modelo predictivo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Describir que en laboratorio se realizan pruebas de ciclo que, escaladas a pilotaje, permiten construir modelos predictivos más cercanos a la realidad.</div>
+                  <div class="content-text">Señalar que con datos de pilotaje se obtiene mayor confianza en estimaciones de recuperaciones y leyes a escala industrial.</div>
+                  <div class="content-text">Explicar que estos modelos predictivos alimentan el cálculo de recursos, la vida de mina y el dimensionamiento de la planta.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=6450" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:47:30)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.3</span>
+                  <span class="subsection-title">Casos prácticos: relaves y recuperación de metales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Presentar ejemplos históricos y recientes donde relaves con leyes relevantes han sido tratados con éxito mediante caracterización y procesos adecuados.</div>
+                  <div class="content-text">Detallar técnicas usadas en relaves: remolienda, flotación, lixiviación con glicina o cianuro, precipitación de oro y uso de concentradores gravitatorios (Nelson).</div>
+                  <div class="content-text">Señalar que la caracterización (microscopía, análisis valorado) es clave para decidir remolienda y método de recuperación rentable.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=5297" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:28:17)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="10">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">10</span>
+              <span class="section-title">Integración del proceso completo y optimización operativa</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.1</span>
+                  <span class="subsection-title">Enfoque holístico del proceso desde mina a planta</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Señalar que la geometalurgia integra desde perforación, voladura y chancado hasta molienda, flotación y espesamiento como un solo proceso.</div>
+                  <div class="content-text">Aclarar que el perfil granulométrico del mineral en origen afecta el procesamiento y que la chancadora primaria en mina inicia la cadena metalúrgica.</div>
+                  <div class="content-text">Afirmar que hoy la metalurgia ya no es solo planta; el proceso comienza en mina y requiere coordinación inter-disciplinaria.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=6607" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:50:07)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.2</span>
+                  <span class="subsection-title">Modelos de proceso, simuladores y limitaciones históricas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Indicar que los simuladores metalúrgicos tradicionales modelaban procesos pero carecían de integración con litología, mineralización y dureza.</div>
+                  <div class="content-text">Explicar que actualmente algunos modelos han evolucionado a geo-modelos geometalúrgicos que incorporan variables geológicas.</div>
+                  <div class="content-text">Señalar la importancia de actualizar modelos para que los simuladores respondan a la variabilidad real del yacimiento.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=6747" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:52:27)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.3</span>
+                  <span class="subsection-title">Optimización, control y trazabilidad operacional</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Describir que la optimización implica control de trazabilidad a lo largo de unidades operativas: perforación, voladura, minado, chancado, molienda y flotación.</div>
+                  <div class="content-text">Explicar que el control y la limpieza continua de la data permiten reajustar modelos y mejorar cumplimiento entre plan de producción y resultados reales.</div>
+                  <div class="content-text">Mencionar que la optimización busca minimizar desviaciones entre estimaciones y operación para proteger la economía del proyecto.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=6884" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:54:44)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="11">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">11</span>
+              <span class="section-title">Fuentes de datos, variables relevantes y recomendaciones para modelado</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.1</span>
+                  <span class="subsection-title">Tipos de datos útiles para geometalurgia y su naturaleza</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Enumerar las fuentes de datos: geofísica (cuantitativa), mapeo geológico (cualitativo), geoquímica y ensayos de ley (cuantitativos).</div>
+                  <div class="content-text">Aclarar que litología, alteración, estructuras y texturas son atributos cualitativos no aditivos que aportan contexto geológico.</div>
+                  <div class="content-text">Indicar que la geoquímica y los ensayos proporcionan valores medibles de concentración para modelado y estimación.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=6959" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:55:59)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.2</span>
+                  <span class="subsection-title">Integración holística y la importancia del geólogo en el equipo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Recomendar que equipos de exploración incluyan geólogos para describir litología y texturas que informen el modelado geometalúrgico.</div>
+                  <div class="content-text">Subrayar que comprender la roca como un todo (rock as a whole) es necesario para integrar asociación roca-mineral en los modelos.</div>
+                  <div class="content-text">Señalar que la colaboración multidisciplinaria entre geólogos, mineros y metalurgistas mejora el éxito de la exploración y procesamiento.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=7039" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:57:19)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.3</span>
+                  <span class="subsection-title">Pasos finales para construir un modelo geometalúrgico operativo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Resumir que el flujo final incluye adquisición de datos, EDA y QA/QC, definición de dominios, construcción de modelos y escalamiento a planta.</div>
+                  <div class="content-text">Recomendar mantener trazabilidad geometalúrgica continua y reajustar modelos con datos operacionales para mantener eficacia.</div>
+                  <div class="content-text">Concluir que la geometalurgia aplicada y la geoestadística son herramientas clave para proyectar producción, vida de mina y viabilidad económica.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=7177" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:59:37)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="12">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">12</span>
+              <span class="section-title">Concepto de roca total y diversidad mineralógica en el yacimiento</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.1</span>
+                  <span class="subsection-title">Definición y observación de la roca total y su composición mineralógica</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La roca total del testigo contiene múltiples tipos de minerales y litologías mezcladas dentro del mismo macizo rocoso.</div>
+                  <div class="content-text">Ejemplo: presencia de minerales como feldespatos, plagioclasas, piroxenos y cuarzo en una andesita o tierra similar.</div>
+                  <div class="content-text">Distinción operacional entre "roca" y "mineral" según tradición y valor económico, aunque químicamente comparten características.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=7213" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:13)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.2</span>
+                  <span class="subsection-title">Posibles recursos aprovechables derivados de la mineralogía observada</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Si la roca contiene sílice de alta ley (por ejemplo 98% de SiO2) podría ser aprovechable como fundente en procesos de fundición.</div>
+                  <div class="content-text">Otros subproductos comerciales posibles: concentrado de florita, sílice, feldespatos, dependiendo de la ley y la pureza.</div>
+                  <div class="content-text">Consideración de economía circular: usar parte del producto como relleno hidráulico o reciclar 20–30% de producción en operaciones.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=7323" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:02:03)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.3</span>
+                  <span class="subsection-title">Importancia de la caracterización mineralógica y la mineralogía cuantitativa</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Necesidad de ensayos para identificar minerales de interés y diseñar procesos que recuperen más de un producto en planta.</div>
+                  <div class="content-text">Herramientas modernas: análisis hiperespectral, microscopía óptica y mineralogía electrónica para cuantificar minerales.</div>
+                  <div class="content-text">Reducción de costos de análisis ha hecho más accesible la caracterización detallada del yacimiento.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=7559" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:05:59)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="13">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">13</span>
+              <span class="section-title">Integración de datos geotécnicos, geoquímicos y metalúrgicos para modelos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.1</span>
+                  <span class="subsection-title">Tipos de datos geotécnicos y su aplicación en procesos mineros</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Variables geotécnicas: RQD, orientación de fracturas, relleno de fracturas (PLT) y su carácter cualitativo.</div>
+                  <div class="content-text">Uso del RQD y perfil granulométrico para predecir comportamiento en chancado y molienda en mina.</div>
+                  <div class="content-text">Índices de dureza como SAG Power Index, drop-by-test y su relación con la molienda semiautógena.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=7727" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:08:47)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.2</span>
+                  <span class="subsection-title">Ensayos metalúrgicos y su relación con condiciones del yacimiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Ensayos de laboratorio: pruebas de flotación, lixiviación (ácida, con cianuro, con ácidos grasos) y gravimetría.</div>
+                  <div class="content-text">Limitaciones de extrapolación de resultados de laboratorio a planta por diferencias de granulometría y representatividad.</div>
+                  <div class="content-text">Importancia de definir compositos por cuerpos o frentes para que las pruebas representen la alimentación real de planta.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=7797" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:09:57)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.3</span>
+                  <span class="subsection-title">Limpieza, análisis exploratorio y modelamiento geoestadístico de la data</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La adquisición masiva de datos requiere limpieza, filtrado y análisis exploratorio antes de modelar.</div>
+                  <div class="content-text">Aplicación de metodologías geoestadísticas para análisis y extrapolación cuidadosa de datos.</div>
+                  <div class="content-text">Riesgos por falta de estándares QA/QC: pérdida de muestras, datos no representativos, caídas inesperadas de ley en planta.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=7836" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:10:36)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="14">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">14</span>
+              <span class="section-title">Calidad de datos, QA/QC y problemas analíticos en el control de yacimientos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.1</span>
+                  <span class="subsection-title">Diferencia y complementación entre QA y QC en muestreo y análisis</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">QA (aseguramiento de calidad): procedimientos que previenen errores desde el diseño del muestreo y su implementación.</div>
+                  <div class="content-text">QC (control de calidad): acciones de verificación en laboratorio como duplicados, réplicas, blancos y estándares para evaluar precisión y exactitud.</div>
+                  <div class="content-text">Importancia de adaptar muestreo según tipo de yacimiento: diseminado vs. filoniano (betas).</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=8287" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:18:07)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.2</span>
+                  <span class="subsection-title">Problemas concretos en análisis: efecto pepita y digestión química</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">En oro, el efecto pepita provoca segregación y resultados extremos que complican la representatividad y el control de la beta.</div>
+                  <div class="content-text">Problemas de digestión ácida en laboratorio cuando minerales refractarios (por ejemplo cuarzo relicto) impiden una correcta liberación del metal.</div>
+                  <div class="content-text">Necesidad de comparar barridos analíticos (barrido electrónico) con análisis químicos y revisar logueo y textura.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=8361" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:19:21)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.3</span>
+                  <span class="subsection-title">Estándares operativos y consecuencias de mala adquisición de datos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Falta de procedimientos estandarizados en control de calidad puede causar errores operativos en minería subterránea y a cielo abierto.</div>
+                  <div class="content-text">Ejemplo de consecuencias: disparos de grandes volúmenes sin mineral que llevan a caídas significativas de ley en planta.</div>
+                  <div class="content-text">La ausencia de análisis exploratorio robusto y QA/QC conduce a modelos poco predictivos y planes de minado inadecuados.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=7872" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:11:12)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="15">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">15</span>
+              <span class="section-title">Modelado geometalúrgico: variables, proxies y construcción de modelos predictivos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.1</span>
+                  <span class="subsection-title">Importancia del conocimiento geológico en el modelado y clasificación de bloques</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La intervención del geólogo es clave para interpretar continuidad, fallas, alteraciones y texturas que afectan la formación del mineral.</div>
+                  <div class="content-text">Decisiones sobre inclusión o exclusión de outliers (por ejemplo valores extremos de oro) se basan en logueo y comprensión geológica.</div>
+                  <div class="content-text">Validación de relaciones composicionales y restricciones mineralógicas antes de modelar bloques.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=8688" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:24:48)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.2</span>
+                  <span class="subsection-title">Análisis exploratorio multivariante y selección de variables relevantes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Búsqueda de correlaciones, colinealidad y variables ocultas que expliquen respuestas metalúrgicas y de proceso.</div>
+                  <div class="content-text">Uso de gráficos geoestadísticos y técnicas de compresión de datos para reducir dimensionalidad y mejorar predicción.</div>
+                  <div class="content-text">Relación entre variables de entrada (litología, alteración, dureza) y variables de salida (recuperaciones metalúrgicas).</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=8977" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:29:37)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.3</span>
+                  <span class="subsection-title">Uso de proxies y modelado predictivo geometalúrgico</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los proxies sirven para predecir respuestas de proceso cuando datos directos son limitados o costosos de obtener.</div>
+                  <div class="content-text">Construcción de modelos preliminares integrando geología, mineralogía y resultados de ensayos para predecir desempeño en planta.</div>
+                  <div class="content-text">La modelización busca producir un modelo robusto y reproducible que permita planificar minado y procesos con mayor certeza.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=9011" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:30:11)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="16">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">16</span>
+              <span class="section-title">Comunicación interdisciplinaria y formación para equipos de geometalurgia</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.1</span>
+                  <span class="subsection-title">Necesidad de un idioma común entre geólogos, metalurgistas y mineros</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Metalurgistas deben entender terminología geológica y geólogos la terminología metalúrgica para trabajar integradamente.</div>
+                  <div class="content-text">Equipos de geometalurgia requieren profesionales que puedan traducir conceptos entre disciplinas y formar un lenguaje compartido.</div>
+                  <div class="content-text">El trabajo colaborativo mejora la toma de decisiones operativas y el diseño de procesos.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=8523" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:22:03)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.2</span>
+                  <span class="subsection-title">Enseñanza, difusión y práctica profesional conjunta</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Espacios formativos y clases que expliquen la terminología y conceptos entre disciplinas facilitan la asimilación de conocimientos.</div>
+                  <div class="content-text">Recomendación de cooperación en equipo: geólogos, metalurgistas y mineros trabajando con objetivos comunes en modelos geometalúrgicos.</div>
+                  <div class="content-text">El aprendizaje práctico y el soporte especializado aceleran la comprensión y aplicación en operaciones reales.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=8591" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:23:11)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.3</span>
+                  <span class="subsection-title">Validación, limpieza de datos y manejo de outliers en procesos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Tratamiento de outliers requiere juicio profesional para decidir inclusión o eliminación, siempre basado en información geológica y logueo.</div>
+                  <div class="content-text">La imputación y validación de datos composicionales deben considerar restricciones mineralógicas y relaciones multivariables.</div>
+                  <div class="content-text">Un modelo predictivo confiable depende de una etapa rigurosa de limpieza, validación y análisis exploratorio.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=8721" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:25:21)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="17">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">17</span>
+              <span class="section-title">Cierre de la sesión y consideraciones operativas finales</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.1</span>
+                  <span class="subsection-title">Información administrativa y recursos complementarios para alumnos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El profesor indica que la grabación se compartirá en el grupo de WhatsApp y proporcionará el enlace del formulario de asistencia.</div>
+                  <div class="content-text">Se ofrecen contactos proyectados en pantalla para consultas posteriores y se invita a los alumnos a comunicarse ante dudas.</div>
+                  <div class="content-text">Agradecimiento final y despedida con confirmación de próxima sesión el miércoles a la misma hora.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=9106" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:31:46)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.2</span>
+                  <span class="subsection-title">Síntesis operativa sobre mejora continua en geometalurgia aplicada</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Reiteración de la necesidad de integrar calidad de datos, caracterización mineralógica y modelamiento geoestadístico para optimizar operaciones.</div>
+                  <div class="content-text">Énfasis en la estandarización de procedimientos, mejora del QA/QC y adaptación de pruebas de laboratorio a condiciones reales de planta.</div>
+                  <div class="content-text">Invitación a seguir desarrollando competencias interdisciplinarias para lograr modelos predictivos más robustos y decisiones más informadas.</div>
+                  <a href="https://www.youtube.com/watch?v=KmAbk0l642I&start=8761" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:26:01)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://www.edumin.pe/" target="_blank">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="footer-logo" />
+      </a>
+      <p class="footer-text">
+        <b>Contenido desarrollado por EDUMIN - Centro de Capacitación Especializado en Minería, Industria y Negocios</b><br />
+        <i>Material exclusivo para estudiantes de EDUMIN</i><br />
+        <a href="https://www.edumin.pe/" target="_blank" style="color: var(--color-principal); text-decoration: none">https://www.edumin.pe/</a>
+      </p>
+    </div>
+
+    <script>
+      const TITULO_DIPLOMADO = "GEometalurgia".toUpperCase();
+      const TITULO_CLASE = "CLASE 07: GEOESTADÍSTICA APLICADA A LA PREDICCIÓN Y MODELADO - 1RA PARTE".toUpperCase();
+
+      const elementoDiplomado = document.getElementById("tituloDiplomado");
+      if (elementoDiplomado) {
+        elementoDiplomado.innerText = TITULO_DIPLOMADO;
+      }
+
+      document.title = TITULO_CLASE;
+      const tituloPrincipal = document.getElementById("tituloPrincipal");
+      if (tituloPrincipal) {
+        tituloPrincipal.innerText = TITULO_CLASE;
+      }
+
+      const tituloCompacto = document.getElementById("tituloCompacto");
+      if (tituloCompacto) {
+        tituloCompacto.innerText = TITULO_CLASE;
+      }
+
+      function toggleSection(element) {
+        const section = element.closest(".section");
+        const wasActive = section.classList.contains("active");
+
+        section.classList.toggle("active");
+
+        if (wasActive) {
+          const subsections = section.querySelectorAll(".subsection");
+          subsections.forEach((subsection) => {
+            subsection.classList.remove("active");
+          });
+        }
+      }
+
+      function toggleSubsection(element) {
+        const subsection = element.closest(".subsection");
+        subsection.classList.toggle("active");
+      }
+
+      function expandAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.add("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.add("active");
+        });
+      }
+
+      function collapseAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.remove("active");
+        });
+      }
+
+      function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, delay);
+        };
+      }
+
+      function clearSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        searchInput.value = "";
+        clearBtn.style.display = "none";
+        searchContent();
+        searchInput.focus();
+      }
+
+      const createDiacriticInsensitiveRegex = (term) => {
+        const charMap = {
+          a: "[aáAÁ]",
+          e: "[eéEÉ]",
+          i: "[iíIÍ]",
+          o: "[oóOÓ]",
+          u: "[uúUÚ]",
+        };
+
+        const regexString = term
+          .split("")
+          .map((char) => {
+            const lowerChar = char.toLowerCase();
+            return charMap[lowerChar] || char;
+          })
+          .join("");
+
+        return new RegExp(`(${regexString})`, "gi");
+      };
+
+      function searchContent() {
+        const inputElement = document.getElementById("searchInput");
+        const searchTerm = inputElement.value.trim();
+
+        const searchableElements = document.querySelectorAll(".content-text, .section-title, .subsection-title");
+        let found = false;
+        let firstMatchElement = null;
+
+        document.querySelectorAll(".section.active").forEach((el) => el.classList.remove("active"));
+        document.querySelectorAll(".subsection.active").forEach((el) => el.classList.remove("active"));
+        searchableElements.forEach((element) => {
+          element.innerHTML = element.getAttribute("data-original-text") || element.textContent;
+        });
+
+        if (searchTerm.length < 3) {
+          return;
+        }
+
+        const searchRegex = createDiacriticInsensitiveRegex(searchTerm);
+
+        searchableElements.forEach((element) => {
+          const originalText = element.getAttribute("data-original-text") || element.textContent;
+
+          if (searchRegex.test(originalText)) {
+            found = true;
+
+            element.innerHTML = originalText.replace(searchRegex, `<span class="highlight">$1</span>`);
+
+            const subsection = element.closest(".subsection");
+            if (subsection) {
+              subsection.classList.add("active");
+              subsection.closest(".section")?.classList.add("active");
+            } else if (element.classList.contains("section-title")) {
+              element.closest(".section")?.classList.add("active");
+            }
+
+            if (!firstMatchElement) {
+              firstMatchElement = element;
+            }
+          }
+        });
+
+        if (firstMatchElement) {
+          requestAnimationFrame(() => {
+            firstMatchElement.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          });
+        } else if (searchTerm.length >= 3) {
+          alert("No se encontraron resultados para: " + searchTerm);
+        }
+      }
+
+      const debouncedSearch = debounce(searchContent, 300);
+
+      document.getElementById("searchInput").addEventListener("input", function () {
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        clearBtn.style.display = this.value.length > 0 ? "block" : "none";
+        debouncedSearch();
+      });
+
+      document.getElementById("searchInput").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          clearTimeout(this._timeoutId);
+          searchContent();
+        }
+      });
+
+      // --- Lógica del Header Compacto ---
+      const header = document.querySelector(".header");
+      const headerSpacer = document.querySelector(".header-spacer");
+      let initialHeaderHeight = 0; // Altura del header original
+      let compactHeaderHeight = 0; // Altura del header en modo compacto
+      let scrollTriggerPoint = 0; // Punto de scroll para activar el cambio
+
+      function handleHeaderState() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollY > scrollTriggerPoint) {
+          if (!header.classList.contains("compact")) {
+            header.classList.add("compact");
+            headerSpacer.style.height = `${initialHeaderHeight}px`;
+          }
+        } else {
+          if (header.classList.contains("compact")) {
+            header.classList.remove("compact");
+            headerSpacer.style.height = "0px";
+          }
+        }
+      }
+
+      function initializeHeader() {
+        initialHeaderHeight = header.offsetHeight;
+        const headerClone = header.cloneNode(true);
+        headerClone.classList.add("compact");
+        headerClone.style.visibility = "hidden";
+        headerClone.style.position = "absolute";
+        document.body.appendChild(headerClone);
+        compactHeaderHeight = headerClone.offsetHeight;
+        document.body.removeChild(headerClone);
+
+        scrollTriggerPoint = initialHeaderHeight - compactHeaderHeight;
+      }
+
+      document.addEventListener("DOMContentLoaded", initializeHeader);
+      window.addEventListener("scroll", handleHeaderState);
+      window.addEventListener("resize", debounce(initializeHeader, 200));
+    </script>
+  </body>
+</html>

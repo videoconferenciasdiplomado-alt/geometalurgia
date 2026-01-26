@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        /* Colores Principales del Diseño (Acentos y Degradados) */
+        /* ======================================================= */
+        --color-principal: #00beff; /* Cian Brillante para acentos, bordes y el inicio del degradado principal */
+        --color-secundario: #1e50cd; /* Azul Medio, parte final del degradado de acento */
+
+        /* Fondos Oscuros de la Interfaz */
+        /* ======================================================= */
+        --fondo-oscuro-claro: #002a52; /* Fondo de secciones y contenido */
+        --fondo-oscuro-fuerte: #001a33; /* Fondo del encabezado (header) y pie de página (footer) */
+        /* ======================================================= */
+        --fondo-oscuro-medio: #003366; /* Fondo de encabezados y cajas de contenido */
+        --fondo-borde-claro: #004080; /* Bordes ligeros y color de fondo al hacer hover en encabezados */
+        --fondo-sombra-azul-header: #0050a0; /* ¡NUEVO! Sombra en el header */
+
+        /* Colores de Texto y Fondo General del Body */
+        /* ======================================================= */
+        --texto-blanco-1: #ffffff; /* Blanco puro para títulos y texto en fondo muy oscuro */
+        --texto-claro-2: #e6e6e6; /* Texto principal y claro */
+        --texto-medio-3: #cccccc; /* Texto de contenido de item (un poco más tenue) */
+
+        /* ======================================================= */
+        --fondo-body-inicio: #99e5ff; /* Color de inicio del degradado de fondo del body */
+        --fondo-body-fin: #a5b9eb; /* Color de final del degradado de fondo del body */
+
+        /* Colores de Acento Específicos (YouTube, Búsqueda) */
+        /* ======================================================= */
+        --rojo-youtube-claro: #e60000;
+        --rojo-youtube-fuerte: #a30000;
+        --timestamp-youtube: #ffcccc;
+        --fondo-resaltado: #00c339; /* Verde para el fondo del texto buscado */
+
+        /* Bases RGB para Transparencias (RGBA) */
+        /* ======================================================= */
+        --sombra-rgb: 0, 0, 0; /* Negro puro: Usado para sombras generales y profundidad */
+        --acento-rgb: 0, 190, 255; /* Cian Brillante: Usado para brillos y sombras de acento */
+        --rojo-rgb: 230, 0, 0; /* Rojo Puro: Usado para sombras de enlaces de YouTube */
+        /* ======================================================= */
+        --gradient-principal: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--fondo-body-inicio) 0%, var(--fondo-body-fin) 100%);
+        line-height: 1.2;
+        scroll-behavior: smooth;
+      }
+
+      strong#tituloDiplomado {
+        font-weight: 900;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      @keyframes slideDownSutil {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header.animacion-inicial {
+        animation: slideDownSutil 0.4s ease-out 1;
+        animation-fill-mode: forwards;
+        will-change: transform, opacity;
+      }
+
+      .header {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        box-shadow: 0 5px 15px rgba(var(--sombra-rgb), 0.5);
+        text-align: center;
+        will-change: transform;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header-text-box {
+        display: grid;
+        gap: 10px;
+        word-break: break-word;
+        margin: 0 15px;
+      }
+
+      .header.compact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+      }
+
+      .header-spacer {
+        display: none;
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header.compact + .header-spacer {
+        display: block;
+      }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .header.compact .header-top {
+        display: none;
+      }
+
+      .logo {
+        width: 140px;
+        height: auto;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+      }
+
+      .header.compact .logo {
+        width: 90px;
+        margin: 0 10px;
+      }
+
+      .header .logo.compact-logo {
+        display: none;
+      }
+
+      .header.compact .logo.compact-logo {
+        display: block;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 900;
+      }
+
+      .header.compact h1 {
+        font-size: 1rem;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+      }
+
+      .header-content-box {
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 20px 20px;
+        box-shadow: 0 8px 20px rgba(var(--acento-rgb), 0.6);
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        opacity: 1;
+        transform: translateY(0);
+        will-change: transform;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .header-content-box {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: 0;
+        transform: translateY(-10px);
+      }
+
+      .header-content-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(var(--acento-rgb), 0.8);
+      }
+
+      .header-bottom-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header-second-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header.compact .header-bottom-row {
+        flex-grow: 1;
+      }
+
+      .logo-and-title {
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .logo-and-title {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .header.compact .header-bottom-row .logo-and-title {
+        will-change: transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        width: 100%;
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        gap: 10px;
+      }
+
+      .header.compact .header-bottom-row .logo-and-title:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .header-compact-title {
+        display: none;
+        color: var(--texto-blanco-1);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 10px;
+        white-space: normal;
+      }
+
+      .header.compact .header-compact-title {
+        display: block;
+      }
+
+      .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 450px;
+        background-color: var(--fondo-oscuro-medio);
+        border: 2px solid var(--fondo-borde-claro);
+        border-radius: 30px;
+        box-shadow: 0 4px 10px rgba(var(--sombra-rgb), 0.25);
+        will-change: border-color, background-color;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      }
+
+      .search-bar:focus-within {
+        border-color: var(--fondo-sombra-azul-header);
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .clear-search {
+        cursor: pointer;
+        color: var(--texto-claro-2);
+        padding: 5px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        display: none;
+        transition: color 0.2s ease;
+        transform: scale(1.5);
+      }
+
+      .clear-search:hover {
+        color: var(--texto-blanco-1);
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 10px 18px;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--texto-claro-2);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        min-width: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .header.compact .search-bar input {
+        padding: 10px 20px;
+      }
+
+      .search-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-button {
+        background: var(--gradient-principal);
+        border: none;
+        color: var(--texto-blanco-1);
+        padding: 8px 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        will-change: transform;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        max-width: 150px;
+        white-space: normal;
+      }
+
+      .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .search-bar .action-button {
+        margin: 5px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      @keyframes fadeInUpContent {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .mind-map {
+        transition: margin-top 0.4s ease;
+        margin: 50px 0;
+      }
+
+      .mind-map.animacion-contenido {
+        animation: fadeInUpContent 0.4s ease-out 1 forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        will-change: opacity, transform;
+      }
+
+      .section {
+        margin-bottom: 20px;
+        background-color: var(--fondo-oscuro-claro);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-oscuro-medio);
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(var(--sombra-rgb), 0.25);
+        transition: border-color 0.3s ease;
+      }
+
+      .section-header {
+        padding: 20px;
+        background-color: var(--fondo-oscuro-medio);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .section-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 5px 12px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 15px;
+      }
+
+      .toggle-icon {
+        font-size: 1.2rem;
+        color: var(--texto-claro-2);
+        will-change: transform;
+        transition: transform 0.3s ease;
+      }
+
+      .section.active > .section-header .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .section-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .section.active .section-content {
+        max-height: fit-content;
+        padding-bottom: 10px;
+        opacity: 1;
+      }
+
+      .subsection {
+        margin: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-borde-claro);
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+
+      .subsection:hover {
+        border-color: var(--fondo-sombra-azul-header);
+      }
+
+      .subsection:hover .subsection-header {
+        background-color: var(--fondo-sombra-azul-header);
+      }
+
+      .section:hover {
+        border-color: var(--fondo-borde-claro);
+      }
+
+      .section:hover .section-header {
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .subsection-header {
+        padding: 15px;
+        background-color: var(--fondo-borde-claro);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .subsection-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .subsection-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 12px;
+      }
+
+      .subsection-content {
+        max-height: 0;
+        overflow: hidden;
+        background-color: var(--fondo-oscuro-claro);
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .subsection.active .subsection-content {
+        max-height: fit-content;
+        padding: 15px;
+        opacity: 1;
+      }
+
+      .subsection.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .content-item {
+        margin-bottom: 10px;
+        padding: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border-left: 4px solid var(--color-principal);
+        box-shadow: 0 1px 5px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .content-text {
+        color: var(--texto-medio-3);
+        margin-bottom: 5px;
+        line-height: 1.4;
+        font-size: 1rem;
+        font-weight: 500;
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .content-text::before {
+        content: "•";
+        color: var(--color-principal);
+        font-weight: 700;
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+      }
+
+      .youtube-link {
+        display: inline-block;
+        padding: 10px 18px;
+        background: linear-gradient(135deg, var(--rojo-youtube-claro) 0%, var(--rojo-youtube-fuerte) 100%);
+        color: var(--texto-blanco-1);
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1rem;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(var(--rojo-rgb), 0.4);
+        will-change: transform;
+      }
+
+      .youtube-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 3px 7.5px rgba(var(--rojo-rgb), 0.5);
+        will-change: transform;
+      }
+
+      .timestamp {
+        color: var(--timestamp-youtube);
+        font-size: 0.85rem;
+        margin-left: 10px;
+        font-weight: 400;
+      }
+
+      .highlight {
+        background-color: var(--fondo-resaltado);
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+        padding: 4px;
+        border-radius: 6px;
+      }
+
+      .footer {
+        padding: 30px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        border-top: 1px solid var(--fondo-oscuro-medio);
+        text-align: center;
+        box-shadow: 0 -2px 10px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .footer-text {
+        color: var(--texto-claro-2);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .footer-logo {
+        width: 140px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .header-top {
+          flex-direction: column;
+        }
+
+        .logo {
+          margin: 0;
+        }
+
+        .header-text-box {
+          margin: 0;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .header.compact .header-bottom-row .logo-and-title {
+          gap: 5px;
+        }
+        .logo,
+        .footer-logo {
+          width: 105px;
+        }
+
+        .header.compact .header-bottom-row {
+          flex-direction: column;
+        }
+
+        .header.compact .header-compact-title {
+          margin: 0 5px;
+          font-size: 0.8rem;
+        }
+
+        .header.compact .logo.compact-logo {
+          width: 65px;
+          margin: 5px;
+        }
+
+        .action-button,
+        .search-bar input,
+        .clear-search {
+          font-size: 0.9rem;
+        }
+
+        .section-header {
+          padding: 15px;
+        }
+
+        .header.compact .controls {
+          flex-direction: row;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .subsection-title {
+          font-size: 1rem;
+        }
+        .section-number,
+        .subsection-number {
+          font-size: 13px;
+        }
+
+        .content-text {
+          font-size: 0.9rem;
+        }
+
+        .youtube-link {
+          font-size: 0.8rem;
+        }
+
+        .timestamp {
+          font-size: 0.75rem;
+        }
+
+        .header.compact .action-button {
+          padding: 6px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header animacion-inicial">
+      <div class="header-content-box">
+        <div class="header-top">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo" />
+          </a>
+          <div class="header-text-box">
+            <h1>
+              DIPLOMADO DE ALTA ESPECIALIZACIÓN EN<br />
+              <strong id="tituloDiplomado"></strong>
+            </h1>
+            <p id="tituloPrincipal"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-bottom-row">
+        <div class="logo-and-title">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo compact-logo" />
+          </a>
+          <span class="header-compact-title" id="tituloCompacto"></span>
+        </div>
+        <div class="header-second-row">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar en el resumen interactivo…" autocomplete="off" />
+            <div class="search-actions">
+              <span class="clear-search" onclick="clearSearch()">&times;</span>
+              <button class="action-button" onclick="searchContent()">Buscar</button>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="action-button" onclick="expandAll()">Mostrar todo</button>
+            <button class="action-button" onclick="collapseAll()">Colapsar todo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-spacer"></div>
+
+    <div class="container">
+      <div class="mind-map animacion-contenido" id="mindMap">
+        <div class="section" data-section="1">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">1</span>
+              <span class="section-title">Introducción y contexto general sobre la geometalurgia y su integración operativa</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.1</span>
+                  <span class="subsection-title">Importancia del soporte geoestadístico y elección metodológica para extrapolar resultados espaciales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Es fundamental seleccionar la metodología adecuada para extrapolar resultados de puntos espaciales dentro de la unidad geometalúrgica del yacimiento.</div>
+                  <div class="content-text">La extrapolación debe permitir generar bloques geometalúrgicos coherentes para la planificación y operación minera.</div>
+                  <div class="content-text">El proceso está en desarrollo y requiere revisión académica y ajustes en sílabos y formación profesional continua.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=965" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:16:05)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.2</span>
+                  <span class="subsection-title">Realidad operativa: la operación no espera a los modelos geometalúrgicos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las operaciones mineras continúan independientemente de la madurez del modelo geometalúrgico; muchas operan con o sin modelos.</div>
+                  <div class="content-text">Algunas operaciones utilizan modelos paralelos o modelos de referencia que se validan y aplican progresivamente.</div>
+                  <div class="content-text">La mayoría de la gran minería en Perú ya ha implementado metodologías de geometalurgia, aunque con variaciones entre organizaciones.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=1100" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:18:20)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.3</span>
+                  <span class="subsection-title">Necesidad de actualización académica y competencias interdisciplinares</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Instituciones educativas deben replantear y reformular sílabos para incorporar mejor la geometalurgia.</div>
+                  <div class="content-text">La formación exige integración de geólogos, mineros, metalurgistas y otros especialistas que trabajen en equipo.</div>
+                  <div class="content-text">Los profesionales deben desarrollar competencias transversales en geometalurgia para operar y optimizar un yacimiento.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=1022" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:17:02)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="2">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">2</span>
+              <span class="section-title">Planeamiento minero ligado al modelamiento geometalúrgico y mezcla de bloques</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.1</span>
+                  <span class="subsection-title">Conexión entre caracterización, modelamiento y planeamiento de minado</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La cadena: caracterización de yacimiento, modelamiento de recursos, modelamiento geometalúrgico y planeamiento minero deben estar integrados.</div>
+                  <div class="content-text">El planeamiento minero debe considerar cómo emplear los bloques del modelo geometalúrgico para optimizar el tajo o labores subterráneas.</div>
+                  <div class="content-text">La integración permite determinar la estrategia de extracción y la combinación (blending) de bloques para obtener mineral de calidad homogénea.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=1306" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:21:46)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.2</span>
+                  <span class="subsection-title">Problemas prácticos en la operación: límites de cono y variabilidad del frente</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">En la práctica se presentan sorpresas al minar frentes que están representados por bloques contiguos con distinta naturaleza, afectando la ley enviada a planta.</div>
+                  <div class="content-text">El manejo del cono envolvente y los límites de frentes requiere criterios expertos del geólogo y del minero para evitar mandos de material estéril a planta.</div>
+                  <div class="content-text">El control de envolventes y secuencias de minado influye directamente en la ley promedio y en la productividad del proceso.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=1338" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:22:18)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.3</span>
+                  <span class="subsection-title">Blending y recomendaciones del modelo geometalúrgico para desarrollar el tajo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El modelo geometalúrgico debe indicar combinaciones de bloques que optimicen la mezcla para procesamiento.</div>
+                  <div class="content-text">A partir de esa recomendación se diseña el desarrollo del tajo y las labores subterráneas, considerando mezclas y secuencia de extracción.</div>
+                  <div class="content-text">Estas operaciones unitarias requieren soporte especializado y coordinación multidisciplinar para ser eficientes y coherentes.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=1466" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:24:26)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="3">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">3</span>
+              <span class="section-title">Análisis Exploratorio de Datos (EDA) aplicado a geometalurgia y definición de UGMs</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.1</span>
+                  <span class="subsection-title">Propósito del EDA y objetivo final de definir UGMs en modelamiento geometalúrgico</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El EDA resume las características principales de una base de datos mediante tablas y gráficos para formular hipótesis y explorar datos.</div>
+                  <div class="content-text">En geometalurgia el objetivo principal del EDA es definir Unidades Geometalúrgicas (UGMs) que controlen espacialmente el comportamiento metalúrgico.</div>
+                  <div class="content-text">Con la estimación se desarrolla un modelo de bloques basado en la respuesta metalúrgica estimada.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=1709" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:28:29)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.2</span>
+                  <span class="subsection-title">Tipos de gráficas y tablas usados en EDA para geometalurgia</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Boxplots para resumir distribución de parámetros metalúrgicos, por ejemplo leyes de concentrado o parámetros de recuperación.</div>
+                  <div class="content-text">Gráficos probabilísticos (distribución acumulada en escala logarítmica) para comparar distribuciones de distintos dominios y UGMs.</div>
+                  <div class="content-text">Tablas de estadística descriptiva con media, mediana, desviación, cuantiles y otros indicadores que apoyan la definición de UGMs.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=1983" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:33:03)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.3</span>
+                  <span class="subsection-title">Uso de EDA para agrupar dominios y formar UGMs basadas en parámetros metalúrgicos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">A partir de diferencias claras en las distribuciones (p. ej. unidad rica en pirita con baja ley de concentrado) se separan dominios para UGMs independientes.</div>
+                  <div class="content-text">El análisis de distribuciones permite agrupar dominios geológicos y convertirlos en UGMs con valores característicos de respuesta metalúrgica.</div>
+                  <div class="content-text">Las UGMs integran parámetros como ley de concentrado, dureza, velocidad de sedimentación o consumo ácido para caracterizar comportamiento metalúrgico.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=2047" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:34:07)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="4">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">4</span>
+              <span class="section-title">Manejo de datos escasos: proxies, regresiones y escalamiento a planta</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.1</span>
+                  <span class="subsection-title">Problema de bajo número de datos y resolución temporal para planes de corto y mediano plazo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">A menudo la frecuencia de muestreo es baja (por ejemplo una muestra cada varias semanas), insuficiente para planes semanales o de corto plazo.</div>
+                  <div class="content-text">El escaso número de muestras limita la resolución espacial y temporal del modelo geometalúrgico para planificación operativa.</div>
+                  <div class="content-text">Es necesario complementar datos con técnicas que aumenten la densidad de información para control de corto plazo.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=2314" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:38:34)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.2</span>
+                  <span class="subsection-title">Uso de proxies y regresiones para incrementar la cantidad de datos disponibles</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los proxies permiten obtener indirectamente el parámetro de interés (por ejemplo Work Index) mediante correlaciones con variables más abundantes.</div>
+                  <div class="content-text">Aunque los proxies son menos precisos que tests directos, permiten generar miles de datos estimados para mejorar la resolución de planes de producción.</div>
+                  <div class="content-text">Ejemplos de uso incluyen ecuaciones de regresión que relacionan mineralogía, químicas u otros parámetros operacionales con índices metalúrgicos.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=2363" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:39:23)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.3</span>
+                  <span class="subsection-title">Escalamiento de ensayos de pequeña escala a resultados homologables a planta</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Ensayos de microcolumnas o columnas de diferente altura permiten determinar factores de escalamiento entre pruebas pequeñas y respuesta a escala más industrial.</div>
+                  <div class="content-text">El escalamiento define factores (por ejemplo 0,96) para ajustar recuperaciones o extracciones estimadas a una escala cercana a planta.</div>
+                  <div class="content-text">Si existe planta operativa, los datos permiten llevar a cabo reconciliaciones y validar funciones de escalamiento entre ensayo y planta.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=1856" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:30:56)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="5">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">5</span>
+              <span class="section-title">Modelos de regresión para predecir parámetros metalúrgicos y uso práctico con Orange Data Mining</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.1</span>
+                  <span class="subsection-title">Introducción a regresión lineal simple y múltiple para predecir variables metalúrgicas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La regresión lineal simple modela una variable dependiente en función de un predictor mediante pendiente e intercepto.</div>
+                  <div class="content-text">La regresión múltiple usa varias variables predictoras para estimar una respuesta dependiente, aplicable a predicción de Work Index o recuperación.</div>
+                  <div class="content-text">Variables predictoras posibles incluyen mineralogía, leyes químicas y parámetros operacionales; la variable objetivo puede ser Work Index u otro parámetro metalúrgico.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=2752" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:45:52)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.2</span>
+                  <span class="subsection-title">Ejemplo práctico: predicción del Work Index usando leyes químicas como predictores</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Objetivo del ejercicio: generar una regresión lineal múltiple para predecir Work Index basándose en contenidos de hierro, magnesio y sílice.</div>
+                  <div class="content-text">El Work Index se define como la variable target; las leyes químicas se definen como features (predictores) en el modelo.</div>
+                  <div class="content-text">Se establece el rol y tipo de variables (numérico, categórico, metadato) antes de aplicar el modelo para asegurar correcta configuración.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=3525" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:58:45)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.3</span>
+                  <span class="subsection-title">Software Orange Data Mining: funcionalidades y flujo de trabajo para el ejercicio práctico</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Orange Data Mining es software libre orientado a visualización de datos, Machine Learning y Data Mining, con widgets y posibilidad de integrar Python.</div>
+                  <div class="content-text">El entorno ofrece widgets para importar, transformar, preprocesar y visualizar datos, así como algoritmos supervisados y no supervisados.</div>
+                  <div class="content-text">En el ejemplo se utiliza el widget File para cargar la base de datos, se asignan tipos y roles a variables, y luego se aplica el modelo de regresión múltiple para predecir Work Index.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=2964" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:49:24)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="6">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">6</span>
+              <span class="section-title">Validación, limitaciones y recomendaciones operativas para geometalurgia aplicada</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.1</span>
+                  <span class="subsection-title">Consideraciones sobre validación, actualización de datos y recarga de bases en workflows</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Es importante mantener actualizada la base de datos; el software permite recargar (reload) para actualizar análisis tras cambios en los datos.</div>
+                  <div class="content-text">Definir metadatos y roles facilita comparar y visualizar información en los gráficos y asegurar consistencia en el análisis.</div>
+                  <div class="content-text">La práctica indica que combinar datos operacionales, ensayos y proxies mejora la validez del modelo para distintos horizontes de planificación.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=3570" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:59:30)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.2</span>
+                  <span class="subsection-title">Limitaciones de métodos y balance entre geostatística y modelos basados en proxies</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">En algunas escuelas (por ejemplo mencionadas en Chile) la práctica predominante es estimar directamente mediante geoestadística aun con espaciamientos grandes entre muestras.</div>
+                  <div class="content-text">En otros enfoques se prefieren modelos de regresión que permiten aumentar la cantidad de datos disponibles mediante proxies y modelos estadísticos.</div>
+                  <div class="content-text">La decisión metodológica depende del propósito: modelos de largo plazo prefieren geoestadística con muestras directas; corto plazo puede requerir proxies y regresiones complementarias.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=2442" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:40:42)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.3</span>
+                  <span class="subsection-title">Recomendaciones prácticas para integración geometalúrgica en operación minera</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Formar equipos interdisciplinarios que incluyan geólogos, mineros, metalurgistas y otros expertos para diseñar metodologías eficientes.</div>
+                  <div class="content-text">Implementar UGMs bien definidas y respaldadas por EDA que permitan control espacial del comportamiento metalúrgico.</div>
+                  <div class="content-text">Emplear proxies y escalamiento cuando la disponibilidad de datos directos sea limitada, y validar mediante reconciliaciones con planta cuando sea posible.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=1491" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:24:51)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="7">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">7</span>
+              <span class="section-title">Revisión y manipulación de widgets y base de datos en Orange</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.1</span>
+                  <span class="subsection-title">Introducción a la interacción con widgets en la interfaz de Orange</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Explicación de cómo arrastrar y soltar widgets desde la paleta hasta el lienzo usando el botón izquierdo del ratón para visualizar opciones.</div>
+                  <div class="content-text">Alternativa de arrastrar widgets desde la parte superior y comprobar que al juntarlos se conectan automáticamente para formar flujos de trabajo.</div>
+                  <div class="content-text">Sugerencia de cambiar el zoom con control + rueda del ratón para ver widgets pequeños y facilitar la interacción en pantalla.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=3607" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:00:07)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.2</span>
+                  <span class="subsection-title">Visualización y revisión de la tabla de datos cargada</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Doble clic en el widget Data Table para desplegar la base de datos y verificar que contiene 50 muestras y columnas de predictores y target.</div>
+                  <div class="content-text">Descripción del target (work index) y de los predictores (ley de fierro, ley de magnesio, ley de sílice) y mención de que los datos son reales de un depósito ortomagmático de Brasil.</div>
+                  <div class="content-text">Aclaración de que la columna target aparece como metadato y no se utilizará para la regresión en ese momento.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=3704" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:01:44)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.3</span>
+                  <span class="subsection-title">Uso del Data Sample para dividir los datos en entrenamiento y test</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Inserción del widget Data Sample para dividir la base de datos en conjunto de entrenamiento y test, usando doble clic para configurarlo.</div>
+                  <div class="content-text">Explicación de seleccionar todos los datos como entrada y de eliminar conexiones innecesarias para reorganizar el flujo.</div>
+                  <div class="content-text">Justificación del muestreo: reservar por ejemplo el 20% para testeo y usar 80% para entrenamiento, mostrando que con 50 muestras quedan 40 para entrenar y 10 para testear.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=3951" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:05:51)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="8">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">8</span>
+              <span class="section-title">Conceptos clave de modelado predictivo y particionado de datos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.1</span>
+                  <span class="subsection-title">Necesidad de datos frescos para evaluar modelos predictivos y evitar sobreajuste</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Definición de por qué el modelo debe probarse con datos que no haya visto antes, evitando que memorice los puntos y dé resultados engañosamente perfectos.</div>
+                  <div class="content-text">Ejemplo de cómo una regresión polinomial puede pasar por todos los puntos de entrenamiento sin garantizar predicción correcta en datos nuevos.</div>
+                  <div class="content-text">Conclusión de que siempre hay que dividir los datos en sets de entrenamiento y test para medir la predictibilidad real.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=3830" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:03:50)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.2</span>
+                  <span class="subsection-title">Opciones y métodos de muestreo y su impacto en la validación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Mención de variantes como muestro estratificado, validación cruzada (cross-validation) y bootstrap, y cuándo son apropiadas según el tamaño de la muestra.</div>
+                  <div class="content-text">Observación de que la división 80-20 es una regla práctica común pero no obligatoria, pudiendo usarse 75-25 o 90-10 según disponibilidad de datos.</div>
+                  <div class="content-text">Nota sobre la importancia de conservar mayor parte de la muestra para entrenar el modelo cuando los datos son limitados, especialmente en geometalurgia.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=4330" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:12:10)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.3</span>
+                  <span class="subsection-title">Configuración práctica del Data Sampler y obtención de subconjuntos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Indicaciones para marcar opciones en Data Sample, elegir réplica y/o estratificación según se requiera, y ajustar el porcentaje de muestra al 80%.</div>
+                  <div class="content-text">Creación de dos tablas resultantes para visualizar training (remaining) con 40 muestras y test con 10 muestras tras el muestreo.</div>
+                  <div class="content-text">Aclaración de que la partición se realiza al azar pero puede ser determinística y replicable; recordar que existen métodos no aleatorios si se desea.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=4391" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:13:11)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="9">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">9</span>
+              <span class="section-title">Construcción, evaluación y visualización del modelo de regresión lineal</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.1</span>
+                  <span class="subsection-title">Creación del modelo de regresión lineal y visualización de coeficientes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Inserción del widget Linear Regression para ajustar un modelo lineal sencillo sin regularización adicional por defecto.</div>
+                  <div class="content-text">Doble clic en Regression para ver coeficientes: intercepto (beta0) y betas asociados a las leyes (fierro, magnesio, sílice).</div>
+                  <div class="content-text">Ejemplo explícito de la ecuación: Work Index = -3.9 + (-0.6)Fe + 0.3Mg + 0.3*Si (valores aproximados mostrados en la sesión).</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=4634" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:17:14)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.2</span>
+                  <span class="subsection-title">Predicción sobre el conjunto de test y comparación con valores reales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Conexión del modelo con un widget de predicciones para aplicar la regresión a las 10 muestras test que el modelo no vio durante el entrenamiento.</div>
+                  <div class="content-text">Visualización de la predicción en un scatterplot comparando Work Index predicho (eje X) contra Work Index real (eje Y) para las muestras test.</div>
+                  <div class="content-text">Ejemplo de un punto donde la regresión predijo 17.2 y el valor real era 15.4, ilustrando discrepancias punto a punto.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=4872" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:21:12)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.3</span>
+                  <span class="subsection-title">Interpretación de métricas gráficas y ajustes posibles del modelo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Posibilidades de personalizar el scatterplot: tamaño y opacidad de símbolos, mostrar o ocultar leyenda y líneas de regresión.</div>
+                  <div class="content-text">Clarificación de que R cuadrado (R^2) es la medida del grado de explicación entre variables y puede observarse en el gráfico; afirmación de que el modelo en el ejercicio mostró buen ajuste.</div>
+                  <div class="content-text">Debate sobre ajustar el modelo usando las 10 muestras restantes para comparar o generar otra regresión, y advertencia sobre el peligro de usar todos los datos para entrenar sin testeo por sobreajuste.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=5019" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:23:39)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="10">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">10</span>
+              <span class="section-title">Selección de predictores, correlaciones y prácticas de exportación de resultados</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.1</span>
+                  <span class="subsection-title">Criterios para elegir predictores y análisis de correlación con el target</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Recomendación básica de elegir predictores por su correlación lineal con el target; ejemplo: sílice correlaciona 0.74 con Work Index, magnesio -0.43, fierro correlación inversa.</div>
+                  <div class="content-text">Observación de que variables sin correlación (por ejemplo aluminio con correlación cercana a 0) no aportan y se pueden excluir del modelo.</div>
+                  <div class="content-text">Mención de que existen técnicas más complejas para selección de variables que no se abordaron por falta de tiempo.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=5275" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:27:55)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.2</span>
+                  <span class="subsection-title">Manejo de errores, tipificación de variables y resolución de problemas en regresión</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Incidencia de errores cuando variables no están definidas como numéricas y la necesidad de verificar que el target sea numérico para que la regresión funcione.</div>
+                  <div class="content-text">Sugerencia de revisar el mapeo de atributos y convertir variables a tipo numérico si es necesario para evitar fallos en el ajuste.</div>
+                  <div class="content-text">Demostración práctica del scatterplot con las 50 muestras originales para evaluar relaciones directas entre predictores y target antes de modelar.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=5353" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:29:13)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.3</span>
+                  <span class="subsection-title">Exportación y almacenamiento de resultados y ecuación explícita del modelo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Posibilidad de guardar tablas y resultados mediante save data para exportarlos a Excel o usar como script en otros programas.</div>
+                  <div class="content-text">Método para copiar ecuación y coeficientes manualmente a un bloc de notas para documentar la fórmula y valores de los betas.</div>
+                  <div class="content-text">Consulta sobre eliminar el intercepto y respuesta sobre impactos en la pendiente y riesgos de sobreestimación o subestimación en extremos de la distribución.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=5608" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:33:28)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="11">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">11</span>
+              <span class="section-title">Preparación de datos, limpieza y avance hacia clustering para consumo de ácido</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.1</span>
+                  <span class="subsection-title">Importancia de la limpieza de datos y tratamiento de valores faltantes o códigos especiales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Detección de valores codificados como -99 que indican ausencia de medición y la necesidad de excluirlos o tratarlos antes de promediar.</div>
+                  <div class="content-text">Advertencia sobre reemplazar -99 por cero sin criterio, ya que el cero es un valor válido pero distinto de un dato faltante.</div>
+                  <div class="content-text">Énfasis en que la preparación de datos suele consumir más tiempo que el análisis mismo y es clave para resultados válidos.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=6749" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:52:29)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.2</span>
+                  <span class="subsection-title">Descripción del ensayo de consumo de ácido y relevancia económica en plantas de lixiviación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Descripción del ensayo isopH de botellas: 1 kg de muestra, granulometría aproximada (10 mallas), 2 litros de agua, pH 1,5 mantenido por 72 horas, 20 rpm de agitación y medición de cobre libre y consumo de ácido.</div>
+                  <div class="content-text">Explicación de la importancia económica del consumo de ácido, representando alrededor del 10% del costo operativo en una planta de lixiviación y con precio del ácido cerca de 100 USD por tonelada.</div>
+                  <div class="content-text">Conexión entre la medición y la necesidad de modelar el consumo para optimizar costos y procesos.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=6908" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:55:08)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.3</span>
+                  <span class="subsection-title">Introducción al clustering para generar UGMs preliminares de consumo de ácido</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Objetivo del ejercicio: usar clustering para crear grupos de comportamiento similar en consumo de ácido y obtener Unidades Geometalúrgicas (UGMs) preliminares.</div>
+                  <div class="content-text">Definición de clustering: agrupar muestras para que las del mismo grupo sean lo más semejantes posible y difieran de las de otros grupos.</div>
+                  <div class="content-text">Descripción de insumos disponibles: coordenadas de muestras, análisis químico, mineralogía y consumo de ácido, y planificación de realizar la práctica después del almuerzo.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=7021" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:57:01)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="12">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">12</span>
+              <span class="section-title">Conceptos generales de minería de datos y recomendaciones de aprendizaje continuo</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.1</span>
+                  <span class="subsection-title">Definición y pilares de la minería de datos aplicada a minería</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Definición de data mining como campo de informática y estadística para extraer información útil desde grandes bases de datos y transformarla para uso posterior.</div>
+                  <div class="content-text">Tres pilares: estadística (colección y análisis), machine learning (algoritmos automáticos) y bases de datos (organización y almacenamiento de datos).</div>
+                  <div class="content-text">Aplicación práctica en minería: mejorar capacidad de planta, aumentar recuperaciones y transformar datos de sondajes, mineralogía y análisis químicos en modelos útiles.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=6225" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:43:45)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.2</span>
+                  <span class="subsection-title">Flujo de trabajo en data mining y necesidad de actualización constante de modelos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Pasos: entender problema de negocio, preparar datos, construir modelos, evaluar con conjunto de test e introducir un producto usable por otras áreas, como modelos de bloque.</div>
+                  <div class="content-text">Observación de que todos los modelos caducan debido a nuevos datos y condiciones cambiantes, por lo que requieren actualización periódica.</div>
+                  <div class="content-text">Ejemplos de aplicaciones cotidianas de data mining: motores de búsqueda, recomendaciones de Amazon o YouTube y detección de fraudes, mostrando su presencia actual en múltiples industrias.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=6322" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:45:22)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.3</span>
+                  <span class="subsection-title">Recursos de aprendizaje y sugerencias para formación práctica en data science</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Recomendación de Wikipedia y YouTube para materiales introductorios y prácticos, y mención de cursos MOOC en plataformas como Udemy y Coursera para aprendizaje estructurado.</div>
+                  <div class="content-text">Comentario sobre la rápida evolución del campo y que muchos empleadores valoran habilidades prácticas por encima de títulos formales en programación y machine learning.</div>
+                  <div class="content-text">Invitación a involucrarse en data science por su aplicabilidad inmediata y ventajas para el análisis de grandes volúmenes de datos en minería.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=6594" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:49:54)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="13">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">13</span>
+              <span class="section-title">Demostración práctica de clustering y generación de clusters</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.1</span>
+                  <span class="subsection-title">Descripción de la muestra y conexión de puntos generados por el instructor</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El instructor explica que ha conectado visualmente las muestras que él mismo fabricó para ilustrar un conjunto de datos sintético observable en pantalla.</div>
+                  <div class="content-text">Presenta los puntos dispersos en dos dimensiones para facilitar la comprensión inicial del agrupamiento.</div>
+                  <div class="content-text">Indica que se utilizarán esas mismas muestras para generar clusters y observar el comportamiento del algoritmo.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=7213" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:13)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.2</span>
+                  <span class="subsection-title">Definición intuitiva de "cluster" y creación de tres grupos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Explica qué significa cluster de forma simple: "tres bolsitas" donde se agrupan las muestras según similitud.</div>
+                  <div class="content-text">Señala que se pedirá al algoritmo que genere exactamente tres clusters predefinidos por la instrucción.</div>
+                  <div class="content-text">Menciona que también puede solicitarse otro número de clusters, por ejemplo 2, y que 1 no tiene sentido práctico para la demostración.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=7248" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:48)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.3</span>
+                  <span class="subsection-title">Limitación humana versus capacidad del algoritmo para dimensiones altas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Pregunta retóricamente cómo harían los asistentes para agrupar datos si en vez de dos variables tuvieran diez dimensiones, señalando la imposibilidad humana.</div>
+                  <div class="content-text">Explica que el algoritmo calcula distancias en todas las dimensiones y busca los mejores grupos automáticamente.</div>
+                  <div class="content-text">Señala que esta capacidad de iterar en múltiples dimensiones es la principal ventaja del algoritmo frente al juicio humano manual.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=7328" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:02:08)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="14">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">14</span>
+              <span class="section-title">Proceso iterativo del algoritmo k-means y ajuste de centroides</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.1</span>
+                  <span class="subsection-title">Ejecución inicial y asignación aleatoria de centroides</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El orador muestra que el algoritmo comienza con posicionamientos aleatorios de centroides, lo que puede producir agrupaciones insatisfactorias inicialmente.</div>
+                  <div class="content-text">Comenta ejemplos de asignaciones donde el algoritmo agrupa muestras que un humano no consideraría juntas.</div>
+                  <div class="content-text">Describe la observación de resultados feos o no coincidentes con la intuición humana al inicio de la ejecución.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=7401" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:03:21)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.2</span>
+                  <span class="subsection-title">Recomputación de centroides y reasignación iterativa de muestras</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Explica que el algoritmo reposiciona los centroides moviéndolos al centro (media) de las muestras asignadas a cada cluster.</div>
+                  <div class="content-text">Muestra cómo, tras varias iteraciones, el algoritmo recalcula las asignaciones basadas en distancias y actualiza centroides repetidamente.</div>
+                  <div class="content-text">Señala que ese proceso iterativo permite que el algoritmo converja hacia una solución que minimiza las distancias internas de cada cluster.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=7445" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:04:05)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.3</span>
+                  <span class="subsection-title">Convergencia final y comparación con la agrupación humana</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Indica que, tras suficiente iteración, el algoritmo logra identificar grupos equivalentes a los que un humano habría señalado en el ejemplo bidimensional.</div>
+                  <div class="content-text">Describe que los centroides finales minimizan las distancias dentro de cada grupo y reflejan comportamientos homogéneos.</div>
+                  <div class="content-text">Enumera cómo se interpretan los clusters en términos de variables X e Y (ejemplos de bajo/alto en cada variable).</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=7552" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:05:52)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="15">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">15</span>
+              <span class="section-title">Interpretación del clustering aplicado a variables múltiples y objetivo geometalúrgico</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.1</span>
+                  <span class="subsection-title">Uso de muchas dimensiones para agrupar variables y predictores</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se enfatiza que el ejemplo es sencillo en dos dimensiones, pero el objetivo real consiste en aplicar el mismo procedimiento con muchas variables.</div>
+                  <div class="content-text">Señala que teóricamente se podrían usar hasta 12 dimensiones o más para generar clusters representativos.</div>
+                  <div class="content-text">Indica que el algoritmo repetirá el mismo ajuste iterativo en espacios de alta dimensionalidad para encontrar nubes consistentes.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=7631" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:07:11)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.2</span>
+                  <span class="subsection-title">Relación entre clustering y la variable objetivo de consumo de ácido</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se plantea como objetivo entender la variable target del consumo de ácido mediante agrupamientos de predictores.</div>
+                  <div class="content-text">Explica que se analizará cómo se agrupan los datos de consumo de ácido y su relación con química y mineralogía.</div>
+                  <div class="content-text">Señala que los clusters ayudarán a explicar variaciones en consumo de ácido a partir de múltiples predictores incluidos en el análisis.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=7698" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:08:18)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.3</span>
+                  <span class="subsection-title">Variables disponibles y potencial de uso en el análisis multidimensional</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Enumera que existen 12 variables disponibles (incluyendo coordenadas) que, en teoría, pueden emplearse para generar el clustering.</div>
+                  <div class="content-text">Explica que este conjunto multidimensional permitirá caracterizar comportamientos de consumo de ácido según combinaciones de variables.</div>
+                  <div class="content-text">Menciona que el análisis multivariable servirá para definir unidades geometalúrgicas preliminares basadas en los clusters obtenidos.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=7728" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:08:48)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="16">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">16</span>
+              <span class="section-title">Importancia del test de consumo de ácido y su integración en el modelo</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.1</span>
+                  <span class="subsection-title">Confirmación de comprensión e importancia operativa del test</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se confirma con los asistentes que el test de consumo de ácido está entendido y se subraya su importancia.</div>
+                  <div class="content-text">Explica que disponer de este dato es fundamental para operar los módulos de proceso correctamente.</div>
+                  <div class="content-text">Señala que sin conocer el consumo de ácido no es posible ajustar dosificaciones ni optimizar procesos.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=7757" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:09:17)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.2</span>
+                  <span class="subsection-title">Consecuencias operativas y riesgos de desconocer el consumo de ácido</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Detalla que la falta de conocimiento del consumo de ácido puede reducir la dosificación y afectar la recuperación metalúrgica.</div>
+                  <div class="content-text">Menciona posibles problemas aguas abajo, como desbalances en el sistema y afectación de etapas como solvente o electro-winning.</div>
+                  <div class="content-text">Indica que no disponer de este dato puede generar problemas operativos significativos en la planta.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=7782" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:09:42)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.3</span>
+                  <span class="subsection-title">Incorporación del test en el modelo geometalúrgico y toma de decisiones</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Señala que el test debe modelarse dentro del modelo geometalúrgico para permitir decisiones informadas.</div>
+                  <div class="content-text">Indica que el primer objetivo será generar grupos de predictores que expliquen el consumo de ácido y permitan definir UGM preliminares.</div>
+                  <div class="content-text">Explica que estos resultados formarán parte de un análisis multivariable para suportar decisiones de procesamiento.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=7827" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:10:27)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="17">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">17</span>
+              <span class="section-title">Recursos, software y cierre de la sesión educativa</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.1</span>
+                  <span class="subsection-title">Recomendación de software libre y recursos para aprendizaje</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se presenta la existencia de software gratuito (Orange) como herramienta amigable para análisis de datos exploratorios y clustering.</div>
+                  <div class="content-text">Sugiere descargar el software y seguir instructivos o tutoriales en YouTube para familiarizarse con las herramientas.</div>
+                  <div class="content-text">Indica que el software permite manipular datos, interpretar gráficas y generar proxies útiles para geometalurgia.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=7868" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:11:08)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.2</span>
+                  <span class="subsection-title">Utilidad del tratamiento de datos en geometalurgia y ejemplos de correlaciones relevantes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Explica que la geometalurgia depende cada vez más del tratamiento e interpretación de la data de caracterización del yacimiento.</div>
+                  <div class="content-text">Ofrece ejemplos de correlaciones entre presencia de minerales (óxido de magnesio, mármol, hierro, cobre) y efectos en recuperación o flotación.</div>
+                  <div class="content-text">Señala que el tratamiento de datos corroborará hipótesis generadas por pruebas químicas y de laboratorio.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=7958" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:12:38)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.3</span>
+                  <span class="subsection-title">Conclusión de la sesión, próximos temas y logística de seguimiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se anuncia el cierre de la sesión y que la continuidad abarcará economía y plan de minado en la clase siguiente.</div>
+                  <div class="content-text">El moderador indica que compartirá el enlace del software y enviará información por el grupo de WhatsApp para socializar recursos.</div>
+                  <div class="content-text">Finaliza recordando el formulario de asistencia y los canales de contacto para dudas, y confirma la próxima clase a la misma hora.</div>
+                  <a href="https://www.youtube.com/watch?v=RNf0tsSfWME&start=8181" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:16:21)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://www.edumin.pe/" target="_blank">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="footer-logo" />
+      </a>
+      <p class="footer-text">
+        <b>Contenido desarrollado por EDUMIN - Centro de Capacitación Especializado en Minería, Industria y Negocios</b><br />
+        <i>Material exclusivo para estudiantes de EDUMIN</i><br />
+        <a href="https://www.edumin.pe/" target="_blank" style="color: var(--color-principal); text-decoration: none">https://www.edumin.pe/</a>
+      </p>
+    </div>
+
+    <script>
+      const TITULO_DIPLOMADO = "GEometalurgia".toUpperCase();
+      const TITULO_CLASE = "CLASE 17: OPTIMIZACIÓN EN LOS COSTOS DE OPERACIONES MINERAS - 1RA PARTE".toUpperCase();
+
+      const elementoDiplomado = document.getElementById("tituloDiplomado");
+      if (elementoDiplomado) {
+        elementoDiplomado.innerText = TITULO_DIPLOMADO;
+      }
+
+      document.title = TITULO_CLASE;
+      const tituloPrincipal = document.getElementById("tituloPrincipal");
+      if (tituloPrincipal) {
+        tituloPrincipal.innerText = TITULO_CLASE;
+      }
+
+      const tituloCompacto = document.getElementById("tituloCompacto");
+      if (tituloCompacto) {
+        tituloCompacto.innerText = TITULO_CLASE;
+      }
+
+      function toggleSection(element) {
+        const section = element.closest(".section");
+        const wasActive = section.classList.contains("active");
+
+        section.classList.toggle("active");
+
+        if (wasActive) {
+          const subsections = section.querySelectorAll(".subsection");
+          subsections.forEach((subsection) => {
+            subsection.classList.remove("active");
+          });
+        }
+      }
+
+      function toggleSubsection(element) {
+        const subsection = element.closest(".subsection");
+        subsection.classList.toggle("active");
+      }
+
+      function expandAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.add("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.add("active");
+        });
+      }
+
+      function collapseAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.remove("active");
+        });
+      }
+
+      function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, delay);
+        };
+      }
+
+      function clearSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        searchInput.value = "";
+        clearBtn.style.display = "none";
+        searchContent();
+        searchInput.focus();
+      }
+
+      const createDiacriticInsensitiveRegex = (term) => {
+        const charMap = {
+          a: "[aáAÁ]",
+          e: "[eéEÉ]",
+          i: "[iíIÍ]",
+          o: "[oóOÓ]",
+          u: "[uúUÚ]",
+        };
+
+        const regexString = term
+          .split("")
+          .map((char) => {
+            const lowerChar = char.toLowerCase();
+            return charMap[lowerChar] || char;
+          })
+          .join("");
+
+        return new RegExp(`(${regexString})`, "gi");
+      };
+
+      function searchContent() {
+        const inputElement = document.getElementById("searchInput");
+        const searchTerm = inputElement.value.trim();
+
+        const searchableElements = document.querySelectorAll(".content-text, .section-title, .subsection-title");
+        let found = false;
+        let firstMatchElement = null;
+
+        document.querySelectorAll(".section.active").forEach((el) => el.classList.remove("active"));
+        document.querySelectorAll(".subsection.active").forEach((el) => el.classList.remove("active"));
+        searchableElements.forEach((element) => {
+          element.innerHTML = element.getAttribute("data-original-text") || element.textContent;
+        });
+
+        if (searchTerm.length < 3) {
+          return;
+        }
+
+        const searchRegex = createDiacriticInsensitiveRegex(searchTerm);
+
+        searchableElements.forEach((element) => {
+          const originalText = element.getAttribute("data-original-text") || element.textContent;
+
+          if (searchRegex.test(originalText)) {
+            found = true;
+
+            element.innerHTML = originalText.replace(searchRegex, `<span class="highlight">$1</span>`);
+
+            const subsection = element.closest(".subsection");
+            if (subsection) {
+              subsection.classList.add("active");
+              subsection.closest(".section")?.classList.add("active");
+            } else if (element.classList.contains("section-title")) {
+              element.closest(".section")?.classList.add("active");
+            }
+
+            if (!firstMatchElement) {
+              firstMatchElement = element;
+            }
+          }
+        });
+
+        if (firstMatchElement) {
+          requestAnimationFrame(() => {
+            firstMatchElement.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          });
+        } else if (searchTerm.length >= 3) {
+          alert("No se encontraron resultados para: " + searchTerm);
+        }
+      }
+
+      const debouncedSearch = debounce(searchContent, 300);
+
+      document.getElementById("searchInput").addEventListener("input", function () {
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        clearBtn.style.display = this.value.length > 0 ? "block" : "none";
+        debouncedSearch();
+      });
+
+      document.getElementById("searchInput").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          clearTimeout(this._timeoutId);
+          searchContent();
+        }
+      });
+
+      // --- Lógica del Header Compacto ---
+      const header = document.querySelector(".header");
+      const headerSpacer = document.querySelector(".header-spacer");
+      let initialHeaderHeight = 0; // Altura del header original
+      let compactHeaderHeight = 0; // Altura del header en modo compacto
+      let scrollTriggerPoint = 0; // Punto de scroll para activar el cambio
+
+      function handleHeaderState() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollY > scrollTriggerPoint) {
+          if (!header.classList.contains("compact")) {
+            header.classList.add("compact");
+            headerSpacer.style.height = `${initialHeaderHeight}px`;
+          }
+        } else {
+          if (header.classList.contains("compact")) {
+            header.classList.remove("compact");
+            headerSpacer.style.height = "0px";
+          }
+        }
+      }
+
+      function initializeHeader() {
+        initialHeaderHeight = header.offsetHeight;
+        const headerClone = header.cloneNode(true);
+        headerClone.classList.add("compact");
+        headerClone.style.visibility = "hidden";
+        headerClone.style.position = "absolute";
+        document.body.appendChild(headerClone);
+        compactHeaderHeight = headerClone.offsetHeight;
+        document.body.removeChild(headerClone);
+
+        scrollTriggerPoint = initialHeaderHeight - compactHeaderHeight;
+      }
+
+      document.addEventListener("DOMContentLoaded", initializeHeader);
+      window.addEventListener("scroll", handleHeaderState);
+      window.addEventListener("resize", debounce(initializeHeader, 200));
+    </script>
+  </body>
+</html>

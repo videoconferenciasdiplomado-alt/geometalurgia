@@ -1,0 +1,2116 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        /* Colores Principales del Diseño (Acentos y Degradados) */
+        /* ======================================================= */
+        --color-principal: #00beff; /* Cian Brillante para acentos, bordes y el inicio del degradado principal */
+        --color-secundario: #1e50cd; /* Azul Medio, parte final del degradado de acento */
+
+        /* Fondos Oscuros de la Interfaz */
+        /* ======================================================= */
+        --fondo-oscuro-claro: #002a52; /* Fondo de secciones y contenido */
+        --fondo-oscuro-fuerte: #001a33; /* Fondo del encabezado (header) y pie de página (footer) */
+        /* ======================================================= */
+        --fondo-oscuro-medio: #003366; /* Fondo de encabezados y cajas de contenido */
+        --fondo-borde-claro: #004080; /* Bordes ligeros y color de fondo al hacer hover en encabezados */
+        --fondo-sombra-azul-header: #0050a0; /* ¡NUEVO! Sombra en el header */
+
+        /* Colores de Texto y Fondo General del Body */
+        /* ======================================================= */
+        --texto-blanco-1: #ffffff; /* Blanco puro para títulos y texto en fondo muy oscuro */
+        --texto-claro-2: #e6e6e6; /* Texto principal y claro */
+        --texto-medio-3: #cccccc; /* Texto de contenido de item (un poco más tenue) */
+
+        /* ======================================================= */
+        --fondo-body-inicio: #99e5ff; /* Color de inicio del degradado de fondo del body */
+        --fondo-body-fin: #a5b9eb; /* Color de final del degradado de fondo del body */
+
+        /* Colores de Acento Específicos (YouTube, Búsqueda) */
+        /* ======================================================= */
+        --rojo-youtube-claro: #e60000;
+        --rojo-youtube-fuerte: #a30000;
+        --timestamp-youtube: #ffcccc;
+        --fondo-resaltado: #00c339; /* Verde para el fondo del texto buscado */
+
+        /* Bases RGB para Transparencias (RGBA) */
+        /* ======================================================= */
+        --sombra-rgb: 0, 0, 0; /* Negro puro: Usado para sombras generales y profundidad */
+        --acento-rgb: 0, 190, 255; /* Cian Brillante: Usado para brillos y sombras de acento */
+        --rojo-rgb: 230, 0, 0; /* Rojo Puro: Usado para sombras de enlaces de YouTube */
+        /* ======================================================= */
+        --gradient-principal: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--fondo-body-inicio) 0%, var(--fondo-body-fin) 100%);
+        line-height: 1.2;
+        scroll-behavior: smooth;
+      }
+
+      strong#tituloDiplomado {
+        font-weight: 900;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      @keyframes slideDownSutil {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header.animacion-inicial {
+        animation: slideDownSutil 0.4s ease-out 1;
+        animation-fill-mode: forwards;
+        will-change: transform, opacity;
+      }
+
+      .header {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        box-shadow: 0 5px 15px rgba(var(--sombra-rgb), 0.5);
+        text-align: center;
+        will-change: transform;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header-text-box {
+        display: grid;
+        gap: 10px;
+        word-break: break-word;
+        margin: 0 15px;
+      }
+
+      .header.compact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+      }
+
+      .header-spacer {
+        display: none;
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header.compact + .header-spacer {
+        display: block;
+      }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .header.compact .header-top {
+        display: none;
+      }
+
+      .logo {
+        width: 140px;
+        height: auto;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+      }
+
+      .header.compact .logo {
+        width: 90px;
+        margin: 0 10px;
+      }
+
+      .header .logo.compact-logo {
+        display: none;
+      }
+
+      .header.compact .logo.compact-logo {
+        display: block;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 900;
+      }
+
+      .header.compact h1 {
+        font-size: 1rem;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+      }
+
+      .header-content-box {
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 20px 20px;
+        box-shadow: 0 8px 20px rgba(var(--acento-rgb), 0.6);
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        opacity: 1;
+        transform: translateY(0);
+        will-change: transform;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .header-content-box {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: 0;
+        transform: translateY(-10px);
+      }
+
+      .header-content-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(var(--acento-rgb), 0.8);
+      }
+
+      .header-bottom-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header-second-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header.compact .header-bottom-row {
+        flex-grow: 1;
+      }
+
+      .logo-and-title {
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .logo-and-title {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .header.compact .header-bottom-row .logo-and-title {
+        will-change: transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        width: 100%;
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        gap: 10px;
+      }
+
+      .header.compact .header-bottom-row .logo-and-title:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .header-compact-title {
+        display: none;
+        color: var(--texto-blanco-1);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 10px;
+        white-space: normal;
+      }
+
+      .header.compact .header-compact-title {
+        display: block;
+      }
+
+      .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 450px;
+        background-color: var(--fondo-oscuro-medio);
+        border: 2px solid var(--fondo-borde-claro);
+        border-radius: 30px;
+        box-shadow: 0 4px 10px rgba(var(--sombra-rgb), 0.25);
+        will-change: border-color, background-color;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      }
+
+      .search-bar:focus-within {
+        border-color: var(--fondo-sombra-azul-header);
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .clear-search {
+        cursor: pointer;
+        color: var(--texto-claro-2);
+        padding: 5px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        display: none;
+        transition: color 0.2s ease;
+        transform: scale(1.5);
+      }
+
+      .clear-search:hover {
+        color: var(--texto-blanco-1);
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 10px 18px;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--texto-claro-2);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        min-width: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .header.compact .search-bar input {
+        padding: 10px 20px;
+      }
+
+      .search-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-button {
+        background: var(--gradient-principal);
+        border: none;
+        color: var(--texto-blanco-1);
+        padding: 8px 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        will-change: transform;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        max-width: 150px;
+        white-space: normal;
+      }
+
+      .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .search-bar .action-button {
+        margin: 5px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      @keyframes fadeInUpContent {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .mind-map {
+        transition: margin-top 0.4s ease;
+        margin: 50px 0;
+      }
+
+      .mind-map.animacion-contenido {
+        animation: fadeInUpContent 0.4s ease-out 1 forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        will-change: opacity, transform;
+      }
+
+      .section {
+        margin-bottom: 20px;
+        background-color: var(--fondo-oscuro-claro);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-oscuro-medio);
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(var(--sombra-rgb), 0.25);
+        transition: border-color 0.3s ease;
+      }
+
+      .section-header {
+        padding: 20px;
+        background-color: var(--fondo-oscuro-medio);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .section-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 5px 12px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 15px;
+      }
+
+      .toggle-icon {
+        font-size: 1.2rem;
+        color: var(--texto-claro-2);
+        will-change: transform;
+        transition: transform 0.3s ease;
+      }
+
+      .section.active > .section-header .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .section-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .section.active .section-content {
+        max-height: fit-content;
+        padding-bottom: 10px;
+        opacity: 1;
+      }
+
+      .subsection {
+        margin: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-borde-claro);
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+
+      .subsection:hover {
+        border-color: var(--fondo-sombra-azul-header);
+      }
+
+      .subsection:hover .subsection-header {
+        background-color: var(--fondo-sombra-azul-header);
+      }
+
+      .section:hover {
+        border-color: var(--fondo-borde-claro);
+      }
+
+      .section:hover .section-header {
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .subsection-header {
+        padding: 15px;
+        background-color: var(--fondo-borde-claro);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .subsection-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .subsection-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 12px;
+      }
+
+      .subsection-content {
+        max-height: 0;
+        overflow: hidden;
+        background-color: var(--fondo-oscuro-claro);
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .subsection.active .subsection-content {
+        max-height: fit-content;
+        padding: 15px;
+        opacity: 1;
+      }
+
+      .subsection.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .content-item {
+        margin-bottom: 10px;
+        padding: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border-left: 4px solid var(--color-principal);
+        box-shadow: 0 1px 5px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .content-text {
+        color: var(--texto-medio-3);
+        margin-bottom: 5px;
+        line-height: 1.4;
+        font-size: 1rem;
+        font-weight: 500;
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .content-text::before {
+        content: "•";
+        color: var(--color-principal);
+        font-weight: 700;
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+      }
+
+      .youtube-link {
+        display: inline-block;
+        padding: 10px 18px;
+        background: linear-gradient(135deg, var(--rojo-youtube-claro) 0%, var(--rojo-youtube-fuerte) 100%);
+        color: var(--texto-blanco-1);
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1rem;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(var(--rojo-rgb), 0.4);
+        will-change: transform;
+      }
+
+      .youtube-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 3px 7.5px rgba(var(--rojo-rgb), 0.5);
+        will-change: transform;
+      }
+
+      .timestamp {
+        color: var(--timestamp-youtube);
+        font-size: 0.85rem;
+        margin-left: 10px;
+        font-weight: 400;
+      }
+
+      .highlight {
+        background-color: var(--fondo-resaltado);
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+        padding: 4px;
+        border-radius: 6px;
+      }
+
+      .footer {
+        padding: 30px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        border-top: 1px solid var(--fondo-oscuro-medio);
+        text-align: center;
+        box-shadow: 0 -2px 10px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .footer-text {
+        color: var(--texto-claro-2);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .footer-logo {
+        width: 140px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .header-top {
+          flex-direction: column;
+        }
+
+        .logo {
+          margin: 0;
+        }
+
+        .header-text-box {
+          margin: 0;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .header.compact .header-bottom-row .logo-and-title {
+          gap: 5px;
+        }
+        .logo,
+        .footer-logo {
+          width: 105px;
+        }
+
+        .header.compact .header-bottom-row {
+          flex-direction: column;
+        }
+
+        .header.compact .header-compact-title {
+          margin: 0 5px;
+          font-size: 0.8rem;
+        }
+
+        .header.compact .logo.compact-logo {
+          width: 65px;
+          margin: 5px;
+        }
+
+        .action-button,
+        .search-bar input,
+        .clear-search {
+          font-size: 0.9rem;
+        }
+
+        .section-header {
+          padding: 15px;
+        }
+
+        .header.compact .controls {
+          flex-direction: row;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .subsection-title {
+          font-size: 1rem;
+        }
+        .section-number,
+        .subsection-number {
+          font-size: 13px;
+        }
+
+        .content-text {
+          font-size: 0.9rem;
+        }
+
+        .youtube-link {
+          font-size: 0.8rem;
+        }
+
+        .timestamp {
+          font-size: 0.75rem;
+        }
+
+        .header.compact .action-button {
+          padding: 6px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header animacion-inicial">
+      <div class="header-content-box">
+        <div class="header-top">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo" />
+          </a>
+          <div class="header-text-box">
+            <h1>
+              DIPLOMADO DE ALTA ESPECIALIZACIÓN EN<br />
+              <strong id="tituloDiplomado"></strong>
+            </h1>
+            <p id="tituloPrincipal"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-bottom-row">
+        <div class="logo-and-title">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo compact-logo" />
+          </a>
+          <span class="header-compact-title" id="tituloCompacto"></span>
+        </div>
+        <div class="header-second-row">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar en el resumen interactivo…" autocomplete="off" />
+            <div class="search-actions">
+              <span class="clear-search" onclick="clearSearch()">&times;</span>
+              <button class="action-button" onclick="searchContent()">Buscar</button>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="action-button" onclick="expandAll()">Mostrar todo</button>
+            <button class="action-button" onclick="collapseAll()">Colapsar todo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-spacer"></div>
+
+    <div class="container">
+      <div class="mind-map animacion-contenido" id="mindMap">
+        <div class="section" data-section="1">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">1</span>
+              <span class="section-title">Distinción entre electrowinning y electrorefinación</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.1</span>
+                  <span class="subsection-title">Definición y propósito de electrowinning o extracción electrolítica</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Electrowinning se diseña cuando la materia prima es una solución preñada (PLS) procedente de lixiviación ácida y requiere purificación y enriquecimiento antes de la deposición.</div>
+                  <div class="content-text">Secuencia típica: lixiviación ácida del óxido, purificación del PLS, intercambio iónico y planta de electrowinning para obtener el metal fino.</div>
+                  <div class="content-text">Ejemplo práctico: óxidos de cobre que responden a lixiviación ácida y requieren aumento de concentración para deposición electrolítica.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=1570" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:26:10)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.2</span>
+                  <span class="subsection-title">Definición y propósito de electrorefinación o refinación electrolítica</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Electrorefinación se aplica cuando la materia prima son ánodos metálicos obtenidos por fundición de concentrados sulfídicos en procesos pirometalúrgicos.</div>
+                  <div class="content-text">Proceso: flotación para obtener concentrado de sulfuros, fundición (pirometalurgia) para producir ánodos con alta pureza (~99.97%), luego electrorefinación para obtener cátodos de muy alta pureza (~99.99999%).</div>
+                  <div class="content-text">Materia prima típica: concentrados de cobre que, tras fundición, generan ánodos a refinar en celdas electrolíticas.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=1672" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:27:52)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.3</span>
+                  <span class="subsection-title">Diferencias operativas y de materia prima entre ambos procesos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Electrowinning parte de soluciones acuosas enriquecidas en el ion metálico a recuperar; requiere etapas previas de enriquecimiento (intercambio iónico).</div>
+                  <div class="content-text">Electrorefinación parte de metal sólido (ánodos) producidos por pirometalurgia y utiliza electrolitos y celdas para elevar la pureza del metal depositado.</div>
+                  <div class="content-text">Importancia de no confundir ambos términos en académicos y en la industria; cada uno tiene insumos, equipos y diseños específicos.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=1841" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:30:41)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="2">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">2</span>
+              <span class="section-title">Aplicaciones y especialidades dentro de la electrometalurgia</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.1</span>
+                  <span class="subsection-title">Galvanoplastia y recubrimientos metálicos como rama de la electrometalurgia</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Galvanoplastia se utiliza para recubrir piezas con metales como oro, plata, estaño o níquel por electrodeposición en soluciones electrolíticas.</div>
+                  <div class="content-text">Aplicaciones: recubrimiento de aceros, piezas de consumo y componentes industriales que requieren prestaciones superficiales específicas.</div>
+                  <div class="content-text">Uso de electrolitos a baja temperatura y electrónica de control de potencial para lograr recubrimientos uniformes y adherentes.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=1911" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:31:51)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.2</span>
+                  <span class="subsection-title">Electrometalurgia de alta temperatura y procesos conexos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Existen procesos de electrólisis a alta temperatura y tratamientos térmicos que combinan variables térmicas y electroquímicas para modificar aleaciones.</div>
+                  <div class="content-text">Ejemplos: electrodeposición a alta temperatura para ciertas aleaciones y procesos pirometalúrgicos que requieren control de concentraciones y fases a temperatura elevada.</div>
+                  <div class="content-text">Vinculación con la metalurgia física y la conformación, donde diagramas ternarios o cuaternarios determinan propiedades finales.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=1993" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:33:13)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.3</span>
+                  <span class="subsection-title">Relevancia de la geometalurgia para procesos electrometalúrgicos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Conocer antecedentes geometalúrgicos del mineral o metal es crucial, porque impurezas o atributos del material afectan el rendimiento del proceso electrolítico.</div>
+                  <div class="content-text">Problemas típicos: formación de burbujas, mala adherencia en recubrimientos, corrosión y fallas prematuras en componentes fabricados.</div>
+                  <div class="content-text">Importancia de identificar contaminantes incorporados en etapas previas (fusión, pirometalurgia) que interfieren con la electrodeposición o la vida útil de equipos.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=2027" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:33:47)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="3">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">3</span>
+              <span class="section-title">Diseño de circuitos de extracción, enriquecimiento y celdas electrolíticas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.1</span>
+                  <span class="subsection-title">Fundamentos electroquímicos y comportamiento de iones en electrólisis</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Electrometalurgia utiliza corriente eléctrica y electrolitos adecuados al metal a tratar; temperaturas de operación típicas pueden estar en torno a 100 ºC o menos para procesos acuosos.</div>
+                  <div class="content-text">La electrólisis implica movimiento de iones, fenómenos de oxidación-reducción y deposición en cátodos según potenciales eléctricos.</div>
+                  <div class="content-text">Referencia histórica: Faraday y el estudio de la electrólisis como base del fenómeno de transporte iónico en soluciones.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=3184" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:53:04)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.2</span>
+                  <span class="subsection-title">Enriquecimiento del PLS mediante intercambio iónico y solvent extraction</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Concentraciones típicas de PLS post-lixiviación: 5 a 7 g/L; para electrowinning se requiere elevar al orden de ~45 g/L del ion metálico necesario.</div>
+                  <div class="content-text">Técnicas de enriquecimiento incluyen intercambio iónico y extracción por solventes con etapas de extracción y reextracción controladas por curvas experimentales.</div>
+                  <div class="content-text">En laboratorio se determinan etapas necesarias mediante ensayos en vasos de precipitados y curvas de extracción para dimensionar unidades de proceso.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=3406" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:56:46)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.3</span>
+                  <span class="subsection-title">Diseño y operación de celdas electrolíticas para deposición</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Una vez alcanzada la concentración adecuada, la solución ingresa a celdas electrolíticas donde se colocan ánodo y cátodo y se hace pasar corriente para depositar metal en el cátodo.</div>
+                  <div class="content-text">En laboratorio se reproducen celdas a pequeña escala para evaluar depositación, eficiencia y parámetros operativos antes del diseño industrial.</div>
+                  <div class="content-text">Cálculos de diseño incluyen materia de corriente, eficiencia, velocidad de deposición y dimensionamiento de la planta de electrowinning o electrorefinación.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=3557" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:59:17)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="4">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">4</span>
+              <span class="section-title">Conexión entre pirometalurgia, industria local y desafíos nacionales</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.1</span>
+                  <span class="subsection-title">Relación entre flotación, fundición y producción de ánodos para refinación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">En operaciones que emplean flotación para sulfuros, el concentrado se envía a fundición, donde mediante balances químicos y fusión se obtiene metal doré o ánodos.</div>
+                  <div class="content-text">Los ánodos resultantes (metal fundido) requieren electrorrefinación para alcanzar especificaciones comerciales de pureza.</div>
+                  <div class="content-text">La implementación de ambas etapas (pirometalurgia y electrometalurgia) es un flujo de proceso integrado en yacimientos con zonas sulfurosas.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=1720" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:28:40)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.2</span>
+                  <span class="subsection-title">Estado de la industria local y capacidad instalada para fundición y refinación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Comentarios sobre la incipiente industria nacional de transformación y metalurgia física, con algunas pequeñas fundiciones y talleres de joyería, pero limitada capacidad industrial.</div>
+                  <div class="content-text">Ejemplos históricos de plantas nacionales (Centromín, La Oroya) y consecuencias de expropiaciones y cierre para la capacidad de transformación local.</div>
+                  <div class="content-text">Observación de la existencia de alguna refinería y discusión sobre ventas de concentrados frente a producción de metal fino dentro del país.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=2443" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:40:43)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.3</span>
+                  <span class="subsection-title">Competencia internacional y oportunidades de desarrollo industrial</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Países como China, Brasil, Alemania o Chile han desarrollado industrias de transformación y producción de maquinaria pesada; China ofrece plantas llave en mano aunque con consideraciones de vida útil.</div>
+                  <div class="content-text">Oportunidad para que el país desarrolle su sector de transformación y electrometalurgia para agregar valor a concentrados y competir globalmente.</div>
+                  <div class="content-text">Necesidad de inversión en capacidad instalada, estándares ambientales modernos y formación técnica para avanzar en metalurgia física e industria de transformación.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=2536" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:42:16)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="5">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">5</span>
+              <span class="section-title">Problemas operativos, control de calidad y recomendaciones prácticas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.1</span>
+                  <span class="subsection-title">Fallas en recubrimientos y corrosión relacionadas con impurezas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Presentación de problemas como formación de burbujas en recubrimientos, falta de adherencia y degradación acelerada por corrosión en tanques y piezas electrolíticas.</div>
+                  <div class="content-text">Ejemplos: corrosión y pitting en tanques de acero 316L que almacenan electrolitos concentrados, originados por defecto en materia prima o contaminantes en procesos previos.</div>
+                  <div class="content-text">Importancia de análisis de materiales y control de impurezas para prevenir fallas en servicio que afectan vida útil y seguridad del proceso.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=2079" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:34:39)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.2</span>
+                  <span class="subsection-title">Calidad de equipos, vida útil y mantenimiento en plantas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Comentarios sobre la vida útil de equipos importados (chancadoras, molinos) y la necesidad de repuestos y mantenimiento para asegurar longevidad.</div>
+                  <div class="content-text">Diferencia entre equipos de distintas procedencias: algunos fabricantes ofrecen mayor durabilidad y robustez que otros, implicando decisiones de inversión y operación.</div>
+                  <div class="content-text">Recomendación implícita de evaluar calidad, garantías y plan de mantenimiento al adquirir equipos para procesos minero-metalúrgicos.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=2554" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:42:34)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.3</span>
+                  <span class="subsection-title">Formación técnica y desarrollo de capacidades en electrometalurgia</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Llamado a desarrollar formación, posgrados y diplomados en metalurgia física y electrometalurgia para acompañar el crecimiento industrial.</div>
+                  <div class="content-text">Ventajas de especializarse en electrometalurgia y metalurgia física para cubrir una demanda emergente en la cadena de valor de la minería y la transformación.</div>
+                  <div class="content-text">Necesidad de investigación y transferencia tecnológica para mejorar procesos, controlar emisiones y optimizar eficiencia en refinación y recubrimientos.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=2398" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:39:58)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="6">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">6</span>
+              <span class="section-title">Fundamentos de electroobtención y control operacional</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.1</span>
+                  <span class="subsection-title">Definición de PLS y su relación con la ley de cabeza y volumen de electrolito</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La concentración de PLS determina el volumen de electrolito necesario y cuántas celdas de electroobtención se requieren para producir metal puro.</div>
+                  <div class="content-text">Ejemplos de ley de cabeza mencionadas: 1 g o 1% y 2%, pero lo relevante es la concentración final del PLS para el dimensionamiento.</div>
+                  <div class="content-text">El objetivo operativo es obtener cátodos con pureza cercana a 99,3% o 99,4% según condiciones de operación.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=3606" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:00:06)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.2</span>
+                  <span class="subsection-title">Reacciones electroquímicas básicas y reducción de Cu2+ a cobre metálico</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">En electrólisis el ion cobre 2+ recibe electrones y se reduce a cobre metálico depositado en el cátodo.</div>
+                  <div class="content-text">El proceso de óxido-reducción y la transferencia de electrones son principios conocidos y estudiados en la universidad.</div>
+                  <div class="content-text">La tasa de depósito depende del manejo de la corriente (amperaje) y de las condiciones del electrolito.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=3673" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:01:13)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.3</span>
+                  <span class="subsection-title">Manejo de corriente, problemas operacionales y efectos en el cátodo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La gestión de amperaje es crítica: subir corriente puede aumentar producción pero causar corrosión o superficies de depósito rugosas y contaminadas.</div>
+                  <div class="content-text">Problemas de producción suelen originarse aguas arriba en la calidad del electrolito o en contaminantes disueltos, no únicamente por ajustar corriente.</div>
+                  <div class="content-text">Decisiones operativas inapropiadas (aumento indiscriminado de corriente) pueden degradar la calidad de cátodos y aumentar rechazos.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=3722" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:02:02)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="7">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">7</span>
+              <span class="section-title">Contaminantes, geometalurgia y control aguas arriba</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.1</span>
+                  <span class="subsection-title">Efecto de arcillas y partículas finas en intercambio iónico y formación de crudo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Alteraciones argílicas generan micas y iones finos que interfieren en el movimiento de electrones y en la deposición del metal.</div>
+                  <div class="content-text">La presencia de arcillas provoca formación de crudo, incremento del consumo de extractante y problemas en etapas posteriores.</div>
+                  <div class="content-text">La solución debe ser prácticamente libre de arcillas; si no, es necesario diseñar tratamientos previos para su remoción.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=3763" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:02:43)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.2</span>
+                  <span class="subsection-title">Parámetros de lixiviación y operación que afectan calidad de PLS</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Controlables: sólidos en lixiviación, aglomeración, velocidad de riego y concentración de ácido.</div>
+                  <div class="content-text">Ajustar estos parámetros puede mejorar la calidad del PLS y evitar problemas en electroobtención y electrorrefinación.</div>
+                  <div class="content-text">Un PLS de buena calidad (baja contaminación) reduce problemas operativos y mejora recuperación en cátodos.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=3921" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:05:21)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.3</span>
+                  <span class="subsection-title">Purificación y preparación del electrolito para electroobtención</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Es necesario controlar etapas de intercambio iónico y purificación para evitar interferentes en el electrolito.</div>
+                  <div class="content-text">Monitoreo de la formación de crudo y de la concentración de contaminantes es esencial antes de las celdas.</div>
+                  <div class="content-text">La preparación adecuada del electrolito condiciona eficiencia y calidad de productos finales.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=3851" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:04:11)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="8">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">8</span>
+              <span class="section-title">Electrorrefinación: historia, anodos, lodos y recuperación de metales</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.1</span>
+                  <span class="subsection-title">Historia del proceso y principio de operación de electrorrefinación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Patentes y primeras plantas en los años 1800 por Leus Tenberg y otros; proceso aplicado para refinar ánodos provenientes de concentrados fundidos.</div>
+                  <div class="content-text">En electrorrefinación el ánodo se disuelve en electrolito y el metal se deposita en el cátodo mediante corriente aplicada.</div>
+                  <div class="content-text">Diferencia con electroobtención: electrorrefinación parte de ánodos metálicos (blister) y electroobtención parte de soluciones con iones que se depositan.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=4032" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:07:12)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.2</span>
+                  <span class="subsection-title">Composición de ánodos, lodo anódico y recuperación de metales valiosos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los ánodos pueden contener oro, plata, platino y otros metales; durante la disolución, varios metales quedan como lodo anódico.</div>
+                  <div class="content-text">El lodo anódico puede ser tratado para recuperar metales preciosos mediante tostación, fundición u otros procesos metalúrgicos.</div>
+                  <div class="content-text">Ejemplo práctico: proyecto donde se recuperó plata, oro y selenio mediante tostación y precipitadores electrostáticos.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=4145" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:09:05)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.3</span>
+                  <span class="subsection-title">Potencial selectivo, depósitos y separación por potencial de reducción</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El potencial aplicado está diseñado para depositar específicamente cobre; otros metales requieren diferentes potenciales para su deposición.</div>
+                  <div class="content-text">Los lodos anódicos permiten recuperar metales no depositados en la etapa principal mediante procesos secundarios.</div>
+                  <div class="content-text">La selectividad electroquímica permite refinar y separar múltiples metales contenidos en el ánodo.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=4170" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:09:30)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="9">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">9</span>
+              <span class="section-title">Diseño de celdas, parámetros eléctricos y operación práctica</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.1</span>
+                  <span class="subsection-title">Estructura típica de una celda de electroobtención y configuración de ánodos/cátodos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las celdas se configuran con cátodos y ánodos, pasando solución entre ellos para permitir la deposición.</div>
+                  <div class="content-text">Los cátodos resultantes se cosechan y venden como producto comercial; parte del ánodo no disuelto se recicla y funde.</div>
+                  <div class="content-text">Imagen conceptual: cátodos listos para venta y scrap o chatarra del ánodo que se recircula al proceso de fundición.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=4538" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:15:38)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.2</span>
+                  <span class="subsection-title">Parámetros eléctricos: densidad de corriente, eficiencia y voltaje por celda</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Densidad de corriente y eficiencia están relacionadas con la calidad del depósito; voltaje por celda típico entre 0,2 y 0,44 V.</div>
+                  <div class="content-text">Concentración objetivo del electrolito para cobre: entre 40 y 48 g/L (promedio 45 g/L), dependiente de la etapa de lixiviación y purificación.</div>
+                  <div class="content-text">Control de estos parámetros permite optimizar la velocidad de deposición y la calidad del cátodo.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=4627" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:17:07)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.3</span>
+                  <span class="subsection-title">Ciclos operativos, tiempos de deposición y cosecha de cátodos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">En plantas de electrorrefinación típicas la duración de un ciclo de depósito puede ser aproximadamente 20 días antes de cosecha.</div>
+                  <div class="content-text">Al finalizar el tiempo de refinación se retiran las láminas de cobre depositado mediante grúas o equipos de extracción.</div>
+                  <div class="content-text">La coordinación entre etapa de solvent extraction (extracción por solventes) y electroceldas asegura electrolito de alta ley para depósito.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=6781" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:53:01)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="10">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">10</span>
+              <span class="section-title">Hidrometalurgia y pirometalurgia previas: casos del zinc y cobre</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.1</span>
+                  <span class="subsection-title">Proceso electrolítico del zinc: desde la blenda hasta cátodos de zinc</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La blenda (esfalerita) se concentra por flotación, se tuesta para producir óxidos y luego se lixivia en ácido sulfúrico para producir sulfato de zinc.</div>
+                  <div class="content-text">Etapas: lixiviación neutra, lixiviación ácida caliente, neutralización, purificación por cementación con polvo de zinc y electrodepósito en celdas.</div>
+                  <div class="content-text">Celdas con cátodos de aluminio y ánodos de aleación plomo-plata; placas de zinc depositadas se funden a 530ºC para lingotes.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=4707" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:18:27)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.2</span>
+                  <span class="subsection-title">Tostación, formación de ferritas y desafíos de disolución en zinc</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Tostación transforma sulfuros en óxidos y genera SO2 convertido a ácido sulfúrico útil en el circuito.</div>
+                  <div class="content-text">Ferritas de zinc (compuestos Zn-Fe) son difíciles de disolver en lixiviación neutra; requieren lixiviación ácida caliente para disolverse.</div>
+                  <div class="content-text">Control del pH y temperatura (p.ej. 90ºC) es necesario para disolver ferritas y manejar la precipitación de hierro como jarosita.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=5231" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:27:11)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.3</span>
+                  <span class="subsection-title">Purificación por cementación y precipitación de hierro en jarosita</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Tras lixiviación ácida caliente se ajusta pH con calcina para precipitar hierro como jarosita, usando sulfato de amonio para formar precipitado filtrable.</div>
+                  <div class="content-text">La jarosita es casi insoluble, filtra bien, pero genera residuos voluminosos con contenidos de metales pesados, limitando usos.</div>
+                  <div class="content-text">Posterior purificación por cementación con polvo de zinc remueve impurezas como cobre, cobalto y cadmio antes del electrodepósito.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=5483" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:31:23)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="11">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">11</span>
+              <span class="section-title">Relación entre geometalurgia, composición de concentrados y diseño de procesos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.1</span>
+                  <span class="subsection-title">Importancia de la génesis del yacimiento y su impacto en etapas posteriores</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Conocer la geometalurgia y la génesis del mineral permite diseñar adecuadamente las etapas de tratamiento para liberar metales.</div>
+                  <div class="content-text">La composición del concentrado (óxidos vs sulfuros, presencia de arsénico o antimonio) determina si se requieren etapas adicionales de piro o hidrometalurgia.</div>
+                  <div class="content-text">Cada mineral y depósito tiene su propia hidrometalurgia, lo que obliga a adaptar procesos a la naturaleza del yacimiento.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=6191" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:43:11)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.2</span>
+                  <span class="subsection-title">Ejemplos comparativos: concentrados puros versus complejos y su tratamiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Concentrados puros pueden fundirse y obtener ánodos listos para electrorrefinación en una sola etapa; concentrados complejos exigen etapas adicionales.</div>
+                  <div class="content-text">Caso de Tintaya: concentrado considerado puro y de fácil tratamiento; concentrados chilenos con arsénico o antimonio necesitan refinaciones adicionales.</div>
+                  <div class="content-text">La pirometalurgia (convertidores, hornos) puede requerir múltiples etapas para alcanzar blister de 99% antes de electrorrefinar.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=6623" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:50:23)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.3</span>
+                  <span class="subsection-title">Diseño de cadena de valor: fundición, convertidores y obtención de blister como materia prima</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La pirometalurgia incluye convertidores y hornos para producir blister o ánodos que alimentan las plantas de electrorrefinación.</div>
+                  <div class="content-text">Dependiendo del concentrado, se usan uno o varios convertidores para alcanzar la pureza necesaria (p.ej. 75% a 99% en etapas sucesivas).</div>
+                  <div class="content-text">El blister y los ánodos son materia prima clave para la electrorrefinación; su calidad condiciona la eficiencia y recuperación final.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=6408" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:46:48)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="12">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">12</span>
+              <span class="section-title">Residuos, manejo ambiental y valorización de concentrados</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.1</span>
+                  <span class="subsection-title">Residuos generados en procesos electroquímicos y su manejo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Procesos hidrometalúrgicos generan residuos como barros anódicos y jarosita que requieren manejo y disposición adecuados.</div>
+                  <div class="content-text">Con normas ambientales controladas, la operación no tendría por qué ser contaminante, aunque requiere tratamiento de residuos específicos.</div>
+                  <div class="content-text">Algunos residuos contienen metales valiosos recuperables; su manejo puede incluir procesos térmicos y químicos para recuperación.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=4278" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:11:18)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.2</span>
+                  <span class="subsection-title">Valorización de concentrados polimetálicos y penalidades en comercialización</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Concentrados polimetálicos contienen metales preciosos que aumentan su valor comercial; se venden basados en análisis químicos del concentrado.</div>
+                  <div class="content-text">En la negociación de concentrados existen penalidades, royalties y pagos por contenidos de metales finos valorizables.</div>
+                  <div class="content-text">Al vender concentrado, los contenidos de oro, plata y otros metales son pagables según contratos y análisis de ley.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=4459" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:14:19)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.3</span>
+                  <span class="subsection-title">Recuperación de metales valiosos desde lodos y lodos anódicos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Lodos anódicos pueden contener plata, oro, selenio, teluro, platino y plomo; mediante tostación y procesos de separación se recuperan metales preciosos.</div>
+                  <div class="content-text">Tratamientos como deselenización del lodo pueden ser necesarios para evitar problemas en procesos posteriores de refinación.</div>
+                  <div class="content-text">La recuperación integral añade valor al concentrado y reduce pérdidas de metales finos en residuos.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=4370" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:12:50)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="13">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">13</span>
+              <span class="section-title">Procesos de refinación y electrorrefinación del zinc y cobre</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.1</span>
+                  <span class="subsection-title">Descripción del proceso de electrofinación y pirometalurgia aplicada al zinc</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El zinc se obtiene mediante electrofundición seguida de un proceso pirometalúrgico para alcanzar un concentrado adecuado para electrofinación y obtención de lingotes comercializables.</div>
+                  <div class="content-text">La electrofinación posterior permite producir zinc puro que luego se funde para obtener lingotes y productos finales destinados al mercado.</div>
+                  <div class="content-text">Se menciona la interrelación entre etapas: fusión, refinación térmica y electroquímica para lograr la pureza requerida.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=7206" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:06)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.2</span>
+                  <span class="subsection-title">Aplicación de la pirometalurgia y la electrorrefinación en el cobre</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">En cobre es frecuente usar pirometalurgia para obtener un blister que actúa como materia prima para la electrorrefinación y así producir cátodos electrorrefinados.</div>
+                  <div class="content-text">La refinación térmica no siempre entrega metal puro; su objetivo es alcanzar un grado de pureza intermedio que permita la posterior electrorrefinación.</div>
+                  <div class="content-text">Ejemplos de subproductos de la electrorrefinación incluyen plata, oro y platino que se recuperan en lodos anódicos.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=7243" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:43)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.3</span>
+                  <span class="subsection-title">Etapas finales y productos derivados de la electrorrefinación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los cátodos electrorrefinados pueden fundirse para obtener lingotes, alambrón o chapas de cobre y otros productos comerciales de alta pureza.</div>
+                  <div class="content-text">Los lodos anódicos generan una etapa siguiente orientada a la recuperación de metales preciosos como oro y plata.</div>
+                  <div class="content-text">A escala piloto se obtienen gramos y kilos; a escala industrial las toneladas de producción de metales finos son significativamente mayores.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=7306" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:01:46)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="14">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">14</span>
+              <span class="section-title">Problemas operativos en electrorrefinación: cristalización, hidrógeno y cortocircuitos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.1</span>
+                  <span class="subsection-title">Formación de dendritas y cristales durante la deposición en cátodos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Durante la deposición metálica pueden formarse dendritas y crecimientos cristalinos que afectan la pureza del cátodo y la continuidad del proceso.</div>
+                  <div class="content-text">La presencia de estos intercrecimientos puede provocar cortocircuitos entre ánodo y cátodo y disminuir la eficiencia de la nave electrolítica.</div>
+                  <div class="content-text">Un lote completo puede quedar por debajo de la especificación de pureza contractual y requerir reprocesamiento.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=7344" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:02:24)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.2</span>
+                  <span class="subsection-title">Confusión entre producción de hidrógeno y crecimiento cristalino en celdas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Operarios y practicantes pueden confundir burbujeo en la celda con evolución de hidrógeno cuando en realidad hay crecimiento cristalino en el cátodo.</div>
+                  <div class="content-text">Se usaba un tensioactivo (detergente) para pasivar la superficie del electrolito y atrapar burbujas de hidrógeno; su uso inapropiado puede agravar la cristalización.</div>
+                  <div class="content-text">La experiencia del operador permite identificar bajadas de voltaje y comportamiento energético anómalo que indican problemas distintos a la simple evolución de hidrógeno.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=7431" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:03:51)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.3</span>
+                  <span class="subsection-title">Respuesta operativa ante problemas críticos y acciones correctivas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los operadores pueden retirar y reemplazar filas de cátodos afectadas para salvar la producción y evitar cortocircuitos masivos en la nave.</div>
+                  <div class="content-text">Si no se controla el crecimiento cristalino, el cobre metálico depositado puede hacer contacto con el ánodo produciendo cortocircuitos graves y pérdida de producción.</div>
+                  <div class="content-text">El control y la inspección constante de las celdas, junto al aprendizaje práctico con operadores, son esenciales para la gestión de incidencias.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=7598" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:06:38)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="15">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">15</span>
+              <span class="section-title">Importancia de la geometalurgia y limpieza del electrolito en electrorrefinación</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.1</span>
+                  <span class="subsection-title">Interacción entre geometalurgia, lixiviación y contaminación del electrolito</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La geometalurgia determina cómo minerales y gangas (cobelita, vigenita, bornita, calcopirita, granitos) afectan los procesos de fusión y lixiviación.</div>
+                  <div class="content-text">Durante la lixiviación el PLS (pregnant leach solution) arrastra iones y cationes que pueden contaminar el electrolito y afectar la electrorrefinación.</div>
+                  <div class="content-text">Aunque la electroquímica separa teóricamente metales por potenciales, en la práctica partículas o iones adheridos contaminan los depósitos metálicos.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=7671" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:07:51)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.2</span>
+                  <span class="subsection-title">Efectos de iones indeseados en conductividad y consumo energético</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Iones como sodio, magnesio u otros aniones pueden aumentar la conductividad del electrolito y generar altos consumos de energía por pérdidas por caída óhmica.</div>
+                  <div class="content-text">La solvación de protones y la presencia de contaminantes pueden acelerar la evolución de hidrógeno, afectando la eficiencia del cátodo y consumiendo ácido.</div>
+                  <div class="content-text">La detección temprana mediante sensores y mediciones de tensión y conductividad ayuda a mitigar pérdidas energéticas y problemas operativos.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=8606" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:23:26)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.3</span>
+                  <span class="subsection-title">Métodos de limpieza del PLS y diseño de electrolitos limpios</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Es posible diseñar procesos de pretratamiento del PLS que incluyan filtros con intercambiadores iónicos, zeolitas y reolitas para atrapar iones indeseados.</div>
+                  <div class="content-text">Un electrolito “limpio” reduce la formación de borras, cristalización y otros problemas en la deposición catódica, mejorando la calidad del metal depositado.</div>
+                  <div class="content-text">Ejemplos operativos muestran que con un electrolito bien purificado los cátodos se depositan correctamente, con problemas limitados a borras por arils y reactivos.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=9093" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:31:33)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="16">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">16</span>
+              <span class="section-title">Diseño de fundición, etapas pirometalúrgicas y relación con la calidad del concentrado</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.1</span>
+                  <span class="subsection-title">Secuencia de hornos y etapas pirometalúrgicas necesarias según ley del concentrado</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Dependiendo de la naturaleza del concentrado, pueden requerirse múltiples etapas: reverbero (fusión simple), convertidor y horno de afino para alcanzar ánodos adecuados.</div>
+                  <div class="content-text">Ejemplo de mejoras de ley: pasar de 20-30% de cobre en concentrado a 45% tras reverbero, y luego obtener blister de ~98% tras convertidor.</div>
+                  <div class="content-text">La etapa final de afino térmico puede lograr ánodos alrededor de 99,7% antes de la electrorrefinación para producir cátodos de alta pureza.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=7820" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:10:20)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.2</span>
+                  <span class="subsection-title">Impacto de impurezas en los equipos de fundición y diseño de refractarios resistentes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Concentrados con elementos corrosivos como magnesio desgastan rápidamente el revestimiento refractario de hornos, originando paradas costosas.</div>
+                  <div class="content-text">La decisión es producir concentrado menos agresivo mediante ajustes en flotación (depresores, dispersantes, pH) o diseñar hornos con ladrillos refractarios resistentes.</div>
+                  <div class="content-text">Las fundiciones modernas disponen de información geometalúrgica para anticipar desafíos y adaptar diseños operativos.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=8207" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:16:47)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.3</span>
+                  <span class="subsection-title">Integración vertical y flujo de proceso en plantas industriales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Pocas empresas tienen todo el circuito completo desde molienda hasta fundición y electrorrefinación; algunos envían ánodos a terceros para su refinación.</div>
+                  <div class="content-text">El diagrama de flujo típico incluye molienda, concentración, fusión, convertidor y afino antes de la electrorrefinación y posterior recuperación de metales preciosos.</div>
+                  <div class="content-text">La calidad final del producto comercializable (lingotes, alambrón, chapas) depende de cada etapa y de la interacción entre pirometalurgia e electrometalurgia.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=8126" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:15:26)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="17">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">17</span>
+              <span class="section-title">Experiencia práctica, formación y control en plantas electrolíticas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.1</span>
+                  <span class="subsection-title">Aprendizaje práctico en nave electrolítica y rol del operador experimentado</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La teoría debe complementarse con trabajo en circuito, consulta directa al operador y recorridos de inspección para comprender la ley de Faraday aplicada.</div>
+                  <div class="content-text">El entrenamiento de practicantes incluye tareas de chequeo de cristalización y signos operativos como burbujeo excesivo y variaciones de voltaje.</div>
+                  <div class="content-text">La experiencia del operador permite distinguir entre señales de hidrógeno y problemas de contaminación o crecimiento cristalino.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=8407" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:20:07)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.2</span>
+                  <span class="subsection-title">Uso de sensores, monitoreo y tecnologías para detección temprana</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La tecnología actual proporciona sensores y equipos que detectan variaciones mínimas de tensión, conductividad y alteración óhmica en tiempo real.</div>
+                  <div class="content-text">Estos instrumentos facilitan identificar producción anormal de hidrógeno, falsos consumos de energía y pérdidas por caída de tensión.</div>
+                  <div class="content-text">El monitoreo continuo permite acciones correctivas rápidas, reduciendo riesgos de paradas y deterioro de la calidad del producto.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=8763" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:26:03)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.3</span>
+                  <span class="subsection-title">Recuperación de metales preciosos y operaciones a escala piloto versus industrial</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Los lodos anódicos contienen oro y plata que son recuperados en etapas posteriores del proceso de refinación de metales preciosos.</div>
+                  <div class="content-text">A nivel universitario o piloto se obtienen gramos y kilos, mientras que a nivel industrial las cantidades ascienden a toneladas en plantas de refinación avanzadas.</div>
+                  <div class="content-text">La experiencia en proyectos piloto refuerza el conocimiento teórico y operativo sobre extracción y purificación de metales preciosos.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=7986" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:13:06)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="18">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">18</span>
+              <span class="section-title">Conclusión y cierre de la sesión con interacción final</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.1</span>
+                  <span class="subsection-title">Relevancia del concentrado en la eficiencia del proceso y alternativas energéticas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La electrorrefinación está supeditada a la calidad del concentrado; según su composición puede requerir múltiples etapas de refinación pirometalúrgica.</div>
+                  <div class="content-text">Se mencionan alternativas energéticas menos eficientes que la electricidad, como gas o energía térmica, y el papel del oxígeno e hidrógeno en algunos procesos.</div>
+                  <div class="content-text">La decisión de compra de concentrados por parte de fundiciones depende de cómo estos mejoran la operación y la calidad del fundente.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=9362" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:36:02)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.2</span>
+                  <span class="subsection-title">Cierre de la clase, disponibilidad del docente y comunicación de grabación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El profesor anuncia que compartirá la grabación de la sesión en el grupo de WhatsApp y recuerda los canales de atención para consultas y soporte adicional.</div>
+                  <div class="content-text">Se ofrece apoyo para resolver problemas técnicos de la plataforma (cambio de fondo) y se despide agradeciendo la participación y deseando buenas noches.</div>
+                  <div class="content-text">La sesión finaliza con la búsqueda y localización de una foto para el fondo, cerrando la reunión en tono práctico y colaborativo.</div>
+                  <a href="https://www.youtube.com/watch?v=h91IDtAKmVA&start=9548" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:39:08)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://www.edumin.pe/" target="_blank">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="footer-logo" />
+      </a>
+      <p class="footer-text">
+        <b>Contenido desarrollado por EDUMIN - Centro de Capacitación Especializado en Minería, Industria y Negocios</b><br />
+        <i>Material exclusivo para estudiantes de EDUMIN</i><br />
+        <a href="https://www.edumin.pe/" target="_blank" style="color: var(--color-principal); text-decoration: none">https://www.edumin.pe/</a>
+      </p>
+    </div>
+
+    <script>
+      const TITULO_DIPLOMADO = "GEometalurgia".toUpperCase();
+      const TITULO_CLASE = "CLASE 10: METALURGIA EXTRACTIVA - 2DA PARTE".toUpperCase();
+
+      const elementoDiplomado = document.getElementById("tituloDiplomado");
+      if (elementoDiplomado) {
+        elementoDiplomado.innerText = TITULO_DIPLOMADO;
+      }
+
+      document.title = TITULO_CLASE;
+      const tituloPrincipal = document.getElementById("tituloPrincipal");
+      if (tituloPrincipal) {
+        tituloPrincipal.innerText = TITULO_CLASE;
+      }
+
+      const tituloCompacto = document.getElementById("tituloCompacto");
+      if (tituloCompacto) {
+        tituloCompacto.innerText = TITULO_CLASE;
+      }
+
+      function toggleSection(element) {
+        const section = element.closest(".section");
+        const wasActive = section.classList.contains("active");
+
+        section.classList.toggle("active");
+
+        if (wasActive) {
+          const subsections = section.querySelectorAll(".subsection");
+          subsections.forEach((subsection) => {
+            subsection.classList.remove("active");
+          });
+        }
+      }
+
+      function toggleSubsection(element) {
+        const subsection = element.closest(".subsection");
+        subsection.classList.toggle("active");
+      }
+
+      function expandAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.add("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.add("active");
+        });
+      }
+
+      function collapseAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.remove("active");
+        });
+      }
+
+      function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, delay);
+        };
+      }
+
+      function clearSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        searchInput.value = "";
+        clearBtn.style.display = "none";
+        searchContent();
+        searchInput.focus();
+      }
+
+      const createDiacriticInsensitiveRegex = (term) => {
+        const charMap = {
+          a: "[aáAÁ]",
+          e: "[eéEÉ]",
+          i: "[iíIÍ]",
+          o: "[oóOÓ]",
+          u: "[uúUÚ]",
+        };
+
+        const regexString = term
+          .split("")
+          .map((char) => {
+            const lowerChar = char.toLowerCase();
+            return charMap[lowerChar] || char;
+          })
+          .join("");
+
+        return new RegExp(`(${regexString})`, "gi");
+      };
+
+      function searchContent() {
+        const inputElement = document.getElementById("searchInput");
+        const searchTerm = inputElement.value.trim();
+
+        const searchableElements = document.querySelectorAll(".content-text, .section-title, .subsection-title");
+        let found = false;
+        let firstMatchElement = null;
+
+        document.querySelectorAll(".section.active").forEach((el) => el.classList.remove("active"));
+        document.querySelectorAll(".subsection.active").forEach((el) => el.classList.remove("active"));
+        searchableElements.forEach((element) => {
+          element.innerHTML = element.getAttribute("data-original-text") || element.textContent;
+        });
+
+        if (searchTerm.length < 3) {
+          return;
+        }
+
+        const searchRegex = createDiacriticInsensitiveRegex(searchTerm);
+
+        searchableElements.forEach((element) => {
+          const originalText = element.getAttribute("data-original-text") || element.textContent;
+
+          if (searchRegex.test(originalText)) {
+            found = true;
+
+            element.innerHTML = originalText.replace(searchRegex, `<span class="highlight">$1</span>`);
+
+            const subsection = element.closest(".subsection");
+            if (subsection) {
+              subsection.classList.add("active");
+              subsection.closest(".section")?.classList.add("active");
+            } else if (element.classList.contains("section-title")) {
+              element.closest(".section")?.classList.add("active");
+            }
+
+            if (!firstMatchElement) {
+              firstMatchElement = element;
+            }
+          }
+        });
+
+        if (firstMatchElement) {
+          requestAnimationFrame(() => {
+            firstMatchElement.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          });
+        } else if (searchTerm.length >= 3) {
+          alert("No se encontraron resultados para: " + searchTerm);
+        }
+      }
+
+      const debouncedSearch = debounce(searchContent, 300);
+
+      document.getElementById("searchInput").addEventListener("input", function () {
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        clearBtn.style.display = this.value.length > 0 ? "block" : "none";
+        debouncedSearch();
+      });
+
+      document.getElementById("searchInput").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          clearTimeout(this._timeoutId);
+          searchContent();
+        }
+      });
+
+      // --- Lógica del Header Compacto ---
+      const header = document.querySelector(".header");
+      const headerSpacer = document.querySelector(".header-spacer");
+      let initialHeaderHeight = 0; // Altura del header original
+      let compactHeaderHeight = 0; // Altura del header en modo compacto
+      let scrollTriggerPoint = 0; // Punto de scroll para activar el cambio
+
+      function handleHeaderState() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollY > scrollTriggerPoint) {
+          if (!header.classList.contains("compact")) {
+            header.classList.add("compact");
+            headerSpacer.style.height = `${initialHeaderHeight}px`;
+          }
+        } else {
+          if (header.classList.contains("compact")) {
+            header.classList.remove("compact");
+            headerSpacer.style.height = "0px";
+          }
+        }
+      }
+
+      function initializeHeader() {
+        initialHeaderHeight = header.offsetHeight;
+        const headerClone = header.cloneNode(true);
+        headerClone.classList.add("compact");
+        headerClone.style.visibility = "hidden";
+        headerClone.style.position = "absolute";
+        document.body.appendChild(headerClone);
+        compactHeaderHeight = headerClone.offsetHeight;
+        document.body.removeChild(headerClone);
+
+        scrollTriggerPoint = initialHeaderHeight - compactHeaderHeight;
+      }
+
+      document.addEventListener("DOMContentLoaded", initializeHeader);
+      window.addEventListener("scroll", handleHeaderState);
+      window.addEventListener("resize", debounce(initializeHeader, 200));
+    </script>
+  </body>
+</html>

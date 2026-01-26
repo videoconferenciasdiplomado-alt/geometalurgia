@@ -1,0 +1,2337 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        /* Colores Principales del Diseño (Acentos y Degradados) */
+        /* ======================================================= */
+        --color-principal: #00beff; /* Cian Brillante para acentos, bordes y el inicio del degradado principal */
+        --color-secundario: #1e50cd; /* Azul Medio, parte final del degradado de acento */
+
+        /* Fondos Oscuros de la Interfaz */
+        /* ======================================================= */
+        --fondo-oscuro-claro: #002a52; /* Fondo de secciones y contenido */
+        --fondo-oscuro-fuerte: #001a33; /* Fondo del encabezado (header) y pie de página (footer) */
+        /* ======================================================= */
+        --fondo-oscuro-medio: #003366; /* Fondo de encabezados y cajas de contenido */
+        --fondo-borde-claro: #004080; /* Bordes ligeros y color de fondo al hacer hover en encabezados */
+        --fondo-sombra-azul-header: #0050a0; /* ¡NUEVO! Sombra en el header */
+
+        /* Colores de Texto y Fondo General del Body */
+        /* ======================================================= */
+        --texto-blanco-1: #ffffff; /* Blanco puro para títulos y texto en fondo muy oscuro */
+        --texto-claro-2: #e6e6e6; /* Texto principal y claro */
+        --texto-medio-3: #cccccc; /* Texto de contenido de item (un poco más tenue) */
+
+        /* ======================================================= */
+        --fondo-body-inicio: #99e5ff; /* Color de inicio del degradado de fondo del body */
+        --fondo-body-fin: #a5b9eb; /* Color de final del degradado de fondo del body */
+
+        /* Colores de Acento Específicos (YouTube, Búsqueda) */
+        /* ======================================================= */
+        --rojo-youtube-claro: #e60000;
+        --rojo-youtube-fuerte: #a30000;
+        --timestamp-youtube: #ffcccc;
+        --fondo-resaltado: #00c339; /* Verde para el fondo del texto buscado */
+
+        /* Bases RGB para Transparencias (RGBA) */
+        /* ======================================================= */
+        --sombra-rgb: 0, 0, 0; /* Negro puro: Usado para sombras generales y profundidad */
+        --acento-rgb: 0, 190, 255; /* Cian Brillante: Usado para brillos y sombras de acento */
+        --rojo-rgb: 230, 0, 0; /* Rojo Puro: Usado para sombras de enlaces de YouTube */
+        /* ======================================================= */
+        --gradient-principal: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--fondo-body-inicio) 0%, var(--fondo-body-fin) 100%);
+        line-height: 1.2;
+        scroll-behavior: smooth;
+      }
+
+      strong#tituloDiplomado {
+        font-weight: 900;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      @keyframes slideDownSutil {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header.animacion-inicial {
+        animation: slideDownSutil 0.4s ease-out 1;
+        animation-fill-mode: forwards;
+        will-change: transform, opacity;
+      }
+
+      .header {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        box-shadow: 0 5px 15px rgba(var(--sombra-rgb), 0.5);
+        text-align: center;
+        will-change: transform;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header-text-box {
+        display: grid;
+        gap: 10px;
+        word-break: break-word;
+        margin: 0 15px;
+      }
+
+      .header.compact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+      }
+
+      .header-spacer {
+        display: none;
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header.compact + .header-spacer {
+        display: block;
+      }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .header.compact .header-top {
+        display: none;
+      }
+
+      .logo {
+        width: 140px;
+        height: auto;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+      }
+
+      .header.compact .logo {
+        width: 90px;
+        margin: 0 10px;
+      }
+
+      .header .logo.compact-logo {
+        display: none;
+      }
+
+      .header.compact .logo.compact-logo {
+        display: block;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 900;
+      }
+
+      .header.compact h1 {
+        font-size: 1rem;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+      }
+
+      .header-content-box {
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 20px 20px;
+        box-shadow: 0 8px 20px rgba(var(--acento-rgb), 0.6);
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        opacity: 1;
+        transform: translateY(0);
+        will-change: transform;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .header-content-box {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: 0;
+        transform: translateY(-10px);
+      }
+
+      .header-content-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(var(--acento-rgb), 0.8);
+      }
+
+      .header-bottom-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header-second-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header.compact .header-bottom-row {
+        flex-grow: 1;
+      }
+
+      .logo-and-title {
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .logo-and-title {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .header.compact .header-bottom-row .logo-and-title {
+        will-change: transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        width: 100%;
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        gap: 10px;
+      }
+
+      .header.compact .header-bottom-row .logo-and-title:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .header-compact-title {
+        display: none;
+        color: var(--texto-blanco-1);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 10px;
+        white-space: normal;
+      }
+
+      .header.compact .header-compact-title {
+        display: block;
+      }
+
+      .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 450px;
+        background-color: var(--fondo-oscuro-medio);
+        border: 2px solid var(--fondo-borde-claro);
+        border-radius: 30px;
+        box-shadow: 0 4px 10px rgba(var(--sombra-rgb), 0.25);
+        will-change: border-color, background-color;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      }
+
+      .search-bar:focus-within {
+        border-color: var(--fondo-sombra-azul-header);
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .clear-search {
+        cursor: pointer;
+        color: var(--texto-claro-2);
+        padding: 5px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        display: none;
+        transition: color 0.2s ease;
+        transform: scale(1.5);
+      }
+
+      .clear-search:hover {
+        color: var(--texto-blanco-1);
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 10px 18px;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--texto-claro-2);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        min-width: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .header.compact .search-bar input {
+        padding: 10px 20px;
+      }
+
+      .search-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-button {
+        background: var(--gradient-principal);
+        border: none;
+        color: var(--texto-blanco-1);
+        padding: 8px 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        will-change: transform;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        max-width: 150px;
+        white-space: normal;
+      }
+
+      .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .search-bar .action-button {
+        margin: 5px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      @keyframes fadeInUpContent {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .mind-map {
+        transition: margin-top 0.4s ease;
+        margin: 50px 0;
+      }
+
+      .mind-map.animacion-contenido {
+        animation: fadeInUpContent 0.4s ease-out 1 forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        will-change: opacity, transform;
+      }
+
+      .section {
+        margin-bottom: 20px;
+        background-color: var(--fondo-oscuro-claro);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-oscuro-medio);
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(var(--sombra-rgb), 0.25);
+        transition: border-color 0.3s ease;
+      }
+
+      .section-header {
+        padding: 20px;
+        background-color: var(--fondo-oscuro-medio);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .section-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 5px 12px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 15px;
+      }
+
+      .toggle-icon {
+        font-size: 1.2rem;
+        color: var(--texto-claro-2);
+        will-change: transform;
+        transition: transform 0.3s ease;
+      }
+
+      .section.active > .section-header .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .section-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .section.active .section-content {
+        max-height: fit-content;
+        padding-bottom: 10px;
+        opacity: 1;
+      }
+
+      .subsection {
+        margin: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-borde-claro);
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+
+      .subsection:hover {
+        border-color: var(--fondo-sombra-azul-header);
+      }
+
+      .subsection:hover .subsection-header {
+        background-color: var(--fondo-sombra-azul-header);
+      }
+
+      .section:hover {
+        border-color: var(--fondo-borde-claro);
+      }
+
+      .section:hover .section-header {
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .subsection-header {
+        padding: 15px;
+        background-color: var(--fondo-borde-claro);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .subsection-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .subsection-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 12px;
+      }
+
+      .subsection-content {
+        max-height: 0;
+        overflow: hidden;
+        background-color: var(--fondo-oscuro-claro);
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .subsection.active .subsection-content {
+        max-height: fit-content;
+        padding: 15px;
+        opacity: 1;
+      }
+
+      .subsection.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .content-item {
+        margin-bottom: 10px;
+        padding: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border-left: 4px solid var(--color-principal);
+        box-shadow: 0 1px 5px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .content-text {
+        color: var(--texto-medio-3);
+        margin-bottom: 5px;
+        line-height: 1.4;
+        font-size: 1rem;
+        font-weight: 500;
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .content-text::before {
+        content: "•";
+        color: var(--color-principal);
+        font-weight: 700;
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+      }
+
+      .youtube-link {
+        display: inline-block;
+        padding: 10px 18px;
+        background: linear-gradient(135deg, var(--rojo-youtube-claro) 0%, var(--rojo-youtube-fuerte) 100%);
+        color: var(--texto-blanco-1);
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1rem;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(var(--rojo-rgb), 0.4);
+        will-change: transform;
+      }
+
+      .youtube-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 3px 7.5px rgba(var(--rojo-rgb), 0.5);
+        will-change: transform;
+      }
+
+      .timestamp {
+        color: var(--timestamp-youtube);
+        font-size: 0.85rem;
+        margin-left: 10px;
+        font-weight: 400;
+      }
+
+      .highlight {
+        background-color: var(--fondo-resaltado);
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+        padding: 4px;
+        border-radius: 6px;
+      }
+
+      .footer {
+        padding: 30px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        border-top: 1px solid var(--fondo-oscuro-medio);
+        text-align: center;
+        box-shadow: 0 -2px 10px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .footer-text {
+        color: var(--texto-claro-2);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .footer-logo {
+        width: 140px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .header-top {
+          flex-direction: column;
+        }
+
+        .logo {
+          margin: 0;
+        }
+
+        .header-text-box {
+          margin: 0;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .header.compact .header-bottom-row .logo-and-title {
+          gap: 5px;
+        }
+        .logo,
+        .footer-logo {
+          width: 105px;
+        }
+
+        .header.compact .header-bottom-row {
+          flex-direction: column;
+        }
+
+        .header.compact .header-compact-title {
+          margin: 0 5px;
+          font-size: 0.8rem;
+        }
+
+        .header.compact .logo.compact-logo {
+          width: 65px;
+          margin: 5px;
+        }
+
+        .action-button,
+        .search-bar input,
+        .clear-search {
+          font-size: 0.9rem;
+        }
+
+        .section-header {
+          padding: 15px;
+        }
+
+        .header.compact .controls {
+          flex-direction: row;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .subsection-title {
+          font-size: 1rem;
+        }
+        .section-number,
+        .subsection-number {
+          font-size: 13px;
+        }
+
+        .content-text {
+          font-size: 0.9rem;
+        }
+
+        .youtube-link {
+          font-size: 0.8rem;
+        }
+
+        .timestamp {
+          font-size: 0.75rem;
+        }
+
+        .header.compact .action-button {
+          padding: 6px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header animacion-inicial">
+      <div class="header-content-box">
+        <div class="header-top">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo" />
+          </a>
+          <div class="header-text-box">
+            <h1>
+              DIPLOMADO DE ALTA ESPECIALIZACIÓN EN<br />
+              <strong id="tituloDiplomado"></strong>
+            </h1>
+            <p id="tituloPrincipal"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-bottom-row">
+        <div class="logo-and-title">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo compact-logo" />
+          </a>
+          <span class="header-compact-title" id="tituloCompacto"></span>
+        </div>
+        <div class="header-second-row">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar en el resumen interactivo…" autocomplete="off" />
+            <div class="search-actions">
+              <span class="clear-search" onclick="clearSearch()">&times;</span>
+              <button class="action-button" onclick="searchContent()">Buscar</button>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="action-button" onclick="expandAll()">Mostrar todo</button>
+            <button class="action-button" onclick="collapseAll()">Colapsar todo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-spacer"></div>
+
+    <div class="container">
+      <div class="mind-map animacion-contenido" id="mindMap">
+        <div class="section" data-section="1">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">1</span>
+              <span class="section-title">Introducción y bienvenida a la clase sobre geometalurgia y voladura</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.1</span>
+                  <span class="subsection-title">Presentación del docente, propósito del diplomado y comunicación con alumnos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El expositor se presenta como asesor académico y establece canales de consulta y registro de asistencia en el chat durante la sesión.</div>
+                  <div class="content-text">Se anuncia un break alrededor de las 20:30 y la entrega de un enlace para registrar participación en la clase.</div>
+                  <div class="content-text">Se cede la palabra al profesor Manuel para iniciar la exposición y mostrar la pantalla para la sesión.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=961" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:16:01)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.2</span>
+                  <span class="subsection-title">Importancia de incorporar la voladura dentro de la formación geometalúrgica</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se expone que la operación de voladura es una unidad operativa clave que debe integrarse al conocimiento del geometalurgista por su impacto en la minución y posteriores procesos.</div>
+                  <div class="content-text">Se argumenta que los paradigmas de procesamiento mineral han avanzado y la industria debe adaptarse tecnológica y conceptualmente.</div>
+                  <div class="content-text">Se plantea que responsables de proyectos y operaciones necesitan comprender la voladura para gestionar procesos y modelamientos.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=1046" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:17:26)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.3</span>
+                  <span class="subsection-title">Gestión interdisciplinaria: mineros, geólogos y metalurgistas deben colaborar</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El expositor sostiene que los metalurgistas deben recibir información y capacitación por parte del minero sobre el proceso de voladura.</div>
+                  <div class="content-text">Señala que la voladura ya no debe ser operativa aislada ni empírica, sino un proceso conocido y gestionado dentro del flujo productivo.</div>
+                  <div class="content-text">Indica que el metalurgista debe comunicar sus necesidades de perfil granulométrico para optimizar chancado y molienda.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=1166" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:19:26)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="2">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">2</span>
+              <span class="section-title">Perfil granulométrico, control y relación con chancado y molienda</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.1</span>
+                  <span class="subsection-title">Definición y rol del perfil granulométrico en la alimentación a planta</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El perfil granulométrico describe la distribución de tamaños que entra a planta tras la voladura y determina el comportamiento de chancadora y molinos.</div>
+                  <div class="content-text">Ejemplo hipotético de distribución de tamaños por mallas para ilustrar el concepto y la suma total que compone la producción.</div>
+                  <div class="content-text">Importancia de manejar esa distribución para optimizar la operación del equipo chancador y la eficiencia del proceso sucesivo.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=1233" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:20:33)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.2</span>
+                  <span class="subsection-title">Variables de voladura que afectan la granulometría y su manejo en mina</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Factores como espaciamiento entre taladros, burden, altura de talud, carga y factor de carga determinan la fragmentación generada por la voladura.</div>
+                  <div class="content-text">El manejo consciente de estas variables permite producir la malla objetivo que optimice el chancado primario.</div>
+                  <div class="content-text">Se enfatiza la necesidad de conversar y conocer estas variables entre metalurgistas, geólogos y mineros para una voladura diseñada.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=1361" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:22:41)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.3</span>
+                  <span class="subsection-title">Impacto de la granulometría en molienda, cinética de rotura y productividad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Una distribución de tamaños adecuada favorece la cinética de rotura en molinos SAG/AG y mejora la eficiencia de molienda.</div>
+                  <div class="content-text">Demasiado porcentaje de fragmentos grandes (por ejemplo, 8 pulgadas) puede reducir la eficiencia del molino y la producción de pebble.</div>
+                  <div class="content-text">El control del perfil granulométrico contribuye a procesos de concentración más eficientes, menor consumo de agua y reactivos, y una operación más ecoeficiente.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=1463" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:24:23)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="3">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">3</span>
+              <span class="section-title">Perforación, caracterización y su vinculación con el diseño de voladura</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.1</span>
+                  <span class="subsection-title">Perforación como fuente de información geometalúrgica para diseñar voladuras</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La perforación proporciona datos del banco, bloque o unidad geometalúrgica, permitiendo conocer distribución de dureza y litologías.</div>
+                  <div class="content-text">Con esa información se obtiene un perfil de dureza a lo largo del volumen, útil para diseñar taladros y voladuras eficientes.</div>
+                  <div class="content-text">La caracterización incluye información sobre material duro/blando, fino/grueso y presencia de alteraciones.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=1826" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:30:26)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.2</span>
+                  <span class="subsection-title">Evolución del conocimiento en geometalurgia y aprendizaje colaborativo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se relata la carencia inicial de formación en voladura en el posgrado y cómo grupos de estudio buscaron entender la geometalurgia.</div>
+                  <div class="content-text">Se destaca el apoyo de bibliotecas electrónicas y bases de datos científicas para ampliar el estado del arte y validar aproximaciones.</div>
+                  <div class="content-text">La investigación y la validación industrial permiten que las prácticas evolucionen hacia modelos aplicables en operaciones.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=1919" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:31:59)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.3</span>
+                  <span class="subsection-title">Relevancia de incluir contenidos de voladura en la currícula geometalúrgica</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Propuesta de dedicar 2 a 4 horas en la currícula de geometalurgia para temas de voladura y fragmentación.</div>
+                  <div class="content-text">Saber diseñar voladuras permite resolver problemas relacionados con mineralización de frente, bloques y unidades geometalúrgicas al minar volúmenes planificados.</div>
+                  <div class="content-text">Con una voladura diseñada se consigue una conminución inicial adecuada que favorece chancado, molienda y concentración subsecuentes.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=2452" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:40:52)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="4">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">4</span>
+              <span class="section-title">Conclusiones prácticas y cierre de la presentación previa al video</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.1</span>
+                  <span class="subsection-title">Resumen del enfoque mind-to-mill y el inicio del chancado en mina</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se reitera el concepto mind-to-mill: el chancado comienza en mina mediante la voladura y la fragmentación controlada.</div>
+                  <div class="content-text">Obtener la distribución granulométrica objetivo en mina impacta positivamente en chancado, molienda y flotación, mejorando eficiencia y reduciendo consumo.</div>
+                  <div class="content-text">Operaciones modernas aplican este enfoque para alinear minería y procesamiento y maximizar productividad.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=1727" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:28:47)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.2</span>
+                  <span class="subsection-title">Necesidad de capacitación continua y adopción de enfoques científicos en voladura</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La evolución desde prácticas empíricas hacia enfoques basados en físico-química, termodinámica y análisis geometalúrgico es esencial.</div>
+                  <div class="content-text">El expositor menciona cursos y workshops recientes que han impulsado la adopción técnica de la voladura en la minería peruana.</div>
+                  <div class="content-text">Capacitar superintendentes y equipos en conceptos técnicos permite optimizar operaciones y tomar decisiones basadas en datos.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=2203" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:36:43)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.3</span>
+                  <span class="subsection-title">Transición a material audiovisual para profundizar en control de variabilidad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Tras la introducción y contextualización, se anuncia la reproducción de un video que ejemplifica la mina Constancia y el control de variabilidad del perfil granulométrico.</div>
+                  <div class="content-text">Se solicita confirmación de audio y visión antes de iniciar la reproducción, y se preparan explicaciones complementarias durante el video.</div>
+                  <div class="content-text">El material audiovisual servirá para ilustrar los puntos expuestos y mostrar la aplicación práctica de las metodologías discutidas.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=2619" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:43:39)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="5">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">5</span>
+              <span class="section-title">Caso de operación: ejemplo práctico y video de mina Constancia</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.1</span>
+                  <span class="subsection-title">Presentación de la operación Constancia y características operativas relevantes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se describe la flota y equipos: excavadoras hidráulicas Hitachi 5600, 28 camiones de 240 toneladas, perforadoras Pipper 271 y bancos de 15 m de altura.</div>
+                  <div class="content-text">Se muestran instalaciones como bahías de cambio de guardia, sistemas de riego automático, vías y consideraciones ambientales.</div>
+                  <div class="content-text">Se mencionan destinos del material y especialización según cliente: chancadora, TMF, depósitos de desmonte y stocks con mallas específicas.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=2881" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:48:01)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.2</span>
+                  <span class="subsection-title">Objetivos del trabajo de control de variabilidad y trazabilidad del mineral</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Identificar puntos de reducción de throughput mediante trazabilidad del mineral enviado a planta para detectar cuellos de botella.</div>
+                  <div class="content-text">Optimizar diseños de perforación y voladura para mineral con bajo throughput, buscando reducir variabilidad en chancado y molienda.</div>
+                  <div class="content-text">Relacionar datos de perforación con resultados de planta para ajustar diseño y operación de voladura.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=3061" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:51:01)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.3</span>
+                  <span class="subsection-title">Uso de información de planta y dureza en el diseño de voladuras</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">No solo se usa dureza de roca (UCS), sino también resultados de planta como Work Index (Wi) o SAC Power Index para diseñar la malla y factor de potencia.</div>
+                  <div class="content-text">La información de chancador primario y molinos alimenta y actualiza el modelo que relaciona SPI con throughput y diseño de voladura.</div>
+                  <div class="content-text">Se emplean polígonos de resistencia y mediciones del SPI para ajustar mallas de control dependiendo de la resistencia a la reducción.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=3335" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:55:35)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="6">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">6</span>
+              <span class="section-title">Control de variabilidad del throughput y la relación SPI-truput en planta</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.1</span>
+                  <span class="subsection-title">Relación entre el SPI (SAG Power Index) y problemas de throughput en los molinos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El SPI y el throughput están correlacionados: un SPI alto indica mayor dificultad en molienda y potencial reducción del throughput.</div>
+                  <div class="content-text">SPI se mide en tiempo de residencia en el molino (minutos) y valores elevados (por ejemplo 90-120 minutos) indican problemas de reducción y generación de pebbles.</div>
+                  <div class="content-text">La operación monitorea y actualiza tablas que relacionan SPI con factor de potencia y necesidades de fragmentación.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=3379" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:56:19)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.2</span>
+                  <span class="subsection-title">Estrategias operativas para mantener throughput objetivo de la planta</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Para garantizar targets como 1,900 toneladas por hora es necesario aplicar acciones diferenciadas en diseño de voladura o ajuste en chancado y molienda.</div>
+                  <div class="content-text">La trazabilidad y seguimiento del mineral permiten identificar fuentes de material que causan caída de throughput y aplicar medidas correctivas.</div>
+                  <div class="content-text">Se enfatiza la actualización constante del modelo con datos de molino para refinar la selección de mallas y factores de potencia.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=3503" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:58:23)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.3</span>
+                  <span class="subsection-title">Uso de mediciones y tablas operativas para correlacionar dureza y desempeño del circuito</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Tablas internas contrastan resultados de SPI, UCS y otros polígonos de resistencia para decidir mallas y diseño de voladuras.</div>
+                  <div class="content-text">La operación reconoce que algunas mediciones geotécnicas no conversan exactamente con índices de molino, por lo que la corroboración con datos de planta es esencial.</div>
+                  <div class="content-text">Se considera una roca con SPI de 120 como muy dura para los molinos, requiriendo tratamientos especiales o ajustes operativos.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=3469" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:57:49)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="7">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">7</span>
+              <span class="section-title">Inconsistencias entre modelos geotécnicos y de fragmentación</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.1</span>
+                  <span class="subsection-title">Diferencias entre SPI y UCS y la imposibilidad de usar solo un modelo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se observa que los valores de SPI no siempre coinciden con los de UCS en un mismo banco, provocando inconsistencias en la clasificación de dureza a nivel de taladro y banco.</div>
+                  <div class="content-text">Ejemplos de zonas donde el UCS marca roca dura y el SPI indica otra cosa, demostrando que no es viable trabajar únicamente con datos geotécnicos.</div>
+                  <div class="content-text">Conclusión práctica: es necesario integrar múltiples fuentes de información para una toma de decisiones en diseño de cargas.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=3630" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:00:30)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.2</span>
+                  <span class="subsection-title">Uso de datos de perforación para caracterizar dureza cada tramo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La flota de perforadoras genera datos en tiempo real como velocidad de penetración, pull down y torque que permiten estimar dureza de roca.</div>
+                  <div class="content-text">Medición original cada 30 cm, pero por practicidad se constituye composición cada 5 m para uso operativo y diseño de cargas diferenciadas.</div>
+                  <div class="content-text">Estos registros alimentan modelos de dureza y ayudan a detectar cambios a lo largo del taladro para ajustar el factor de carga.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=3695" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:01:35)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.3</span>
+                  <span class="subsection-title">Validación y limpieza de datos de perforación antes de modelar</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se realiza un match entre registros de Control Sense o Software Manager y limpieza para eliminar información errónea o ruido.</div>
+                  <div class="content-text">Se define un conjunto de datos reales por taladro que sirve para generar perfiles de dureza expresados en UCS.</div>
+                  <div class="content-text">Limitación operativa: no es factible discriminar cargas cada 30 o 50 cm, por eso se trabaja con intervalos prácticos de 5 m para la planificación.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=3848" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:04:08)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="8">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">8</span>
+              <span class="section-title">Implementación operativa de perfiles de dureza y carga diferenciada</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.1</span>
+                  <span class="subsection-title">Clasificación de taladros por dureza y mapa de calor para diseño</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se elabora un mapa de calor por taladro que muestra zonas de roca muy dura, dura, media y suave para determinar factor de carga.</div>
+                  <div class="content-text">A partir de estos polígonos se asignan cargas diferenciadas en zonas específicas del banco para optimizar fragmentación.</div>
+                  <div class="content-text">Uso práctico: el software de perforación sugiere la distribución de energía y carga para cada tramo identificado.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=3904" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:05:04)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.2</span>
+                  <span class="subsection-title">Métodos de perforación y estandarización de parámetros en la flota</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se emplean perforación automática, manual y combinada; la variabilidad de parámetros por operador genera inconsistencias.</div>
+                  <div class="content-text">Estrategia: recoger parámetros desde la configuración automática y transferirlos gradualmente a equipos manuales para uniformidad.</div>
+                  <div class="content-text">Parámetros clave: pull down, rotación y torque; estos sirven también para estimar dureza y ajustar el RP M (revoluciones por minuto) y presión en broca.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=3763" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:02:43)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.3</span>
+                  <span class="subsection-title">Traducción de perfiles de perforación a diseño de carga en camión fabrica</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La información limpia se vuelca a la base de datos y se transmite al camión fábrica para dosificación de explosivo acorde a cada tramo.</div>
+                  <div class="content-text">Fórmula interna del equipo calcula la carga diferenciada dependiendo de dureza y posición en columna de taladro.</div>
+                  <div class="content-text">Resultado esperado: cargas variables en zonas duras y blandas para lograr una fragmentación más uniforme hacia planta.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=3948" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:05:48)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="9">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">9</span>
+              <span class="section-title">Detección de anomalías durante perforación y controles preventivos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.1</span>
+                  <span class="subsection-title">Identificación de cavernas y vacíos mediante picos de velocidad de penetración</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Velocidades anómalas (ejemplos: 500-900 m/h) inicialmente consideradas errores, posteriormente identificadas como indicativas de cavernas o discontinuidades.</div>
+                  <div class="content-text">Detectar estos picos permitió mover equipos y controlar la carga para evitar desperdicio de explosivo en vacíos.</div>
+                  <div class="content-text">Acción operativa: marcar taladros con anomalías y ajustar carguío para evitar que el explosivo se aloje en vacíos y genere problemas de voladura.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=4289" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:11:29)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.2</span>
+                  <span class="subsection-title">Uso de trazadores para cuantificar relación fragmentación-planta</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se colocan trazadores en taladros de interés para seguir el material desde carguío, pasando por chancadora, cono y molinos hasta las lectoras en fajas.</div>
+                  <div class="content-text">Cada trazador contiene información de taladro y banco; permite conocer tiempo de residencia en chancado y molino y medir efectos en SPI/BWI y P80/P50/P20.</div>
+                  <div class="content-text">Con esta trazabilidad se aíslan variables, se prueban técnicas y se ajustan diseños de voladura con evidencia operacional.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=4448" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:14:08)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.3</span>
+                  <span class="subsection-title">Controles en el camión fábrica y mitigación de riesgos en taladros identificados</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">En taladros con anomalías la carga se controla dosificando con cámaras de aire y tapones para evitar sobrecarga o pérdida de explosivo en vacíos.</div>
+                  <div class="content-text">Se implementan medidas de desplazamiento cuidadoso de perforadora y controles durante el carguío para reducir riesgos operativos.</div>
+                  <div class="content-text">Estas prácticas previenen concentraciones de carga y problemas posteriores en el proceso de voladura.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=4377" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:12:57)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="10">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">10</span>
+              <span class="section-title">Seguimiento de procesamiento en planta y retroalimentación operacional</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.1</span>
+                  <span class="subsection-title">Monitoreo continuo del throughput en blending y fajas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Seguimiento en línea del throughput por hora en líneas de faja para detectar bajas y focalizar mejoras en sectores concretos.</div>
+                  <div class="content-text">Se trabaja casi siempre con blending de varios frentes para equilibrar dureza, contaminantes y finos antes de enviar a planta.</div>
+                  <div class="content-text">Resultados operativos: líneas por encima de 2000 t por línea en 2022, con mejoras gracias a control de fragmentación y blending.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=4637" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:17:17)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.2</span>
+                  <span class="subsection-title">Correlación entre SPI, Wi, finos y desempeño de molinos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Registro del SPI, BWI, F80, F50 y F20 y su correlación con el comportamiento en chancadora y molinos para evaluar impacto de la fragmentación.</div>
+                  <div class="content-text">Se reporta correlación cercana entre Wi y SPI (r ≈ 0.8), permitiendo usar estas variables para predecir desempeño de molienda.</div>
+                  <div class="content-text">Con información de planta se realizan ajustes en voladura para los siguientes frentes o niveles inferiores con retroalimentación técnica.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=4540" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:15:40)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.3</span>
+                  <span class="subsection-title">Uso de trazadores para decisiones futuras y mejoras continuas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La información de trazadores se usa para cuantificar la relación entre fragmentación del mineral y su tratamiento en planta.</div>
+                  <div class="content-text">Permite aislar variables y comparar impactos de cambios en diseño o técnica con evidencia objetiva.</div>
+                  <div class="content-text">Si un resultado en planta es desfavorable, la información regresa a planeamiento (PB) para acciones correctivas en futuros frentes.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=4619" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:16:59)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="11">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">11</span>
+              <span class="section-title">Diseño de voladuras para problemas específicos y soluciones adoptadas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.1</span>
+                  <span class="subsection-title">Control de variabilidad en paredes, pozos y crestas mediante diseños adaptados</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se usan mallas de 3.5m x 4m o 3.5m x 5m con sobreperforación de 1.5 a 2m para aumentar fragmentación en zonas duras y evitar generación de polvo y no comprometer banco inferior; se probaron hasta 3.5-3.9 m pero se descartaron por polvo.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=4897" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:21:37)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.2</span>
+                  <span class="subsection-title">Ajustes de factor de carga y distribución energética en frentes problemáticos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">En frentes con litologías potásicas o propilíticas se redujo sobreperforación y se aumentó la carga distribuida para mejorar fragmentación sin dañar banco inferior.</div>
+                  <div class="content-text">Se modificaron espaciamientos y diámetros de taladro, y se adoptó uso de detonadores electrónicos con tiempos diferenciados para optimizar resultados.</div>
+                  <div class="content-text">Resultado: frentes anteriormente no productivos pasaron a ser aceptables y se mantuvo control de P80 y porcentaje de finos.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=5212" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:26:52)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="12">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">12</span>
+              <span class="section-title">Casos prácticos de diseño y ejecución en zonas críticas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.1</span>
+                  <span class="subsection-title">Diseño sin sobreperforación para frentes con características mecánicas favorables</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">En frentes con macizo rocoso homogéneo se trabajó sin sobreperforación manteniendo piso estable y evitando generación de fragmentos deformados.</div>
+                  <div class="content-text">Conservación del taco y control de polvo mediante uso de cámaras de aire en la base del taladro para proteger banco inferior.</div>
+                  <div class="content-text">Resultado: fragmentación uniforme, reducción de uso de equipos auxiliares y cumplimiento de objetivos de planta en constancia.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=5315" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:28:35)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.2</span>
+                  <span class="subsection-title">Diseño y control en taladres de talud, cresta e interfaz para evitar material grueso</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">En zonas próximas a interfaces y crestas se implementaron dos líneas paralelas con diseño ajustado para controlar caída de material hacia banquetas y vías.</div>
+                  <div class="content-text">Topografía actualizada y ejecución de taladros en filas paralelas facilitan control de carga y mejora de fragmentación sin aumentar auxiliares.</div>
+                  <div class="content-text">Uso de detonadores electrónicos y reducción de espaciamiento en cresta para distribuir mejor la energía y mantener productividad de palas.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=5346" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:29:06)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.3</span>
+                  <span class="subsection-title">Optimización de diseños de anillos y control en pozos para mejorar fragmentación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Revisión del diseño inicial de anillos en pozos para lograr mejor acople con malla cuadrada y facilitar distribución de carga.</div>
+                  <div class="content-text">Cambio a segundo anillo con diseño cuadrado y reparto de carga en múltiples caras para disminuir fragmentos gruesos y mejorar voladura.</div>
+                  <div class="content-text">Resultado: mayor eficiencia en voladuras de control alrededor de pozos y reducción de la necesidad de cargas únicas de gran masa en el anillo interior.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=5622" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:33:42)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="13">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">13</span>
+              <span class="section-title">Medición de resultados, beneficios observados y conclusiones operativas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.1</span>
+                  <span class="subsection-title">Objetivos finales y métricas de éxito en fragmentación y manejo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Objetivo: lograr fragmentación uniforme a lo largo del frente sin presencia de fragmentos gruesos y con porcentaje de finos acorde a planta.</div>
+                  <div class="content-text">Métricas usadas: P80 objetivo (2.5 inches en ejemplo), porcentaje de finos menor a una pulgada y throughput por línea por hora.</div>
+                  <div class="content-text">Beneficios operativos: menor uso de equipos auxiliares, mejor desempeño de cargadores y palas, y cumplimiento de requerimientos de planta.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=5729" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:35:29)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.2</span>
+                  <span class="subsection-title">Resultados en operación y evidencias de mejora en 2022</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Durante 2022 se alcanzaron buenos resultados en P80 y porcentaje de finos, con líneas de faja promediando cerca de 2000 t por línea.</div>
+                  <div class="content-text">Se logró mantener factor de carga en 0.4 en zonas alteradas y obtener mejoras en finos gracias al control de diseño y blending.</div>
+                  <div class="content-text">La correlación entre Wi y SPI permitió validar estrategias de fragmentación dirigidas por geometalurgia.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=4767" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:19:27)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.3</span>
+                  <span class="subsection-title">Recomendaciones operativas y necesidad de integración Mina-Planta</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La fragmentación comienza en mina y requiere integración con planta mediante geometalurgia, trazadores y modelos que conecten perforación con molienda.</div>
+                  <div class="content-text">Es imprescindible manejar perfiles de dureza por taladro cada 5 m, integrar SPI/Wi/UCS y retroalimentar ajustes de voladura con datos de planta.</div>
+                  <div class="content-text">Conclusión operativa: perforación y voladura controladas son parte esencial del proceso y deben gestionarse con modelos, software y evidencia de planta.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=7089" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:58:09)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="14">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">14</span>
+              <span class="section-title">Discusión técnica y preguntas sobre variables clave para voladura controlada</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.1</span>
+                  <span class="subsection-title">Definición y relación entre SPI, UCS y su uso en diseño de voladura</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">SPI (SAC Power Index) mide dureza de material en pruebas de laboratorio semiautógenas, indicando energía y tiempo para reducir partículas específicas.</div>
+                  <div class="content-text">UCS (Uniaxial Compressive Strength) mide compresión máxima que soporta la roca y se expresa en kilopascales, usado para evaluar competencia.</div>
+                  <div class="content-text">Relación práctica: SPI y UCS no siempre coinciden, por lo que ambos deben considerarse junto con índice de trabajo (BWI) para diseñar cargas y factores de carga.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=5873" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:37:53)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.2</span>
+                  <span class="subsection-title">Variables críticas para obtener efectos 80/20 en voladura</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Variables principales sugeridas: dureza del material (UCS), índice de trabajo (BWI) y SPI cuando hay molino semiautógeno disponible.</div>
+                  <div class="content-text">Estrategia: medir perfil de dureza a lo largo del taladro (cada 5 m) y ajustar factor de carga y tipo de explosivo o dosificación según estas variables.</div>
+                  <div class="content-text">En operaciones subterráneas, se requiere mayor ingeniería y criterio para traducir perfiles de dureza a prácticas de carga y lograr fragmentación deseada.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=6504" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:48:24)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.3</span>
+                  <span class="subsection-title">Aplicabilidad en minería superficial y subterránea y experiencias comparadas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Minería superficial permite mayor control y uso de equipos especializados para monitoreo; subterránea exige más criterio del ingeniero por limitaciones espaciales.</div>
+                  <div class="content-text">Casos de países avanzados muestran aplicación en subterránea a gran escala con control de fragmentación y entrega de producto óptimo a planta.</div>
+                  <div class="content-text">Recomendación: adaptar las tres variables clave a las condiciones particulares del yacimiento, operación y planta para optimizar rendimiento.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=6919" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:55:19)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="15">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">15</span>
+              <span class="section-title">Transición hacia control de reactivos y flotación en planta</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.1</span>
+                  <span class="subsection-title">Puente entre fragmentación en mina y control de reactivos en planta</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Tras asegurar una fragmentación adecuada y perfil granulométrico óptimo, el siguiente paso es gestionar procesos de flotación y reactivos en planta.</div>
+                  <div class="content-text">Advertencia: tener buen perfil de fragmentación no garantiza autopáticamente el éxito en planta; sigue siendo necesario control de procesos y reactivos.</div>
+                  <div class="content-text">Próxima etapa de la presentación: abordar conceptos de flotación y control de reactivos vinculado al material fragmentado que llega desde la mina.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=7134" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:58:54)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="16">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">16</span>
+              <span class="section-title">Fragmentación, dureza y control de molienda</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.1</span>
+                  <span class="subsection-title">Importancia del perfil granulométrico y F80, F50, F20</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El perfil granulométrico (F80, F50, F20) condiciona la entrada del mineral a los procesos de molienda y flotación y su control es clave para la eficiencia operativa.</div>
+                  <div class="content-text">Un mismo yacimiento puede presentar distinto tamaño predominante en distintos puntos y la dureza puede variar independiente del tamaño fragmentado.</div>
+                  <div class="content-text">La fragmentación por voladura no siempre produce la distribución esperada; la dureza y competencia de la roca afectan el resultado final.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=7208" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:08)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.2</span>
+                  <span class="subsection-title">Efecto de la dureza del material en rendimiento y tonelaje</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Material fragmentado pero duro sigue demandando mayor energía y afecta índices de rotura en molinos semiautógenos y en molinos de bolas.</div>
+                  <div class="content-text">Un material más fragmentado permite aumentar tonelaje procesado, aunque si permanece duro puede seguir limitando la eficiencia.</div>
+                  <div class="content-text">La variable mina (voladura, geología) determina la granulometría y la dureza que recibirá la planta para procesar.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=7235" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:35)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.3</span>
+                  <span class="subsection-title">Integración de voladura y geometalurgia para optimizar molienda</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La alineación entre diseño de voladura y soporte geometalúrgico mejora fragmentación y reduce problemas de dilución y costos.</div>
+                  <div class="content-text">La caracterización geometalúrgica identifica unidades con fino, grueso, arcillas y durezas, y permite ajustar perforación y disparo.</div>
+                  <div class="content-text">Con la información adecuada se diseña la molienda para entregar material liberado que optimice la recuperación en etapas posteriores.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=7308" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:01:48)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="17">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">17</span>
+              <span class="section-title">Grado de liberación y su impacto en flotación y lixiviación</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.1</span>
+                  <span class="subsection-title">Definición y efectos del grado de liberación sobre la recuperación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El grado de liberación expone la superficie valiosa para permitir la interacción trifásica entre colector, espumante y burbuja de aire.</div>
+                  <div class="content-text">Partículas adecuadamente liberadas mejoran la recuperación en flotación y permiten al lixiviante penetrar y lixiviar el valioso en procesos de lixiviación.</div>
+                  <div class="content-text">La eficiencia de reactivos y la cinética dependen del grado de liberación entregado por la molienda.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=7403" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:03:23)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.2</span>
+                  <span class="subsection-title">Casos de liberación natural versus inducida por molienda</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Algunos yacimientos presentan liberación natural (free milling) con metales nativos o finos ya liberados por procesos geológicos.</div>
+                  <div class="content-text">En otros casos la liberación se consigue mediante molienda, siendo necesario diseñar el conminuido según la mineralogía y la meta de liberación.</div>
+                  <div class="content-text">La distinción entre liberación natural e inducida condiciona diseño de planta y consumo de reactivos.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=8701" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:25:01)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.3</span>
+                  <span class="subsection-title">Relación entre liberación, granulometría y diseño de remolienda</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Flotación de gruesos permite retirar mixtos gruesos y remolenderlos en molinos dedicados para lograr el producto liberado requerido.</div>
+                  <div class="content-text">Cada etapa del circuito (raffinación, remolienda, limpieza, columnas) necesita dosificación y diseño acorde al tamaño de partícula.</div>
+                  <div class="content-text">El manejo de mixtos y la remolienda buscan maximizar recuperación manteniendo ley de concentrado objetivo y costos operativos controlados.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=7907" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:11:47)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="18">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">18</span>
+              <span class="section-title">Avances tecnológicos y tendencias en molienda y flotación</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.1</span>
+                  <span class="subsection-title">Nuevos paradigmas en la molienda y alimentación de molinos semiautógenos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Hoy se alimentan SAC con tamaños superiores a lo que antes se consideraba aceptable, cambiando criterios tradicionales de conminución.</div>
+                  <div class="content-text">La fenomenología de molienda y la interacción partícula-medio han generado nuevos modelos y literatura aplicada por operarios y académicos.</div>
+                  <div class="content-text">Las prácticas modernas permiten prioritizar mayor tonelaje y eficiencia económica frente a paradigmas antiguos.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=7755" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:09:15)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.2</span>
+                  <span class="subsection-title">Flotación de gruesos y tecnologías asociadas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La flotación de gruesos (hydrofloat, celdas de gran volumen) ha avanzado en inyección de aire y control de burbujas para tratar partículas mayores.</div>
+                  <div class="content-text">El flujo de proceso contempla extracción de gruesos, separación por tamaño y envío a remolienda antes de etapas de limpieza en celdas columna.</div>
+                  <div class="content-text">La tendencia es aumentar tonelaje, reducir costos operativos y mantener o mejorar recuperación y ley de concentrado.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=7607" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:06:47)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.3</span>
+                  <span class="subsection-title">Innovaciones en dosificación y reactivos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La dosificación de reactivos cambia según tamaño de partícula; colectores de cadena larga o ácidos grasos de cadena corta pueden favorecer flotación de gruesos.</div>
+                  <div class="content-text">Los proveedores ahora diseñan reactivos a la medida según muestras y resultados de caracterización, permitiendo flexibilidad operativa.</div>
+                  <div class="content-text">La dosificación ya no es una “llave metalúrgica” estática; se adapta dinámicamente a la mineralización y condiciones de planta.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=7935" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:12:15)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="19">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">19</span>
+              <span class="section-title">Variables críticas de la flotación y su control operativo</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.1</span>
+                  <span class="subsection-title">Granulometría, diseño de celdas y control de espuma</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La distribución de tamaños condiciona la elección y diseño de celdas de flotación, incluyendo celdas que permitan tratar partículas gruesas.</div>
+                  <div class="content-text">El control de altura y calidad de la espuma es esencial para separar mixtos y optimizar recuperaciones en cada etapa.</div>
+                  <div class="content-text">La configuración del circuito debe contemplar remolienda y etapas de limpieza para lograr concentrado final con ley objetivo.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=7981" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:13:01)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.2</span>
+                  <span class="subsection-title">Dosificación de reactivos en función de mineralogía y geometalurgia</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las especies aisladas y pruebas de flotación por especie permiten definir consumo y cinética para cada tipo mineralógico presente en el yacimiento.</div>
+                  <div class="content-text">La dosificación se adapta a la mineralización del polígono explotado; cada zona puede requerir diferentes colectores, espumantes y modificadores.</div>
+                  <div class="content-text">Alteraciones mineralógicas (talco, magnesio, mármol) interfieren en la acción de reactivos y pH, afectando recuperación y demanda de ajuste químico.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=8296" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:18:16)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.3</span>
+                  <span class="subsection-title">Porcentaje de sólidos y parámetros de pulpa a controlar</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La concentración de sólidos en pulpa modifica el comportamiento frente a los reactivos y la eficiencia de la flotación; ejemplo 40% versus 30% sólidos.</div>
+                  <div class="content-text">El diseño operacional (tonelaje objetivo) debe ser coherente con el porcentaje de sólidos elegido para alcanzar la liberación y consumo óptimo de reactivos.</div>
+                  <div class="content-text">Probar diferentes grados de molienda y sólidos permite determinar la dosificación óptima y el equilibrio entre tonelaje y recuperación.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=8582" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:23:02)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="20">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">20</span>
+              <span class="section-title">Cinética de flotación, tiempo de residencia y modelación del circuito</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.1</span>
+                  <span class="subsection-title">Pruebas de laboratorio para determinar cinética y tiempo de residencia</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Las pruebas de flotación en laboratorio registran recuperación acumulada en distintos tiempos (1, 2, 4, 6, 8, 16 minutos) para construir curvas cinéticas.</div>
+                  <div class="content-text">La cinética alta se observa cuando una especie aislada alcanza alta recuperación rápida; cinética lenta indica necesidad de mayor tiempo de residencia.</div>
+                  <div class="content-text">Con la curva cinética y parámetros (tonelaje, sólidos, recuperaciones) se calcula número de celdas y tiempo total de flotación necesario.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=9368" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:36:08)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.2</span>
+                  <span class="subsection-title">Interpretación mineralógica de resultados cinéticos y ajustes de diseño</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Cuando la recuperación en laboratorio es lenta, la mineralogía (oclusiones, alteraciones, estructura cristalina) explica bajas cinéticas y guía soluciones.</div>
+                  <div class="content-text">El diseño de circuito debe basarse en caracterización representativa; un circuito subdimensionado o sobredimensionado perjudica resultados operativos.</div>
+                  <div class="content-text">La geometalurgia aporta la muestra y análisis óptico necesarios para asegurar que el tiempo de residencia seleccionado sea representativo del yacimiento.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=9471" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:37:51)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.3</span>
+                  <span class="subsection-title">Medición operativa del tiempo de residencia en planta y herramientas modernas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">En planta, se puede validar tiempo de residencia mediante muestreo por tiempos en celdas, análisis de leyes y balances metalúrgicos aplicando fórmulas clásicas.</div>
+                  <div class="content-text">Tecnologías en línea (XRF, analizadores de ley, granulometría) permiten estimar y ajustar tiempo de residencia dinámicamente según mineral entrante.</div>
+                  <div class="content-text">Métodos prácticos incluyen trazadores para medir tiempos de residencia y modelos que integran datos en tiempo real para operar válvulas y descargas.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=9751" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:42:31)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="21">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">21</span>
+              <span class="section-title">Calidad del agua, tamaño de burbuja y caracterización de la pulpa</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">21.1</span>
+                  <span class="subsection-title">Relevancia de la población de burbujas y tamaño óptimo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El tamaño de burbuja y la población deseada deben alinearse con la distribución de partículas para que cada burbuja pueda asociarse eficientemente a una partícula.</div>
+                  <div class="content-text">Tecnologías de deación y diseño de celdas buscan generar una población de burbujas adecuada para partículas finas y gruesas según necesidad.</div>
+                  <div class="content-text">La inyección y control de aire son claves para maximizar la captura de partículas y la recuperación global.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=9022" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:30:22)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">21.2</span>
+                  <span class="subsection-title">Calidad del agua y su efecto en dosificación y comportamiento de reactivos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La calidad del agua (dulce, salina, agua de mar) influye en interacciones iónicas de pulpa y en la performance de colectores y espumantes.</div>
+                  <div class="content-text">Estudios recientes muestran que el agua de mar puede ser utilizable para flotación en ciertas mineralizaciones sin desalinizaciones previas.</div>
+                  <div class="content-text">El pH natural del agua y salinidad determinan ajustes de modificadores y consumo de reactivos para mantener el ecosistema de flotación.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=9068" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:31:08)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">21.3</span>
+                  <span class="subsection-title">Caracterización de la pulpa y modelación química del sistema</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La molienda libera cationes y aniones que interactúan con reactivos; caracterizar la pulpa permite dosificar reactivos con mayor precisión.</div>
+                  <div class="content-text">La pulpa se comporta como un ecosistema donde tamaño de partículas, sales solubles y reactivos interactúan afectando pH y selectividad.</div>
+                  <div class="content-text">La tecnología actual permite medir en línea parámetros de pulpa y ajustar dosificaciones basadas en modelos y feedback operativo.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=9151" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:32:31)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="22">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">22</span>
+              <span class="section-title">Implementación operativa, control y conclusiones sobre la sesión</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">22.1</span>
+                  <span class="subsection-title">Adaptación dinámica de reactivos y rol del proveedor</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Hoy la selección y cambio de reactivos es dinámica; proveedores reciben muestras y diseñan formulaciones específicas para zonas del yacimiento.</div>
+                  <div class="content-text">No existe ya una receta única para la vida de una mina; la dosificación se ajusta a la geometalurgia y cambios de cabezas.</div>
+                  <div class="content-text">El trabajo conjunto entre planta y proveedor acelera la implementación de soluciones cuando se reconocen variaciones mineralógicas.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=9231" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:33:51)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">22.2</span>
+                  <span class="subsection-title">Control en planta, monitoreo y acciones operativas según mineral entrante</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Analizadores en línea permiten ver en tiempo real la flotabilidad del mineral y ajustar tiempos de residencia y descargas para optimizar recuperación.</div>
+                  <div class="content-text">Operativamente se pueden mover válvulas para extraer raffer cuando alcanza ley y recuperación objetivo, reduciendo tiempo de residencia y recirculaciones.</div>
+                  <div class="content-text">El control del circuito es una mezcla de modelos, instrumentación y toma de decisiones basada en muestras y resultados en tiempo real.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=9781" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:43:01)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">22.3</span>
+                  <span class="subsection-title">Cierre de la clase y recordatorios administrativos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se invita a preparar preguntas para próximas clases, se compartirá la grabación y el formulario de asistencia por WhatsApp.</div>
+                  <div class="content-text">Se ofrecen contactos para consultas y se agradece la participación; la sesión concluye formalmente con indicaciones para seguimiento.</div>
+                  <a href="https://www.youtube.com/watch?v=fVeJ0D7_Dmc&start=9948" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:45:48)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://www.edumin.pe/" target="_blank">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="footer-logo" />
+      </a>
+      <p class="footer-text">
+        <b>Contenido desarrollado por EDUMIN - Centro de Capacitación Especializado en Minería, Industria y Negocios</b><br />
+        <i>Material exclusivo para estudiantes de EDUMIN</i><br />
+        <a href="https://www.edumin.pe/" target="_blank" style="color: var(--color-principal); text-decoration: none">https://www.edumin.pe/</a>
+      </p>
+    </div>
+
+    <script>
+      const TITULO_DIPLOMADO = "GEometalurgia".toUpperCase();
+      const TITULO_CLASE = "CLASE 05: PROCESOS METALÚRGICOS EN LAS OPERACIONES MINERALÓGICAS - 1RA PARTE".toUpperCase();
+
+      const elementoDiplomado = document.getElementById("tituloDiplomado");
+      if (elementoDiplomado) {
+        elementoDiplomado.innerText = TITULO_DIPLOMADO;
+      }
+
+      document.title = TITULO_CLASE;
+      const tituloPrincipal = document.getElementById("tituloPrincipal");
+      if (tituloPrincipal) {
+        tituloPrincipal.innerText = TITULO_CLASE;
+      }
+
+      const tituloCompacto = document.getElementById("tituloCompacto");
+      if (tituloCompacto) {
+        tituloCompacto.innerText = TITULO_CLASE;
+      }
+
+      function toggleSection(element) {
+        const section = element.closest(".section");
+        const wasActive = section.classList.contains("active");
+
+        section.classList.toggle("active");
+
+        if (wasActive) {
+          const subsections = section.querySelectorAll(".subsection");
+          subsections.forEach((subsection) => {
+            subsection.classList.remove("active");
+          });
+        }
+      }
+
+      function toggleSubsection(element) {
+        const subsection = element.closest(".subsection");
+        subsection.classList.toggle("active");
+      }
+
+      function expandAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.add("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.add("active");
+        });
+      }
+
+      function collapseAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.remove("active");
+        });
+      }
+
+      function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, delay);
+        };
+      }
+
+      function clearSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        searchInput.value = "";
+        clearBtn.style.display = "none";
+        searchContent();
+        searchInput.focus();
+      }
+
+      const createDiacriticInsensitiveRegex = (term) => {
+        const charMap = {
+          a: "[aáAÁ]",
+          e: "[eéEÉ]",
+          i: "[iíIÍ]",
+          o: "[oóOÓ]",
+          u: "[uúUÚ]",
+        };
+
+        const regexString = term
+          .split("")
+          .map((char) => {
+            const lowerChar = char.toLowerCase();
+            return charMap[lowerChar] || char;
+          })
+          .join("");
+
+        return new RegExp(`(${regexString})`, "gi");
+      };
+
+      function searchContent() {
+        const inputElement = document.getElementById("searchInput");
+        const searchTerm = inputElement.value.trim();
+
+        const searchableElements = document.querySelectorAll(".content-text, .section-title, .subsection-title");
+        let found = false;
+        let firstMatchElement = null;
+
+        document.querySelectorAll(".section.active").forEach((el) => el.classList.remove("active"));
+        document.querySelectorAll(".subsection.active").forEach((el) => el.classList.remove("active"));
+        searchableElements.forEach((element) => {
+          element.innerHTML = element.getAttribute("data-original-text") || element.textContent;
+        });
+
+        if (searchTerm.length < 3) {
+          return;
+        }
+
+        const searchRegex = createDiacriticInsensitiveRegex(searchTerm);
+
+        searchableElements.forEach((element) => {
+          const originalText = element.getAttribute("data-original-text") || element.textContent;
+
+          if (searchRegex.test(originalText)) {
+            found = true;
+
+            element.innerHTML = originalText.replace(searchRegex, `<span class="highlight">$1</span>`);
+
+            const subsection = element.closest(".subsection");
+            if (subsection) {
+              subsection.classList.add("active");
+              subsection.closest(".section")?.classList.add("active");
+            } else if (element.classList.contains("section-title")) {
+              element.closest(".section")?.classList.add("active");
+            }
+
+            if (!firstMatchElement) {
+              firstMatchElement = element;
+            }
+          }
+        });
+
+        if (firstMatchElement) {
+          requestAnimationFrame(() => {
+            firstMatchElement.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          });
+        } else if (searchTerm.length >= 3) {
+          alert("No se encontraron resultados para: " + searchTerm);
+        }
+      }
+
+      const debouncedSearch = debounce(searchContent, 300);
+
+      document.getElementById("searchInput").addEventListener("input", function () {
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        clearBtn.style.display = this.value.length > 0 ? "block" : "none";
+        debouncedSearch();
+      });
+
+      document.getElementById("searchInput").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          clearTimeout(this._timeoutId);
+          searchContent();
+        }
+      });
+
+      // --- Lógica del Header Compacto ---
+      const header = document.querySelector(".header");
+      const headerSpacer = document.querySelector(".header-spacer");
+      let initialHeaderHeight = 0; // Altura del header original
+      let compactHeaderHeight = 0; // Altura del header en modo compacto
+      let scrollTriggerPoint = 0; // Punto de scroll para activar el cambio
+
+      function handleHeaderState() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollY > scrollTriggerPoint) {
+          if (!header.classList.contains("compact")) {
+            header.classList.add("compact");
+            headerSpacer.style.height = `${initialHeaderHeight}px`;
+          }
+        } else {
+          if (header.classList.contains("compact")) {
+            header.classList.remove("compact");
+            headerSpacer.style.height = "0px";
+          }
+        }
+      }
+
+      function initializeHeader() {
+        initialHeaderHeight = header.offsetHeight;
+        const headerClone = header.cloneNode(true);
+        headerClone.classList.add("compact");
+        headerClone.style.visibility = "hidden";
+        headerClone.style.position = "absolute";
+        document.body.appendChild(headerClone);
+        compactHeaderHeight = headerClone.offsetHeight;
+        document.body.removeChild(headerClone);
+
+        scrollTriggerPoint = initialHeaderHeight - compactHeaderHeight;
+      }
+
+      document.addEventListener("DOMContentLoaded", initializeHeader);
+      window.addEventListener("scroll", handleHeaderState);
+      window.addEventListener("resize", debounce(initializeHeader, 200));
+    </script>
+  </body>
+</html>

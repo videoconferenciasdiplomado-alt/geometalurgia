@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        /* Colores Principales del Diseño (Acentos y Degradados) */
+        /* ======================================================= */
+        --color-principal: #00beff; /* Cian Brillante para acentos, bordes y el inicio del degradado principal */
+        --color-secundario: #1e50cd; /* Azul Medio, parte final del degradado de acento */
+
+        /* Fondos Oscuros de la Interfaz */
+        /* ======================================================= */
+        --fondo-oscuro-claro: #002a52; /* Fondo de secciones y contenido */
+        --fondo-oscuro-fuerte: #001a33; /* Fondo del encabezado (header) y pie de página (footer) */
+        /* ======================================================= */
+        --fondo-oscuro-medio: #003366; /* Fondo de encabezados y cajas de contenido */
+        --fondo-borde-claro: #004080; /* Bordes ligeros y color de fondo al hacer hover en encabezados */
+        --fondo-sombra-azul-header: #0050a0; /* ¡NUEVO! Sombra en el header */
+
+        /* Colores de Texto y Fondo General del Body */
+        /* ======================================================= */
+        --texto-blanco-1: #ffffff; /* Blanco puro para títulos y texto en fondo muy oscuro */
+        --texto-claro-2: #e6e6e6; /* Texto principal y claro */
+        --texto-medio-3: #cccccc; /* Texto de contenido de item (un poco más tenue) */
+
+        /* ======================================================= */
+        --fondo-body-inicio: #99e5ff; /* Color de inicio del degradado de fondo del body */
+        --fondo-body-fin: #a5b9eb; /* Color de final del degradado de fondo del body */
+
+        /* Colores de Acento Específicos (YouTube, Búsqueda) */
+        /* ======================================================= */
+        --rojo-youtube-claro: #e60000;
+        --rojo-youtube-fuerte: #a30000;
+        --timestamp-youtube: #ffcccc;
+        --fondo-resaltado: #00c339; /* Verde para el fondo del texto buscado */
+
+        /* Bases RGB para Transparencias (RGBA) */
+        /* ======================================================= */
+        --sombra-rgb: 0, 0, 0; /* Negro puro: Usado para sombras generales y profundidad */
+        --acento-rgb: 0, 190, 255; /* Cian Brillante: Usado para brillos y sombras de acento */
+        --rojo-rgb: 230, 0, 0; /* Rojo Puro: Usado para sombras de enlaces de YouTube */
+        /* ======================================================= */
+        --gradient-principal: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--fondo-body-inicio) 0%, var(--fondo-body-fin) 100%);
+        line-height: 1.2;
+        scroll-behavior: smooth;
+      }
+
+      strong#tituloDiplomado {
+        font-weight: 900;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      @keyframes slideDownSutil {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header.animacion-inicial {
+        animation: slideDownSutil 0.4s ease-out 1;
+        animation-fill-mode: forwards;
+        will-change: transform, opacity;
+      }
+
+      .header {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        box-shadow: 0 5px 15px rgba(var(--sombra-rgb), 0.5);
+        text-align: center;
+        will-change: transform;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header-text-box {
+        display: grid;
+        gap: 10px;
+        word-break: break-word;
+        margin: 0 15px;
+      }
+
+      .header.compact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+      }
+
+      .header-spacer {
+        display: none;
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header.compact + .header-spacer {
+        display: block;
+      }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .header.compact .header-top {
+        display: none;
+      }
+
+      .logo {
+        width: 140px;
+        height: auto;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+      }
+
+      .header.compact .logo {
+        width: 90px;
+        margin: 0 10px;
+      }
+
+      .header .logo.compact-logo {
+        display: none;
+      }
+
+      .header.compact .logo.compact-logo {
+        display: block;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 900;
+      }
+
+      .header.compact h1 {
+        font-size: 1rem;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+      }
+
+      .header-content-box {
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 20px 20px;
+        box-shadow: 0 8px 20px rgba(var(--acento-rgb), 0.6);
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        opacity: 1;
+        transform: translateY(0);
+        will-change: transform;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .header-content-box {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: 0;
+        transform: translateY(-10px);
+      }
+
+      .header-content-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(var(--acento-rgb), 0.8);
+      }
+
+      .header-bottom-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header-second-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header.compact .header-bottom-row {
+        flex-grow: 1;
+      }
+
+      .logo-and-title {
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .header.compact .logo-and-title {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .header.compact .header-bottom-row .logo-and-title {
+        will-change: transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        width: 100%;
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        gap: 10px;
+      }
+
+      .header.compact .header-bottom-row .logo-and-title:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .header-compact-title {
+        display: none;
+        color: var(--texto-blanco-1);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 10px;
+        white-space: normal;
+      }
+
+      .header.compact .header-compact-title {
+        display: block;
+      }
+
+      .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 450px;
+        background-color: var(--fondo-oscuro-medio);
+        border: 2px solid var(--fondo-borde-claro);
+        border-radius: 30px;
+        box-shadow: 0 4px 10px rgba(var(--sombra-rgb), 0.25);
+        will-change: border-color, background-color;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      }
+
+      .search-bar:focus-within {
+        border-color: var(--fondo-sombra-azul-header);
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .clear-search {
+        cursor: pointer;
+        color: var(--texto-claro-2);
+        padding: 5px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        display: none;
+        transition: color 0.2s ease;
+        transform: scale(1.5);
+      }
+
+      .clear-search:hover {
+        color: var(--texto-blanco-1);
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 10px 18px;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--texto-claro-2);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        min-width: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .header.compact .search-bar input {
+        padding: 10px 20px;
+      }
+
+      .search-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-button {
+        background: var(--gradient-principal);
+        border: none;
+        color: var(--texto-blanco-1);
+        padding: 8px 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        will-change: transform;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        max-width: 150px;
+        white-space: normal;
+      }
+
+      .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .search-bar .action-button {
+        margin: 5px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      @keyframes fadeInUpContent {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .mind-map {
+        transition: margin-top 0.4s ease;
+        margin: 50px 0;
+      }
+
+      .mind-map.animacion-contenido {
+        animation: fadeInUpContent 0.4s ease-out 1 forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        will-change: opacity, transform;
+      }
+
+      .section {
+        margin-bottom: 20px;
+        background-color: var(--fondo-oscuro-claro);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-oscuro-medio);
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(var(--sombra-rgb), 0.25);
+        transition: border-color 0.3s ease;
+      }
+
+      .section-header {
+        padding: 20px;
+        background-color: var(--fondo-oscuro-medio);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .section-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 5px 12px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 15px;
+      }
+
+      .toggle-icon {
+        font-size: 1.2rem;
+        color: var(--texto-claro-2);
+        will-change: transform;
+        transition: transform 0.3s ease;
+      }
+
+      .section.active > .section-header .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .section-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .section.active .section-content {
+        max-height: fit-content;
+        padding-bottom: 10px;
+        opacity: 1;
+      }
+
+      .subsection {
+        margin: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-borde-claro);
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+
+      .subsection:hover {
+        border-color: var(--fondo-sombra-azul-header);
+      }
+
+      .subsection:hover .subsection-header {
+        background-color: var(--fondo-sombra-azul-header);
+      }
+
+      .section:hover {
+        border-color: var(--fondo-borde-claro);
+      }
+
+      .section:hover .section-header {
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .subsection-header {
+        padding: 15px;
+        background-color: var(--fondo-borde-claro);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .subsection-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .subsection-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 12px;
+      }
+
+      .subsection-content {
+        max-height: 0;
+        overflow: hidden;
+        background-color: var(--fondo-oscuro-claro);
+        opacity: 0;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
+      }
+
+      .subsection.active .subsection-content {
+        max-height: fit-content;
+        padding: 15px;
+        opacity: 1;
+      }
+
+      .subsection.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .content-item {
+        margin-bottom: 10px;
+        padding: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border-left: 4px solid var(--color-principal);
+        box-shadow: 0 1px 5px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .content-text {
+        color: var(--texto-medio-3);
+        margin-bottom: 5px;
+        line-height: 1.4;
+        font-size: 1rem;
+        font-weight: 500;
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .content-text::before {
+        content: "•";
+        color: var(--color-principal);
+        font-weight: 700;
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+      }
+
+      .youtube-link {
+        display: inline-block;
+        padding: 10px 18px;
+        background: linear-gradient(135deg, var(--rojo-youtube-claro) 0%, var(--rojo-youtube-fuerte) 100%);
+        color: var(--texto-blanco-1);
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1rem;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(var(--rojo-rgb), 0.4);
+        will-change: transform;
+      }
+
+      .youtube-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 3px 7.5px rgba(var(--rojo-rgb), 0.5);
+        will-change: transform;
+      }
+
+      .timestamp {
+        color: var(--timestamp-youtube);
+        font-size: 0.85rem;
+        margin-left: 10px;
+        font-weight: 400;
+      }
+
+      .highlight {
+        background-color: var(--fondo-resaltado);
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+        padding: 4px;
+        border-radius: 6px;
+      }
+
+      .footer {
+        padding: 30px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        border-top: 1px solid var(--fondo-oscuro-medio);
+        text-align: center;
+        box-shadow: 0 -2px 10px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .footer-text {
+        color: var(--texto-claro-2);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .footer-logo {
+        width: 140px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .header-top {
+          flex-direction: column;
+        }
+
+        .logo {
+          margin: 0;
+        }
+
+        .header-text-box {
+          margin: 0;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .header.compact .header-bottom-row .logo-and-title {
+          gap: 5px;
+        }
+        .logo,
+        .footer-logo {
+          width: 105px;
+        }
+
+        .header.compact .header-bottom-row {
+          flex-direction: column;
+        }
+
+        .header.compact .header-compact-title {
+          margin: 0 5px;
+          font-size: 0.8rem;
+        }
+
+        .header.compact .logo.compact-logo {
+          width: 65px;
+          margin: 5px;
+        }
+
+        .action-button,
+        .search-bar input,
+        .clear-search {
+          font-size: 0.9rem;
+        }
+
+        .section-header {
+          padding: 15px;
+        }
+
+        .header.compact .controls {
+          flex-direction: row;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .subsection-title {
+          font-size: 1rem;
+        }
+        .section-number,
+        .subsection-number {
+          font-size: 13px;
+        }
+
+        .content-text {
+          font-size: 0.9rem;
+        }
+
+        .youtube-link {
+          font-size: 0.8rem;
+        }
+
+        .timestamp {
+          font-size: 0.75rem;
+        }
+
+        .header.compact .action-button {
+          padding: 6px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header animacion-inicial">
+      <div class="header-content-box">
+        <div class="header-top">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo" />
+          </a>
+          <div class="header-text-box">
+            <h1>
+              DIPLOMADO DE ALTA ESPECIALIZACIÓN EN<br />
+              <strong id="tituloDiplomado"></strong>
+            </h1>
+            <p id="tituloPrincipal"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-bottom-row">
+        <div class="logo-and-title">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo compact-logo" />
+          </a>
+          <span class="header-compact-title" id="tituloCompacto"></span>
+        </div>
+        <div class="header-second-row">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar en el resumen interactivo…" autocomplete="off" />
+            <div class="search-actions">
+              <span class="clear-search" onclick="clearSearch()">&times;</span>
+              <button class="action-button" onclick="searchContent()">Buscar</button>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="action-button" onclick="expandAll()">Mostrar todo</button>
+            <button class="action-button" onclick="collapseAll()">Colapsar todo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-spacer"></div>
+
+    <div class="container">
+      <div class="mind-map animacion-contenido" id="mindMap">
+        <div class="section" data-section="1">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">1</span>
+              <span class="section-title">Introducción a la sesión y objetivos del módulo</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.1</span>
+                  <span class="subsection-title">Presentación del moderador, inicio de la clase y logística de consultas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El moderador presenta la clase número 12 del Diplomado de Alta Especialización en Geometalurgia y explica que los alumnos pueden usar chat, micrófono y levantar la mano para consultas.</div>
+                  <div class="content-text">Se indica que el profesor Manuel será el encargado de la exposición y que la sesión será grabada para su revisión posterior.</div>
+                  <div class="content-text">Se advierte que la cámara del profesor presenta problemas y se prioriza la exposición oral y las diapositivas como medios de enseñanza.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=848" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:14:08)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.2</span>
+                  <span class="subsection-title">Contexto temático del módulo y enfoque en hidrometalurgia</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El profesor sitúa la discusión en torno a procesos electrometalúrgicos e hidrometalurgia, precisando que la atención se concentrará en la hidrometalurgia aplicada a oro y técnicas de purificación de soluciones.</div>
+                  <div class="content-text">Se menciona el interés en modelamiento de procesos como tema futuro, pero se decide dejar parte del análisis para el final de la sesión.</div>
+                  <div class="content-text">Se anuncia continuidad del contenido en sesiones posteriores para cubrir temas pendientes del sílabo.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=921" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:15:21)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.3</span>
+                  <span class="subsection-title">Objetivo general del estudio presentado en la sesión</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se expone que el objetivo principal es diseñar un esquema de lixiviación limpia aplicando un sistema sinérgico glicina-cianuro para mejorar la recuperación de oro desde minerales y reducir cianuro residual en relaves.</div>
+                  <div class="content-text">Se explican subobjetivos experimentales: determinar consumo específico del sistema, ajustar pH óptimo y definir tiempos de lixiviación adecuados para aplicación industrial.</div>
+                  <div class="content-text">Se enfatiza la intención de proponer licitaciones y escalamiento de la técnica en el contexto nacional, con miras a presentar resultados y tesis.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=2659" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:44:19)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="2">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">2</span>
+              <span class="section-title">Problemas del uso de cianuro en lixiviación aurífera y necesidad de alternativas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.1</span>
+                  <span class="subsection-title">Limitaciones operativas y ambientales del cianuro en procesos tradicionales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El cianuro de sodio ha sido el reactivo por defecto para la lixiviación de oro, desarrollado como estándar tecnológico para minerales con características favorables.</div>
+                  <div class="content-text">Al avanzar la explotación y aparecer minerales mixtos con pirita u otros consumidores de cianuro, la recuperación disminuye y el consumo de reactivos aumenta de forma considerable.</div>
+                  <div class="content-text">El incremento en consumo de cianuro y cal eleva costos operativos y genera problemas de contaminación por cianuro residual en relaves, incluyendo formas problemáticas como cianuro WAD (Watt) insoluble en ácido débil.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=1199" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:19:59)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.2</span>
+                  <span class="subsection-title">Consecuencias económicas y regulatorias del aumento de cianuro residual</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">A medida que el mineral se vuelve más refractario, aumentan los consumos de cianuro y cal, afectando la viabilidad económica del proceso y reduciendo la rentabilidad inicialmente proyectada.</div>
+                  <div class="content-text">Existen límites internacionales permisibles para cianuro residual (mencionado en torno a 50 mg/L), y algunas operaciones muestran concentraciones muy superiores, lo que implica riesgos regulatorios y ambientales.</div>
+                  <div class="content-text">Se indica que varios países están restringiendo o prohibiendo el uso de cianuro y que se espera cambios regulatorios en el Perú en los próximos años según algunas opiniones.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=1409" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:23:29)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.3</span>
+                  <span class="subsection-title">Búsqueda de alternativas y estudios internacionales sobre sustitución de cianuro</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Frente a los problemas del cianuro han surgido investigaciones en escuelas australianas, africanas y locales para sustituir o reducir el cianuro con alternativas más sostenibles.</div>
+                  <div class="content-text">Se menciona el desarrollo de investigaciones sobre mezclas glicina-cianuro y procesos patentados como Glicat por distribuidores de cianuro que también producen glicina.</div>
+                  <div class="content-text">Los estudios referenciados muestran reducciones significativas del consumo de cianuro y niveles residuales por debajo del límite internacional en ensayos a escala laboratorio o piloto.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=1632" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:27:12)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="3">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">3</span>
+              <span class="section-title">Investigación y resultados sobre glicina-cianuro como sistema sinérgico</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.1</span>
+                  <span class="subsection-title">Antecedentes experimentales internacionales y hallazgos clave</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Investigaciones de Orabi y otros en Australia (a partir de 2017) evaluaron mezclas glicina-cianuro con dosificaciones indicadas alrededor de 2.5 kg/tonelada a pH 11, logrando lixiviar oro y cobre, y reduciendo consumo de cianuro hasta un 90% en algunos ensayos.</div>
+                  <div class="content-text">Resultados reportados incluyen cianuro residual en el orden de 50 mg/L o inferiores y recuperaciones de oro cercanas al 95% y de cobre alrededor del 90% en 24 horas de lixiviación en determinados ensayos.</div>
+                  <div class="content-text">Proceso Glicat (patentado por un fabricante-distribuidor) reportó en estudios anteriores recuperaciones del 80.7% con consumo de glicina de 3 kg/tonelada a pH 11 en 96 horas de lixiviación, mostrando posibilidades industriales aunque con variaciones en rendimiento.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=1681" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:28:01)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.2</span>
+                  <span class="subsection-title">Experiencias nacionales y estudios locales con glicina en lixiviación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">A nivel nacional la evidencia científica es limitada; se menciona trabajo de estudiantes de pregrado y tesis en desarrollo que han estudiado glicina para lixiviación de minerales oxidados de cobre.</div>
+                  <div class="content-text">Un tesista indicó que 0.2 M glicina a pH 11 con 24 horas de lixiviación obtuvo ~82.14% de recuperación de cobre en minerales oxidados, sugiriendo viabilidad en casos específicos.</div>
+                  <div class="content-text">Otros trabajos en desarrollo muestran recuperaciones por encima del 90% en ciertos casos, pero la publicación y consolidación de datos nacionales aún está pendiente.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=1907" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:31:47)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.3</span>
+                  <span class="subsection-title">Ventajas de la glicina desde perspectiva físico-química y operativa</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La glicina se describe como un reactivo orgánico no tóxico, no volátil, reciclable y de bajo costo relativo frente al cianuro, con precios indicativos mencionados aproximadamente por debajo de los del cianuro.</div>
+                  <div class="content-text">En mezclas con pequeñas cantidades de cianuro, la glicina actuaría como co-lixiviante (co- lixiviant), mejorando la cinética y reduciendo la necesidad de cianuro al favorecer la formación de superficies reactivas para la acción del cianuro remanente.</div>
+                  <div class="content-text">Se reporta que la mezcla glicina-cianuro puede abarcar minerales de las tres zonas oxidadas, supergénicas e hipógenas, ofreciendo mayor versatilidad frente al cianuro puro que funciona mejor en zonas oxidadas.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=2249" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:37:29)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="4">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">4</span>
+              <span class="section-title">Diseño y metodología del estudio geometalúrgico aplicado al yacimiento Okongate</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.1</span>
+                  <span class="subsection-title">Preparación de muestras y muestreo geológico del yacimiento seleccionado</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se realizó muestreo geológico en la zona de Okongate (Cusco), incluyendo calicatas dimensionadas y toma de muestras compuestas a intervalos de un metro para elaborar modelos de reservas.</div>
+                  <div class="content-text">Se describen dimensiones de calicatas y preparación de compósitos que luego se incorporarán en modelos geometalúrgicos y de recursos para analizar el comportamiento metalúrgico del yacimiento.</div>
+                  <div class="content-text">El trabajo buscó caracterizar frentes y cuerpos para definir estrategias de extracción y diseño de procesos acorde a la variabilidad mineralógica observada.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=2772" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:46:12)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.2</span>
+                  <span class="subsection-title">Técnicas de caracterización mineralógica y análisis empleados</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se realizaron estudios químicos de oro soluble en glicina y en cianuro, microscopía óptica en luz reflejada y microscopía electrónica para identificar modalidades de ocurrencia del oro y minerales asociados.</div>
+                  <div class="content-text">Se detectaron óxidos de manganeso, óxidos de hierro, cuarzo, feldespatos potásicos, fosfatos, tierras raras, telururos de plata y trazas de plata y renio, aportando complejidad mineralógica al estudio.</div>
+                  <div class="content-text">Además, se analizaron fracciones granulométricas mediante mallas específicas (-300 +250, -250 +106, -106 +75, etc.) para evaluar la distribución del oro y gangas en distintos tamaños.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=2906" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:48:26)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.3</span>
+                  <span class="subsection-title">Observaciones mineralógicas relevantes relacionadas con la metalurgia</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se identificó oro libre fino en varias fracciones granulométricas, lo que favorece la lixiviación directa y permite diseñar procesos de lixiviación sin pretratamientos complejos.</div>
+                  <div class="content-text">La presencia de telururos de plata, galena, pirita y sulfosales, además de elementos de tierras raras y bismuto, introduce variables que pueden influir en la cinética de lixiviación y en la necesidad de tratamientos complementarios.</div>
+                  <div class="content-text">Se hicieron pruebas de flotación donde la pirita flotó inicialmente, pero en el contexto de lixiviación la presencia de pirita como mineral consumidor podría afectar procesos basados exclusivamente en cianuro; la alternativa glicina-cianuro buscaría mitigar dichos efectos.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=3116" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:51:56)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="5">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">5</span>
+              <span class="section-title">Resultados preliminares, consideraciones prácticas y aplicaciones de la geometalurgia</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.1</span>
+                  <span class="subsection-title">Interpretación geometalúrgica de las observaciones y diseño de procesos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La microscopía permitió determinar la ocurrencia del oro (libre o asociado) y, en función de ello, diseñar el circuito de tratamiento adecuado, incluyendo gravimetría cuando exista oro grueso.</div>
+                  <div class="content-text">El conocimiento de la textura y tamaño del oro (oro fino vs oro grueso) condiciona la instalación de etapas gravimétricas previas o el diseño de molienda y clasificación para optimizar recuperación.</div>
+                  <div class="content-text">Ejemplos prácticos indican que si existiese oro grueso en mallas gruesas se requeriría añadir gravimetría para evitar pérdidas en relaves y mejorar la recuperación general del proceso.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=3266" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:54:26)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.2</span>
+                  <span class="subsection-title">Aplicaciones operativas, sostenibilidad y escalamiento industrial</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se plantea la hidrometalurgia sostenible como objetivo para procesar yacimientos con menor impacto ambiental, con el sistema glicina-cianuro como alternativa que podría permitir explotación responsable sin aumentar la huella ambiental.</div>
+                  <div class="content-text">La reducción de consumos de cianuro y niveles residuales en relaves junto con la posibilidad de recuperar y reciclar glicina presentan beneficios ambientales y económicos para yacimientos de leyes medias y bajas.</div>
+                  <div class="content-text">Se menciona la existencia de algunas plantas a nivel industrial en Perú trabajando con alternativas y se expresa la intención de proponer licitaciones y escalamiento a nivel industrial con base en los resultados investigativos.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=2545" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:42:25)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.3</span>
+                  <span class="subsection-title">Lecciones prácticas, limitaciones y pasos siguientes en la investigación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La tesis presentada tiene como foco la aplicación práctica de la lixiviación con glicina-cianuro en muestras reales más que la investigación profunda de mecanismos fisicoquímicos, aunque se reconoce la importancia de comprender dichos mecanismos para optimizar la dosificación.</div>
+                  <div class="content-text">Se plantean pasos experimentales concretos: evaluar varias proporciones de glicina-cianuro para determinar consumo específico, ajustar pH óptimo (mencionado pH alrededor de 11 en varios estudios) y definir tiempos de lixiviación prácticos para la industria.</div>
+                  <div class="content-text">Se reconoce la necesidad de mayor evidencia científica local, publicación de resultados y validación a escala piloto e industrial antes de recomendación definitiva de sustitución total del cianuro por glicina.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=2249" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:37:29)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="6">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">6</span>
+              <span class="section-title">Conclusiones operativas, impactos y recomendaciones para geometalurgia aplicada</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.1</span>
+                  <span class="subsection-title">Resumen de beneficios técnicos y ambientales del sistema propuesto</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El sistema glicina-cianuro ofrece reducción importante del consumo de cianuro, menor cianuro residual en relaves y potencial para mantener o mejorar recuperaciones en minerales de distintas zonas (oxidada, supergénica e hipógena).</div>
+                  <div class="content-text">La glicina presenta ventajas operativas como menor volatilidad, reciclabilidad y costo competitivo frente al cianuro, lo que favorece su consideración en proyectos sostenibles.</div>
+                  <div class="content-text">Los resultados iniciales internacionales y los trabajos en curso sugieren posibilidad de aplicación industrial, pero requieren adaptación a condiciones locales y validación geometalúrgica.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=2249" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:37:29)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.2</span>
+                  <span class="subsection-title">Recomendaciones prácticas para implementaciones y estudios futuros</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Realizar campañas de muestreo geometalúrgico representativas, caracterización mineralógica detallada y ensayos de lixiviación con diferentes proporciones de glicina-cianuro, pH y tiempos para robustecer datos operativos.</div>
+                  <div class="content-text">Incorporar etapas de gravimetría y diseño modular de planta cuando se detecte oro grueso para maximizar recuperación y reducir pérdidas en relaves.</div>
+                  <div class="content-text">Avanzar con publicaciones científicas, tesis y escalado a pilotaje industrial para documentar rendimiento, costos y cumplimiento normativo antes de adopciones a gran escala.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=2705" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:45:05)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.3</span>
+                  <span class="subsection-title">Reflexión final sobre la importancia de la geometalurgia en decisiones metalúrgicas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La geometalurgia permite anticipar problemas metalúrgicos mediante microscopía y caracterización que informan el diseño de procesos, evitando decisiones costosas y mejorando la eficiencia operativa.</div>
+                  <div class="content-text">Estudios prácticos como el presentado proporcionan evidencia real para proponer alternativas sostenibles y adaptar procesos al tipo de mineral, menorley y ocurrencias minerales específicas.</div>
+                  <div class="content-text">La combinación de investigación aplicada, modelamiento de procesos y evaluación espacial de yacimientos constituye el camino para implementar procesos de lixiviación más eficientes y menos contaminantes.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=3266" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:54:26)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="7">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">7</span>
+              <span class="section-title">Geología, relaves y geometalurgia aplicadas al estudio del mineral</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.1</span>
+                  <span class="subsection-title">Presencia de elementos valiosos y asociaciones mineralógicas en relaves</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">En relaves se detectan plata, tierras raras y telururos asociados que pueden ser explotables tras procesos de gravimetría y muestreo representativo.</div>
+                  <div class="content-text">Los telururos de plata y otras gangas se hallan en la fracción terrestre de los relaves, lo que sugiere potenciales subproductos a recuperar.</div>
+                  <div class="content-text">El estudio de relaves incluye mapeo, logueo, muestreo y preparación de muestras para análisis de datos metalúrgicos y geometalúrgicos.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=3602" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:00:02)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.2</span>
+                  <span class="subsection-title">Escala del yacimiento y relevancia metodológica para proyectos pequeños</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El yacimiento estudiado es de pequeña escala (20-30 toneladas por día), con un número limitado de datos (50-100), pero requiere la misma metodología que un yacimiento mayor.</div>
+                  <div class="content-text">Actividades clave: registro (logueo), mapeo, muestreo, preparación de muestras y análisis de datos para caracterizar mineralogía y comportamiento metalúrgico.</div>
+                  <div class="content-text">La representatividad de la muestra y la correcta preparación son vitales para obtener resultados fiables en pruebas de laboratorio y ensayos de ciclo.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=3672" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:01:12)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.3</span>
+                  <span class="subsection-title">Zonificación del depósito y efectos en la lixiviación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se identifican zonas oxidada, secundaria (supergénica) e hipógena (zona caliente) con distintas mineralogías que afectan la recuperación y consumo de reactivos.</div>
+                  <div class="content-text">En la zona oxidada la lixiviación con cianuro o glicina es eficaz; en la zona supergénica aparecen sulfuros y minerales que hacen el oro más refractario.</div>
+                  <div class="content-text">La presencia de pirita, calcopirita y otros sulfuros incrementa el consumo de cianuro y reduce recuperación, generando mayores residuos ambientales.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=4871" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:21:11)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="8">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">8</span>
+              <span class="section-title">Ensayos metalúrgicos, cinética y consumo de reactivos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.1</span>
+                  <span class="subsection-title">Pruebas de solubilidad, consumo de cianuro y glicina, pH y tiempos de lixiviación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se realizaron pruebas de botella para determinar consumo de reactivos, pH óptimo y tiempos necesarios para alcanzar recuperaciones máximas.</div>
+                  <div class="content-text">Variables independientes definidas: dosis (concentración del sistema glicina-cianuro), pH y tiempo de lixiviación; variables dependientes: recuperación y concentración residual de cianuro.</div>
+                  <div class="content-text">Diseño experimental y matriz de consistencia permiten controlar y evaluar la influencia de cada variable en la extracción de oro.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=3691" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:01:31)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.2</span>
+                  <span class="subsection-title">Cinética de lixiviación con cianuro y glicina, y resultados obtenidos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Con cianuro se observó una cinética rápida: más del 60% a las tres horas, recuperación a 24 horas alrededor de 92% y total 94%, confirmando presencia de oro libre.</div>
+                  <div class="content-text">El consumo de cianuro en las pruebas fue alto (≈5.75 kg/t), con un cianuro residual elevado (≈350 ppm), lo cual resulta ambientalmente preocupante.</div>
+                  <div class="content-text">Con el sistema glicina-cianuro la cinética también mostró mejoras, dependiendo de dosis y pH; ambos sistemas requieren evaluación de consumo y residuos.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=4496" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:14:56)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.3</span>
+                  <span class="subsection-title">Determinación del pH óptimo y efecto sobre consumo y recuperación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El pH óptimo identificado para el sistema glicina-cianuro fue pH 11, con recuperaciones alrededor de 93% y consumos del orden de 3 kg del sistema por tonelada.</div>
+                  <div class="content-text">A pH 11 el cianuro residual quedó en 30 ppm en algunos ensayos, reduciéndose respecto a pruebas con cianuro puro.</div>
+                  <div class="content-text">Diferentes pH evaluados (10, 11, 12) mostraron variaciones en consumo; la elección de pH impacta directamente en la eficiencia y el residual del proceso.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=4262" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:11:02)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="9">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">9</span>
+              <span class="section-title">Sinergia glicina-cianuro: formulación, reciclaje y beneficios</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.1</span>
+                  <span class="subsection-title">Efecto sinérgico entre glicina y cianuro y proporciones investigadas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se observó sinergia en proporciones como 4 de glicina a 0.1 de cianuro, donde la recuperación de oro se incrementa significativamente.</div>
+                  <div class="content-text">Ensayos muestran recuperaciones elevadas (≈93.16% para ley de cabeza 1.9 g/t y arreglo 0.3) con consumo combinado de 5.86 kg/t en algunos casos.</div>
+                  <div class="content-text">Las proporciones óptimas son específicas para cada mineral y requieren pruebas de laboratorio y, posteriormente, ensayos de ciclo para validar consumo real de glicina fresca.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=3939" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:05:39)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.2</span>
+                  <span class="subsection-title">Reciclaje de glicina, procesos de recuperación y reducción de cianuro residual</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La glicina empleada puede recuperarse mediante procesos como intercambio hidronómico (hidroiónico) o técnicas de recirculación, permitiendo reutilizar glicina pura posiblemente cargada con cianuro.</div>
+                  <div class="content-text">El reciclado del sistema permite reducir la necesidad de añadir glicina fresca y disminuir el cianuro residual por debajo de límites ambientales (menos de 50 mg/L en algunos ensayos).</div>
+                  <div class="content-text">En operación continua se espera un equilibrio de consumo que podría situar la demanda de glicina fresca por debajo de 0,5 kg/t, estimación que requiere validación con pruebas de ciclo.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=4049" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:07:29)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.3</span>
+                  <span class="subsection-title">Ventajas operativas, ambientales y económicas del sistema glicina</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La tecnología con glicina promete reducción de hasta 90% en emisiones de cianuro y disminución de costos operativos hasta 50% según reportes comerciales y estudios de campo.</div>
+                  <div class="content-text">Potencial para reducir consumo de carbón activado en procesos CIP/SIL (reportes indican ≈35% menos), menor necesidad de plantas de desintoxicación y disminución de disolución de metales indeseados.</div>
+                  <div class="content-text">La glicina es biodegradable y reciclable, lo que aporta beneficios ambientales y facilita integración en circuitos existentes de lixiviación en pulpa y en pilas sin requerir rediseños aguas abajo.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=6890" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:54:50)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="10">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">10</span>
+              <span class="section-title">Diseño experimental, implementación práctica y ejemplos de aplicación</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.1</span>
+                  <span class="subsection-title">Metodología de investigación aplicada: variables, indicadores y pruebas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Variables independientes: dosis del sistema glicina-cianuro, pH y tiempo de lixiviación; indicadores definidos para consumo, pH óptimo y horas necesarias.</div>
+                  <div class="content-text">Variable dependiente principal: recuperación de oro y concentración de cianuro residual resultante de manipular las variables independientes.</div>
+                  <div class="content-text">Recomendación de elaborar una matriz de consistencia antes de iniciar la investigación para guiar las pruebas, el análisis y la interpretación de resultados.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=4789" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:19:49)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.2</span>
+                  <span class="subsection-title">Laboratorio, preparación de muestras y ensayos de botella realizados</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Pruebas de botella ejecutadas en laboratorio nacional con personal técnico (mencionado Omar Carcasa y Edwin) y énfasis en preparación de muestras representativas.</div>
+                  <div class="content-text">Importancia de la preparación y muestreo adecuados para asegurar que los ensayos reflejen el comportamiento real del mineral en escala de planta.</div>
+                  <div class="content-text">Las pruebas iniciales son abiertas y reportan consumos totales; se requiere ensayos de ciclo para estimar consumo operativo de glicina fresca y comportamiento en circuito.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=4647" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:17:27)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.3</span>
+                  <span class="subsection-title">Casos prácticos, anécdotas y adopción industrial</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Anécdota sobre adquisición personal de glicina y su posterior uso en investigaciones académicas y de campo por estudiantes y colegas.</div>
+                  <div class="content-text">Empresas y desarrollos comerciales (Draslovka, Glicat, Barrick Gold) están promoviendo formulaciones hechas a medida y acuerdos estratégicos para implementar glicina a escala industrial.</div>
+                  <div class="content-text">Experiencias muestran que cada yacimiento necesita una formulación (Glicat) específica y que la adopción puede reducir emisiones y costos, aunque requiere adaptar la proporción al mineral concreto.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=6146" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:42:26)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="11">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">11</span>
+              <span class="section-title">Conclusiones prácticas, limitaciones y recomendaciones futuras</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.1</span>
+                  <span class="subsection-title">Conclusiones obtenidas de los ensayos y su aplicabilidad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El uso del sistema glicina-cianuro mejoró recuperaciones, redujo consumo de cianuro y llevó el cianuro residual a niveles ambientales en los ensayos realizados.</div>
+                  <div class="content-text">Para minerales con alto contenido de oro libre la lixiviación tradicional con cianuro muestra alta recuperación pero con consumos y residuos elevados.</div>
+                  <div class="content-text">La implementación del sistema requiere estudio mineral específico, selección de proporciones y validación mediante pruebas de ciclo antes de su escalado.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=4580" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:16:20)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.2</span>
+                  <span class="subsection-title">Limitaciones, riesgos y dependencia mineralógica del sistema</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">La eficacia del sistema depende de la mineralogía: zonas con sulfuros (pirita, calcopirita) incrementan consumo y pueden volver refractario el oro, limitando la eficacia del tratamiento.</div>
+                  <div class="content-text">No existe una única formulación universal; parámetros óptimos varían por yacimiento y deben ser determinados mediante muestreo y pruebas específicas.</div>
+                  <div class="content-text">Posibles discusiones entre colegas sobre consumos elevados en pruebas abiertas deben resolverse con ensayos de ciclo y simulación operativa.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=5195" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:26:35)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.3</span>
+                  <span class="subsection-title">Recomendaciones para investigación y adopción en Perú y en la industria</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Seguir investigando la tecnología en Perú, promover convenios con empresas proveedoras y realizar pruebas de ciclo para cuantificar consumos operativos reales.</div>
+                  <div class="content-text">Elaborar matrices experimentales y diseños factoriales para explorar variables adicionales (temperatura, oxidantes, etc.) y definir formulaciones a medida.</div>
+                  <div class="content-text">Incentivar la transferencia tecnológica y el desarrollo de recursos humanos para integrar la glicina en operaciones mineras como alternativa sostenible al cianuro, evaluando costos y beneficios ambientales.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=7053" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:57:33)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="12">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">12</span>
+              <span class="section-title">Indicaciones para contactar y recibir mensajes</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.1</span>
+                  <span class="subsection-title">Métodos de envío de información y mensajes a los participantes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El responsable indica que va a adjuntar los mensajes a los participantes a través de WhatsApp para mantenerlos informados y facilitar la recepción de materiales.</div>
+                  <div class="content-text">Se menciona explícitamente el uso de WhatsApp como canal principal para remitir los mensajes relacionados con la clase y su seguimiento.</div>
+                  <div class="content-text">Se proyecta en pantalla información adicional sobre los números de atención para complementar el envío de mensajes por WhatsApp.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=7200" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:00)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.2</span>
+                  <span class="subsection-title">Canales alternativos de contacto y consulta</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se recuerda a los asistentes que, además de WhatsApp, pueden escribir o contactar a cualquiera de los números de atención habilitados para resolver dudas.</div>
+                  <div class="content-text">La presencia de múltiples números de atención sugiere disponibilidad amplia para consultas fuera del canal principal de mensajería.</div>
+                  <div class="content-text">Se enfatiza la facilidad para comunicarse y la invitación a usar los canales mostrados en pantalla en caso de necesitar soporte.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=7203" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:03)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.3</span>
+                  <span class="subsection-title">Proyección en pantalla de los datos de contacto</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El moderador comenta que está proyectando en pantalla los números de atención, facilitando a los asistentes visualizar cómo contactar al equipo.</div>
+                  <div class="content-text">Esta proyección sirve como recordatorio visual de los canales disponibles para preguntas o aclaraciones posteriores a la sesión.</div>
+                  <div class="content-text">La combinación de proyección y envío por WhatsApp refuerza la redundancia informativa para asegurar que todos reciban los datos de contacto.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=7207" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:07)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="13">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">13</span>
+              <span class="section-title">Registro de asistencia y solicitud específica a un asistente</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.1</span>
+                  <span class="subsection-title">Petición dirigida a un participante concreto para completar formulario de asistencia</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se solicita a Luisao, de manera directa, que no olvide completar el formulario de asistencia para poder registrar su participación en la clase del día.</div>
+                  <div class="content-text">La petición es clara y personalizada, apuntando a garantizar la correcta contabilización de la asistencia individual.</div>
+                  <div class="content-text">Se menciona la finalidad del formulario: registrar la participación de los asistentes en la clase realizada.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=7221" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:21)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.2</span>
+                  <span class="subsection-title">Importancia del registro formal de participación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se enfatiza que completar el formulario es necesario para que la participación quede debidamente registrada, implicando validación administrativa o académica.</div>
+                  <div class="content-text">El registro se presenta como un requisito de seguimiento que los participantes deben atender tras la sesión.</div>
+                  <div class="content-text">La instrucción sugiere un procedimiento institucional para documentar la asistencia y participación en actividades formativas.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=7223" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:23)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.3</span>
+                  <span class="subsection-title">Recordatorios y agradecimientos vinculados al registro</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Junto con la petición se incluye un agradecimiento breve por la colaboración, incidiendo en la cortesía institucional.</div>
+                  <div class="content-text">El tono de la comunicación combina instrucción con cortesía para fomentar el cumplimiento voluntario del requisito.</div>
+                  <div class="content-text">El recordatorio se enmarca dentro del cierre de la sesión, cuando se suelen hacer este tipo de indicaciones administrativas.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=7226" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:26)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="14">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">14</span>
+              <span class="section-title">Despedida y cierre de la sesión con recordatorios finales</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.1</span>
+                  <span class="subsection-title">Mensaje de despedida del moderador y cierre formal de la clase</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">El moderador comunica que se despide de los participantes, indicando el fin de la sesión formativa de manera formal y cortés.</div>
+                  <div class="content-text">La despedida se realiza luego de transmitir los puntos administrativos y de contacto, marcando el cierre de la actividad.</div>
+                  <div class="content-text">Se expresa un deseo de buenas noches a los asistentes como parte de la clausura cordial de la sesión.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=7233" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:33)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.2</span>
+                  <span class="subsection-title">Último recordatorio para consultas y dudas posteriores</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Antes de finalizar, se recuerda nuevamente que cualquier duda o consulta puede canalizarse a través de los números que están en pantalla.</div>
+                  <div class="content-text">Se refuerza la disponibilidad del equipo para atender preguntas posteriores, manteniendo abiertas las vías de comunicación.</div>
+                  <div class="content-text">El insistir en las consultas posteriores subraya la voluntad de soporte continuo tras la sesión en vivo.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=7234" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:34)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.3</span>
+                  <span class="subsection-title">Agradecimiento general y buenos deseos finales para los asistentes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text">Se expresa un agradecimiento general a todos los participantes por su atención y participación en la clase del día.</div>
+                  <div class="content-text">Se desea a la audiencia que tengan muy buena noche, cerrando la interacción con un tono amable y cercano.</div>
+                  <div class="content-text">El agradecimiento finaliza la comunicación institucional y marca el término del evento.</div>
+                  <a href="https://www.youtube.com/watch?v=zjP2qnsBLDo&start=7241" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:41)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://www.edumin.pe/" target="_blank">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="footer-logo" />
+      </a>
+      <p class="footer-text">
+        <b>Contenido desarrollado por EDUMIN - Centro de Capacitación Especializado en Minería, Industria y Negocios</b><br />
+        <i>Material exclusivo para estudiantes de EDUMIN</i><br />
+        <a href="https://www.edumin.pe/" target="_blank" style="color: var(--color-principal); text-decoration: none">https://www.edumin.pe/</a>
+      </p>
+    </div>
+
+    <script>
+      const TITULO_DIPLOMADO = "GEometalurgia".toUpperCase();
+      const TITULO_CLASE = "CLASE 12: TÉCNICAS ESPECIALIZADAS EN HIDROMETALURGIA - 2DA PARTE".toUpperCase();
+
+      const elementoDiplomado = document.getElementById("tituloDiplomado");
+      if (elementoDiplomado) {
+        elementoDiplomado.innerText = TITULO_DIPLOMADO;
+      }
+
+      document.title = TITULO_CLASE;
+      const tituloPrincipal = document.getElementById("tituloPrincipal");
+      if (tituloPrincipal) {
+        tituloPrincipal.innerText = TITULO_CLASE;
+      }
+
+      const tituloCompacto = document.getElementById("tituloCompacto");
+      if (tituloCompacto) {
+        tituloCompacto.innerText = TITULO_CLASE;
+      }
+
+      function toggleSection(element) {
+        const section = element.closest(".section");
+        const wasActive = section.classList.contains("active");
+
+        section.classList.toggle("active");
+
+        if (wasActive) {
+          const subsections = section.querySelectorAll(".subsection");
+          subsections.forEach((subsection) => {
+            subsection.classList.remove("active");
+          });
+        }
+      }
+
+      function toggleSubsection(element) {
+        const subsection = element.closest(".subsection");
+        subsection.classList.toggle("active");
+      }
+
+      function expandAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.add("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.add("active");
+        });
+      }
+
+      function collapseAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.remove("active");
+        });
+      }
+
+      function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, delay);
+        };
+      }
+
+      function clearSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        searchInput.value = "";
+        clearBtn.style.display = "none";
+        searchContent();
+        searchInput.focus();
+      }
+
+      const createDiacriticInsensitiveRegex = (term) => {
+        const charMap = {
+          a: "[aáAÁ]",
+          e: "[eéEÉ]",
+          i: "[iíIÍ]",
+          o: "[oóOÓ]",
+          u: "[uúUÚ]",
+        };
+
+        const regexString = term
+          .split("")
+          .map((char) => {
+            const lowerChar = char.toLowerCase();
+            return charMap[lowerChar] || char;
+          })
+          .join("");
+
+        return new RegExp(`(${regexString})`, "gi");
+      };
+
+      function searchContent() {
+        const inputElement = document.getElementById("searchInput");
+        const searchTerm = inputElement.value.trim();
+
+        const searchableElements = document.querySelectorAll(".content-text, .section-title, .subsection-title");
+        let found = false;
+        let firstMatchElement = null;
+
+        document.querySelectorAll(".section.active").forEach((el) => el.classList.remove("active"));
+        document.querySelectorAll(".subsection.active").forEach((el) => el.classList.remove("active"));
+        searchableElements.forEach((element) => {
+          element.innerHTML = element.getAttribute("data-original-text") || element.textContent;
+        });
+
+        if (searchTerm.length < 3) {
+          return;
+        }
+
+        const searchRegex = createDiacriticInsensitiveRegex(searchTerm);
+
+        searchableElements.forEach((element) => {
+          const originalText = element.getAttribute("data-original-text") || element.textContent;
+
+          if (searchRegex.test(originalText)) {
+            found = true;
+
+            element.innerHTML = originalText.replace(searchRegex, `<span class="highlight">$1</span>`);
+
+            const subsection = element.closest(".subsection");
+            if (subsection) {
+              subsection.classList.add("active");
+              subsection.closest(".section")?.classList.add("active");
+            } else if (element.classList.contains("section-title")) {
+              element.closest(".section")?.classList.add("active");
+            }
+
+            if (!firstMatchElement) {
+              firstMatchElement = element;
+            }
+          }
+        });
+
+        if (firstMatchElement) {
+          requestAnimationFrame(() => {
+            firstMatchElement.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          });
+        } else if (searchTerm.length >= 3) {
+          alert("No se encontraron resultados para: " + searchTerm);
+        }
+      }
+
+      const debouncedSearch = debounce(searchContent, 300);
+
+      document.getElementById("searchInput").addEventListener("input", function () {
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        clearBtn.style.display = this.value.length > 0 ? "block" : "none";
+        debouncedSearch();
+      });
+
+      document.getElementById("searchInput").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          clearTimeout(this._timeoutId);
+          searchContent();
+        }
+      });
+
+      // --- Lógica del Header Compacto ---
+      const header = document.querySelector(".header");
+      const headerSpacer = document.querySelector(".header-spacer");
+      let initialHeaderHeight = 0; // Altura del header original
+      let compactHeaderHeight = 0; // Altura del header en modo compacto
+      let scrollTriggerPoint = 0; // Punto de scroll para activar el cambio
+
+      function handleHeaderState() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollY > scrollTriggerPoint) {
+          if (!header.classList.contains("compact")) {
+            header.classList.add("compact");
+            headerSpacer.style.height = `${initialHeaderHeight}px`;
+          }
+        } else {
+          if (header.classList.contains("compact")) {
+            header.classList.remove("compact");
+            headerSpacer.style.height = "0px";
+          }
+        }
+      }
+
+      function initializeHeader() {
+        initialHeaderHeight = header.offsetHeight;
+        const headerClone = header.cloneNode(true);
+        headerClone.classList.add("compact");
+        headerClone.style.visibility = "hidden";
+        headerClone.style.position = "absolute";
+        document.body.appendChild(headerClone);
+        compactHeaderHeight = headerClone.offsetHeight;
+        document.body.removeChild(headerClone);
+
+        scrollTriggerPoint = initialHeaderHeight - compactHeaderHeight;
+      }
+
+      document.addEventListener("DOMContentLoaded", initializeHeader);
+      window.addEventListener("scroll", handleHeaderState);
+      window.addEventListener("resize", debounce(initializeHeader, 200));
+    </script>
+  </body>
+</html>
