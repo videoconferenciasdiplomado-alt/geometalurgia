@@ -1,0 +1,2297 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        /* Colores Principales del Diseño (Acentos y Degradados) */
+        /* ======================================================= */
+        --color-principal: #00beff; /* Cian Brillante para acentos, bordes y el inicio del degradado principal */
+        --color-secundario: #1e50cd; /* Azul Medio, parte final del degradado de acento */
+
+        /* Fondos Oscuros de la Interfaz */
+        /* ======================================================= */
+        --fondo-oscuro-claro: #002a52; /* Fondo de secciones y contenido */
+        --fondo-oscuro-fuerte: #001a33; /* Fondo del encabezado (header) y pie de página (footer) */
+        /* ======================================================= */
+        --fondo-oscuro-medio: #003366; /* Fondo de encabezados y cajas de contenido */
+        --fondo-borde-claro: #004080; /* Bordes ligeros y color de fondo al hacer hover en encabezados */
+        --fondo-sombra-azul-header: #0050a0; /* ¡NUEVO! Sombra en el header */
+
+        /* Colores de Texto y Fondo General del Body */
+        /* ======================================================= */
+        --texto-blanco-1: #ffffff; /* Blanco puro para títulos y texto en fondo muy oscuro */
+        --texto-claro-2: #e6e6e6; /* Texto principal y claro */
+        --texto-medio-3: #cccccc; /* Texto de contenido de item (un poco más tenue) */
+
+        /* ======================================================= */
+        --fondo-body-inicio: #99e5ff; /* Color de inicio del degradado de fondo del body */
+        --fondo-body-fin: #a5b9eb; /* Color de final del degradado de fondo del body */
+
+        /* Colores de Acento Específicos (YouTube, Búsqueda) */
+        /* ======================================================= */
+        --rojo-youtube-claro: #e60000;
+        --rojo-youtube-fuerte: #a30000;
+        --timestamp-youtube: #ffcccc;
+        --fondo-resaltado: #00c339; /* Verde para el fondo del texto buscado */
+
+        /* Bases RGB para Transparencias (RGBA) */
+        /* ======================================================= */
+        --sombra-rgb: 0, 0, 0; /* Negro puro: Usado para sombras generales y profundidad */
+        --acento-rgb: 0, 190, 255; /* Cian Brillante: Usado para brillos y sombras de acento */
+        --rojo-rgb: 230, 0, 0; /* Rojo Puro: Usado para sombras de enlaces de YouTube */
+        /* ======================================================= */
+        --gradient-principal: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--fondo-body-inicio) 0%, var(--fondo-body-fin) 100%);
+        line-height: 1.2;
+        scroll-behavior: smooth;
+      }
+
+      strong#tituloDiplomado {
+        font-weight: 900;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      @keyframes slideDownSutil {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header.animacion-inicial {
+        animation: slideDownSutil 0.4s ease-out 1;
+        animation-fill-mode: forwards;
+        will-change: transform, opacity;
+      }
+
+      .header {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        box-shadow: 0 5px 15px rgba(var(--sombra-rgb), 0.5);
+        text-align: center;
+        will-change: transform;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header-text-box {
+        display: grid;
+        gap: 10px;
+        word-break: break-word;
+        margin: 0 15px;
+      }
+
+      .header.compact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+      }
+
+      .header-spacer {
+        display: none;
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header.compact + .header-spacer {
+        display: block;
+      }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .header.compact .header-top {
+        display: none;
+      }
+
+      .logo {
+        width: 140px;
+        height: auto;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+      }
+
+      .header.compact .logo {
+        width: 90px;
+        margin: 0 10px;
+      }
+
+      .header .logo.compact-logo {
+        display: none;
+      }
+
+      .header.compact .logo.compact-logo {
+        display: block;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 900;
+      }
+
+      .header.compact h1 {
+        font-size: 1rem;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+      }
+
+      .header-content-box {
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 20px 20px;
+        box-shadow: 0 8px 20px rgba(var(--acento-rgb), 0.6);
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        opacity: 1;
+        transform: translateY(0);
+        will-change: transform;
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease;
+      }
+
+      .header.compact .header-content-box {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border: 0;
+        transform: translateY(-10px);
+      }
+
+      .header-content-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(var(--acento-rgb), 0.8);
+      }
+
+      .header-bottom-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header-second-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .header.compact .header-bottom-row {
+        flex-grow: 1;
+      }
+
+      .logo-and-title {
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease;
+      }
+
+      .header.compact .logo-and-title {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .header.compact .header-bottom-row .logo-and-title {
+        will-change: transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        width: 100%;
+        background: var(--gradient-principal);
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        gap: 10px;
+      }
+
+      .header.compact .header-bottom-row .logo-and-title:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .header-compact-title {
+        display: none;
+        color: var(--texto-blanco-1);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 10px;
+        white-space: normal;
+      }
+
+      .header.compact .header-compact-title {
+        display: block;
+      }
+
+      .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 450px;
+        background-color: var(--fondo-oscuro-medio);
+        border: 2px solid var(--fondo-borde-claro);
+        border-radius: 30px;
+        box-shadow: 0 4px 10px rgba(var(--sombra-rgb), 0.25);
+        will-change: border-color, background-color;
+        transition:
+          border-color 0.3s ease,
+          box-shadow 0.3s ease,
+          background-color 0.3s ease;
+      }
+
+      .search-bar:focus-within {
+        border-color: var(--fondo-sombra-azul-header);
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .clear-search {
+        cursor: pointer;
+        color: var(--texto-claro-2);
+        padding: 5px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        display: none;
+        transition: color 0.2s ease;
+        transform: scale(1.5);
+      }
+
+      .clear-search:hover {
+        color: var(--texto-blanco-1);
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 10px 18px;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--texto-claro-2);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        min-width: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .header.compact .search-bar input {
+        padding: 10px 20px;
+      }
+
+      .search-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-button {
+        background: var(--gradient-principal);
+        border: none;
+        color: var(--texto-blanco-1);
+        padding: 8px 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        will-change: transform;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(var(--acento-rgb), 0.4);
+        max-width: 150px;
+        white-space: normal;
+      }
+
+      .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--acento-rgb), 0.5);
+      }
+
+      .search-bar .action-button {
+        margin: 5px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      @keyframes fadeInUpContent {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .mind-map {
+        transition: margin-top 0.4s ease;
+        margin: 50px 0;
+      }
+
+      .mind-map.animacion-contenido {
+        animation: fadeInUpContent 0.4s ease-out 1 forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        will-change: opacity, transform;
+      }
+
+      .section {
+        margin-bottom: 20px;
+        background-color: var(--fondo-oscuro-claro);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-oscuro-medio);
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(var(--sombra-rgb), 0.25);
+        transition: border-color 0.3s ease;
+      }
+
+      .section-header {
+        padding: 20px;
+        background-color: var(--fondo-oscuro-medio);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition:
+          background-color 0.3s ease,
+          color 0.3s ease;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .section-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 5px 12px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 15px;
+      }
+
+      .toggle-icon {
+        font-size: 1.2rem;
+        color: var(--texto-claro-2);
+        will-change: transform;
+        transition: transform 0.3s ease;
+      }
+
+      .section.active > .section-header .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .section-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition:
+          max-height 0.5s ease-out,
+          opacity 0.3s ease-in;
+      }
+
+      .section.active .section-content {
+        max-height: fit-content;
+        padding-bottom: 10px;
+        opacity: 1;
+      }
+
+      .subsection {
+        margin: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border: 2px solid var(--fondo-borde-claro);
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+
+      .subsection:hover {
+        border-color: var(--fondo-sombra-azul-header);
+      }
+
+      .subsection:hover .subsection-header {
+        background-color: var(--fondo-sombra-azul-header);
+      }
+
+      .section:hover {
+        border-color: var(--fondo-borde-claro);
+      }
+
+      .section:hover .section-header {
+        background-color: var(--fondo-borde-claro);
+      }
+
+      .subsection-header {
+        padding: 15px;
+        background-color: var(--fondo-borde-claro);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        will-change: background-color;
+        transition:
+          background-color 0.3s ease,
+          color 0.3s ease;
+      }
+
+      .subsection-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--texto-claro-2);
+        margin-right: 10px;
+      }
+
+      .subsection-number {
+        background: var(--gradient-principal);
+        color: var(--texto-blanco-1);
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-right: 12px;
+      }
+
+      .subsection-content {
+        max-height: 0;
+        overflow: hidden;
+        background-color: var(--fondo-oscuro-claro);
+        opacity: 0;
+        transition:
+          max-height 0.5s ease-out,
+          opacity 0.3s ease-in;
+      }
+
+      .subsection.active .subsection-content {
+        max-height: fit-content;
+        padding: 15px;
+        opacity: 1;
+      }
+
+      .subsection.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+
+      .content-item {
+        margin-bottom: 10px;
+        padding: 15px;
+        background-color: var(--fondo-oscuro-medio);
+        border-radius: 12px;
+        border-left: 4px solid var(--color-principal);
+        box-shadow: 0 1px 5px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .content-text {
+        color: var(--texto-medio-3);
+        margin-bottom: 5px;
+        line-height: 1.4;
+        font-size: 1rem;
+        font-weight: 500;
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .content-text::before {
+        content: "•";
+        color: var(--color-principal);
+        font-weight: 700;
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+      }
+
+      .youtube-link {
+        display: inline-block;
+        padding: 10px 18px;
+        background: linear-gradient(135deg, var(--rojo-youtube-claro) 0%, var(--rojo-youtube-fuerte) 100%);
+        color: var(--texto-blanco-1);
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1rem;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(var(--rojo-rgb), 0.4);
+        will-change: transform;
+      }
+
+      .youtube-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 3px 7.5px rgba(var(--rojo-rgb), 0.5);
+        will-change: transform;
+      }
+
+      .timestamp {
+        color: var(--timestamp-youtube);
+        font-size: 0.85rem;
+        margin-left: 10px;
+        font-weight: 400;
+      }
+
+      .highlight {
+        background-color: var(--fondo-resaltado);
+        color: var(--texto-blanco-1);
+        font-weight: 700;
+        padding: 4px;
+        border-radius: 6px;
+      }
+
+      .footer {
+        padding: 30px;
+        background: linear-gradient(135deg, var(--fondo-oscuro-fuerte) 0%, var(--fondo-oscuro-claro) 100%);
+        border-top: 1px solid var(--fondo-oscuro-medio);
+        text-align: center;
+        box-shadow: 0 -2px 10px rgba(var(--sombra-rgb), 0.25);
+      }
+
+      .footer-text {
+        color: var(--texto-claro-2);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .footer-logo {
+        width: 140px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .header-top {
+          flex-direction: column;
+        }
+
+        .logo {
+          margin: 0;
+        }
+
+        .header-text-box {
+          margin: 0;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .header.compact .header-bottom-row .logo-and-title {
+          gap: 5px;
+        }
+        .logo,
+        .footer-logo {
+          width: 105px;
+        }
+
+        .header.compact .header-bottom-row {
+          flex-direction: column;
+        }
+
+        .header.compact .header-compact-title {
+          margin: 0 5px;
+          font-size: 0.8rem;
+        }
+
+        .header.compact .logo.compact-logo {
+          width: 65px;
+          margin: 5px;
+        }
+
+        .action-button,
+        .search-bar input,
+        .clear-search {
+          font-size: 0.9rem;
+        }
+
+        .section-header {
+          padding: 15px;
+        }
+
+        .header.compact .controls {
+          flex-direction: row;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .subsection-title {
+          font-size: 1rem;
+        }
+        .section-number,
+        .subsection-number {
+          font-size: 13px;
+        }
+
+        .content-text {
+          font-size: 0.9rem;
+        }
+
+        .youtube-link {
+          font-size: 0.8rem;
+        }
+
+        .timestamp {
+          font-size: 0.75rem;
+        }
+
+        .header.compact .action-button {
+          padding: 6px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header animacion-inicial">
+      <div class="header-content-box">
+        <div class="header-top">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo" />
+          </a>
+          <div class="header-text-box">
+            <h1>
+              DIPLOMADO DE ALTA ESPECIALIZACIÓN<br />
+              <strong id="tituloDiplomado"></strong>
+            </h1>
+            <p id="tituloPrincipal"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-bottom-row">
+        <div class="logo-and-title">
+          <a href="https://www.edumin.pe/" target="_blank">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="logo compact-logo" />
+          </a>
+          <span class="header-compact-title" id="tituloCompacto"></span>
+        </div>
+        <div class="header-second-row">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar en el resumen interactivo…" autocomplete="off" />
+            <div class="search-actions">
+              <span class="clear-search" onclick="clearSearch()">&times;</span>
+              <button class="action-button" onclick="searchContent()">Buscar</button>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="action-button" onclick="expandAll()">Mostrar todo</button>
+            <button class="action-button" onclick="collapseAll()">Colapsar todo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-spacer"></div>
+
+    <div class="container">
+      <div class="mind-map animacion-contenido" id="mindMap">
+        <div class="section" data-section="1">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">1</span>
+              <span class="section-title">Bienvenida, propósito del programa y proceso de onboarding</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.1</span>
+                  <span class="subsection-title">Presentación inicial y objetivo de la inducción</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Se da la bienvenida a los participantes y se explica que el objetivo es brindar herramientas aplicables a los desafíos actuales del sector y fomentar la mejora continua.">Se da la bienvenida a los participantes y se explica que el objetivo es brindar herramientas aplicables a los desafíos actuales del sector y fomentar la mejora continua.</div>
+                  <div class="content-text" data-original-text="Se invita a la participación activa, preguntas e intervención en cada sesión para enriquecer el proceso formativo y asegurar el éxito académico.">Se invita a la participación activa, preguntas e intervención en cada sesión para enriquecer el proceso formativo y asegurar el éxito académico.</div>
+                  <div class="content-text" data-original-text="Se anuncia que la sesión de inducción será breve, se compartirá la presentación y se solicita atención para lograr alineamiento entre participantes y equipo académico.">Se anuncia que la sesión de inducción será breve, se compartirá la presentación y se solicita atención para lograr alineamiento entre participantes y equipo académico.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=2" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:00:02)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.2</span>
+                  <span class="subsection-title">Definición y alcance del onboarding</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text='Se explica el concepto de "boarding" (onboarding) aplicado a educación para integrar y acompañar al estudiante más allá del pago del diplomado.'>Se explica el concepto de "boarding" (onboarding) aplicado a educación para integrar y acompañar al estudiante más allá del pago del diplomado.</div>
+                  <div class="content-text" data-original-text="Se detalla que el equipo académico, monitores y docentes estarán detrás del estudiante enviando comunicaciones y seguimiento continuo.">Se detalla que el equipo académico, monitores y docentes estarán detrás del estudiante enviando comunicaciones y seguimiento continuo.</div>
+                  <div class="content-text" data-original-text="Se menciona que el onboarding incluye envío de comunicaciones, acompañamiento en clases y apoyo en la adaptación al entorno virtual y sistema de enseñanza.">Se menciona que el onboarding incluye envío de comunicaciones, acompañamiento en clases y apoyo en la adaptación al entorno virtual y sistema de enseñanza.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=90" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:01:30)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">1.3</span>
+                  <span class="subsection-title">Historia institucional, misión y expansión de la oferta formativa</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Breve reseña del origen del instituto técnico empresarial Avanza con más de once años de trayectoria y enfoque en educación técnica vinculada al mercado regional y minería.">Breve reseña del origen del instituto técnico empresarial Avanza con más de once años de trayectoria y enfoque en educación técnica vinculada al mercado regional y minería.</div>
+                  <div class="content-text" data-original-text="Creación en 2023 de Edumín como centro especializado en capacitación del sector minero, ampliando oferta a formación continua, diplomados y presencia en negocios e industria.">Creación en 2023 de Edumín como centro especializado en capacitación del sector minero, ampliando oferta a formación continua, diplomados y presencia en negocios e industria.</div>
+                  <div class="content-text" data-original-text="Datos de alcance: más de mil profesionales formándose y diversas promociones egresadas de programas presenciales y virtuales.">Datos de alcance: más de mil profesionales formándose y diversas promociones egresadas de programas presenciales y virtuales.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=211" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:03:31)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="2">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">2</span>
+              <span class="section-title">Equipo académico, medios de contacto y normativas académicas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.1</span>
+                  <span class="subsection-title">Presentación del equipo académico y roles principales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Alejandra Alba como jefa académica y contacto permanente para apoyo académico y seguimiento del proceso formativo.">Alejandra Alba como jefa académica y contacto permanente para apoyo académico y seguimiento del proceso formativo.</div>
+                  <div class="content-text" data-original-text="Roger Sanalia como asistente de coordinación y responsable de TI, Diego Huamaní en bienestar académico y gestión de carreras técnicas.">Roger Sanalia como asistente de coordinación y responsable de TI, Diego Huamaní en bienestar académico y gestión de carreras técnicas.</div>
+                  <div class="content-text" data-original-text="Asesores académicos Lucero Castillo y Denver Araña Muro encargados del seguimiento, comunicación y resolución de consultas relacionadas con desarrollo y TI.">Asesores académicos Lucero Castillo y Denver Araña Muro encargados del seguimiento, comunicación y resolución de consultas relacionadas con desarrollo y TI.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=308" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:05:08)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.2</span>
+                  <span class="subsection-title">Medios de atención, horarios y canales oficiales de comunicación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Central telefónica institucional con número fijo indicado para guardar en contactos y reconocer llamadas entrantes del equipo.">Central telefónica institucional con número fijo indicado para guardar en contactos y reconocer llamadas entrantes del equipo.</div>
+                  <div class="content-text" data-original-text="Horario de atención del área académica y administrativa: lunes a viernes de 08:30 a 18:30 horas, con asesores y monitores asignados por jornada.">Horario de atención del área académica y administrativa: lunes a viernes de 08:30 a 18:30 horas, con asesores y monitores asignados por jornada.</div>
+                  <div class="content-text" data-original-text="Se recalca que el correo electrónico es el medio oficial de comunicación, mientras que WhatsApp se usa para comunicaciones rápidas y enlaces de sesiones.">Se recalca que el correo electrónico es el medio oficial de comunicación, mientras que WhatsApp se usa para comunicaciones rápidas y enlaces de sesiones.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=709" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:11:49)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">2.3</span>
+                  <span class="subsection-title">Reglamentos, cronogramas, pagos y normas académicas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Importancia de revisar correo electrónico, cronograma de clases y posibles excepciones por feriados u otros cambios de calendario.">Importancia de revisar correo electrónico, cronograma de clases y posibles excepciones por feriados u otros cambios de calendario.</div>
+                  <div class="content-text" data-original-text="Obligación de leer y cumplir el reglamento de estudiantes para evitar malentendidos futuros.">Obligación de leer y cumplir el reglamento de estudiantes para evitar malentendidos futuros.</div>
+                  <div class="content-text" data-original-text="Revisión del cronograma de pagos y recomendaciones para realizar pagos en las fechas señaladas, además de archivar y mantener activos los grupos de WhatsApp.">Revisión del cronograma de pagos y recomendaciones para realizar pagos en las fechas señaladas, además de archivar y mantener activos los grupos de WhatsApp.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=513" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:08:33)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="3">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">3</span>
+              <span class="section-title">Plataforma Q10, acceso, funcionalidades y certificaciones</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.1</span>
+                  <span class="subsection-title">Introducción a la plataforma Q10 y acceso desde la web y app</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Q10 es el sistema académico y CRM integral utilizado para colgar materiales, rendir evaluaciones y gestionar recursos formativos.">Q10 es el sistema académico y CRM integral utilizado para colgar materiales, rendir evaluaciones y gestionar recursos formativos.</div>
+                  <div class="content-text" data-original-text="Se puede descargar la aplicación en Play Store bajo el nombre de Edumín para acceso móvil; la plataforma central es la web y el portal de cursos virtuales.">Se puede descargar la aplicación en Play Store bajo el nombre de Edumín para acceso móvil; la plataforma central es la web y el portal de cursos virtuales.</div>
+                  <div class="content-text" data-original-text='Instrucción sobre cómo acceder: ingresar usuario y contraseña desde la zona de "acceso a estudiantes" en la página web.'>Instrucción sobre cómo acceder: ingresar usuario y contraseña desde la zona de "acceso a estudiantes" en la página web.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=418" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:06:58)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.2</span>
+                  <span class="subsection-title">Materiales, cursos, foros y certificados con validación QR</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Dentro de Q10 aparecen recursos virtuales, cursos matriculados y secciones de académico > educación virtual > cursos virtuales para ver materiales, grabaciones y foros de consulta.">Dentro de Q10 aparecen recursos virtuales, cursos matriculados y secciones de académico > educación virtual > cursos virtuales para ver materiales, grabaciones y foros de consulta.</div>
+                  <div class="content-text" data-original-text="Ejemplo de taller habilitado y la ruta para descargar certificados con código QR desde el apartado del curso correspondiente.">Ejemplo de taller habilitado y la ruta para descargar certificados con código QR desde el apartado del curso correspondiente.</div>
+                  <div class="content-text" data-original-text='Los certificados cuentan con validación mediante código QR en la web institucional a través del apartado "valida tu certificado" y pueden compartirse en LinkedIn.'>Los certificados cuentan con validación mediante código QR en la web institucional a través del apartado "valida tu certificado" y pueden compartirse en LinkedIn.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=1222" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:20:22)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">3.3</span>
+                  <span class="subsection-title">Funcionalidades de IA: resúmenes interactivos, podcast y mapa mental</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Implementación de herramientas de inteligencia artificial que generan resumen interactivo, tarjetas gráficas, mapa mental y podcast después de cada clase.">Implementación de herramientas de inteligencia artificial que generan resumen interactivo, tarjetas gráficas, mapa mental y podcast después de cada clase.</div>
+                  <div class="content-text" data-original-text="El resumen interactivo contiene puntos clave que enlazan al minuto exacto del video donde se abordó cada tema, facilitando la revisión y estudio para evaluaciones.">El resumen interactivo contiene puntos clave que enlazan al minuto exacto del video donde se abordó cada tema, facilitando la revisión y estudio para evaluaciones.</div>
+                  <div class="content-text" data-original-text="Los podcasts y audios resumen estarán disponibles en Q10 y se enviarán por WhatsApp para escuchar en desplazamientos, además de compartir enlaces de asistencia y asistentes virtuales en la web.">Los podcasts y audios resumen estarán disponibles en Q10 y se enviarán por WhatsApp para escuchar en desplazamientos, además de compartir enlaces de asistencia y asistentes virtuales en la web.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=1099" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:18:19)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="4">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">4</span>
+              <span class="section-title">Evaluaciones, encuestas, ampliaciones de tiempo y subsanaciones</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.1</span>
+                  <span class="subsection-title">Proceso de evaluación y emisión de certificaciones</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Al final de cada módulo se realiza una evaluación; la certificación se habilita un día después de aprobar la evaluación siempre que se cumplan requisitos.">Al final de cada módulo se realiza una evaluación; la certificación se habilita un día después de aprobar la evaluación siempre que se cumplan requisitos.</div>
+                  <div class="content-text" data-original-text="Es obligatorio completar la encuesta de satisfacción previa a cada evaluación para medir aprovechamiento y percepción de las sesiones docentes.">Es obligatorio completar la encuesta de satisfacción previa a cada evaluación para medir aprovechamiento y percepción de las sesiones docentes.</div>
+                  <div class="content-text" data-original-text="Nota mínima de aprobación indicada como doce para las evaluaciones, y los resultados y certificados se reflejan en la plataforma.">Nota mínima de aprobación indicada como doce para las evaluaciones, y los resultados y certificados se reflejan en la plataforma.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=614" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:10:14)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.2</span>
+                  <span class="subsection-title">Políticas de ampliación, subsanación y costos asociados</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Se permite una ampliación de tiempo para rendir evaluación una sola vez sin costo ante situaciones justificadas como cambios de turno o dificultades personales.">Se permite una ampliación de tiempo para rendir evaluación una sola vez sin costo ante situaciones justificadas como cambios de turno o dificultades personales.</div>
+                  <div class="content-text" data-original-text="Si se supera la fecha y se requiere subsanación, habrá un pago de 25 soles por evaluación para que los docentes generen nuevas evaluaciones para los estudiantes.">Si se supera la fecha y se requiere subsanación, habrá un pago de 25 soles por evaluación para que los docentes generen nuevas evaluaciones para los estudiantes.</div>
+                  <div class="content-text" data-original-text="Se debe solicitar ampliaciones o comunicar incidencias al equipo académico mediante los canales indicados para evitar penalizaciones.">Se debe solicitar ampliaciones o comunicar incidencias al equipo académico mediante los canales indicados para evitar penalizaciones.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=665" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:11:05)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">4.3</span>
+                  <span class="subsection-title">Gestión de estado de cuenta y visualización de resultados en Q10</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="En Q10 existen apartados para estado de cuenta, resultados académicos y evaluaciones donde el estudiante puede visualizar pagos, notas y constancia de no deuda una vez cancelado todo.">En Q10 existen apartados para estado de cuenta, resultados académicos y evaluaciones donde el estudiante puede visualizar pagos, notas y constancia de no deuda una vez cancelado todo.</div>
+                  <div class="content-text" data-original-text="El área administrativa es responsable de actualizar los pagos en el sistema; la ausencia de deuda se muestra con un mensaje de constancia de no deuda.">El área administrativa es responsable de actualizar los pagos en el sistema; la ausencia de deuda se muestra con un mensaje de constancia de no deuda.</div>
+                  <div class="content-text" data-original-text="Los resultados de evaluación y certificados descargables se encuentran en el portal de cursos virtuales.">Los resultados de evaluación y certificados descargables se encuentran en el portal de cursos virtuales.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=1704" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:28:24)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="5">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">5</span>
+              <span class="section-title">Taller de seguridad basada en el comportamiento: liderazgo, comunicación y hábitos seguros</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.1</span>
+                  <span class="subsection-title">Tipos de liderazgo en seguridad y su implicación en la cultura</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Distinción entre liderazgo basado en el hacer (cumplimiento de normas, procedimientos y sanciones) y liderazgo basado en el ser (convicción, valores y hábitos).">Distinción entre liderazgo basado en el hacer (cumplimiento de normas, procedimientos y sanciones) y liderazgo basado en el ser (convicción, valores y hábitos).</div>
+                  <div class="content-text" data-original-text="El liderazgo basado en el hacer genera cumplimiento reactivo y necesidad de vigilancia, mientras que el liderazgo del ser fomenta hábitos preventivos y aprendizaje continuo.">El liderazgo basado en el hacer genera cumplimiento reactivo y necesidad de vigilancia, mientras que el liderazgo del ser fomenta hábitos preventivos y aprendizaje continuo.</div>
+                  <div class="content-text" data-original-text="La motivación en el hacer suele ser por miedo o sanción; en el ser, por convicción personal y preocupación por la integridad y familia.">La motivación en el hacer suele ser por miedo o sanción; en el ser, por convicción personal y preocupación por la integridad y familia.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=2025" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:33:45)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.2</span>
+                  <span class="subsection-title">Autoevaluación, áreas palanca y compromisos personales para mejorar la cultura de seguridad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Se propone una autoevaluación con puntuación del 0 al 10 en diversas áreas para identificar puntos más bajos y áreas palanca que al mejorar generan impacto en otras.">Se propone una autoevaluación con puntuación del 0 al 10 en diversas áreas para identificar puntos más bajos y áreas palanca que al mejorar generan impacto en otras.</div>
+                  <div class="content-text" data-original-text="Elegir dos áreas: una con menor puntuación y otra que se considere palanca, y redactar compromisos concretos, cerrados y con plazo para mejorar cada área.">Elegir dos áreas: una con menor puntuación y otra que se considere palanca, y redactar compromisos concretos, cerrados y con plazo para mejorar cada área.</div>
+                  <div class="content-text" data-original-text="Ejemplos de compromisos específicos: buscar un curso de gamificación en 15 días o dedicar 10 minutos diarios a meditación para manejar el estrés.">Ejemplos de compromisos específicos: buscar un curso de gamificación en 15 días o dedicar 10 minutos diarios a meditación para manejar el estrés.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=2361" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:39:21)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">5.3</span>
+                  <span class="subsection-title">Comunicación efectiva, distinciones entre hechos y juicios, y preguntas que fomentan responsabilidad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Importancia de distinguir hechos de juicios al comunicarse para evitar interpretaciones y confrontaciones que bloqueen aprendizaje y compromiso.">Importancia de distinguir hechos de juicios al comunicarse para evitar interpretaciones y confrontaciones que bloqueen aprendizaje y compromiso.</div>
+                  <div class="content-text" data-original-text="La corporalidad, tono y contexto influyen en la recepción del mensaje; preguntando en vez de afirmar se evoca conciencia y recuerdo en el trabajador.">La corporalidad, tono y contexto influyen en la recepción del mensaje; preguntando en vez de afirmar se evoca conciencia y recuerdo en el trabajador.</div>
+                  <div class="content-text" data-original-text="Uso de preguntas exploratorias y de compromiso para que el propio trabajador identifique riesgos, proponga soluciones y se responsabilice de la seguridad del espacio.">Uso de preguntas exploratorias y de compromiso para que el propio trabajador identifique riesgos, proponga soluciones y se responsabilice de la seguridad del espacio.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=2614" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(00:43:34)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="6">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">6</span>
+              <span class="section-title">Generar compromiso mediante preguntas abiertas y observación</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.1</span>
+                  <span class="subsection-title">Cómo iniciar una intervención observacional sin juzgar</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Expresar la observación concreta sin calificativos, por ejemplo: veo cables cruzando en esta zona, para evitar acusaciones y abrir el diálogo.">Expresar la observación concreta sin calificativos, por ejemplo: veo cables cruzando en esta zona, para evitar acusaciones y abrir el diálogo.</div>
+                  <div class="content-text" data-original-text="Preguntar qué está haciendo hoy para garantizar su seguridad y la de sus compañeros, invitando a la persona a reflexionar sobre su conducta actual.">Preguntar qué está haciendo hoy para garantizar su seguridad y la de sus compañeros, invitando a la persona a reflexionar sobre su conducta actual.</div>
+                  <div class="content-text" data-original-text="Evitar frases que declaren juicio como 'está desordenado', usar en su lugar descripciones objetivas para promover la receptividad.">Evitar frases que declaren juicio como 'está desordenado', usar en su lugar descripciones objetivas para promover la receptividad.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=3631" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:00:31)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.2</span>
+                  <span class="subsection-title">Preguntas de exploración para provocar soluciones propias del trabajador</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Formular preguntas de indagación del tipo '¿qué podríamos hacer para mejorar estas condiciones?' para que el trabajador proponga soluciones prácticas y se responsabilice.">Formular preguntas de indagación del tipo '¿qué podríamos hacer para mejorar estas condiciones?' para que el trabajador proponga soluciones prácticas y se responsabilice.</div>
+                  <div class="content-text" data-original-text="Usar preguntas que incentiven alternativas viables (aislar, señalizar) en lugar de imponer la solución desde el supervisor.">Usar preguntas que incentiven alternativas viables (aislar, señalizar) en lugar de imponer la solución desde el supervisor.</div>
+                  <div class="content-text" data-original-text="Registrar las propuestas para permitir su implementación y seguimiento, fomentando el compromiso y la participación.">Registrar las propuestas para permitir su implementación y seguimiento, fomentando el compromiso y la participación.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=3671" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:01:11)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">6.3</span>
+                  <span class="subsection-title">Uso de preguntas de compromiso para consolidar cambios de comportamiento</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Después de la exploración, preguntar '¿qué harías la próxima vez para mantener tu espacio seguro?' para generar un compromiso concreto y futuro.">Después de la exploración, preguntar '¿qué harías la próxima vez para mantener tu espacio seguro?' para generar un compromiso concreto y futuro.</div>
+                  <div class="content-text" data-original-text="Pedir detalles sobre cómo y cuándo se implementará la solución, promoviendo la responsabilidad personal y la continuidad del cambio.">Pedir detalles sobre cómo y cuándo se implementará la solución, promoviendo la responsabilidad personal y la continuidad del cambio.</div>
+                  <div class="content-text" data-original-text="Evitar sanciones inmediatas como primera respuesta; priorizar la propuesta de acciones por parte del trabajador para sostener el cambio.">Evitar sanciones inmediatas como primera respuesta; priorizar la propuesta de acciones por parte del trabajador para sostener el cambio.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=3711" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:01:51)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="7">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">7</span>
+              <span class="section-title">Intervenciones tras incidentes o actos inseguros para fomentar la conciencia</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.1</span>
+                  <span class="subsection-title">Abordaje del incidente con preguntas que evocan recuerdos y prioridades</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text='Al observar un tropiezo, preguntar "¿cuándo fue la última vez que tomaste una decisión basada en la seguridad en lugar de la rapidez?" para activar la memoria y reflexión consciente.'>Al observar un tropiezo, preguntar "¿cuándo fue la última vez que tomaste una decisión basada en la seguridad en lugar de la rapidez?" para activar la memoria y reflexión consciente.</div>
+                  <div class="content-text" data-original-text="Evitar preguntas que desvíen el foco hacia justificaciones; mantener la pregunta centrada en priorizar la seguridad para generar autoevaluación.">Evitar preguntas que desvíen el foco hacia justificaciones; mantener la pregunta centrada en priorizar la seguridad para generar autoevaluación.</div>
+                  <div class="content-text" data-original-text="Buscar respuestas que permitan identificar la tendencia personal a priorizar rapidez sobre seguridad y abrir la discusión sobre consecuencias.">Buscar respuestas que permitan identificar la tendencia personal a priorizar rapidez sobre seguridad y abrir la discusión sobre consecuencias.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=3779" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:02:59)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.2</span>
+                  <span class="subsection-title">Estrategias para evocar consecuencias y empatía sin acusar</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Utilizar metáforas o frases conocidas como 'es mejor perder un minuto en la vida que la vida en un minuto' pero convertirlas en preguntas abiertas para provocar respuesta reflexiva.">Utilizar metáforas o frases conocidas como 'es mejor perder un minuto en la vida que la vida en un minuto' pero convertirlas en preguntas abiertas para provocar respuesta reflexiva.</div>
+                  <div class="content-text" data-original-text="Formular preguntas como '¿qué podría pasar si hoy por acelerar te chocas o te cruzas con alguien?' para llevar al trabajador a imaginar consecuencias reales.">Formular preguntas como '¿qué podría pasar si hoy por acelerar te chocas o te cruzas con alguien?' para llevar al trabajador a imaginar consecuencias reales.</div>
+                  <div class="content-text" data-original-text="Emplear relatos o casos (inventados o reales) para ilustrar consecuencias familiares y emocionales, ayudando a generar empatía y comprensión del riesgo.">Emplear relatos o casos (inventados o reales) para ilustrar consecuencias familiares y emocionales, ayudando a generar empatía y comprensión del riesgo.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=3902" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:05:02)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">7.3</span>
+                  <span class="subsection-title">Preguntas para evaluar responsabilidad y apertura a correcciones</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text='Preguntar "¿qué tan abierto te sientes a recibir sugerencias o correcciones en temas de seguridad?" para medir disposición al cambio y colaboración.'>Preguntar "¿qué tan abierto te sientes a recibir sugerencias o correcciones en temas de seguridad?" para medir disposición al cambio y colaboración.</div>
+                  <div class="content-text" data-original-text="Indagar si el trabajador se siente responsable de su propia seguridad o si la delega en otros, con preguntas que fomenten la autonomía y compromiso.">Indagar si el trabajador se siente responsable de su propia seguridad o si la delega en otros, con preguntas que fomenten la autonomía y compromiso.</div>
+                  <div class="content-text" data-original-text="Utilizar respuestas para planificar intervenciones futuras más efectivas y personalizadas, evitando imponer medidas sin consenso.">Utilizar respuestas para planificar intervenciones futuras más efectivas y personalizadas, evitando imponer medidas sin consenso.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=4302" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:11:42)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="8">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">8</span>
+              <span class="section-title">Formular preguntas que promuevan la inspección y verificación de equipos</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.1</span>
+                  <span class="subsection-title">Evitar preguntas cerradas que permiten respuestas evasivas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text='No preguntar "¿verificaste que el equipo estaba en condiciones?" ya que el trabajador puede responder sí/no y cerrar la reflexión.'>No preguntar "¿verificaste que el equipo estaba en condiciones?" ya que el trabajador puede responder sí/no y cerrar la reflexión.</div>
+                  <div class="content-text" data-original-text='Preferir preguntas como "¿cómo verificaste que tu arnés y línea de vida están en condiciones seguras para trabajar?" para que el trabajador describa el proceso de verificación.'>Preferir preguntas como "¿cómo verificaste que tu arnés y línea de vida están en condiciones seguras para trabajar?" para que el trabajador describa el proceso de verificación.</div>
+                  <div class="content-text" data-original-text="Sostener la conversación hasta obtener reconocimiento de omisiones, facilitando soluciones y aprendizajes prácticos.">Sostener la conversación hasta obtener reconocimiento de omisiones, facilitando soluciones y aprendizajes prácticos.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=4391" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:13:11)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.2</span>
+                  <span class="subsection-title">Llevar la responsabilidad al trabajador mediante propuestas de acción</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text='Preguntar "¿qué podemos hacer para continuar trabajando?" tras reconocer una verificación insuficiente, permitiendo que el trabajador proponga correcciones.'>Preguntar "¿qué podemos hacer para continuar trabajando?" tras reconocer una verificación insuficiente, permitiendo que el trabajador proponga correcciones.</div>
+                  <div class="content-text" data-original-text='Buscar compromisos concretos del tipo "lo voy a corregir ahora" para asegurar una respuesta inmediata y consciente.'>Buscar compromisos concretos del tipo "lo voy a corregir ahora" para asegurar una respuesta inmediata y consciente.</div>
+                  <div class="content-text" data-original-text="Evitar catalogar la acción como incorrecta; centrar la conversación en la solución propuesta por el propio trabajador para fomentar aprendizaje.">Evitar catalogar la acción como incorrecta; centrar la conversación en la solución propuesta por el propio trabajador para fomentar aprendizaje.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=4418" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:13:38)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">8.3</span>
+                  <span class="subsection-title">Uso de preguntas para reconectar la presencia y concentración en la tarea</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text='Formular preguntas que obliguen a salir del modo automático: "¿qué peligros identificas en esta zona y cómo los vas a gestionar?"'>Formular preguntas que obliguen a salir del modo automático: "¿qué peligros identificas en esta zona y cómo los vas a gestionar?"</div>
+                  <div class="content-text" data-original-text="Evitar rellenar formularios rutinariamente sin observación real; en su lugar preguntar sobre peligros concretos y sus controles.">Evitar rellenar formularios rutinariamente sin observación real; en su lugar preguntar sobre peligros concretos y sus controles.</div>
+                  <div class="content-text" data-original-text="Incentivar que los trabajadores evalúen riesgos y propongan controles, promoviendo un liderazgo distribuido y consciente.">Incentivar que los trabajadores evalúen riesgos y propongan controles, promoviendo un liderazgo distribuido y consciente.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=4466" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:14:26)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="9">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">9</span>
+              <span class="section-title">Identificación del paso crítico y medidas preventivas en trabajos de alto riesgo</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.1</span>
+                  <span class="subsection-title">Preguntar por el paso más crítico dentro de un procedimiento de alto riesgo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text='Solicitar al equipo que identifique "¿cuál es el paso más crítico en esta actividad?" para priorizar controles y recursos.'>Solicitar al equipo que identifique "¿cuál es el paso más crítico en esta actividad?" para priorizar controles y recursos.</div>
+                  <div class="content-text" data-original-text="Hacer que recuerden y expliquen por qué es crítico, activando la memoria y atención sobre riesgos potenciales.">Hacer que recuerden y expliquen por qué es crítico, activando la memoria y atención sobre riesgos potenciales.</div>
+                  <div class="content-text" data-original-text="Usar la respuesta para diseñar controles específicos y consensuados por los propios trabajadores.">Usar la respuesta para diseñar controles específicos y consensuados por los propios trabajadores.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=4572" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:16:12)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.2</span>
+                  <span class="subsection-title">Generar controles propuestos por los operarios para evitar el riesgo identificado</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text='Preguntar "¿qué podemos hacer para evitar que ocurra [muerte/lesión] en ese paso crítico?" y recoger los controles sugeridos por los trabajadores.'>Preguntar "¿qué podemos hacer para evitar que ocurra [muerte/lesión] en ese paso crítico?" y recoger los controles sugeridos por los trabajadores.</div>
+                  <div class="content-text" data-original-text="Validar y registrar los controles propuestos para incorporarlos a procedimientos y matrices de riesgo.">Validar y registrar los controles propuestos para incorporarlos a procedimientos y matrices de riesgo.</div>
+                  <div class="content-text" data-original-text="Promover la autorregulación y responsabilidad compartida mediante la implementación de esos controles.">Promover la autorregulación y responsabilidad compartida mediante la implementación de esos controles.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=4595" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:16:35)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">9.3</span>
+                  <span class="subsection-title">Preguntas posteriores a la corrección para aprendizaje y actualización</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text='Tras corregir una condición insegura, preguntar "¿qué te diste cuenta?" para facilitar la reflexión inmediata.'>Tras corregir una condición insegura, preguntar "¿qué te diste cuenta?" para facilitar la reflexión inmediata.</div>
+                  <div class="content-text" data-original-text='Pedir "¿qué puedes hacer diferente la próxima vez para mejorar tu seguridad?" con el fin de obtener propuestas que permitan evitar eventos similares.'>Pedir "¿qué puedes hacer diferente la próxima vez para mejorar tu seguridad?" con el fin de obtener propuestas que permitan evitar eventos similares.</div>
+                  <div class="content-text" data-original-text="Utilizar las respuestas para actualizar la matriz de riesgos y mejorar los procedimientos, aprovechando el aprendizaje práctico.">Utilizar las respuestas para actualizar la matriz de riesgos y mejorar los procedimientos, aprovechando el aprendizaje práctico.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=4611" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:16:51)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="10">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">10</span>
+              <span class="section-title">Práctica de intervención mediante preguntas en situaciones simuladas</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.1</span>
+                  <span class="subsection-title">Ejercicio práctico: trabajador en plataforma elevada sin asegurarse correctamente</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Plantear la situación y aconsejar transformar la orden directa en una intervención basada en preguntas para involucrar al trabajador.">Plantear la situación y aconsejar transformar la orden directa en una intervención basada en preguntas para involucrar al trabajador.</div>
+                  <div class="content-text" data-original-text="Primero pedir que se detenga y baje, luego usar preguntas que lleven a la persona a verificar su equipo y proponer soluciones.">Primero pedir que se detenga y baje, luego usar preguntas que lleven a la persona a verificar su equipo y proponer soluciones.</div>
+                  <div class="content-text" data-original-text="Mantener el objetivo de que la persona asuma responsabilidad y formule cómo continuaría trabajando de forma segura.">Mantener el objetivo de que la persona asuma responsabilidad y formule cómo continuaría trabajando de forma segura.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=4712" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:18:32)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.2</span>
+                  <span class="subsection-title">Preguntas modelo para verificar línea de vida y permitir volver a trabajar</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text='Preguntar "¿cómo podríamos asegurarnos de que tu línea de vida te proteja correctamente mientras trabajas aquí arriba?" para obtener criterios de verificación.'>Preguntar "¿cómo podríamos asegurarnos de que tu línea de vida te proteja correctamente mientras trabajas aquí arriba?" para obtener criterios de verificación.</div>
+                  <div class="content-text" data-original-text='Continuar con "ahora que sabes cómo asegurarte, ¿qué podemos hacer para que continúes trabajando?" para obtener un plan de acción específico.'>Continuar con "ahora que sabes cómo asegurarte, ¿qué podemos hacer para que continúes trabajando?" para obtener un plan de acción específico.</div>
+                  <div class="content-text" data-original-text='Formular preguntas temporales como "¿en qué momento vas a asegurar tu línea de vida?" buscando compromisos concretos y no respuestas evasivas.'>Formular preguntas temporales como "¿en qué momento vas a asegurar tu línea de vida?" buscando compromisos concretos y no respuestas evasivas.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=4768" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:19:28)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">10.3</span>
+                  <span class="subsection-title">Preguntas adicionales que fomentan pertenencia y enseñanza a otros compañeros</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text='Solicitar "¿qué recomendaciones le darías a un compañero nuevo sobre el uso de la línea de vida?" para reforzar la memoria procedimental y el liderazgo entre pares.'>Solicitar "¿qué recomendaciones le darías a un compañero nuevo sobre el uso de la línea de vida?" para reforzar la memoria procedimental y el liderazgo entre pares.</div>
+                  <div class="content-text" data-original-text="Promover que el trabajador se sienta parte del equipo al pedir consejos que luego pueda replicar con otros.">Promover que el trabajador se sienta parte del equipo al pedir consejos que luego pueda replicar con otros.</div>
+                  <div class="content-text" data-original-text="Utilizar estas respuestas para fomentar un ambiente de aprendizaje y mentoría entre operarios.">Utilizar estas respuestas para fomentar un ambiente de aprendizaje y mentoría entre operarios.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=5088" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:24:48)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="11">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">11</span>
+              <span class="section-title">Evitar intervenciones agresivas y gestionar el impacto emocional del liderazgo</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.1</span>
+                  <span class="subsection-title">Efectos negativos de la corrección mediante gritos o descalificaciones</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Reconocer que gritar o descalificar baja la moral y genera desánimo, reduciendo la concentración y la disposición a colaborar.">Reconocer que gritar o descalificar baja la moral y genera desánimo, reduciendo la concentración y la disposición a colaborar.</div>
+                  <div class="content-text" data-original-text="Evitar que la intervención genere miedo o rechazo, ya que puede provocar que los trabajadores actúen por obligación, no por conciencia.">Evitar que la intervención genere miedo o rechazo, ya que puede provocar que los trabajadores actúen por obligación, no por conciencia.</div>
+                  <div class="content-text" data-original-text="Preferir intervenciones que busquen comprensión y participación en lugar de imponer disciplina inmediata.">Preferir intervenciones que busquen comprensión y participación en lugar de imponer disciplina inmediata.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=5360" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:29:20)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.2</span>
+                  <span class="subsection-title">Uso de preguntas para mejorar relaciones interpersonales y comunicación</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Aplicar las mismas técnicas de preguntas abiertas en la familia o contextos personales para practicar empatía y habilidades de indagación.">Aplicar las mismas técnicas de preguntas abiertas en la familia o contextos personales para practicar empatía y habilidades de indagación.</div>
+                  <div class="content-text" data-original-text='Transformar preguntas cerradas como "¿te fue bien en el colegio?" por indagaciones abiertas que provoquen relato y emociones.'>Transformar preguntas cerradas como "¿te fue bien en el colegio?" por indagaciones abiertas que provoquen relato y emociones.</div>
+                  <div class="content-text" data-original-text="Aprovechar estas prácticas para fortalecer habilidades de liderazgo y comunicación en todos los ámbitos.">Aprovechar estas prácticas para fortalecer habilidades de liderazgo y comunicación en todos los ámbitos.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=5491" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:31:31)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">11.3</span>
+                  <span class="subsection-title">Practicar el liderazgo elegido y la formación gradual de conductas seguras</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Recordar que cambiar comportamientos toma tiempo; el liderazgo diario y las preguntas constantes generan cambios paulatinos.">Recordar que cambiar comportamientos toma tiempo; el liderazgo diario y las preguntas constantes generan cambios paulatinos.</div>
+                  <div class="content-text" data-original-text="Elegir conscientemente el tipo de líder que se desea ser y aplicar técnicas de indagación para formar conducta mediante conciencia.">Elegir conscientemente el tipo de líder que se desea ser y aplicar técnicas de indagación para formar conducta mediante conciencia.</div>
+                  <div class="content-text" data-original-text="Mantener consistencia en las intervenciones para que la práctica diaria vaya transformando la cultura de seguridad.">Mantener consistencia en las intervenciones para que la práctica diaria vaya transformando la cultura de seguridad.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=5513" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:31:53)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="12">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">12</span>
+              <span class="section-title">Caso: acumulación de polvo en la vía principal y motivación para reportar condiciones inseguras</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.1</span>
+                  <span class="subsection-title">Identificar el problema y abrir la reflexión sobre impactos operativos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text='Presentar el caso: un operador nota acumulación de polvo en la vía principal y no reporta porque "siempre ha sido así", para abrir cuestionamiento.'>Presentar el caso: un operador nota acumulación de polvo en la vía principal y no reporta porque "siempre ha sido así", para abrir cuestionamiento.</div>
+                  <div class="content-text" data-original-text='Formular preguntas como "¿cómo crees que esto podría impactar la operación?" para que el operario imagine consecuencias operativas y de seguridad.'>Formular preguntas como "¿cómo crees que esto podría impactar la operación?" para que el operario imagine consecuencias operativas y de seguridad.</div>
+                  <div class="content-text" data-original-text="Pedir que identifique peligros concretos en la vía principal y cómo podrían afectar la actividad diaria.">Pedir que identifique peligros concretos en la vía principal y cómo podrían afectar la actividad diaria.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=5995" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:39:55)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.2</span>
+                  <span class="subsection-title">Preguntas de compromiso para fomentar el reporte regular de condiciones inseguras</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text='Preguntar "¿qué harías la próxima vez que detectes una condición insegura aunque parezca habitual?" para generar intención de reporte.'>Preguntar "¿qué harías la próxima vez que detectes una condición insegura aunque parezca habitual?" para generar intención de reporte.</div>
+                  <div class="content-text" data-original-text="Buscar respuestas que incluyan mecanismos concretos de reporte, como uso de radio o envío de foto al sistema, para garantizar acción inmediata.">Buscar respuestas que incluyan mecanismos concretos de reporte, como uso de radio o envío de foto al sistema, para garantizar acción inmediata.</div>
+                  <div class="content-text" data-original-text="Invitar al trabajador a comprometerse con la política de reportes y a proponer mejoras prácticas para facilitar el reporte.">Invitar al trabajador a comprometerse con la política de reportes y a proponer mejoras prácticas para facilitar el reporte.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=6091" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:41:31)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">12.3</span>
+                  <span class="subsection-title">Reformulación de preguntas para obtener información detallada y evitar respuestas monosilábicas</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text='Evitar preguntas que se respondan con sí/no o con evasivas; preferir "¿qué particularidad notas en este espacio en este momento?" para obtener detalles descriptivos.'>Evitar preguntas que se respondan con sí/no o con evasivas; preferir "¿qué particularidad notas en este espacio en este momento?" para obtener detalles descriptivos.</div>
+                  <div class="content-text" data-original-text="Incentivar que el trabajador explique qué le llama la atención y describa la condición insegura con palabras propias.">Incentivar que el trabajador explique qué le llama la atención y describa la condición insegura con palabras propias.</div>
+                  <div class="content-text" data-original-text="Usar las respuestas para diseñar acciones que rompan la normalización del riesgo y promuevan la vigilancia activa.">Usar las respuestas para diseñar acciones que rompan la normalización del riesgo y promuevan la vigilancia activa.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=6208" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:43:28)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="13">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">13</span>
+              <span class="section-title">Storytelling como herramienta para activar emoción y transformar cultura de seguridad</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.1</span>
+                  <span class="subsection-title">Elementos estructurales del storytelling aplicado a seguridad laboral</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Identificar personaje central (trabajador, supervisor, operador) con detalles humanos que faciliten la identificación de la audiencia.">Identificar personaje central (trabajador, supervisor, operador) con detalles humanos que faciliten la identificación de la audiencia.</div>
+                  <div class="content-text" data-original-text="Incluir conflicto u oportunidad que genere tensión y mantenga el interés, ya sea un dilema interno o un factor externo que amenaza la seguridad.">Incluir conflicto u oportunidad que genere tensión y mantenga el interés, ya sea un dilema interno o un factor externo que amenaza la seguridad.</div>
+                  <div class="content-text" data-original-text="Desarrollar la historia con secuencia narrativa clara para mostrar causas y consecuencias y activar la empatía y el aprendizaje.">Desarrollar la historia con secuencia narrativa clara para mostrar causas y consecuencias y activar la empatía y el aprendizaje.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=6867" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:54:27)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.2</span>
+                  <span class="subsection-title">Dar humanidad al personaje mediante detalles y emociones identificables</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Añadir datos cotidianos como hábitos, edad, familia o mascotas para que el público se reconozca en el personaje y conecte emocionalmente.">Añadir datos cotidianos como hábitos, edad, familia o mascotas para que el público se reconozca en el personaje y conecte emocionalmente.</div>
+                  <div class="content-text" data-original-text="Explorar emociones y dudas del personaje, por ejemplo evitar el conflicto o miedo a intervenir, para reflejar dilemas reales de los trabajadores.">Explorar emociones y dudas del personaje, por ejemplo evitar el conflicto o miedo a intervenir, para reflejar dilemas reales de los trabajadores.</div>
+                  <div class="content-text" data-original-text="Usar esos elementos para que la audiencia proyecte su propia experiencia y comprenda mejor el riesgo.">Usar esos elementos para que la audiencia proyecte su propia experiencia y comprenda mejor el riesgo.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=6951" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:55:51)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">13.3</span>
+                  <span class="subsection-title">Crear historias breves y emotivas que generen empatía y aprendizaje rápido</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Emplear relatos cortos tipo elevator pitch que en poco tiempo presenten personaje, conflicto y consecuencia para impactar y enseñar.">Emplear relatos cortos tipo elevator pitch que en poco tiempo presenten personaje, conflicto y consecuencia para impactar y enseñar.</div>
+                  <div class="content-text" data-original-text="Activar emociones como miedo, culpa o responsabilidad para que el mensaje cale más allá de la razón y provoque cambio de conducta.">Activar emociones como miedo, culpa o responsabilidad para que el mensaje cale más allá de la razón y provoque cambio de conducta.</div>
+                  <div class="content-text" data-original-text="Integrar la historia en charlas preoperativas o formaciones para reforzar la conciencia y motivar la adopción de prácticas seguras.">Integrar la historia en charlas preoperativas o formaciones para reforzar la conciencia y motivar la adopción de prácticas seguras.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=7074" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:57:54)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="14">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">14</span>
+              <span class="section-title">Conexión entre preguntas efectivas y storytelling para cambio cultural sostenido</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.1</span>
+                  <span class="subsection-title">Cómo las preguntas adecuadas generan historias en la mente de los trabajadores</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Reconocer que las preguntas abiertas provocan que el trabajador construya mentalmente escenarios y relatos que facilitan la comprensión del riesgo.">Reconocer que las preguntas abiertas provocan que el trabajador construya mentalmente escenarios y relatos que facilitan la comprensión del riesgo.</div>
+                  <div class="content-text" data-original-text="Utilizar preguntas que lleven a imaginar consecuencias personales y familiares para intensificar la reacción emocional y el compromiso.">Utilizar preguntas que lleven a imaginar consecuencias personales y familiares para intensificar la reacción emocional y el compromiso.</div>
+                  <div class="content-text" data-original-text="Integrar las respuestas obtenidas en historias que luego se compartan para amplificar el aprendizaje.">Integrar las respuestas obtenidas en historias que luego se compartan para amplificar el aprendizaje.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=7163" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:59:23)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.2</span>
+                  <span class="subsection-title">Uso combinado de preguntas y relatos para elevar interés y retener aprendizaje</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Emplear storytelling después de una intervención basada en preguntas para consolidar el aprendizaje mediante emoción y memoria.">Emplear storytelling después de una intervención basada en preguntas para consolidar el aprendizaje mediante emoción y memoria.</div>
+                  <div class="content-text" data-original-text="Diseñar historias que reflejen respuestas comunes obtenidas en las preguntas, mostrando caminos alternativos y consecuencias reales.">Diseñar historias que reflejen respuestas comunes obtenidas en las preguntas, mostrando caminos alternativos y consecuencias reales.</div>
+                  <div class="content-text" data-original-text="Reforzar la cultura de seguridad mediante repetición de relatos relevantes y preguntas que mantengan la atención y responsabilidad continuas.">Reforzar la cultura de seguridad mediante repetición de relatos relevantes y preguntas que mantengan la atención y responsabilidad continuas.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=7170" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:59:30)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">14.3</span>
+                  <span class="subsection-title">Aplicación práctica diaria para transformar conductas y liderazgos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Practicar diariamente la técnica de preguntar antes que ordenar y contar historias que ilustren riesgos y soluciones concretas.">Practicar diariamente la técnica de preguntar antes que ordenar y contar historias que ilustren riesgos y soluciones concretas.</div>
+                  <div class="content-text" data-original-text="Monitorear y registrar compromisos surgidos de preguntas y relatos para alimentar procedimientos y matrices de riesgo con ejemplos reales.">Monitorear y registrar compromisos surgidos de preguntas y relatos para alimentar procedimientos y matrices de riesgo con ejemplos reales.</div>
+                  <div class="content-text" data-original-text="Mantener la consistencia en el uso de estas herramientas para que, con el tiempo, se produzca un cambio cultural sostenido en seguridad laboral.">Mantener la consistencia en el uso de estas herramientas para que, con el tiempo, se produzca un cambio cultural sostenido en seguridad laboral.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=7194" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(01:59:54)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="15">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">15</span>
+              <span class="section-title">Introducción al uso de sensaciones físicas y detalles sensoriales para involucrar al público</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.1</span>
+                  <span class="subsection-title">Describir sensaciones físicas concretas para generar identificación en la audiencia</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Presentar sudor en las manos, nudo en el estómago y palpitaciones como ejemplos de reacciones físicas ante el miedo o la ansiedad.">Presentar sudor en las manos, nudo en el estómago y palpitaciones como ejemplos de reacciones físicas ante el miedo o la ansiedad.</div>
+                  <div class="content-text" data-original-text="Usar estas sensaciones para que la audiencia imagine y se identifique con la situación narrada en lugar de recibir solo un enunciado abstracto.">Usar estas sensaciones para que la audiencia imagine y se identifique con la situación narrada en lugar de recibir solo un enunciado abstracto.</div>
+                  <div class="content-text" data-original-text="Mostrar cómo mencionar síntomas corporales puede activar la memoria emocional y facilitar la empatía con el personaje.">Mostrar cómo mencionar síntomas corporales puede activar la memoria emocional y facilitar la empatía con el personaje.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=7200" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:00)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.2</span>
+                  <span class="subsection-title">Mantener el interés mediante detalles auditivos y variación del tono de voz</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Alternar el tono de voz según la tensión del relato para enfatizar peligro o alivio durante la historia.">Alternar el tono de voz según la tensión del relato para enfatizar peligro o alivio durante la historia.</div>
+                  <div class="content-text" data-original-text="Agregar efectos sonoros breves, como un chirrido metálico, para recrear la escena y aumentar la tensión narrativa.">Agregar efectos sonoros breves, como un chirrido metálico, para recrear la escena y aumentar la tensión narrativa.</div>
+                  <div class="content-text" data-original-text="Usar pausas y silencios estratégicos para permitir que la audiencia procese y reaccione a lo que se cuenta.">Usar pausas y silencios estratégicos para permitir que la audiencia procese y reaccione a lo que se cuenta.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=7254" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:00:54)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">15.3</span>
+                  <span class="subsection-title">Involucrar al público con preguntas y llamadas a la reflexión</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text='Invitar a la audiencia a imaginarse en el lugar del personaje con preguntas directas como "¿qué harías tú si fueras Juan?".'>Invitar a la audiencia a imaginarse en el lugar del personaje con preguntas directas como "¿qué harías tú si fueras Juan?".</div>
+                  <div class="content-text" data-original-text="Plantear consecuencias de actuar o no actuar para que el público evalúe moral y emocionalmente las opciones.">Plantear consecuencias de actuar o no actuar para que el público evalúe moral y emocionalmente las opciones.</div>
+                  <div class="content-text" data-original-text="Observar cómo las preguntas generan división de opiniones entre quienes evitan el conflicto y quienes asumen responsabilidad.">Observar cómo las preguntas generan división de opiniones entre quienes evitan el conflicto y quienes asumen responsabilidad.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=7319" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:01:59)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="16">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">16</span>
+              <span class="section-title">Estructura narrativa aplicada a un caso práctico sobre seguridad laboral</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.1</span>
+                  <span class="subsection-title">Presentación del conflicto y características del personaje Juan</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Exponer costumbres, miedos y dudas de Juan para construir su perfil y hacerle creíble ante la audiencia.">Exponer costumbres, miedos y dudas de Juan para construir su perfil y hacerle creíble ante la audiencia.</div>
+                  <div class="content-text" data-original-text="Describir la escena: una estructura que cruje, un compañero tambaleante y la decisión pendiente de Juan para detener un peligro inminente.">Describir la escena: una estructura que cruje, un compañero tambaleante y la decisión pendiente de Juan para detener un peligro inminente.</div>
+                  <div class="content-text" data-original-text="Señalar la ambivalencia entre hablar y provocar rechazo o callar y permitir daño, enfatizando la tensión moral.">Señalar la ambivalencia entre hablar y provocar rechazo o callar y permitir daño, enfatizando la tensión moral.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=7346" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:02:26)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.2</span>
+                  <span class="subsection-title">Desarrollo de la trama con evocación de memoria y emoción mediante ejemplos</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Contar una anécdota corta sobre 'Luis' que sufrió un accidente incapacitante para activar memoria y miedo en la audiencia.">Contar una anécdota corta sobre 'Luis' que sufrió un accidente incapacitante para activar memoria y miedo en la audiencia.</div>
+                  <div class="content-text" data-original-text="Relacionar la historia de Luis con comportamientos comunes como no usar arnés, guantes o lentes, para establecer riesgo real y cercano.">Relacionar la historia de Luis con comportamientos comunes como no usar arnés, guantes o lentes, para establecer riesgo real y cercano.</div>
+                  <div class="content-text" data-original-text="Evocar consecuencias prácticas (ausencia laboral de tres meses, apoyo necesario) para hacer tangible el impacto de la negligencia.">Evocar consecuencias prácticas (ausencia laboral de tres meses, apoyo necesario) para hacer tangible el impacto de la negligencia.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=7451" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:04:11)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">16.3</span>
+                  <span class="subsection-title">Solución narrativa y llamado a la acción explícito</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Mostrar la decisión de Juan de intervenir, liderar y actuar por convicción más que por cargo, como modelo de comportamiento.">Mostrar la decisión de Juan de intervenir, liderar y actuar por convicción más que por cargo, como modelo de comportamiento.</div>
+                  <div class="content-text" data-original-text="Relatar cómo la intervención no fue impositiva sino evocadora: Juan hace preguntas y ofrece ayuda en lugar de ordenar.">Relatar cómo la intervención no fue impositiva sino evocadora: Juan hace preguntas y ofrece ayuda en lugar de ordenar.</div>
+                  <div class="content-text" data-original-text="Hacer un llamado a la acción preguntando a la audiencia si seguirán el ejemplo de Juan o permitirán que el miedo y la rutina decidan por ellos.">Hacer un llamado a la acción preguntando a la audiencia si seguirán el ejemplo de Juan o permitirán que el miedo y la rutina decidan por ellos.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=7521" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:05:21)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="17">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">17</span>
+              <span class="section-title">Técnicas para prolongar el impacto del mensaje y manejar la resistencia social</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.1</span>
+                  <span class="subsection-title">Anticipar reacciones sociales adversas y cómo sostenerse ante el rechazo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Preparar a la audiencia para posibles burlas o acusaciones de exageración cuando reporten condiciones inseguras por primera vez.">Preparar a la audiencia para posibles burlas o acusaciones de exageración cuando reporten condiciones inseguras por primera vez.</div>
+                  <div class="content-text" data-original-text="Sugiere estrategias para persistir ante la soledad inicial: recordar la convicción personal y el propósito de proteger vidas.">Sugiere estrategias para persistir ante la soledad inicial: recordar la convicción personal y el propósito de proteger vidas.</div>
+                  <div class="content-text" data-original-text="Señalar que la seguridad sostenida requiere más que una charla: implica resistencia y consistencia frente a la incomodidad social.">Señalar que la seguridad sostenida requiere más que una charla: implica resistencia y consistencia frente a la incomodidad social.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=7634" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:07:14)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.2</span>
+                  <span class="subsection-title">Romper creencias colectivas que inhiben la acción</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text='Identificar creencias comunes como "ellos no reportan, entonces yo tampoco" o "no quiero ser el diferente" que perpetúan la inacción.'>Identificar creencias comunes como "ellos no reportan, entonces yo tampoco" o "no quiero ser el diferente" que perpetúan la inacción.</div>
+                  <div class="content-text" data-original-text="Proponer el empoderamiento individual como respuesta para cambiar la cultura, aunque el entorno siga igual al principio.">Proponer el empoderamiento individual como respuesta para cambiar la cultura, aunque el entorno siga igual al principio.</div>
+                  <div class="content-text" data-original-text="Reconocer que la transformación cultural es gradual y que las acciones individuales crean efecto multiplicador con el tiempo.">Reconocer que la transformación cultural es gradual y que las acciones individuales crean efecto multiplicador con el tiempo.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=7678" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:07:58)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">17.3</span>
+                  <span class="subsection-title">Ofrecer alternativas de comportamiento y la "tercera puerta" como opción transformadora</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Presentar opciones típicas: hacer lo mínimo, fingir indiferencia, o elegir la tercera puerta que transforma la cultura.">Presentar opciones típicas: hacer lo mínimo, fingir indiferencia, o elegir la tercera puerta que transforma la cultura.</div>
+                  <div class="content-text" data-original-text="Motivarlos a convertirse en la persona que reporta repetidamente y no se rinde ante la burla o el desinterés.">Motivarlos a convertirse en la persona que reporta repetidamente y no se rinde ante la burla o el desinterés.</div>
+                  <div class="content-text" data-original-text="Recordar que la transformación implica persistencia y no ceder al cansancio frente a la resistencia externa.">Recordar que la transformación implica persistencia y no ceder al cansancio frente a la resistencia externa.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=7729" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:08:49)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="18">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">18</span>
+              <span class="section-title">Herramientas comunicativas: metáforas, contrastes, sensorialidad y participación</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.1</span>
+                  <span class="subsection-title">Uso de metáforas y comparaciones para facilitar la comprensión y el recuerdo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text='Introducir metáforas familiares como "más vale perder un minuto de la vida que la vida en un minuto" para transmitir prioridad de seguridad.'>Introducir metáforas familiares como "más vale perder un minuto de la vida que la vida en un minuto" para transmitir prioridad de seguridad.</div>
+                  <div class="content-text" data-original-text='Usar comparaciones simbólicas como "los guantes son tu segunda piel" para crear imágenes mentales duraderas.'>Usar comparaciones simbólicas como "los guantes son tu segunda piel" para crear imágenes mentales duraderas.</div>
+                  <div class="content-text" data-original-text="Señalar que las metáforas permiten condensar ideas complejas en frases sencillas y memorables.">Señalar que las metáforas permiten condensar ideas complejas en frases sencillas y memorables.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=7882" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:11:22)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.2</span>
+                  <span class="subsection-title">Jugar con el contraste emocional y no mantener una sola emoción</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Alternar estados emocionales en la narrativa para evitar monotonía: enojo, desconexión, sorpresa y reflexión.">Alternar estados emocionales en la narrativa para evitar monotonía: enojo, desconexión, sorpresa y reflexión.</div>
+                  <div class="content-text" data-original-text="Dar ejemplo de nombrar a una persona en la charla para reconectar a alguien distraído y cambiar el estado emocional del grupo.">Dar ejemplo de nombrar a una persona en la charla para reconectar a alguien distraído y cambiar el estado emocional del grupo.</div>
+                  <div class="content-text" data-original-text="Evitar la emoción estática; conducir a la audiencia por matices que faciliten el aprendizaje y la retención.">Evitar la emoción estática; conducir a la audiencia por matices que faciliten el aprendizaje y la retención.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=7988" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:13:08)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.3</span>
+                  <span class="subsection-title">Detallar lo sensorial para conectar la audiencia con la escena</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Describir sonidos, olores, polvo en el aire y sensaciones físicas para que la audiencia imagine la situación concretamente.">Describir sonidos, olores, polvo en el aire y sensaciones físicas para que la audiencia imagine la situación concretamente.</div>
+                  <div class="content-text" data-original-text="Enunciar manifestaciones del miedo como manos sudadas, temblores o nudo en la garganta para facilitar identificación.">Enunciar manifestaciones del miedo como manos sudadas, temblores o nudo en la garganta para facilitar identificación.</div>
+                  <div class="content-text" data-original-text="Usar sensorialidad para que el público proyecte la escena en su propia experiencia laboral y reconozca riesgos similares.">Usar sensorialidad para que el público proyecte la escena en su propia experiencia laboral y reconozca riesgos similares.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=8059" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:14:19)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">18.4</span>
+                  <span class="subsection-title">Involucrar activamente a la audiencia con preguntas sobre experiencias reales</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Preguntar qué han visto que pudo evitarse y cómo se sintieron al notar una condición insegura y no reportarla.">Preguntar qué han visto que pudo evitarse y cómo se sintieron al notar una condición insegura y no reportarla.</div>
+                  <div class="content-text" data-original-text="Pedir sugerencias operativas y soluciones a quienes trabajan en el día a día para aprovechar su conocimiento práctico.">Pedir sugerencias operativas y soluciones a quienes trabajan en el día a día para aprovechar su conocimiento práctico.</div>
+                  <div class="content-text" data-original-text="Emplear silencios y ritmo para permitir la reflexión y evitar la sobreestimulación durante la participación.">Emplear silencios y ritmo para permitir la reflexión y evitar la sobreestimulación durante la participación.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=8136" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:15:36)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="19">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">19</span>
+              <span class="section-title">Cómo construir historias propias y recomendaciones para practicar storytelling en seguridad</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.1</span>
+                  <span class="subsection-title">Consejos para escribir una historia breve y creíble orientada a la seguridad</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Recomendar incluir características normales del personaje, como hobbies o rutinas, para facilitar la identificación del público.">Recomendar incluir características normales del personaje, como hobbies o rutinas, para facilitar la identificación del público.</div>
+                  <div class="content-text" data-original-text="Incluir miedos, dudas y creencias del personaje para humanizarlo y mostrar el proceso de toma de decisiones ante el riesgo.">Incluir miedos, dudas y creencias del personaje para humanizarlo y mostrar el proceso de toma de decisiones ante el riesgo.</div>
+                  <div class="content-text" data-original-text="Detallar el entorno (clima, iluminación, congestión) para contextualizar el riesgo y hacer la escena más verosímil.">Detallar el entorno (clima, iluminación, congestión) para contextualizar el riesgo y hacer la escena más verosímil.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=8202" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:16:42)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.2</span>
+                  <span class="subsection-title">Sugerencias sobre ritmo, silencio y cierre impactante</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Usar pausas intencionadas para dar tiempo a la reflexión y permitir que la audiencia procese emociones y decisiones.">Usar pausas intencionadas para dar tiempo a la reflexión y permitir que la audiencia procese emociones y decisiones.</div>
+                  <div class="content-text" data-original-text="Mantener un ritmo narrativo que combine descripción, diálogo y preguntas para sostener el interés durante la charla.">Mantener un ritmo narrativo que combine descripción, diálogo y preguntas para sostener el interés durante la charla.</div>
+                  <div class="content-text" data-original-text="Cerrar con frases contundentes y condensadas (ejemplos de storytelling) para dejar una idea clara sobre la prioridad de la seguridad.">Cerrar con frases contundentes y condensadas (ejemplos de storytelling) para dejar una idea clara sobre la prioridad de la seguridad.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=8184" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:16:24)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">19.3</span>
+                  <span class="subsection-title">Preguntas finales para provocar compromiso y reflexión personal</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Invitar a reflexionar sobre qué historia profesional desean contar al final de su trayectoria: ¿priorizar la seguridad o tratarla como trámite?">Invitar a reflexionar sobre qué historia profesional desean contar al final de su trayectoria: ¿priorizar la seguridad o tratarla como trámite?</div>
+                  <div class="content-text" data-original-text="Pedir que identifiquen qué consejo le darían al personaje si lo tuvieran enfrente para fomentar la autorreflexión práctica.">Pedir que identifiquen qué consejo le darían al personaje si lo tuvieran enfrente para fomentar la autorreflexión práctica.</div>
+                  <div class="content-text" data-original-text='Sugiere replicar lo aprendido con su equipo y revisar su propio "rueda de vida" para evaluar compromiso con la seguridad.'>Sugiere replicar lo aprendido con su equipo y revisar su propio "rueda de vida" para evaluar compromiso con la seguridad.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=8371" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:19:31)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" data-section="20">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div style="display: flex; align-items: center">
+              <span class="section-number">20</span>
+              <span class="section-title">Cierre de la sesión, aportes de los participantes y logística final</span>
+            </div>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="section-content">
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.1</span>
+                  <span class="subsection-title">Aportes de participantes sobre cultura organizacional y prioridades diferentes</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Omar Vivas comenta que algunos empleadores priorizan velocidad productiva sobre seguridad, lo que condiciona la historia que se podrá contar.">Omar Vivas comenta que algunos empleadores priorizan velocidad productiva sobre seguridad, lo que condiciona la historia que se podrá contar.</div>
+                  <div class="content-text" data-original-text="Señala la necesidad de reflexionar sobre qué historia colectiva se quiere construir ante presiones comerciales y prácticas inseguras.">Señala la necesidad de reflexionar sobre qué historia colectiva se quiere construir ante presiones comerciales y prácticas inseguras.</div>
+                  <div class="content-text" data-original-text="Reconocer la dificultad de cambiar creencias organizacionales y la importancia de plantearlo como una reflexión conjunta.">Reconocer la dificultad de cambiar creencias organizacionales y la importancia de plantearlo como una reflexión conjunta.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=8409" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:20:09)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.2</span>
+                  <span class="subsection-title">Respuesta de la facilitadora sobre persistencia y construcción por convicción</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="La ponente reconoce la dificultad de romper moldes y culturas de cumplimiento, pero impulsa iniciar cambios por convicción.">La ponente reconoce la dificultad de romper moldes y culturas de cumplimiento, pero impulsa iniciar cambios por convicción.</div>
+                  <div class="content-text" data-original-text='Recomienda sostener decisiones profesionales éticas, incluso cuando no dependen completamente de uno mismo, y agradecer decir "gracias" si no se puede parar una máquina.'>Recomienda sostener decisiones profesionales éticas, incluso cuando no dependen completamente de uno mismo, y agradecer decir "gracias" si no se puede parar una máquina.</div>
+                  <div class="content-text" data-original-text="Afirma que el cambio se logrará si se camina con persistencia y se suman personas en el camino.">Afirma que el cambio se logrará si se camina con persistencia y se suman personas en el camino.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=8541" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:22:21)</span> </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="subsection">
+              <div class="subsection-header" onclick="toggleSubsection(this)">
+                <div style="display: flex; align-items: center">
+                  <span class="subsection-number">20.3</span>
+                  <span class="subsection-title">Información logística final sobre asistencia, grabación y cierre administrativo</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+              </div>
+              <div class="subsection-content">
+                <div class="content-item">
+                  <div class="content-text" data-original-text="Aclaración sobre formularios de asistencia: la sesión actual valida la asistencia de la clase anterior por errores en el formulario previo.">Aclaración sobre formularios de asistencia: la sesión actual valida la asistencia de la clase anterior por errores en el formulario previo.</div>
+                  <div class="content-text" data-original-text="Anuncio de que la grabación se compartirá por el grupo de WhatsApp y disponibilidad de contactos y correo para dudas posteriores.">Anuncio de que la grabación se compartirá por el grupo de WhatsApp y disponibilidad de contactos y correo para dudas posteriores.</div>
+                  <div class="content-text" data-original-text="Cierre de la sesión con agradecimientos de participantes y despedida final por parte de la facilitadora.">Cierre de la sesión con agradecimientos de participantes y despedida final por parte de la facilitadora.</div>
+                  <a href="https://www.youtube.com/watch?v=al6IqySU16I&start=8665" class="youtube-link" target="_blank"> Ver en YouTube <span class="timestamp">(02:24:25)</span> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://www.edumin.pe/" target="_blank">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20BLANCO%20CANVA-mIKMypQ452RzmXVMUadb6mnvPaejXD.png" alt="EDUMIN Logo" class="footer-logo" />
+      </a>
+      <p class="footer-text">
+        <b>Contenido desarrollado por EDUMIN - Centro de Capacitación Especializado en Minería, Industria y Negocios</b><br />
+        <i>Material exclusivo para estudiantes de EDUMIN</i><br />
+        <a href="https://www.edumin.pe/" target="_blank" style="color: var(--color-principal); text-decoration: none">https://www.edumin.pe/</a>
+      </p>
+    </div>
+
+    <script>
+      const TITULO_DIPLOMADO = "INDUCCIÓN ACADÉMICA".toUpperCase();
+      const TITULO_CLASE = "TALLER DE SEGURIDAD BASADA EN EL COMPORTAMIENTO - 2DA PARTE".toUpperCase();
+
+      const elementoDiplomado = document.getElementById("tituloDiplomado");
+      if (elementoDiplomado) {
+        elementoDiplomado.innerText = TITULO_DIPLOMADO;
+      }
+
+      document.title = TITULO_CLASE;
+      const tituloPrincipal = document.getElementById("tituloPrincipal");
+      if (tituloPrincipal) {
+        tituloPrincipal.innerText = TITULO_CLASE;
+      }
+
+      const tituloCompacto = document.getElementById("tituloCompacto");
+      if (tituloCompacto) {
+        tituloCompacto.innerText = TITULO_CLASE;
+      }
+
+      function toggleSection(element) {
+        const section = element.closest(".section");
+        const wasActive = section.classList.contains("active");
+
+        section.classList.toggle("active");
+
+        if (wasActive) {
+          const subsections = section.querySelectorAll(".subsection");
+          subsections.forEach((subsection) => {
+            subsection.classList.remove("active");
+          });
+        }
+      }
+
+      function toggleSubsection(element) {
+        const subsection = element.closest(".subsection");
+        subsection.classList.toggle("active");
+      }
+
+      function expandAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.add("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.add("active");
+        });
+      }
+
+      function collapseAll() {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        const subsections = document.querySelectorAll(".subsection");
+        subsections.forEach((subsection) => {
+          subsection.classList.remove("active");
+        });
+      }
+
+      function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, delay);
+        };
+      }
+
+      function clearSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        searchInput.value = "";
+        clearBtn.style.display = "none";
+        searchContent();
+        searchInput.focus();
+      }
+
+      const createDiacriticInsensitiveRegex = (term) => {
+        const charMap = {
+          a: "[aáAÁ]",
+          e: "[eéEÉ]",
+          i: "[iíIÍ]",
+          o: "[oóOÓ]",
+          u: "[uúUÚ]",
+        };
+
+        const regexString = term
+          .split("")
+          .map((char) => {
+            const lowerChar = char.toLowerCase();
+            return charMap[lowerChar] || char;
+          })
+          .join("");
+
+        return new RegExp(`(${regexString})`, "gi");
+      };
+
+      function searchContent() {
+        const inputElement = document.getElementById("searchInput");
+        const searchTerm = inputElement.value.trim();
+
+        const searchableElements = document.querySelectorAll(".content-text, .section-title, .subsection-title");
+        let found = false;
+        let firstMatchElement = null;
+
+        document.querySelectorAll(".section.active").forEach((el) => el.classList.remove("active"));
+        document.querySelectorAll(".subsection.active").forEach((el) => el.classList.remove("active"));
+        searchableElements.forEach((element) => {
+          element.innerHTML = element.getAttribute("data-original-text") || element.textContent;
+        });
+
+        if (searchTerm.length < 3) {
+          return;
+        }
+
+        const searchRegex = createDiacriticInsensitiveRegex(searchTerm);
+
+        searchableElements.forEach((element) => {
+          const originalText = element.getAttribute("data-original-text") || element.textContent;
+
+          if (searchRegex.test(originalText)) {
+            found = true;
+
+            element.innerHTML = originalText.replace(searchRegex, `<span class="highlight">$1</span>`);
+
+            const subsection = element.closest(".subsection");
+            if (subsection) {
+              subsection.classList.add("active");
+              subsection.closest(".section")?.classList.add("active");
+            } else if (element.classList.contains("section-title")) {
+              element.closest(".section")?.classList.add("active");
+            }
+
+            if (!firstMatchElement) {
+              firstMatchElement = element;
+            }
+          }
+        });
+
+        if (firstMatchElement) {
+          requestAnimationFrame(() => {
+            firstMatchElement.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          });
+        } else if (searchTerm.length >= 3) {
+          alert("No se encontraron resultados para: " + searchTerm);
+        }
+      }
+
+      const debouncedSearch = debounce(searchContent, 300);
+
+      document.getElementById("searchInput").addEventListener("input", function () {
+        const clearBtn = document.querySelector(".search-actions .clear-search");
+        clearBtn.style.display = this.value.length > 0 ? "block" : "none";
+        debouncedSearch();
+      });
+
+      document.getElementById("searchInput").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          clearTimeout(this._timeoutId);
+          searchContent();
+        }
+      });
+
+      // --- Lógica del Header Compacto ---
+      const header = document.querySelector(".header");
+      const headerSpacer = document.querySelector(".header-spacer");
+      let initialHeaderHeight = 0; // Altura del header original
+      let compactHeaderHeight = 0; // Altura del header en modo compacto
+      let scrollTriggerPoint = 0; // Punto de scroll para activar el cambio
+
+      function handleHeaderState() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollY > scrollTriggerPoint) {
+          if (!header.classList.contains("compact")) {
+            header.classList.add("compact");
+            headerSpacer.style.height = `${initialHeaderHeight}px`;
+          }
+        } else {
+          if (header.classList.contains("compact")) {
+            header.classList.remove("compact");
+            headerSpacer.style.height = "0px";
+          }
+        }
+      }
+
+      function initializeHeader() {
+        initialHeaderHeight = header.offsetHeight;
+        const headerClone = header.cloneNode(true);
+        headerClone.classList.add("compact");
+        headerClone.style.visibility = "hidden";
+        headerClone.style.position = "absolute";
+        document.body.appendChild(headerClone);
+        compactHeaderHeight = headerClone.offsetHeight;
+        document.body.removeChild(headerClone);
+
+        scrollTriggerPoint = initialHeaderHeight - compactHeaderHeight;
+      }
+
+      document.addEventListener("DOMContentLoaded", initializeHeader);
+      window.addEventListener("scroll", handleHeaderState);
+      window.addEventListener("resize", debounce(initializeHeader, 200));
+    </script>
+  </body>
+</html>
