@@ -1,0 +1,541 @@
+
+{
+  "quiz": [
+    {
+      "question": "¿Cuál es la principal razón por la que el uso de agua deionizada o pura es contraproducente en los procesos metalúrgicos?",
+      "answerOptions": [
+        {
+          "text": "Actúa como un agente desmineralizador inestable que altera el equilibrio químico.",
+          "isCorrect": true,
+          "rationale": "Al buscar equilibrio termodinámico, el agua pura extrae iones de su entorno, desestabilizando las soluciones químicas del proceso."
+        },
+        {
+          "text": "Aumenta excesivamente la viscosidad de la pulpa mineral dificultando el transporte.",
+          "isCorrect": false,
+          "rationale": "La viscosidad depende más de la densidad de sólidos y la granulometría que de la pureza iónica del agua."
+        },
+        {
+          "text": "Produce una precipitación espontánea de metales preciosos antes de la etapa de recuperación.",
+          "isCorrect": false,
+          "rationale": "La precipitación suele requerir agentes reductores o cambios específicos de pH, no ocurre solo por la pureza del agua."
+        },
+        {
+          "text": "Eleva los costos operativos debido a la necesidad de sistemas de filtración por osmosis inversa.",
+          "isCorrect": false,
+          "rationale": "Aunque es costosa de producir, el problema principal es su inestabilidad química reactiva dentro del circuito."
+        }
+      ],
+      "hint": "Considere la tendencia de las sustancias puras a buscar un equilibrio iónico con los materiales que las rodean."
+    },
+    {
+      "question": "En el contexto de la gestión hídrica moderna, ¿qué función cumple la adición selectiva de cationes y aniones al agua del proceso?",
+      "answerOptions": [
+        {
+          "text": "Crear una solución electrolítica que garantice una interacción química predecible.",
+          "isCorrect": true,
+          "rationale": "El equilibrio químico mediante iones específicos evita que el agua altere el entorno buscando su propia estabilidad."
+        },
+        {
+          "text": "Incrementar la densidad del medio para mejorar la flotación de partículas gruesas.",
+          "isCorrect": false,
+          "rationale": "La adición de sales busca estabilidad química, no cambios significativos en la densidad física del fluido."
+        },
+        {
+          "text": "Neutralizar exclusivamente los contaminantes orgánicos presentes en el agua de lluvia.",
+          "isCorrect": false,
+          "rationale": "La formación de una solución electrolítica es un concepto preventivo global, no solo un método de limpieza de orgánicos."
+        },
+        {
+          "text": "Reducir la corrosión galvánica en los tanques de lixiviación de acero al carbono.",
+          "isCorrect": false,
+          "rationale": "Aunque influye en la corrosión, el objetivo técnico primordial es el control de la reactividad en el sistema químico de extracción."
+        }
+      ],
+      "hint": "Piense en la analogía de una bebida isotónica aplicada a los procesos industriales."
+    },
+    {
+      "question": "¿Cómo ha cambiado la calidad química de la precipitación (lluvia) en los últimos 40 años?",
+      "answerOptions": [
+        {
+          "text": "Se ha degradado al arrastrar contaminantes atmosféricos que alteran su pH y reactividad.",
+          "isCorrect": true,
+          "rationale": "La lluvia ya no es un recurso neutral, sino que introduce variables químicas complejas antes de entrar al proceso."
+        },
+        {
+          "text": "Ha mejorado su pureza debido a las regulaciones globales sobre emisiones de carbono.",
+          "isCorrect": false,
+          "rationale": "La evidencia técnica muestra una degradación sistemática por contaminantes suspendidos en la atmósfera."
+        },
+        {
+          "text": "Se ha vuelto más alcalina, facilitando el ahorro de cal en los procesos de lixiviación.",
+          "isCorrect": false,
+          "rationale": "Generalmente, la contaminación atmosférica tiende a acidificar la lluvia o volverla más reactiva, no necesariamente alcalina."
+        },
+        {
+          "text": "Mantiene una neutralidad absoluta, siendo el estándar de oro para el balance hídrico.",
+          "isCorrect": false,
+          "rationale": "La idea de que el agua de lluvia es neutra es un concepto desactualizado frente a la realidad ambiental actual."
+        }
+      ],
+      "hint": "Reflexione sobre el impacto de la actividad industrial en la atmósfera y cómo el agua interactúa con ella al caer."
+    },
+    {
+      "question": "¿Qué riesgo técnico representa la escorrentía superficial para un circuito de flotación o lixiviación?",
+      "answerOptions": [
+        {
+          "text": "El arrastre de sales solubles del terreno que generan interferencias químicas severas.",
+          "isCorrect": true,
+          "rationale": "Si estas sales no se identifican y neutralizan, compiten con los reactivos principales y reducen la eficiencia."
+        },
+        {
+          "text": "La disminución excesiva de la temperatura de la pulpa, ralentizando la cinética de reacción.",
+          "isCorrect": false,
+          "rationale": "El mayor impacto de la escorrentía es químico (sales), no térmico, en el contexto de la estabilidad del circuito."
+        },
+        {
+          "text": "El aumento del oxígeno disuelto que provoca la oxidación prematura del cianuro.",
+          "isCorrect": false,
+          "rationale": "La escorrentía se enfoca más en el aporte de iones disueltos del suelo que en la transferencia de gases atmosféricos."
+        },
+        {
+          "text": "La dilución incontrolada de la ley del mineral en las pilas de lixiviación.",
+          "isCorrect": false,
+          "rationale": "La dilución es un problema de volumen, pero el riesgo técnico crítico es la interferencia química de las sales arrastradas."
+        }
+      ],
+      "hint": "Considere qué sustancias recoge el agua al fluir sobre diferentes tipos de suelos y terrenos."
+    },
+    {
+      "question": "¿En qué consiste la integración del recurso hídrico en el modelo de bloques geometalúrgico?",
+      "answerOptions": [
+        {
+          "text": "En cuantificar y modelar el agua estratégicamente con la misma importancia que el yacimiento mineral.",
+          "isCorrect": true,
+          "rationale": "Este enfoque evolutivo trata al agua como un recurso estratégico modelable en 3D, no solo como un insumo genérico."
+        },
+        {
+          "text": "En utilizar bases de datos satelitales para predecir inundaciones en el tajo abierto.",
+          "isCorrect": false,
+          "rationale": "El modelo de bloques se refiere a la estimación interna de recursos, no solo a alertas climáticas externas."
+        },
+        {
+          "text": "En priorizar el mapeo de metales pesados para evitar la contaminación de acuíferos.",
+          "isCorrect": false,
+          "rationale": "Aunque es importante, el modelamiento geohídrico busca la gestión volumétrica y química integral dentro del plan de minado."
+        },
+        {
+          "text": "En la creación de pozos de observación exclusivos para la medición de la presión de poros.",
+          "isCorrect": false,
+          "rationale": "Esta es una tarea geotécnica específica, mientras que el modelo geohídrico es una integración estratégica de gestión del recurso."
+        }
+      ],
+      "hint": "Imagine aplicar las mismas herramientas estadísticas de las reservas de oro a la planificación del agua."
+    },
+    {
+      "question": "¿Cuál es la función principal del pilar denominado 'Balance Hídrico Dinámico'?",
+      "answerOptions": [
+        {
+          "text": "Realizar una contabilidad del agua en tiempo real, similar al balance metalúrgico.",
+          "isCorrect": true,
+          "rationale": "Permite monitorear entradas (lluvia) y salidas (evaporación, relaves) para mantener la estabilidad del sistema."
+        },
+        {
+          "text": "Asegurar que el pH del agua se mantenga siempre en un valor neutro de $7.0$.",
+          "isCorrect": false,
+          "rationale": "El balance dinámico gestiona volúmenes y flujos; el control de pH es una consecuencia de la estabilidad química buscada."
+        },
+        {
+          "text": "Determinar la profundidad exacta de la napa freática mediante sensores de presión.",
+          "isCorrect": false,
+          "rationale": "Esto corresponde más a la caracterización del subsuelo que a la contabilidad dinámica del agua en el proceso."
+        },
+        {
+          "text": "Calcular únicamente el costo de bombeo de agua desde fuentes externas.",
+          "isCorrect": false,
+          "rationale": "El balance es una herramienta técnica y operativa completa, no una simple métrica de costos energéticos."
+        }
+      ],
+      "hint": "Piense en cómo se lleva el control estricto de cada gramo de metal precioso y aplíquelo al líquido elemento."
+    },
+    {
+      "question": "En un plan estratégico de manejo de agua, ¿qué ventana de tiempo se considera crítica para la reserva operativa ante fallas?",
+      "answerOptions": [
+        {
+          "text": "$3$ a $4$ días.",
+          "isCorrect": true,
+          "rationale": "Este margen de seguridad permite mantener el proceso químico ininterrumpido ante fallas mecánicas o eventos climáticos."
+        },
+        {
+          "text": "$24$ horas.",
+          "isCorrect": false,
+          "rationale": "Un solo día es un margen muy estrecho para solucionar fallas estructurales o mecánicas complejas en minería."
+        },
+        {
+          "text": "$15$ días.",
+          "isCorrect": false,
+          "rationale": "Aunque ideal, mantener reservas para 15 días suele ser económicamente prohibitivo por el tamaño de las presas internas requeridas."
+        },
+        {
+          "text": "$12$ horas.",
+          "isCorrect": false,
+          "rationale": "Este tiempo es insuficiente para garantizar la resiliencia operativa frente a contingencias climáticas severas."
+        }
+      ],
+      "hint": "Es un periodo de tiempo que permite una respuesta logística adecuada sin detener la planta."
+    },
+    {
+      "question": "¿Por qué la cianuración tradicional pierde eficiencia en las zonas hipógenas o profundas de un yacimiento?",
+      "answerOptions": [
+        {
+          "text": "Porque el mineral se vuelve refractario y el oro queda atrapado en una matriz mineral dura.",
+          "isCorrect": true,
+          "rationale": "En profundidad, el oro no está libre como en los óxidos, requiriendo reactivos que superen la barrera mineralógica."
+        },
+        {
+          "text": "Debido a la falta de oxígeno disuelto en las soluciones a grandes profundidades.",
+          "isCorrect": false,
+          "rationale": "La profundidad de la mina no afecta la oxigenación en los tanques de superficie, el problema es la mineralogía."
+        },
+        {
+          "text": "Porque el cianuro de sodio se congela debido a las bajas temperaturas del subsuelo.",
+          "isCorrect": false,
+          "rationale": "Los procesos químicos ocurren en condiciones controladas en planta, no afectados por la temperatura de la roca in situ."
+        },
+        {
+          "text": "Por la presencia de agua salobre natural que precipita el cianuro instantáneamente.",
+          "isCorrect": false,
+          "rationale": "Si bien el agua afecta, el factor determinante es la estructura del mineral que 'blinda' al metal precioso."
+        }
+      ],
+      "hint": "Considere la diferencia física entre un mineral oxidado (superficial) y uno primario (profundo)."
+    },
+    {
+      "question": "¿Qué son los 'cianicidas' y qué efecto tienen en el proceso de extracción?",
+      "answerOptions": [
+        {
+          "text": "Especies minerales que consumen el reactivo agresivamente antes de que actúe sobre el oro.",
+          "isCorrect": true,
+          "rationale": "Minerales como la pirita o calcopirita actúan como esponjas químicas, disparando los costos y bajando la recuperación."
+        },
+        {
+          "text": "Microorganismos que degradan el cianuro de forma natural en las presas de relaves.",
+          "isCorrect": false,
+          "rationale": "Eso describe la biodegradación, mientras que los cianicidas son interferentes minerales dentro del proceso de lixiviación."
+        },
+        {
+          "text": "Aditivos químicos diseñados para destruir el cianuro residual al final del proceso.",
+          "isCorrect": false,
+          "rationale": "Esos serían agentes de detoxificación, no cianicidas, que son componentes indeseados del propio mineral."
+        },
+        {
+          "text": "Catalizadores orgánicos que aceleran la disolución de la plata en medios alcalinos.",
+          "isCorrect": false,
+          "rationale": "Los cianicidas son perjudiciales para el proceso, no son catalizadores ni beneficiosos."
+        }
+      ],
+      "hint": "El nombre sugiere que estos elementos 'matan' o eliminan la efectividad del cianuro."
+    },
+    {
+      "question": "¿A cuánto puede aumentar el consumo de cianuro en zonas refractarias en comparación con las condiciones normales de $0.3$ kg/t?",
+      "answerOptions": [
+        {
+          "text": "$3$ a $5$ kg/t.",
+          "isCorrect": true,
+          "rationale": "Este incremento exponencial hace que el proceso sea económicamente inviable y aumente el riesgo ambiental."
+        },
+        {
+          "text": "$0.5$ a $0.8$ kg/t.",
+          "isCorrect": false,
+          "rationale": "Este es un incremento leve que no refleja la gravedad del impacto de los cianicidas en minerales complejos."
+        },
+        {
+          "text": "$10$ a $20$ kg/t.",
+          "isCorrect": false,
+          "rationale": "Niveles tan altos son extremadamente raros y harían que cualquier operación cerrara de inmediato por costos de reactivos."
+        },
+        {
+          "text": "$1$ a $2$ kg/t.",
+          "isCorrect": false,
+          "rationale": "Aunque es un aumento, los datos de zonas refractarias muestran picos superiores para compensar el secuestro de reactivo."
+        }
+      ],
+      "hint": "Piense en un salto de más de diez veces el consumo estándar."
+    },
+    {
+      "question": "¿Cuál es el límite máximo permitido de cianuro residual (WAD) en presas de relaves según normativas internacionales?",
+      "answerOptions": [
+        {
+          "text": "$50$ ppm.",
+          "isCorrect": true,
+          "rationale": "Es la línea de seguridad establecida para proteger la fauna y el entorno ecológico alrededor de la operación."
+        },
+        {
+          "text": "$500$ ppm.",
+          "isCorrect": false,
+          "rationale": "Este valor es demasiado alto y representa un peligro letal inmediato para la biodiversidad local."
+        },
+        {
+          "text": "$10$ ppm.",
+          "isCorrect": false,
+          "rationale": "Aunque es más seguro, el estándar industrial internacional comúnmente aceptado se sitúa en el umbral de los 50 ppm."
+        },
+        {
+          "text": "$100$ ppm.",
+          "isCorrect": false,
+          "rationale": "Supera el límite recomendado por las mejores prácticas y regulaciones ambientales estrictas."
+        }
+      ],
+      "hint": "Es un número redondo que representa el estándar de cumplimiento ambiental global."
+    },
+    {
+      "question": "¿Qué propiedad define a la glicina dentro del sistema tecnológico 4x4 GlyCat?",
+      "answerOptions": [
+        {
+          "text": "Es un aminoácido orgánico, no tóxico, biodegradable y altamente reciclable.",
+          "isCorrect": true,
+          "rationale": "Estas características la convierten en una alternativa sostenible frente a los reactivos industriales convencionales."
+        },
+        {
+          "text": "Es un polímero sintético que encapsula el mercurio presente en el mineral.",
+          "isCorrect": false,
+          "rationale": "La glicina es un compuesto orgánico natural (aminoácido), no un polímero sintético de encapsulación."
+        },
+        {
+          "text": "Es un ácido fuerte que disuelve la matriz de sílice para liberar el oro.",
+          "isCorrect": false,
+          "rationale": "La glicina no es un ácido fuerte; su función es actuar como ligando selectivo en condiciones específicas."
+        },
+        {
+          "text": "Es un solvente derivado del petróleo que sustituye completamente al agua.",
+          "isCorrect": false,
+          "rationale": "El sistema sigue siendo hidrometalúrgico (basado en agua) y la glicina no es un hidrocarburo solvente."
+        }
+      ],
+      "hint": "Se trata de una sustancia que forma parte de los bloques fundamentales de la vida."
+    },
+    {
+      "question": "Según estudios científicos (como los de Orabi y Altincaya), ¿qué ventaja selectiva ofrece la glicina en la extracción?",
+      "answerOptions": [
+        {
+          "text": "Extrae oro y plata ignorando impurezas pesadas como el hierro y el calcio.",
+          "isCorrect": true,
+          "rationale": "Esta selectividad reduce el consumo innecesario de reactivos y simplifica la purificación posterior del metal."
+        },
+        {
+          "text": "Disuelve instantáneamente cualquier tipo de roca independientemente de su dureza.",
+          "isCorrect": false,
+          "rationale": "La lixiviación es un proceso selectivo de metales, no un proceso de disolución total de la roca huésped."
+        },
+        {
+          "text": "Permite que el proceso ocurra a temperaturas bajo cero sin perder velocidad.",
+          "isCorrect": false,
+          "rationale": "La cinética química siempre se ve afectada por la temperatura; la ventaja de la glicina es su selectividad iónica."
+        },
+        {
+          "text": "Transforma la pirita en un subproducto comercial de alto valor.",
+          "isCorrect": false,
+          "rationale": "La glicina ayuda a manejar minerales con pirita al no reaccionar con ella, pero no la transforma en otro producto."
+        }
+      ],
+      "hint": "Considere la capacidad de un reactivo para 'elegir' qué metales disolver y cuáles dejar en el residuo."
+    },
+    {
+      "question": "En el caso del yacimiento Ocongate, ¿qué elemento mineralógico actuó como un catalizador natural para la glicina?",
+      "answerOptions": [
+        {
+          "text": "Telururos de plata.",
+          "isCorrect": true,
+          "rationale": "Estos compuestos aceleraron y multiplicaron la reacción química, mejorando significativamente las recuperaciones."
+        },
+        {
+          "text": "Óxidos de hierro.",
+          "isCorrect": false,
+          "rationale": "Los óxidos de hierro suelen ser pasivos o incluso perjudiciales, no catalizadores para el sistema de glicina."
+        },
+        {
+          "text": "Carbonatos de calcio.",
+          "isCorrect": false,
+          "rationale": "El calcio es una impureza que el sistema suele ignorar, no funciona como un turbo para la reacción."
+        },
+        {
+          "text": "Sulfatos de bismuto.",
+          "isCorrect": false,
+          "rationale": "El bismuto fue un hallazgo inusual en la roca, pero no fue el responsable de la catálisis de la extracción."
+        }
+      ],
+      "hint": "Busque un compuesto poco común que contenga plata y otro elemento del grupo de los metaloides."
+    },
+    {
+      "question": "¿Qué reducción porcentual aproximada en el consumo de cianuro se logró mediante la sinergia con glicina?",
+      "answerOptions": [
+        {
+          "text": "$90\\%$.",
+          "isCorrect": true,
+          "rationale": "Esta drástica reducción minimiza la huella química y genera ahorros financieros masivos para la operación."
+        },
+        {
+          "text": "$25\\%$.",
+          "isCorrect": false,
+          "rationale": "Aunque positivo, un 25% no representa el cambio disruptivo que ofrece la tecnología GlyCat en casos optimizados."
+        },
+        {
+          "text": "$50\\%$.",
+          "isCorrect": false,
+          "rationale": "La tecnología permite ir mucho más allá de la mitad del consumo, alcanzando niveles de ahorro residual muy superiores."
+        },
+        {
+          "text": "$10\\%$.",
+          "isCorrect": false,
+          "rationale": "Una reducción del 10% sería marginal frente a los beneficios documentados de la lixiviación orgánica sinérgica."
+        }
+      ],
+      "hint": "Se trata de una disminución casi total del uso del reactivo convencional."
+    },
+    {
+      "question": "¿Cómo se integra el sistema GlyCat en las plantas de procesamiento ya existentes?",
+      "answerOptions": [
+        {
+          "text": "De manera fluida, sin necesidad de reconstruir la infraestructura de Merrill-Crowe o carbón activado.",
+          "isCorrect": true,
+          "rationale": "Su capacidad de adaptación evita grandes gastos de capital ($CAPEX$) al reutilizar los circuitos actuales."
+        },
+        {
+          "text": "Requiere la sustitución total de los tanques de acero por tanques de polietileno de alta densidad.",
+          "isCorrect": false,
+          "rationale": "La química de la glicina es compatible con los materiales estándar de las plantas de cianuración."
+        },
+        {
+          "text": "Obliga a cambiar el proceso hidrometalúrgico por uno de pirometalurgia a alta temperatura.",
+          "isCorrect": false,
+          "rationale": "El sistema GlyCat es estrictamente una innovación en hidrometalurgia líquida."
+        },
+        {
+          "text": "Solo funciona si se instalan reactores de presión ($Autoclave$) antes de la lixiviación.",
+          "isCorrect": false,
+          "rationale": "Una de sus ventajas es que puede operar a presión atmosférica, integrándose a circuitos convencionales."
+        }
+      ],
+      "hint": "Piense en la facilidad de adopción para una empresa que ya tiene una planta operando."
+    },
+    {
+      "question": "¿Qué representa la 'Unidad de Gestión Dinámica' en la ingeniería actual?",
+      "answerOptions": [
+        {
+          "text": "El uso de geoestadística avanzada para calcular volúmenes de agua subterránea con precisión mineral.",
+          "isCorrect": true,
+          "rationale": "Une el conocimiento histórico de distribución volumétrica con la ciencia de datos moderna para el control del agua."
+        },
+        {
+          "text": "Un equipo de respuesta rápida para la limpieza de derrames químicos en ríos cercanos.",
+          "isCorrect": false,
+          "rationale": "Se refiere a una herramienta de modelamiento y planificación, no a un equipo de limpieza de emergencias."
+        },
+        {
+          "text": "Una oficina gubernamental encargada de otorgar los permisos de uso de agua.",
+          "isCorrect": false,
+          "rationale": "El concepto es técnico y operativo dentro de la ingeniería del proyecto, no una entidad administrativa externa."
+        },
+        {
+          "text": "Un sistema de bombeo automático que se activa únicamente durante la temporada de sequía.",
+          "isCorrect": false,
+          "rationale": "Es un concepto de modelamiento integral, mucho más complejo que un simple mecanismo de bombeo."
+        }
+      ],
+      "hint": "Combine la precisión de las reservas minerales con la gestión de recursos hídricos ocultos."
+    },
+    {
+      "question": "¿Cuál es el propósito de los 'procedimientos de contingencia' con dualidad de bombeo?",
+      "answerOptions": [
+        {
+          "text": "Garantizar el suministro ininterrumpido conectando múltiples fuentes como ríos y presas.",
+          "isCorrect": true,
+          "rationale": "La redundancia asegura que la planta no se detenga si una fuente o bomba principal falla."
+        },
+        {
+          "text": "Aumentar la presión del agua para permitir la minería hidráulica de alta potencia.",
+          "isCorrect": false,
+          "rationale": "El objetivo es la seguridad del suministro para el proceso químico, no el uso del agua como herramienta de excavación."
+        },
+        {
+          "text": "Mejorar la calidad estética del agua antes de ser devuelta al medio ambiente.",
+          "isCorrect": false,
+          "rationale": "La contingencia se enfoca en la continuidad operativa, no específicamente en el tratamiento de imagen del efluente."
+        },
+        {
+          "text": "Reducir el consumo eléctrico al alternar bombas viejas con bombas nuevas.",
+          "isCorrect": false,
+          "rationale": "La dualidad busca resiliencia y seguridad, no es primariamente una estrategia de ahorro energético por antigüedad."
+        }
+      ],
+      "hint": "Piense en la importancia de tener un 'Plan B' para que el proceso químico nunca se detenga."
+    },
+    {
+      "question": "¿Por qué se afirma que la minería moderna tiene autoridad técnica para liderar la educación sobre el cuidado del agua?",
+      "answerOptions": [
+        {
+          "text": "Por sus estrictos protocolos de recirculación y el uso de circuitos cerrados de alta tecnología.",
+          "isCorrect": true,
+          "rationale": "La industria minera utiliza apenas una fracción del agua global y maximiza su reutilización comparada con otros sectores."
+        },
+        {
+          "text": "Porque es el sector que más agua consume a nivel mundial y debe dar el ejemplo.",
+          "isCorrect": false,
+          "rationale": "Contrario a la creencia popular, la minería consume una fracción mínima del agua comparada con la agricultura o las ciudades."
+        },
+        {
+          "text": "Debido a que todas las minas utilizan agua desalinizada de mar por obligación legal.",
+          "isCorrect": false,
+          "rationale": "Aunque algunas lo hacen, la autoridad técnica viene de la eficiencia en el uso de cualquier fuente a través de la tecnología."
+        },
+        {
+          "text": "Porque han logrado eliminar por completo el uso de agua en todos los procesos metalúrgicos.",
+          "isCorrect": false,
+          "rationale": "El agua sigue siendo un recurso crítico y activo; la clave es su gestión eficiente, no su eliminación total."
+        }
+      ],
+      "hint": "Compare el desperdicio en las ciudades con los sistemas donde cada gota se recupera y vuelve al proceso."
+    },
+    {
+      "question": "¿Cuál es la conclusión principal sobre la aplicación del sistema GlyCat en diferentes minas?",
+      "answerOptions": [
+        {
+          "text": "No existen recetas mágicas y debe diseñarse como un 'traje a la medida' según la mineralogía local.",
+          "isCorrect": true,
+          "rationale": "Cada yacimiento es único y requiere pruebas específicas para encontrar la proporción exacta de reactivos."
+        },
+        {
+          "text": "Es una solución universal que funciona con la misma dosificación en cualquier parte del mundo.",
+          "isCorrect": false,
+          "rationale": "La variabilidad mineralógica impide que una sola fórmula sea óptima para todos los casos."
+        },
+        {
+          "text": "Solo es aplicable en minas de pequeña escala debido al costo de la glicina.",
+          "isCorrect": false,
+          "rationale": "Corporaciones gigantes ya han validado esta tecnología, demostrando su viabilidad a gran escala."
+        },
+        {
+          "text": "Su éxito depende exclusivamente del precio de mercado del oro en ese momento.",
+          "isCorrect": false,
+          "rationale": "El éxito es técnico y metalúrgico; la viabilidad económica mejora, pero el diseño debe ser mineralógico."
+        }
+      ],
+      "hint": "Piense en la necesidad de realizar pruebas de laboratorio antes de implementarlo en una operación real."
+    }
+  ],
+  "topics": {
+    "covered": [
+      "Gestión del recurso hídrico en minería",
+      "Modelamiento geohídrico y geometalurgia",
+      "Optimización de la lixiviación de oro",
+      "Sistemas de lixiviación con glicina (GlyCat)",
+      "Impacto ambiental y control de cianuro residual"
+    ],
+    "followUp": [
+      "Cinética de lixiviación en minerales refractarios",
+      "Geoestadística aplicada a recursos hídricos subterráneos",
+      "Química de soluciones electrolíticas en procesos industriales",
+      "Tratamiento de efluentes y reducción de cianuro WAD",
+      "Ingeniería hidráulica ancestral y su aplicación contemporánea"
+    ]
+  }
+}

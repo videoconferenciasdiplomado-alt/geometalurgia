@@ -1,0 +1,542 @@
+
+{
+  "quiz": [
+    {
+      "question": "¿Cuál es el objetivo principal de integrar la geología, minería y metalurgia en la caracterización geometalúrgica?",
+      "answerOptions": [
+        {
+          "text": "Mitigar la variabilidad intrínseca de los yacimientos minerales.",
+          "isCorrect": true,
+          "rationale": "La integración busca reducir el impacto de las variaciones naturales del terreno en todas las etapas del proceso productivo."
+        },
+        {
+          "text": "Eliminar por completo el uso de reactivos químicos en la planta.",
+          "isCorrect": false,
+          "rationale": "La geometalurgia optimiza el uso de reactivos basándose en la roca, pero no busca eliminarlos totalmente."
+        },
+        {
+          "text": "Centrarse exclusivamente en la ley del metal valioso para maximizar ventas.",
+          "isCorrect": false,
+          "rationale": "Enfocarse solo en la ley es una visión estrecha que ignora la complejidad de la matriz rocosa total."
+        },
+        {
+          "text": "Aumentar la profundidad de las excavaciones sin realizar muestreos previos.",
+          "isCorrect": false,
+          "rationale": "La profundidad aumenta los desafíos, pero la integración exige precisamente un muestreo riguroso para avanzar con seguridad."
+        }
+      ],
+      "hint": "Se relaciona con el manejo de las diferencias naturales que presenta cada sección del depósito."
+    },
+    {
+      "question": "¿Por qué es imperativo analizar la \"roca total\" en lugar de solo la ley del metal valioso?",
+      "answerOptions": [
+        {
+          "text": "Porque la ganga interactúa con reactivos y dicta la reología de la pulpa.",
+          "isCorrect": true,
+          "rationale": "Los minerales no valiosos afectan directamente el equilibrio del sistema trifásico y el flujo de la mezcla en la planta."
+        },
+        {
+          "text": "Para reducir el peso total del material transportado hacia la planta.",
+          "isCorrect": false,
+          "rationale": "El análisis busca entender el comportamiento del material, no necesariamente reducir su masa física de transporte."
+        },
+        {
+          "text": "Porque la roca total determina el color final del concentrado comercial.",
+          "isCorrect": false,
+          "rationale": "El análisis técnico se enfoca en la eficiencia del proceso y la recuperación, no en aspectos estéticos del producto."
+        },
+        {
+          "text": "Para identificar exclusivamente la presencia de oro nativo en zonas oxidadas.",
+          "isCorrect": false,
+          "rationale": "La caracterización de roca total abarca toda la matriz mineralógica, no se limita a un solo metal o zona."
+        }
+      ],
+      "hint": "Considere cómo los materiales acompañantes afectan el comportamiento físico y químico del proceso."
+    },
+    {
+      "question": "¿Cuál es la característica principal de la zona de sulfuros o zona hipógena?",
+      "answerOptions": [
+        {
+          "text": "Es una fase primaria con roca sumamente competente y dura.",
+          "isCorrect": true,
+          "rationale": "Al ser la zona más profunda y caliente, la roca mantiene una alta resistencia mecánica y requiere estrategias distintas de procesamiento."
+        },
+        {
+          "text": "Es el horizonte superior alterado por el clima y el tiempo.",
+          "isCorrect": false,
+          "rationale": "Esta descripción corresponde a la zona oxidada, que es superficial y no hipógena."
+        },
+        {
+          "text": "Presenta una mezcla equitativa de especies oxidadas y sulfuradas.",
+          "isCorrect": false,
+          "rationale": "La presencia de ambos tipos de especies define a la zona mixta o de transición, no a la zona de sulfuros primarios."
+        },
+        {
+          "text": "Se procesa principalmente mediante métodos simples de remoción de desmonte.",
+          "isCorrect": false,
+          "rationale": "La zona de sulfuros es el objetivo principal de la extracción y requiere un procesamiento metalúrgico complejo, no solo remoción."
+        }
+      ],
+      "hint": "Piense en las propiedades físicas de la roca que se encuentra en las entrañas más profundas del yacimiento."
+    },
+    {
+      "question": "¿Qué impacto financiero tiene el tratamiento inmediato de óxidos mediante hidrometalurgia en un proyecto minero?",
+      "answerOptions": [
+        {
+          "text": "Genera flujo de caja temprano y aumenta el Valor Presente Neto (VPN).",
+          "isCorrect": true,
+          "rationale": "Al no tratar los óxidos como desmonte, se aprovecha el recurso desde el inicio, mejorando la rentabilidad económica del proyecto."
+        },
+        {
+          "text": "Reduce drásticamente la necesidad de invertir en infraestructura de lixiviación.",
+          "isCorrect": false,
+          "rationale": "El procesamiento de óxidos requiere precisamente inversión en hidrometalurgia, aunque los beneficios superan los costos."
+        },
+        {
+          "text": "Incrementa los costos de almacenamiento de desponte a largo plazo.",
+          "isCorrect": false,
+          "rationale": "Al procesar los óxidos como mineral valioso, se evita el costo de almacenarlos innecesariamente como si fueran residuos."
+        },
+        {
+          "text": "Disminuye la vida útil de la mina al agotar las reservas superficiales.",
+          "isCorrect": false,
+          "rationale": "El aprovechamiento de óxidos optimiza el recurso disponible, lo cual suele mejorar la economía general sin perjudicar la vida del proyecto."
+        }
+      ],
+      "hint": "Considere el efecto de transformar lo que antes se tiraba a la basura en dinero líquido desde el primer día."
+    },
+    {
+      "question": "¿Qué problema operativo puede causar la presencia de magnetita como mineral interferente?",
+      "answerOptions": [
+        {
+          "text": "Bloquear directamente la recuperación de los sulfuros de cobre.",
+          "isCorrect": true,
+          "rationale": "Debido a su peso específico y asociaciones complejas, la magnetita actúa como un disruptor en el circuito de recuperación."
+        },
+        {
+          "text": "Aumentar la acidez del agua de proceso de forma incontrolable.",
+          "isCorrect": false,
+          "rationale": "Si bien hay minerales que afectan el $pH$, la magnetita se destaca principalmente por interferir físicamente en la recuperación de sulfuros."
+        },
+        {
+          "text": "Actuar como un lubricante que acelera excesivamente el flujo en la planta.",
+          "isCorrect": false,
+          "rationale": "La magnetita suele causar obstrucciones o interferencias por su densidad, no actúa como lubricante."
+        },
+        {
+          "text": "Eliminar la necesidad de usar colectores en la flotación.",
+          "isCorrect": false,
+          "rationale": "Los interferentes suelen complicar o encarecer el uso de reactivos, no simplificar el proceso."
+        }
+      ],
+      "hint": "Se trata de un enemigo específico que sabotea la obtención del mineral estrella."
+    },
+    {
+      "question": "¿Por qué se considera que los \"compósitos globales\" son un error de diseño en el muestreo metalúrgico?",
+      "answerOptions": [
+        {
+          "text": "Porque ocultan la variabilidad extrema y los picos de dureza de la roca.",
+          "isCorrect": true,
+          "rationale": "Al promediar todo el yacimiento, se ignoran las fluctuaciones críticas que la planta no podrá procesar en el día a día."
+        },
+        {
+          "text": "Porque requieren una cantidad excesiva de muestras individuales por bloque.",
+          "isCorrect": false,
+          "rationale": "El problema no es la cantidad de muestras, sino el hecho de mezclarlas, lo que invalida la representatividad espacial."
+        },
+        {
+          "text": "Porque aceleran demasiado el proceso de planificación económica.",
+          "isCorrect": false,
+          "rationale": "Aunque parezcan más rápidos, generan datos falsos que llevan a fallas catastróficas y retrasos posteriores."
+        },
+        {
+          "text": "Porque solo pueden aplicarse en yacimientos de muy baja ley.",
+          "isCorrect": false,
+          "rationale": "El uso de compósitos globales es una práctica tradicional deficiente independientemente de la ley del yacimiento."
+        }
+      ],
+      "hint": "Piense en lo que sucede cuando se mezclan materiales muy diferentes y se calcula un promedio."
+    },
+    {
+      "question": "¿Cuál es la regla de oro al realizar muestreo espacial por bloques?",
+      "answerOptions": [
+        {
+          "text": "No mezclar bajo ninguna circunstancia muestras de bloques con mineralogía distinta.",
+          "isCorrect": true,
+          "rationale": "Mantener la pureza de los datos de cada bloque es vital para que el modelo predictivo sea preciso y refleje la realidad individual."
+        },
+        {
+          "text": "Combinar bloques adyacentes para reducir el costo de los ensayos químicos.",
+          "isCorrect": false,
+          "rationale": "La combinación de bloques es precisamente lo que el muestreo moderno busca evitar para no perder la resolución de los datos."
+        },
+        {
+          "text": "Priorizar únicamente los bloques que se encuentran en la superficie oxidad.",
+          "isCorrect": false,
+          "rationale": "El muestreo debe ser sistemático y equiprobable en todo el volumen definido del yacimiento."
+        },
+        {
+          "text": "Ajustar el peso de la muestra ignorando la longitud del tramo del testigo.",
+          "isCorrect": false,
+          "rationale": "El protocolo exige una proporcionalidad estricta entre el peso y la longitud para garantizar la representatividad."
+        }
+      ],
+      "hint": "Se refiere a la preservación de la identidad de cada unidad de volumen estudiada."
+    },
+    {
+      "question": "¿Qué fenómeno describe la distribución irregular y caprichosa del oro nativo en un yacimiento?",
+      "answerOptions": [
+        {
+          "text": "Efecto pepita.",
+          "isCorrect": true,
+          "rationale": "Este fenómeno se refiere a la segregación extrema por densidad que dificulta obtener leyes precisas si no se usan protocolos rigurosos."
+        },
+        {
+          "text": "Cinética de pulpa.",
+          "isCorrect": false,
+          "rationale": "La cinética se refiere a la velocidad de las reacciones químicas, no a la distribución física del metal en la roca."
+        },
+        {
+          "text": "Reología de ganga.",
+          "isCorrect": false,
+          "rationale": "La reología trata sobre el flujo y comportamiento de la mezcla, no sobre la ubicación del oro en el yacimiento."
+        },
+        {
+          "text": "Fragmentación secundaria.",
+          "isCorrect": false,
+          "rationale": "Este término se relaciona con las etapas de chancado o molienda, no con una propiedad intrínseca de distribución mineral."
+        }
+      ],
+      "hint": "Es un término que evoca piezas pequeñas de metal precioso distribuidas de forma no uniforme."
+    },
+    {
+      "question": "¿Qué es, estrictamente hablando, una Unidad Geometalúrgica (UGM)?",
+      "answerOptions": [
+        {
+          "text": "Un volumen espacial de roca que encapsula información predictiva para el negocio.",
+          "isCorrect": true,
+          "rationale": "Una UGM integra variables de respuesta metalúrgica con el modelo geológico para predecir el comportamiento del mineral."
+        },
+        {
+          "text": "Una descripción puramente geológica de la composición de los minerales.",
+          "isCorrect": false,
+          "rationale": "La UGM va más allá de la geología al integrar datos de respuesta física y química ante el procesamiento."
+        },
+        {
+          "text": "Un reporte financiero que detalla los costos de extracción de un tajo.",
+          "isCorrect": false,
+          "rationale": "Aunque tiene implicaciones financieras, la UGM es un ente técnico y digital que representa un volumen de roca."
+        },
+        {
+          "text": "Una maquinaria de planta diseñada para procesar minerales de alta dureza.",
+          "isCorrect": false,
+          "rationale": "La UGM es un concepto de modelamiento y planificación, no una pieza de equipo físico."
+        }
+      ],
+      "hint": "Considere la transición de un dato estático a un ente dinámico codificado con información de respuesta."
+    },
+    {
+      "question": "¿Qué herramientas geoestadísticas se mencionan para extrapolar datos de muestras al yacimiento completo?",
+      "answerOptions": [
+        {
+          "text": "Técnicas como el krigin, cocrigin y polígonos de aproximación.",
+          "isCorrect": true,
+          "rationale": "Estas herramientas matemáticas permiten expandir la información puntual para construir un gemelo virtual del yacimiento."
+        },
+        {
+          "text": "Modelos de regresión lineal simple basados únicamente en la profundidad.",
+          "isCorrect": false,
+          "rationale": "El modelamiento moderno requiere técnicas avanzadas que consideren la variabilidad espacial multidimensional."
+        },
+        {
+          "text": "Algoritmos de inteligencia artificial que eliminan la necesidad de geólogos.",
+          "isCorrect": false,
+          "rationale": "La geoestadística es una herramienta de apoyo para los profesionales, no un reemplazo de la interpretación humana integral."
+        },
+        {
+          "text": "Cálculos de promedio aritmético simple entre bloques adyacentes.",
+          "isCorrect": false,
+          "rationale": "Los promedios simples fallan al capturar la variabilidad compleja, por lo que se requieren métodos espaciales avanzados."
+        }
+      ],
+      "hint": "Son métodos matemáticos que ayudan a crear un gemelo virtual del depósito."
+    },
+    {
+      "question": "¿Cuál es la causa más común de la brecha entre el modelo predictivo y la realidad operativa en la planta?",
+      "answerOptions": [
+        {
+          "text": "Fricción organizacional entre la planificación y las urgencias de la mina.",
+          "isCorrect": true,
+          "rationale": "A menudo, las desviaciones se deben a decisiones operativas de corto plazo que fuerzan el procesamiento de bloques no programados."
+        },
+        {
+          "text": "Errores matemáticos fundamentales en las fórmulas de geoestadística.",
+          "isCorrect": false,
+          "rationale": "El origen suele ser netamente organizacional y de disciplina operativa, más que una falla en la matemática del software."
+        },
+        {
+          "text": "Incapacidad del software para procesar más de dos variables simultáneas.",
+          "isCorrect": false,
+          "rationale": "Los sistemas modernos pueden manejar múltiples variables; el problema radica en la ejecución real en el terreno."
+        },
+        {
+          "text": "Falta de sensores electrónicos en las fajas transportadoras de la planta.",
+          "isCorrect": false,
+          "rationale": "Aunque los sensores ayudan, la brecha principal surge de la falta de adherencia al plan de extracción original."
+        }
+      ],
+      "hint": "Busque un factor relacionado con la gestión y los conflictos de intereses internos de la operación."
+    },
+    {
+      "question": "¿En qué consiste la práctica conocida como \"descreme\"?",
+      "answerOptions": [
+        {
+          "text": "Alterar la secuencia de extracción para buscar minerales de mayor ley por urgencia financiera.",
+          "isCorrect": true,
+          "rationale": "Esta acción busca mejorar reportes a corto plazo pero invalida la planificación geometalúrgica y las predicciones de recuperación."
+        },
+        {
+          "text": "Retirar la capa superior de óxidos para llegar rápidamente a los sulfuros primarios.",
+          "isCorrect": false,
+          "rationale": "Eso se conoce como remoción de desponte o estéril, una práctica tradicional que la visión moderna intenta cambiar."
+        },
+        {
+          "text": "Separar los minerales de ganga de la pulpa mediante el uso de espumantes.",
+          "isCorrect": false,
+          "rationale": "Ese es un proceso físico-químico estándar de flotación, no se refiere a la práctica organizacional de descreme."
+        },
+        {
+          "text": "Limpiar los rodillos de molienda para evitar la acumulación de arcillas.",
+          "isCorrect": false,
+          "rationale": "La limpieza de equipos es mantenimiento preventivo, no una estrategia de alteración de leyes de alimentación."
+        }
+      ],
+      "hint": "Piense en una acción motivada por la necesidad de maquillar resultados económicos inmediatos."
+    },
+    {
+      "question": "¿Qué índices se utilizan para prever el esfuerzo mecánico necesario para romper la roca?",
+      "answerOptions": [
+        {
+          "text": "SPI e índice de Bond (BWI).",
+          "isCorrect": true,
+          "rationale": "Estos índices de dureza permiten optimizar el consumo de energía al predecir la resistencia de la roca a la conminución."
+        },
+        {
+          "text": "Potencial Z y pH de la pulpa.",
+          "isCorrect": false,
+          "rationale": "Estos son parámetros químicos del entorno acuoso, no medidas de resistencia mecánica de la roca sólida."
+        },
+        {
+          "text": "Ley de corte y tasa de recuperación.",
+          "isCorrect": false,
+          "rationale": "Estos son indicadores económicos y de eficiencia del proceso, no propiedades físicas de dureza."
+        },
+        {
+          "text": "Índice de reología y viscosidad de arcillas.",
+          "isCorrect": false,
+          "rationale": "Aunque afectan el flujo, no son los índices estándar utilizados para medir el esfuerzo de ruptura mecánica."
+        }
+      ],
+      "hint": "Son siglas y nombres asociados tradicionalmente a las pruebas de molienda en laboratorio."
+    },
+    {
+      "question": "¿Cuál es el beneficio directo de aplicar la estrategia de \"chancado químico\"?",
+      "answerOptions": [
+        {
+          "text": "Reducción de hasta un $30\\%$ en los costos de energía de los molinos.",
+          "isCorrect": true,
+          "rationale": "Al aumentar el factor de carga en la voladura, la explosión actúa como una primera etapa de molienda muy eficiente."
+        },
+        {
+          "text": "Eliminación total del uso de chancadoras mecánicas gigantes.",
+          "isCorrect": false,
+          "rationale": "El chancado químico optimiza el proceso pero no reemplaza por completo la infraestructura de chancado primario."
+        },
+        {
+          "text": "Reducción del consumo de reactivos químicos en las celdas de flotación.",
+          "isCorrect": false,
+          "rationale": "El beneficio principal del chancado químico es energético y de fragmentación, no químico en la etapa de flotación."
+        },
+        {
+          "text": "Incremento de la ley del mineral antes de entrar al circuito de molienda.",
+          "isCorrect": false,
+          "rationale": "La fragmentación no cambia la ley del mineral, solo facilita su reducción de tamaño mecánica."
+        }
+      ],
+      "hint": "Considere cómo la inversión en explosivos ahorra un tercio de un costo operativo masivo."
+    },
+    {
+      "question": "¿Qué caracteriza el comportamiento cinético de la bornita en las celdas de flotación?",
+      "answerOptions": [
+        {
+          "text": "Alcanza hasta un $90\\%$ de recuperación en los primeros $5$ a $6$ minutos.",
+          "isCorrect": true,
+          "rationale": "Su reacción es extraordinariamente rápida, lo que permite estrategias de extracción directa y eficiente."
+        },
+        {
+          "text": "Requiere largos periodos de residencia para poder adherirse a las burbujas.",
+          "isCorrect": false,
+          "rationale": "Al contrario de otros sulfuros, la bornita tiene una respuesta cinética muy veloz y casi inmediata."
+        },
+        {
+          "text": "Es inmune a la presencia de sales solubles en la pulpa.",
+          "isCorrect": false,
+          "rationale": "Como cualquier sulfuro, su flotabilidad puede verse afectada por interferentes químicos que alteren el ángulo de contacto."
+        },
+        {
+          "text": "Necesita ser remolida múltiples veces antes de entrar a la celda de flotación.",
+          "isCorrect": false,
+          "rationale": "Su rápida cinética sugiere que una molienda excesiva podría ser ineficiente si el mineral ya está liberado."
+        }
+      ],
+      "hint": "Piense en la velocidad de reacción comparada con otros minerales."
+    },
+    {
+      "question": "¿Cuál es la función estratégica de una celda RFER en un circuito con minerales de rápida cinética?",
+      "answerOptions": [
+        {
+          "text": "Evacuar el concentrado final directamente desde la primera celda.",
+          "isCorrect": true,
+          "rationale": "Si el valor se captura rápido, sacarlo de inmediato evita sobrecargar innecesariamente el resto del circuito de remolienda."
+        },
+        {
+          "text": "Actuar como un tanque de almacenamiento para regular el pH de la mezcla.",
+          "isCorrect": false,
+          "rationale": "La celda RFER es una unidad de flotación activa, no un tanque de almacenamiento o regulación química."
+        },
+        {
+          "text": "Filtrar los interferentes sólidos antes de que lleguen a la etapa de limpieza.",
+          "isCorrect": false,
+          "rationale": "Su objetivo es capturar mineral valioso liberado, no funciona como un filtro de impurezas sólidas."
+        },
+        {
+          "text": "Inyectar aire a alta presión para romper las partículas de ganga.",
+          "isCorrect": false,
+          "rationale": "La fragmentación de ganga ocurre en la molienda; las celdas se encargan de la separación por adherencia a burbujas."
+        }
+      ],
+      "hint": "Se relaciona con la captura temprana del mineral valioso para ahorrar energía."
+    },
+    {
+      "question": "¿Cómo afectan las sales solubles al proceso de flotación?",
+      "answerOptions": [
+        {
+          "text": "Provocan un consumo enmascarado de colectores y alteran el potencial Z.",
+          "isCorrect": true,
+          "rationale": "Estas sales actúan de forma disimulada rompiendo el equilibrio químico necesario para que el mineral se pegue a la burbuja."
+        },
+        {
+          "text": "Aumentan la dureza de la roca dificultando el chancado químico.",
+          "isCorrect": false,
+          "rationale": "El efecto de las sales solubles es químico en la pulpa, no físico en la resistencia mecánica de la roca sólida."
+        },
+        {
+          "text": "Facilitan la formación del ángulo de contacto entre el aire y el mineral.",
+          "isCorrect": false,
+          "rationale": "Al contrario, las sales suelen impedir la formación de este ángulo, perjudicando la recuperación."
+        },
+        {
+          "text": "Actúan como colectores naturales que reducen los costos operativos.",
+          "isCorrect": false,
+          "rationale": "Se consideran interferentes o saboteadores precisamente porque perjudican la acción de los reactivos añadidos."
+        }
+      ],
+      "hint": "Piense en un enemigo invisible que altera las variables químicas críticas del entorno acuoso."
+    },
+    {
+      "question": "¿Cuál es el proceso mecánico fundamental que ocurre dentro de un equipo HPGR?",
+      "answerOptions": [
+        {
+          "text": "Aplicación de presión lateral sostenida para generar microfracturas.",
+          "isCorrect": true,
+          "rationale": "A diferencia del impacto convencional, la compresión intensa crea una red de daños internos en la matriz de la roca."
+        },
+        {
+          "text": "Impacto contundente de bolas de acero contra las partículas de mineral.",
+          "isCorrect": false,
+          "rationale": "Esa es la mecánica de un molino convencional, mientras que el HPGR utiliza rodillos de alta presión."
+        },
+        {
+          "text": "Rotación de la roca a alta velocidad para generar fuerza centrífuga.",
+          "isCorrect": false,
+          "rationale": "El HPGR se basa en la compresión entre dos rodillos, no en la fuerza centrífuga de rotación libre."
+        },
+        {
+          "text": "Uso de chorros de agua a presión para lavar las impurezas superficiales.",
+          "isCorrect": false,
+          "rationale": "El equipo HPGR es una tecnología de molienda o conminución en seco o con baja humedad, no un sistema de lavado."
+        }
+      ],
+      "hint": "Contraste un golpe seco con una compresión intensa entre dos superficies móviles."
+    },
+    {
+      "question": "¿Por qué el daño microestructural del HPGR favorece la lixiviación?",
+      "answerOptions": [
+        {
+          "text": "Permite una penetración capilar eficiente de los fluidos lixiviantes.",
+          "isCorrect": true,
+          "rationale": "Las microfracturas habilitan que los químicos alcancen partículas valiosas que de otro modo quedarían encapsuladas."
+        },
+        {
+          "text": "Reduce la cantidad de ácido necesaria para disolver la roca estéril.",
+          "isCorrect": false,
+          "rationale": "El HPGR facilita el acceso al mineral valioso, pero no necesariamente reduce el consumo químico de la ganga reactiva."
+        },
+        {
+          "text": "Convierte automáticamente los sulfuros primarios en óxidos solubles.",
+          "isCorrect": false,
+          "rationale": "El equipo realiza una transformación física (fracturas), no una transformación química de las especies minerales."
+        },
+        {
+          "text": "Aumenta el tamaño de las partículas para facilitar el drenaje en pilas.",
+          "isCorrect": false,
+          "rationale": "La molienda busca reducir el tamaño y aumentar la superficie de contacto, no incrementar el tamaño de partícula."
+        }
+      ],
+      "hint": "Imagine cómo los líquidos logran entrar en una estructura sólida aparentemente cerrada."
+    },
+    {
+      "question": "¿Qué representa el \"gemelo virtual\" en el contexto del modelamiento geometalúrgico?",
+      "answerOptions": [
+        {
+          "text": "Un entorno digital para probar escenarios operativos antes de ejecutarlos.",
+          "isCorrect": true,
+          "rationale": "Es la idealización del recurso mediante geoestadística que permite anticipar problemas y optimizar decisiones."
+        },
+        {
+          "text": "Una segunda planta construida idéntica a la primera para emergencias.",
+          "isCorrect": false,
+          "rationale": "El gemelo virtual es una representación de software y datos, no una infraestructura física redundante."
+        },
+        {
+          "text": "Un operario de planta altamente capacitado en simulación digital.",
+          "isCorrect": false,
+          "rationale": "Se refiere al modelo de datos del yacimiento, no a un perfil profesional o humano."
+        },
+        {
+          "text": "Una copia física exacta del núcleo del yacimiento guardada en laboratorio.",
+          "isCorrect": false,
+          "rationale": "Aunque se usan testigos de perforación, el gemelo virtual es la integración digital de todos esos datos en un modelo espacial."
+        }
+      ],
+      "hint": "Se trata de una herramienta de simulación basada en datos geoestadísticos."
+    }
+  ],
+  "topics": {
+    "covered": [
+      "Caracterización Geometalúrgica",
+      "Modelamiento de Unidades Geometalúrgicas (UGM)",
+      "Zonificación de Yacimientos",
+      "Estrategias de Muestreo Espacial",
+      "Eficiencia Energética y Chancado Químico",
+      "Tecnología de Molienda HPGR",
+      "Cinética de Flotación y Química de Pulpa"
+    ],
+    "followUp": [
+      "Aplicaciones avanzadas de Geoestadística en minería",
+      "Impacto de la reología de arcillas en circuitos de molienda",
+      "Diseño de circuitos de lixiviación basados en microfracturamiento",
+      "Gestión de riesgos organizacionales en la planificación minera"
+    ]
+  }
+}

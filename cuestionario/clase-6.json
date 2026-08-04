@@ -1,0 +1,539 @@
+{
+  "quiz": [
+    {
+      "question": "¿Cuál es el porcentaje de pureza definitivo que se busca alcanzar en la producción de cátodos de cobre de grado comercial?",
+      "answerOptions": [
+        {
+          "text": "99.99%",
+          "isCorrect": true,
+          "rationale": "Este nivel de pureza, conocido como los 'cuatro nueves', es el estándar requerido para que el metal sea considerado un commodity comercial de altísima calidad."
+        },
+        {
+          "text": "99.70%",
+          "isCorrect": false,
+          "rationale": "Este valor corresponde habitualmente a la pureza del cobre blister o ánodos de afino antes de pasar por la etapa electrolítica final."
+        },
+        {
+          "text": "75.00%",
+          "isCorrect": false,
+          "rationale": "Este porcentaje representa la pureza típica después de la etapa de conversión, indicando que aún falta un proceso significativo de refinación."
+        },
+        {
+          "text": "95.00%",
+          "isCorrect": false,
+          "rationale": "Aunque es una pureza alta, no cumple con las exigencias del mercado internacional para cátodos de grado electrolítico."
+        }
+      ],
+      "hint": "Se trata del objetivo máximo de pureza mencionado para transformar recursos minerales en commodities."
+    },
+    {
+      "question": "¿Cuál es la principal diferencia operativa entre la electrobtención ($EW$) y la electrorrefinación ($ER$) respecto a la materia prima?",
+      "answerOptions": [
+        {
+          "text": "La $EW$ utiliza soluciones líquidas y la $ER$ utiliza ánodos sólidos.",
+          "isCorrect": true,
+          "rationale": "La electrobtención parte de soluciones provenientes de la lixiviación de óxidos, mientras que la electrorrefinación requiere ánodos sólidos fundidos de sulfuros."
+        },
+        {
+          "text": "La $EW$ procesa sulfuros y la $ER$ procesa óxidos minerales.",
+          "isCorrect": false,
+          "rationale": "Esta afirmación invierte las rutas metalúrgicas naturales, ya que los óxidos son aptos para lixiviación y los sulfuros para fundición."
+        },
+        {
+          "text": "La $EW$ requiere ánodos de cobre puro y la $ER$ utiliza ánodos inertes.",
+          "isCorrect": false,
+          "rationale": "En realidad, es la electrorrefinación la que utiliza el cobre impuro como ánodo para disolverlo y depositarlo nuevamente."
+        },
+        {
+          "text": "Ambas utilizan exclusivamente concentrados de flotación disueltos en ácido.",
+          "isCorrect": false,
+          "rationale": "Los concentrados de flotación normalmente siguen la ruta pirometalúrgica para generar ánodos, no van directamente a electrobtención."
+        }
+      ],
+      "hint": "Piense en el estado físico del material que ingresa a las celdas en cada proceso."
+    },
+    {
+      "question": "En la ruta de los óxidos, ¿qué problema operativo generan las arcillas si no son eliminadas antes de la etapa de extracción por solventes ($SX$)?",
+      "answerOptions": [
+        {
+          "text": "Generan borras o 'crud' que aumentan el consumo de reactivos.",
+          "isCorrect": true,
+          "rationale": "Las arcillas en la etapa $SX$ ensucian el electrolito y provocan la formación de borras, lo que eleva significativamente el gasto en extractantes caros."
+        },
+        {
+          "text": "Provocan la cristalización inmediata del cobre en las tuberías.",
+          "isCorrect": false,
+          "rationale": "La cristalización suele ser un problema de saturación o temperatura, no una consecuencia directa de la presencia de arcillas en el solvente."
+        },
+        {
+          "text": "Aumentan la densidad de corriente de la celda de forma descontrolada.",
+          "isCorrect": false,
+          "rationale": "La densidad de corriente es un parámetro eléctrico controlado; las arcillas afectan la calidad física y química del sistema, no el ajuste de corriente."
+        },
+        {
+          "text": "Reducen el $pH$ del $PLS$ a niveles negativos.",
+          "isCorrect": false,
+          "rationale": "Las arcillas son impurezas físicas/mecánicas y no tienen el poder químico para acidificar la solución de esa manera."
+        }
+      ],
+      "hint": "Considere el efecto que tienen estos sólidos finos al mezclarse con los reactivos orgánicos."
+    },
+    {
+      "question": "¿Cuál es la concentración de cobre 'blanco' que debe alcanzar la planta de $SX$ para asegurar la eficiencia en la electrodeposición?",
+      "answerOptions": [
+        {
+          "text": "45 $g/L$",
+          "isCorrect": true,
+          "rationale": "Esta concentración específica es innegociable para mantener la eficiencia termodinámica durante el proceso de depósito en las celdas."
+        },
+        {
+          "text": "5 a 7 $g/L$",
+          "isCorrect": false,
+          "rationale": "Este rango corresponde a la ley de cobre inicial en el $PLS$ antes de ser concentrado por la planta de extracción por solventes."
+        },
+        {
+          "text": "100 $g/L$",
+          "isCorrect": false,
+          "rationale": "Una concentración tan elevada podría causar problemas de saturación y no es el estándar operativo mencionado para este proceso."
+        },
+        {
+          "text": "25 $g/L$",
+          "isCorrect": false,
+          "rationale": "Aunque es mayor que la del $PLS$, está por debajo del objetivo óptimo de diseño para las celdas de electrobtención."
+        }
+      ],
+      "hint": "Es el valor constante que se debe entregar a la nave electrolítica."
+    },
+    {
+      "question": "En el contexto de la electrorrefinación, ¿cuál es la función de los hornos de afino dentro del puente pirometalúrgico?",
+      "answerOptions": [
+        {
+          "text": "Elevar la pureza del metal del 75% al 99.7% para formar el cobre blister.",
+          "isCorrect": true,
+          "rationale": "Los hornos de afino son la etapa final antes del moldeo, logrando la pureza necesaria para que los ánodos funcionen correctamente en la celda."
+        },
+        {
+          "text": "Convertir el mineral de óxido en una solución de sulfato de cobre.",
+          "isCorrect": false,
+          "rationale": "El afino es un proceso térmico para metales fundidos, no un proceso de disolución química de minerales oxidados."
+        },
+        {
+          "text": "Eliminar exclusivamente el oro y la plata mediante evaporación térmica.",
+          "isCorrect": false,
+          "rationale": "Los metales preciosos no se evaporan en el afino, sino que permanecen en el cobre para ser recuperados después como lodos anódicos."
+        },
+        {
+          "text": "Reducir la temperatura del cobre líquido para que no dañe la rueda de moldeo.",
+          "isCorrect": false,
+          "rationale": "Aunque se controla la temperatura, su función principal es la purificación química, no simplemente el enfriamiento."
+        }
+      ],
+      "hint": "Piense en el salto de pureza que ocurre justo antes de solidificar el ánodo."
+    },
+    {
+      "question": "¿Por qué es tan crítico el diseño físico y la geometría del ánodo durante el proceso de moldeo?",
+      "answerOptions": [
+        {
+          "text": "Para evitar irregularidades en la corriente y cortocircuitos por mala suspensión.",
+          "isCorrect": true,
+          "rationale": "Un ánodo con peso asimétrico o geometría incorrecta no colgará perfectamente, lo que provoca fallos eléctricos que paralizan la eficiencia."
+        },
+        {
+          "text": "Para permitir que el cobre se disuelva más rápido que el plomo.",
+          "isCorrect": false,
+          "rationale": "La velocidad de disolución depende de la electroquímica y la corriente, no de la forma física externa del ánodo."
+        },
+        {
+          "text": "Para asegurar que los lodos anódicos se peguen a la superficie del cátodo.",
+          "isCorrect": false,
+          "rationale": "El objetivo es precisamente el contrario: que los lodos caigan al fondo y no contaminen el cátodo."
+        },
+        {
+          "text": "Para facilitar el transporte manual de las placas por parte de los operarios.",
+          "isCorrect": false,
+          "rationale": "Dada la escala industrial y el peso de las placas, el diseño responde a requerimientos de las celdas y grúas, no a manejo manual."
+        }
+      ],
+      "hint": "Considere cómo debe interactuar la placa dentro de la celda de refinación."
+    },
+    {
+      "question": "Durante la disolución del ánodo, ¿qué sucede con elementos como el hierro, níquel y cobalto?",
+      "answerOptions": [
+        {
+          "text": "Se oxidan y permanecen disueltos en el electrolito.",
+          "isCorrect": true,
+          "rationale": "A diferencia de los metales preciosos, estos elementos son solubles en las condiciones de la celda y se acumulan en la solución líquida."
+        },
+        {
+          "text": "Precipitan inmediatamente formando sulfatos insolubles.",
+          "isCorrect": false,
+          "rationale": "Esta es la conducta típica del plomo, no del hierro o el níquel, que tienden a quedarse en la solución."
+        },
+        {
+          "text": "Se depositan en el cátodo junto con el cobre puro.",
+          "isCorrect": false,
+          "rationale": "El proceso está diseñado para que estos elementos permanezcan en solución y no contaminen el depósito de cobre de alta pureza."
+        },
+        {
+          "text": "Se evaporan debido al calor generado por la electrólisis.",
+          "isCorrect": false,
+          "rationale": "La electrólisis no alcanza temperaturas suficientes para evaporar metales como el hierro o el níquel."
+        }
+      ],
+      "hint": "Diferencie entre las impurezas que caen al fondo y las que 'flotan' en la solución."
+    },
+    {
+      "question": "¿Qué elementos de alto valor tecnológico se pueden encontrar comúnmente en los lodos anódicos?",
+      "answerOptions": [
+        {
+          "text": "Selenio y teluro.",
+          "isCorrect": true,
+          "rationale": "Además de metales preciosos como oro y plata, los lodos son una fuente crítica de estos elementos demandados por la industria tecnológica."
+        },
+        {
+          "text": "Magnesio y aluminio.",
+          "isCorrect": false,
+          "rationale": "Estos metales no son subproductos típicos de la electrorrefinación del cobre y suelen seguir rutas de procesamiento muy distintas."
+        },
+        {
+          "text": "Arsénico y antimonio en forma metálica pura.",
+          "isCorrect": false,
+          "rationale": "Aunque están presentes como impurezas, son elementos deléreos que se buscan eliminar, no son el 'clímax económico' de los lodos."
+        },
+        {
+          "text": "Hierro y zinc.",
+          "isCorrect": false,
+          "rationale": "Como se mencionó anteriormente, estos elementos tienden a disolverse en el electrolito en lugar de concentrarse en los lodos del fondo."
+        }
+      ],
+      "hint": "Se trata de elementos valiosos que no se disuelven durante la electrólisis."
+    },
+    {
+      "question": "En el procesamiento del zinc, ¿cuál es el propósito de la tostación a $1000^{\\circ}C$ en hornos de lecho fluidizado?",
+      "answerOptions": [
+        {
+          "text": "Convertir los sulfuros rebeldes (blenda/marmatita) en óxidos de zinc (calcina).",
+          "isCorrect": true,
+          "rationale": "La tostación rompe la estructura refractaria de los sulfuros para hacerlos aptos para la posterior lixiviación ácida."
+        },
+        {
+          "text": "Fundir el zinc para moldearlo directamente en lingotes comerciales.",
+          "isCorrect": false,
+          "rationale": "El zinc se funde a una temperatura mucho menor (530$^{\\circ}$C) y solo después de haber sido purificado electrolíticamente."
+        },
+        {
+          "text": "Eliminar el hierro transformándolo en gas de dióxido de azufre.",
+          "isCorrect": false,
+          "rationale": "El hierro no se elimina como gas; permanece en el sólido y a menudo reacciona formando ferritas, lo cual es un problema."
+        },
+        {
+          "text": "Lixiviar el mineral mediante la inyección de vapor de ácido sulfúrico.",
+          "isCorrect": false,
+          "rationale": "La tostación es un proceso térmico seco; la lixiviación ocurre después en tanques con soluciones acuosas."
+        }
+      ],
+      "hint": "Es la transformación química inicial necesaria para manejar minerales refractarios."
+    },
+    {
+      "question": "¿Qué compuesto obstinado se forma durante la tostación del zinc y obliga a realizar una lixiviación en dos etapas?",
+      "answerOptions": [
+        {
+          "text": "Ferrita de zinc.",
+          "isCorrect": true,
+          "rationale": "La reacción entre el hierro y el zinc a altas temperaturas crea ferritas que son extremadamente difíciles de disolver en condiciones neutras."
+        },
+        {
+          "text": "Jarosita de amonio.",
+          "isCorrect": false,
+          "rationale": "La jarosita es un compuesto que se precipita intencionalmente después para eliminar el hierro, no se forma en el horno de tostación."
+        },
+        {
+          "text": "Blenda de azufre.",
+          "isCorrect": false,
+          "rationale": "La blenda es el nombre del mineral de sulfuro de zinc original, no un producto de la tostación."
+        },
+        {
+          "text": "Sulfato de plomo.",
+          "isCorrect": false,
+          "rationale": "Este compuesto es un precipitado común en la electrorrefinación de cobre, pero no es el causante de la doble etapa de lixiviación en zinc."
+        }
+      ],
+      "hint": "Surge de la reacción inevitable entre el hierro presente y el zinc a temperaturas extremas."
+    },
+    {
+      "question": "Para recuperar el zinc atrapado en las ferritas, ¿cuáles son las condiciones de la lixiviación ácida caliente?",
+      "answerOptions": [
+        {
+          "text": "Temperatura de $90^{\\circ}C$ y $pH$ de $-0.38$.",
+          "isCorrect": true,
+          "rationale": "Estas condiciones extremas de alta temperatura y acidez negativa son necesarias para romper la matriz de las ferritas."
+        },
+        {
+          "text": "Temperatura de $60^{\\circ}C$ y $pH$ entre $1$ y $5.5$.",
+          "isCorrect": false,
+          "rationale": "Estas son las condiciones de la lixiviación neutra, la cual es insuficiente para disolver las ferritas."
+        },
+        {
+          "text": "Temperatura de $1000^{\\circ}C$ en medio acuoso.",
+          "isCorrect": false,
+          "rationale": "Es imposible mantener agua líquida a esa temperatura a presión atmosférica; esa temperatura corresponde a la tostación seca."
+        },
+        {
+          "text": "Temperatura ambiente y $pH$ neutro de $7.0$.",
+          "isCorrect": false,
+          "rationale": "El zinc no se lixiviaría de las ferritas en absoluto bajo condiciones tan suaves y sin acidez."
+        }
+      ],
+      "hint": "Requiere lo que se denomina 'artillería pesada' en términos de acidez y calor."
+    },
+    {
+      "question": "¿Cuál es el propósito de añadir sulfato de amonio a la solución preñada de zinc a $90^{\\circ}C$?",
+      "answerOptions": [
+        {
+          "text": "Precipitar el hierro en forma de jarosita de amonio.",
+          "isCorrect": true,
+          "rationale": "Este paso es crucial para purificar la solución, eliminando el hierro masivo que fue disuelto durante la lixiviación ácida fuerte."
+        },
+        {
+          "text": "Actuar como tensoactivo para eliminar la neblina ácida.",
+          "isCorrect": false,
+          "rationale": "Los tensoactivos o detergentes se añaden en la celda de electrólisis, no para precipitar hierro en la etapa de purificación."
+        },
+        {
+          "text": "Catalizar la formación de dendritas en los cátodos.",
+          "isCorrect": false,
+          "rationale": "Las dendritas son defectos indeseados; ningún reactivo se añade para favorecer su crecimiento."
+        },
+        {
+          "text": "Reducir el punto de fusión del zinc para el moldeo final.",
+          "isCorrect": false,
+          "rationale": "El sulfato de amonio es un reactivo químico acuoso y no influye en las propiedades térmicas del metal sólido."
+        }
+      ],
+      "hint": "Es una maniobra de purificación para eliminar un contaminante metálico muy abundante."
+    },
+    {
+      "question": "¿En qué consiste la etapa de 'cementación' en la purificación del zinc?",
+      "answerOptions": [
+        {
+          "text": "Añadir polvo de zinc puro para precipitar impurezas como cobre, cobalto y cadmio.",
+          "isCorrect": true,
+          "rationale": "Basándose en la serie electromotriz, el zinc metálico desplaza a otros metales menos activos de la solución para eliminarlos."
+        },
+        {
+          "text": "Mezclar el electrolito con cemento para estabilizar los residuos tóxicos.",
+          "isCorrect": false,
+          "rationale": "La cementación en metalurgia es un proceso electroquímico de sustitución, no tiene relación con el cemento de construcción."
+        },
+        {
+          "text": "Recubrir los ánodos de plomo-plata con una capa protectora de calcio.",
+          "isCorrect": false,
+          "rationale": "Este procedimiento no existe en la metalurgia del zinc; los ánodos funcionan por su propia composición de aleación."
+        },
+        {
+          "text": "Solidificar los lodos para que puedan ser transportados en camiones.",
+          "isCorrect": false,
+          "rationale": "La cementación ocurre dentro de la solución líquida para purificarla antes de la electrólisis, no es un manejo de residuos sólidos."
+        }
+      ],
+      "hint": "Utiliza el propio metal que se quiere producir, pero en forma de polvo, para limpiar la solución."
+    },
+    {
+      "question": "¿Qué materiales se utilizan típicamente para los cátodos y ánodos en la electrólisis del zinc?",
+      "answerOptions": [
+        {
+          "text": "Cátodos de aluminio y ánodos de aleación plomo-plata.",
+          "isCorrect": true,
+          "rationale": "Esta configuración es la estándar industrial para permitir un depósito eficiente de zinc y resistir la corrosión."
+        },
+        {
+          "text": "Cátodos de acero inoxidable y ánodos de grafito puro.",
+          "isCorrect": false,
+          "rationale": "Aunque se usan en otros procesos, el aluminio es el preferido para el zinc por sus propiedades de despegue y conductividad."
+        },
+        {
+          "text": "Cátodos de cobre y ánodos de hierro fundido.",
+          "isCorrect": false,
+          "rationale": "El hierro contaminaría la solución y el cobre no es el sustrato ideal para el depósito de zinc comercial."
+        },
+        {
+          "text": "Cátodos de titanio y ánodos de oro comercial.",
+          "isCorrect": false,
+          "rationale": "El costo del oro hace que esta opción sea económicamente inviable para procesos de electrodeposición masiva."
+        }
+      ],
+      "hint": "Uno es un metal ligero para el depósito y el otro es una aleación pesada y resistente."
+    },
+    {
+      "question": "¿Qué fenómeno ocurre en la celda cuando hay un exceso de acidez y genera una neblina tóxica?",
+      "answerOptions": [
+        {
+          "text": "Evolución de hidrógeno.",
+          "isCorrect": true,
+          "rationale": "La evolución de hidrógeno compite con el depósito del metal, reduce la eficiencia y crea burbujas que transportan neblina ácida al aire."
+        },
+        {
+          "text": "Crecimiento de dendritas.",
+          "isCorrect": false,
+          "rationale": "Las dendritas son crecimientos sólidos cristalinos, no un fenómeno de burbujeo gaseoso relacionado con la neblina."
+        },
+        {
+          "text": "Pasivación anódica.",
+          "isCorrect": false,
+          "rationale": "La pasivación detiene la corriente, mientras que la evolución de hidrógeno es una reacción activa que 'roba' energía."
+        },
+        {
+          "text": "Arrastre de arcillas.",
+          "isCorrect": false,
+          "rationale": "El arrastre de arcillas es un fallo físico de filtración previo, no una reacción electroquímica dentro de la celda."
+        }
+      ],
+      "hint": "Es una reacción secundaria que compite directamente con la deposición del metal."
+    },
+    {
+      "question": "¿Cuál es la principal consecuencia negativa del crecimiento de dendritas hacia el ánodo?",
+      "answerOptions": [
+        {
+          "text": "Cortocircuitos inminentes y caída brusca del voltaje.",
+          "isCorrect": true,
+          "rationale": "Al tocar el ánodo, la dendrita cierra el circuito físicamente, lo que desbalancea la energía y paraliza la producción de la nave."
+        },
+        {
+          "text": "Aumento de la pureza del cátodo por encima del 99.99%.",
+          "isCorrect": false,
+          "rationale": "Al contrario, el crecimiento irregular suele atrapar impurezas y arruinar la calidad del metal depositado."
+        },
+        {
+          "text": "Disolución acelerada de los lodos anódicos.",
+          "isCorrect": false,
+          "rationale": "Las dendritas afectan el flujo eléctrico en la parte superior/media de la celda y no tienen relación con la química de los lodos del fondo."
+        },
+        {
+          "text": "Enfriamiento excesivo del electrolito.",
+          "isCorrect": false,
+          "rationale": "Un cortocircuito genera calor localizado debido a la alta resistencia del punto de contacto, no enfriamiento."
+        }
+      ],
+      "hint": "Piense en lo que sucede cuando un conductor sólido une los dos polos de la celda."
+    },
+    {
+      "question": "Según la ley de Faraday aplicada al proceso, ¿cuál es el rango de voltaje de celda típico para movilizar los electrones del metal?",
+      "answerOptions": [
+        {
+          "text": "$0.2$ a $0.4\\ V$",
+          "isCorrect": true,
+          "rationale": "Este margen tan pequeño de voltaje es el potencial exacto requerido para movilizar los electrones y mantener la estabilidad operativa."
+        },
+        {
+          "text": "$10$ a $20\\ V$",
+          "isCorrect": false,
+          "rationale": "Voltajes tan altos causarían reacciones secundarias masivas y un consumo energético económicamente inviable."
+        },
+        {
+          "text": "$220\\ V$",
+          "isCorrect": false,
+          "rationale": "Este es un voltaje típico de red doméstica, no el voltaje de operación de una celda electrolítica industrial."
+        },
+        {
+          "text": "$0.001$ a $0.005\\ V$",
+          "isCorrect": false,
+          "rationale": "Un voltaje tan bajo sería insuficiente para vencer la resistencia del sistema y movilizar los iones del metal."
+        }
+      ],
+      "hint": "Es un valor milimétrico mencionado para mantener la densidad de corriente óptima."
+    },
+    {
+      "question": "¿Qué tipo de filtros se utilizan como 'póliza de seguro' para atrapar elementos deléreos antes de que entren a la nave electrolítica?",
+      "answerOptions": [
+        {
+          "text": "Camas de zeolitas o riolitas.",
+          "isCorrect": true,
+          "rationale": "Estos filtros funcionan por intercambio iónico y actúan como una barrera final de purificación para proteger la calidad del depósito."
+        },
+        {
+          "text": "Mallas de acero al carbono.",
+          "isCorrect": false,
+          "rationale": "El acero al carbono se corroería rápidamente en el ambiente ácido del electrolito y contaminaría la solución con hierro."
+        },
+        {
+          "text": "Filtros de papel celulosa desechables.",
+          "isCorrect": false,
+          "rationale": "A escala industrial, se requieren sistemas más robustos y con capacidad de intercambio iónico como los minerales mencionados."
+        },
+        {
+          "text": "Membranas de ósmosis inversa.",
+          "isCorrect": false,
+          "rationale": "La ósmosis inversa no es el método estándar para filtrar soluciones preñadas en metalurgia extractiva debido a la alta carga iónica."
+        }
+      ],
+      "hint": "Son materiales minerales que actúan mediante intercambio iónico."
+    },
+    {
+      "question": "¿A qué temperatura aproximada se funden las placas de zinc para moldear los lingotes comerciales?",
+      "answerOptions": [
+        {
+          "text": "$530^{\\circ}C$",
+          "isCorrect": true,
+          "rationale": "Esta es la temperatura operativa final para convertir las placas sólidas en el formato de lingote que se entrega al mercado."
+        },
+        {
+          "text": "$1000^{\\circ}C$",
+          "isCorrect": false,
+          "rationale": "Como se indicó antes, esta temperatura es para la tostación del mineral, no para la fundición del metal puro."
+        },
+        {
+          "text": "$100^{\\circ}C$",
+          "isCorrect": false,
+          "rationale": "A esta temperatura el agua hierve, pero el zinc permanece en estado sólido."
+        },
+        {
+          "text": "$1500^{\\circ}C$",
+          "isCorrect": false,
+          "rationale": "Es una temperatura excesiva para el zinc, que tiene un punto de fusión relativamente bajo en comparación con otros metales industriales."
+        }
+      ],
+      "hint": "Es el paso final del bloque de zinc antes de llegar al mercado."
+    },
+    {
+      "question": "¿Cuál es el objetivo principal de la disciplina denominada geometalurgia predictiva?",
+      "answerOptions": [
+        {
+          "text": "Anticipar las variabilidades del mineral para ajustar las variables antes de que ocurra un desastre operativo.",
+          "isCorrect": true,
+          "rationale": "La geometalurgia permite un control anticipado que evita colapsos en las celdas ante cambios en la composición de la alimentación."
+        },
+        {
+          "text": "Encontrar nuevos yacimientos de oro utilizando satélites.",
+          "isCorrect": false,
+          "rationale": "Esa es una función de la exploración geológica, no de la geometalurgia predictiva aplicada a procesos de planta."
+        },
+        {
+          "text": "Reducir el salario de los operarios mediante la automatización total.",
+          "isCorrect": false,
+          "rationale": "El objetivo es la eficiencia del proceso y la calidad del producto, no una política de recursos humanos."
+        },
+        {
+          "text": "Eliminar por completo el uso de electricidad en la metalurgia.",
+          "isCorrect": false,
+          "rationale": "La electrometalurgia depende intrínsecamente de la electricidad; la geometalurgia solo optimiza su uso."
+        }
+      ],
+      "hint": "Se trata de un modelo de control basado en el conocimiento previo del material."
+    }
+  ],
+  "topics": {
+    "covered": [
+      "Electrometalurgia del cobre",
+      "Electrometalurgia del zinc",
+      "Procesos de purificación (SX/EW)",
+      "Electrorrefinación y lodos anódicos",
+      "Geometalurgia predictiva"
+    ],
+    "followUp": [
+      "Termodinámica de la electrodeposición",
+      "Cinética de tostación de sulfuros complejos",
+      "Química de precipitación de jarositas",
+      "Refinación secundaria de metales preciosos (Au, Ag, Se)"
+    ]
+  }
+}

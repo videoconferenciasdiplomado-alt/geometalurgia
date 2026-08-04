@@ -1,0 +1,544 @@
+
+{
+  "quiz": [
+    {
+      "question": "¿Cuál es la diferencia fundamental entre un modelo geológico tradicional y un modelo geometalúrgico?",
+      "answerOptions": [
+        {
+          "text": "El modelo geológico es una fotografía estática, mientras que el geometalúrgico es una simulación financiera en vivo.",
+          "isCorrect": true,
+          "rationale": "El modelo geometalúrgico incorpora variables dinámicas como recuperación y consumo de reactivos para proyectar rentabilidad, a diferencia de la cubicación estática."
+        },
+        {
+          "text": "El modelo geológico solo mide profundidades, mientras que el geometalúrgico se enfoca en la ubicación satelital.",
+          "isCorrect": false,
+          "rationale": "Ambos modelos se basan en la ubicación espacial, pero la diferencia radica en la integración de datos de procesamiento y economía."
+        },
+        {
+          "text": "El modelo geometalúrgico se limita a la distribución espacial de las leyes minerales.",
+          "isCorrect": false,
+          "rationale": "Esta es la definición del modelo geológico tradicional, no del avance que representa la geometalurgia."
+        },
+        {
+          "text": "El modelo geológico analiza la rentabilidad dinámica del bloque en la planta.",
+          "isCorrect": false,
+          "rationale": "La rentabilidad dinámica es el objetivo del modelo geometalúrgico; el modelo geológico se centra en la masa de roca in situ."
+        }
+      ],
+      "hint": "Piensa en cuál de los dos modelos actúa como una herramienta de predicción económica dinámica."
+    },
+    {
+      "question": "En proyectos mineros de etapas tempranas o compañías junior, ¿qué sistema se considera indispensable para la gestión de datos auditable?",
+      "answerOptions": [
+        {
+          "text": "Microsoft Access",
+          "isCorrect": true,
+          "rationale": "Para compañías junior, estructurar datos en sistemas como Access permite una rendición de cuentas auditable ante la bolsa de valores."
+        },
+        {
+          "text": "Aquire",
+          "isCorrect": false,
+          "rationale": "Aunque es una herramienta poderosa, se menciona específicamente para proyectos de gran envergadura debido a su capacidad para manejar volúmenes brutales de datos."
+        },
+        {
+          "text": "Hojas de cálculo de Excel",
+          "isCorrect": false,
+          "rationale": "El sistema requerido debe ser un DBMS robusto y auditable, características que las hojas de cálculo simples suelen no garantizar bajo estándares internacionales."
+        },
+        {
+          "text": "Fusion",
+          "isCorrect": false,
+          "rationale": "Al igual que Aquire, Fusion está orientado a proyectos de gran escala y no es el estándar específico mencionado para etapas tempranas o juniors."
+        }
+      ],
+      "hint": "Se trata de una herramienta de gestión de bases de datos relacionales común para estructuras auditables iniciales."
+    },
+    {
+      "question": "Dentro de la variografía experimental, ¿qué representa el concepto de 'alcance' o 'range'?",
+      "answerOptions": [
+        {
+          "text": "La distancia máxima hasta donde las muestras mantienen una correlación espacial.",
+          "isCorrect": true,
+          "rationale": "El alcance define el límite espacial de la influencia de una muestra sobre otra para predecir la continuidad del mineral."
+        },
+        {
+          "text": "El punto exacto donde la varianza se estabiliza por completo.",
+          "isCorrect": false,
+          "rationale": "Esta descripción corresponde al 'sill' o meseta, no al alcance."
+        },
+        {
+          "text": "La variabilidad a microescala o los errores de muestreo.",
+          "isCorrect": false,
+          "rationale": "Esto define el efecto pepita o 'nugget', que ocurre a distancias menores a la mínima de muestreo."
+        },
+        {
+          "text": "La orientación matemática del elipsoide de búsqueda.",
+          "isCorrect": false,
+          "rationale": "La orientación es un parámetro geométrico derivado del análisis, pero no es la definición de alcance."
+        }
+      ],
+      "hint": "Relaciónalo con la distancia física en la que una ley mineral deja de ser representativa de otra."
+    },
+    {
+      "question": "¿Cuál es la función principal del elipsoide de búsqueda en el modelamiento geoestadístico?",
+      "answerOptions": [
+        {
+          "text": "Dictaminar si un bloque de mineral se categoriza como medido, indicado o inferido.",
+          "isCorrect": true,
+          "rationale": "Las dimensiones y orientación del elipsoide definen el nivel de confianza matemática y la categorización del recurso."
+        },
+        {
+          "text": "Definir la trayectoria exacta de las perforaciones diamantinas.",
+          "isCorrect": false,
+          "rationale": "Las trayectorias de perforación se denominan 'surveys' y se definen en el diseño de exploración, no por el elipsoide de búsqueda."
+        },
+        {
+          "text": "Calcular la cantidad de reactivos químicos necesarios para la planta.",
+          "isCorrect": false,
+          "rationale": "El elipsoide es una herramienta de estimación de recursos geológicos, no de dosificación metalúrgica."
+        },
+        {
+          "text": "Detectar errores de transcripción en los resultados de laboratorio.",
+          "isCorrect": false,
+          "rationale": "La detección de errores analíticos es parte del Análisis Exploratorio de Datos (EDA), no una función del elipsoide."
+        }
+      ],
+      "hint": "Tiene que ver con la confianza que se le asigna a la estimación del recurso."
+    },
+    {
+      "question": "¿Qué consecuencia directa tiene la inclusión o exclusión errónea de un 'outlier' en el modelo?",
+      "answerOptions": [
+        {
+          "text": "Distorsiona gravemente la ley promedio del bloque y la rentabilidad proyectada.",
+          "isCorrect": true,
+          "rationale": "Los valores atípicos pueden inflar o reducir artificialmente el valor económico de un bloque, afectando la viabilidad del negocio."
+        },
+        {
+          "text": "Aumenta la trazabilidad de los datos ante organismos internacionales.",
+          "isCorrect": false,
+          "rationale": "La trazabilidad depende de la gestión de la base de datos (DBMS), no de cómo se procesan los datos extremos."
+        },
+        {
+          "text": "Garantiza que la planta opere bajo normas $ISO$.",
+          "isCorrect": false,
+          "rationale": "Las normas $ISO$ se relacionan con la estandarización de procesos, mientras que los outliers son un problema de rigor analítico estadístico."
+        },
+        {
+          "text": "Reduce el consumo de cianuro en la etapa de lixiviación.",
+          "isCorrect": false,
+          "rationale": "El consumo de cianuro es una variable metalúrgica independiente de la gestión estadística de leyes en el modelo."
+        }
+      ],
+      "hint": "Piensa en el impacto de un dato extremadamente alto o bajo sobre el promedio de un conjunto."
+    },
+    {
+      "question": "En la hidrometalurgia moderna, ¿cuál es el principal reto físico-químico de la lixiviación en botaderos?",
+      "answerOptions": [
+        {
+          "text": "La transferencia de masa debido a la dificultad del fluido para penetrar rocas compactas.",
+          "isCorrect": true,
+          "rationale": "La lixiviación en botaderos depende de que el fluido penetre la roca, un proceso lento que ocurre mayormente en la superficie."
+        },
+        {
+          "text": "La falta de bacterias para oxidar los óxidos de cobre.",
+          "isCorrect": false,
+          "rationale": "Los óxidos no requieren bacterias para su lixiviación; estas se usan para sulfuros primarios."
+        },
+        {
+          "text": "El exceso de energía eléctrica consumida en las pilas de lixiviación.",
+          "isCorrect": false,
+          "rationale": "La lixiviación es un proceso químico espontáneo o catalizado que no depende principalmente de energía eléctrica masiva."
+        },
+        {
+          "text": "La evaporación inmediata de los ácidos grasos en climas extremos.",
+          "isCorrect": false,
+          "rationale": "Aunque se usan ácidos grasos para optimizar, el reto principal es la cinética de penetración en la roca compacta."
+        }
+      ],
+      "hint": "El problema radica en el tiempo que tarda el fluido en entrar en contacto con el mineral interno."
+    },
+    {
+      "question": "¿Qué combinación de reactivos se destaca en la lixiviación limpia para optimizar la recuperación?",
+      "answerOptions": [
+        {
+          "text": "Cianuro y Glicina",
+          "isCorrect": true,
+          "rationale": "Esta mezcla genera una sinergia que acelera la cinética y reduce drásticamente el consumo de reactivos tradicionales."
+        },
+        {
+          "text": "Ácido Sulfúrico y Peróxido",
+          "isCorrect": false,
+          "rationale": "Aunque se usan en minería, la tecnología de lixiviación limpia mencionada se centra en la aplicación de aminoácidos y ácidos grasos."
+        },
+        {
+          "text": "Xantatos y Espumantes",
+          "isCorrect": false,
+          "rationale": "Estos son reactivos típicos del proceso de flotación, no de la lixiviación limpia por hidrometalurgia."
+        },
+        {
+          "text": "Cloro y Amoníaco",
+          "isCorrect": false,
+          "rationale": "No se mencionan como parte de la innovación en lixiviación limpia basada en bioquímica genética."
+        }
+      ],
+      "hint": "Involucra un aminoácido simple y un agente lixiviante tradicional."
+    },
+    {
+      "question": "Con la aplicación de tecnologías de lixiviación limpia, ¿en qué rango se sitúa el consumo de cianuro por tonelada de mineral?",
+      "answerOptions": [
+        {
+          "text": "Entre $20\\text{ y }50\\text{ g/t}$",
+          "isCorrect": true,
+          "rationale": "La tecnología permite reducir el consumo desde niveles tradicionales de $500\\text{ g/t}$ hasta apenas $20-50\\text{ g/t}$."
+        },
+        {
+          "text": "Exactamente $500\\text{ g/t}$",
+          "isCorrect": false,
+          "rationale": "Este es el valor de una operación convencional antes de aplicar las innovaciones de lixiviación limpia."
+        },
+        {
+          "text": "Menos de $1\\text{ g/t}$",
+          "isCorrect": false,
+          "rationale": "Aunque la reducción es masiva, el consumo aún se mantiene en un rango detectable de gramos por tonelada."
+        },
+        {
+          "text": "Más de $1000\\text{ g/t}$",
+          "isCorrect": false,
+          "rationale": "Este valor indicaría una ineficiencia extrema, lo opuesto a lo que busca la nueva tecnología."
+        }
+      ],
+      "hint": "Es una reducción drástica comparada con los $500\\text{ g}$ tradicionales."
+    },
+    {
+      "question": "¿Cuál es el límite máximo de cianuro permitido en los relaves para cumplir con los estándares de minería responsable mencionados?",
+      "answerOptions": [
+        {
+          "text": "$30\\text{ ppm}$",
+          "isCorrect": true,
+          "rationale": "Mantener niveles por debajo de $30\\text{ ppm}$ garantiza el cumplimiento de los estándares internacionales más estrictos de sostenibilidad."
+        },
+        {
+          "text": "$100\\text{ ppm}$",
+          "isCorrect": false,
+          "rationale": "Este nivel superaría los estándares de seguridad y sostenibilidad destacados en la minería responsable moderna."
+        },
+        {
+          "text": "$10\\text{ ppm}$",
+          "isCorrect": false,
+          "rationale": "Aunque es un nivel excelente, el dato específico de referencia para el estándar de oro mencionado es de $30\\text{ ppm}$."
+        },
+        {
+          "text": "$500\\text{ ppm}$",
+          "isCorrect": false,
+          "rationale": "Este valor es demasiado alto y no reflejaría la eficiencia de la lixiviación limpia en términos ecológicos."
+        }
+      ],
+      "hint": "Busca el valor de partes por millón que posiciona a las plantas en la vanguardia ambiental."
+    },
+    {
+      "question": "¿En qué zona del yacimiento se recomienda el uso de biotecnología con microorganismos endémicos?",
+      "answerOptions": [
+        {
+          "text": "Zona hipógena (sulfuros primarios)",
+          "isCorrect": true,
+          "rationale": "Las bacterias adaptadas a condiciones extremas son eficaces para recuperar cobre y mitigar el arsénico en minerales de la zona hipógena."
+        },
+        {
+          "text": "Zona oxidada",
+          "isCorrect": false,
+          "rationale": "La zona oxidada se procesa mediante hidrometalurgia convencional de manera eficiente sin necesidad de bio-oxidación."
+        },
+        {
+          "text": "Zona de relaves antiguos",
+          "isCorrect": false,
+          "rationale": "Aunque es posible, el uso estratégico principal descrito es para resolver la complejidad mineralógica de los sulfuros primarios in situ."
+        },
+        {
+          "text": "Zona de lixiviación en pilas de óxidos",
+          "isCorrect": false,
+          "rationale": "Los óxidos no presentan los desafíos de los sulfuros que requieren la acción de microorganismos para liberar el metal."
+        }
+      ],
+      "hint": "Se trata de la zona más profunda y compleja que suele ir a procesos de flotación."
+    },
+    {
+      "question": "¿Por qué se considera la 'zona mixta o de transición' un campo minado financiero?",
+      "answerOptions": [
+        {
+          "text": "Por la coexistencia de minerales que elevan el consumo de ácido y la presencia de agentes cianicidas.",
+          "isCorrect": true,
+          "rationale": "Al convivir minerales de ambos mundos (óxidos y sulfuros), los costos operativos pueden dispararse por reacciones químicas imprevistas."
+        },
+        {
+          "text": "Porque no contiene ningún tipo de mineral con valor comercial.",
+          "isCorrect": false,
+          "rationale": "La zona sí contiene mineral, el problema es la dificultad técnica y económica para procesarlo de forma mixta."
+        },
+        {
+          "text": "Debido a que la roca es tan blanda que destruye las máquinas de molienda.",
+          "isCorrect": false,
+          "rationale": "El riesgo es químico y operativo, no necesariamente relacionado con una fragilidad mecánica extrema del bloque."
+        },
+        {
+          "text": "Porque requiere exclusivamente energía solar para su procesamiento.",
+          "isCorrect": false,
+          "rationale": "El tipo de energía utilizada no es el factor de riesgo financiero asociado a la mineralogía de transición."
+        }
+      ],
+      "hint": "Considera la interacción de diferentes tipos de minerales y cómo afectan el gasto en reactivos."
+    },
+    {
+      "question": "¿Cuál es la diferencia clave entre la electrobtención ($EW$) y la electrorrefinación ($ER$)?",
+      "answerOptions": [
+        {
+          "text": "La $EW$ parte de soluciones enriquecidas, mientras que la $ER$ parte de un ánodo sólido impuro.",
+          "isCorrect": true,
+          "rationale": "La electrobtención recupera metal de líquidos de lixiviación, mientras que la electrorrefinación purifica bloques sólidos de fundición."
+        },
+        {
+          "text": "La $EW$ produce oro, mientras que la $ER$ solo produce cobre comercial.",
+          "isCorrect": false,
+          "rationale": "Ambas pueden aplicarse a distintos metales, pero su distinción radica en el estado físico del material de entrada."
+        },
+        {
+          "text": "La $ER$ alcanza solo el $99.9\\%$ de pureza, siendo inferior a la $EW$.",
+          "isCorrect": false,
+          "rationale": "Es al revés; la electrorrefinación permite superar el $99.99\\%$, superando el grado de la electrobtención."
+        },
+        {
+          "text": "La $EW$ se realiza en el fondo de las celdas, mientras que la $ER$ ocurre en la superficie.",
+          "isCorrect": false,
+          "rationale": "Ambos procesos ocurren en celdas electrolíticas; la diferencia no es la ubicación física dentro de la celda."
+        }
+      ],
+      "hint": "Enfócate en la materia prima de entrada: ¿es un líquido o un sólido?"
+    },
+    {
+      "question": "¿Qué representa un lodo anódico en el proceso de electrorrefinación?",
+      "answerOptions": [
+        {
+          "text": "Un residuo precipitado que contiene subproductos de alto valor como plata y oro.",
+          "isCorrect": true,
+          "rationale": "Las impurezas que caen al fondo de las celdas durante la refinación del cobre constituyen una fuente de metales preciosos."
+        },
+        {
+          "text": "Un desecho industrial sin valor que debe ser eliminado inmediatamente.",
+          "isCorrect": false,
+          "rationale": "Lejos de ser basura, se describe como un 'tesoro oculto' por su alto contenido de metales nobles."
+        },
+        {
+          "text": "El electrolito gastado que ya no tiene carga eléctrica.",
+          "isCorrect": false,
+          "rationale": "El electrolito es la solución líquida, mientras que el lodo es el material sólido que precipita en el fondo."
+        },
+        {
+          "text": "La capa exterior del cátodo de cobre ya terminado.",
+          "isCorrect": false,
+          "rationale": "El cátodo es el producto puro; el lodo proviene de la degradación del ánodo impuro."
+        }
+      ],
+      "hint": "Es algo que se acumula en el fondo del estanque durante la purificación."
+    },
+    {
+      "question": "¿Cuál es el orden correcto de obtención de subproductos en el ciclo de refinación de lodos anódicos?",
+      "answerOptions": [
+        {
+          "text": "Plata fina, Oro de 24 kilates y Platino fino.",
+          "isCorrect": true,
+          "rationale": "El proceso sigue un orden riguroso que comienza con la plata, continúa con el oro y finaliza con el platino."
+        },
+        {
+          "text": "Platino, Cobre y luego Plata.",
+          "isCorrect": false,
+          "rationale": "El cobre es el producto principal del que se derivan los lodos; el platino es el último paso de la refinación de estos."
+        },
+        {
+          "text": "Hierro, Plata y Zinc.",
+          "isCorrect": false,
+          "rationale": "El ciclo de refinación de lodos anódicos se enfoca en metales preciosos de alto valor, no en metales base comunes."
+        },
+        {
+          "text": "Oro, Platino y finalmente Ácido Sulfúrico.",
+          "isCorrect": false,
+          "rationale": "El orden comienza con la plata y el ácido sulfúrico es un reactivo o subproducto gaseoso, no un metal refinado del lodo."
+        }
+      ],
+      "hint": "Comienza con el metal precioso que suele aparecer en granas antes que el oro."
+    },
+    {
+      "question": "¿Qué técnicas analíticas avanzadas se utilizan para descifrar el 'ADN mineralógico' de un yacimiento?",
+      "answerOptions": [
+        {
+          "text": "Difracción de rayos X ($DRX$) y microscopía electrónica de barrido ($SEM$).",
+          "isCorrect": true,
+          "rationale": "Estas herramientas permiten observar la estructura microscópica y asociaciones minerales, como el oro encapsulado en piritas."
+        },
+        {
+          "text": "Pruebas de dureza de Mohs y colorimetría manual.",
+          "isCorrect": false,
+          "rationale": "Estas son técnicas básicas de campo y no proporcionan el nivel de detalle microscópico necesario para un modelo geometalúrgico."
+        },
+        {
+          "text": "Cubicación por GPS y magnetometría aérea.",
+          "isCorrect": false,
+          "rationale": "Estas técnicas se usan para exploración geofísica y espacial, no para la caracterización mineralógica detallada de la roca."
+        },
+        {
+          "text": "Espectroscopía de sonido y densidad por inmersión.",
+          "isCorrect": false,
+          "rationale": "No son las herramientas mencionadas para definir las unidades geometalúrgicas basadas en el comportamiento del mineral."
+        }
+      ],
+      "hint": "Son siglas que representan tecnología de rayos y microscopía de alta resolución."
+    },
+    {
+      "question": "¿Cómo optimiza el sistema $HPGR$ la reducción de tamaño de la roca?",
+      "answerOptions": [
+        {
+          "text": "Aplicando fuerzas de compresión desde cuatro direcciones simultáneamente.",
+          "isCorrect": true,
+          "rationale": "Esta presión multidireccional genera microfisuras internas que facilitan la penetración del fluido lixiviante."
+        },
+        {
+          "text": "Usando bolas de acero de gran tamaño para impactar el mineral.",
+          "isCorrect": false,
+          "rationale": "El uso de bolas de acero es típico de los molinos convencionales, no del sistema de rodillos de alta presión."
+        },
+        {
+          "text": "Mediante la rotación a alta velocidad en un tambor con agua.",
+          "isCorrect": false,
+          "rationale": "El sistema $HPGR$ se basa en rodillos y compresión en seco, no en rotación por gravedad o agitación hídrica."
+        },
+        {
+          "text": "Calentando la roca hasta que se fractura por choque térmico.",
+          "isCorrect": false,
+          "rationale": "El proceso es puramente mecánico mediante fuerzas de compresión, no térmico."
+        }
+      ],
+      "hint": "Recuerda la importancia del número cuatro en este mecanismo de conminución."
+    },
+    {
+      "question": "¿Cuál es la función de los indicadores $W_i$ (índice de Bond) y $SPI$?",
+      "answerOptions": [
+        {
+          "text": "Determinar la energía eléctrica y mecánica necesaria para la molienda.",
+          "isCorrect": true,
+          "rationale": "Estos índices son críticos para el diseño de la infraestructura pesada, indicando cuánta potencia requiere el procesamiento."
+        },
+        {
+          "text": "Medir la pureza final de los cátodos de plata.",
+          "isCorrect": false,
+          "rationale": "La pureza se mide mediante análisis químicos post-refinación, no por índices de conminución."
+        },
+        {
+          "text": "Calcular la cantidad de bacterias por metro cúbico en la zona hipógena.",
+          "isCorrect": false,
+          "rationale": "Estos indicadores se refieren a propiedades físicas de dureza y molienda, no a recuentos biológicos."
+        },
+        {
+          "text": "Establecer la profundidad máxima del elipsoide de búsqueda.",
+          "isCorrect": false,
+          "rationale": "El elipsoide es una herramienta estadística, mientras que $W_i$ y $SPI$ son parámetros metalúrgicos de diseño."
+        }
+      ],
+      "hint": "Están relacionados con el consumo energético durante la reducción de tamaño."
+    },
+    {
+      "question": "¿Por qué se utilizan columnas de $5\\text{ a }6\\text{ metros}$ en las pruebas de lixiviación a gran escala?",
+      "answerOptions": [
+        {
+          "text": "Para replicar la presión física y la dinámica de fluidos de una operación real.",
+          "isCorrect": true,
+          "rationale": "Las dimensiones permiten simular el comportamiento de la roca bajo la carga y flujo hidrodinámico de las pilas industriales."
+        },
+        {
+          "text": "Porque es la altura mínima requerida por las normas $ISO$ de seguridad.",
+          "isCorrect": false,
+          "rationale": "La altura se define por necesidades técnicas de simulación de procesos, no por una norma de seguridad administrativa."
+        },
+        {
+          "text": "Para permitir que la luz solar penetre hasta el fondo del mineral.",
+          "isCorrect": false,
+          "rationale": "La lixiviación no depende de la penetración de luz solar; se busca simular condiciones de presión y flujo."
+        },
+        {
+          "text": "Porque las bacterias solo sobreviven a esas alturas específicas.",
+          "isCorrect": false,
+          "rationale": "La supervivencia bacteriana depende de condiciones químicas y de temperatura, no directamente de la altura de la columna."
+        }
+      ],
+      "hint": "Busca la razón que conecta el experimento de laboratorio con la realidad física de la planta."
+    },
+    {
+      "question": "¿Qué permite la integración de geología y metalurgia en la minería moderna?",
+      "answerOptions": [
+        {
+          "text": "Transformar la incertidumbre operativa en previsibilidad absoluta.",
+          "isCorrect": true,
+          "rationale": "Al entender el comportamiento dinámico del mineral, se pueden tomar decisiones financieras informadas y seguras."
+        },
+        {
+          "text": "Eliminar por completo el uso de camiones en la mina.",
+          "isCorrect": false,
+          "rationale": "La integración mejora el conocimiento del recurso, pero no sustituye las necesidades de transporte físico de materiales."
+        },
+        {
+          "text": "Evitar el pago de impuestos en la bolsa de valores.",
+          "isCorrect": false,
+          "rationale": "La integración técnica busca eficiencia y rentabilidad, no es una estrategia de evasión fiscal."
+        },
+        {
+          "text": "Reducir la pureza del cobre para ahorrar energía.",
+          "isCorrect": false,
+          "rationale": "El objetivo es alcanzar purezas comerciales óptimas ($99.99\\%$) de la manera más eficiente posible."
+        }
+      ],
+      "hint": "Se refiere al paso de 'adivinar' a tener un sistema optimizado y controlado."
+    },
+    {
+      "question": "¿Cuál es la principal limitación de las pruebas de lixiviación en botellas sobre rodillos?",
+      "answerOptions": [
+        {
+          "text": "Solo simulan condiciones de agitación, no la hidrodinámica de pilas industriales.",
+          "isCorrect": true,
+          "rationale": "Aunque son útiles a pequeña escala, no replican la presión y el flujo real que ocurre en sistemas de lixiviación masivos."
+        },
+        {
+          "text": "No permiten el uso de reactivos como la glicina.",
+          "isCorrect": false,
+          "rationale": "Cualquier reactivo puede probarse en botellas; el problema es la representatividad física del proceso a escala."
+        },
+        {
+          "text": "Son demasiado costosas en comparación con las columnas de $6\\text{ metros}$.",
+          "isCorrect": false,
+          "rationale": "Las pruebas de botella son generalmente más económicas y rápidas que las pruebas en columnas de gran tamaño."
+        },
+        {
+          "text": "Dañan la estructura cristalina de los sulfuros primarios.",
+          "isCorrect": false,
+          "rationale": "El método de agitación no altera la cristalografía de forma negativa, simplemente no simula bien el flujo percolante."
+        }
+      ],
+      "hint": "Piensa en la diferencia entre agitar un recipiente y dejar que el líquido pase a través de una montaña de rocas."
+    }
+  ],
+  "topics": {
+    "covered": [
+      "Modelamiento Geometalúrgico",
+      "Gestión de Datos y DBMS",
+      "Variografía y Geoestadística",
+      "Hidrometalurgia y Lixiviación Limpia",
+      "Biotecnología Minera",
+      "Electrometalurgia y Refinación",
+      "Caracterización Mineralógica",
+      "Conminución y HPGR"
+    ],
+    "followUp": [
+      "Cinética de Reacción en Lixiviación por Columnas",
+      "Análisis de Lodos Anódicos y Recuperación de Metales Nobles",
+      "Implementación de Sistemas Aquire y Fusion en Minería de Gran Escala",
+      "Impacto de Ácidos Grasos en la Sostenibilidad Minera",
+      "Diseño de Plantas basado en Unidades Geometalúrgicas"
+    ]
+  }
+}

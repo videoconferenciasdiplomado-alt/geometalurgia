@@ -1,0 +1,542 @@
+{
+  "quiz": [
+    {
+      "question": "¿Cuál es el objetivo principal de la geometalurgia contemporánea en el contexto de leyes de mineral decrecientes?",
+      "answerOptions": [
+        {
+          "text": "Maximizar la extracción bruta de material sin considerar la dureza de la roca.",
+          "isCorrect": false,
+          "rationale": "Este enfoque ignora la eficiencia operativa y la respuesta del material en la planta, lo cual es contrario a la visión integrada."
+        },
+        {
+          "text": "Transformar la incertidumbre geológica en previsibilidad operativa para maximizar el negocio.",
+          "isCorrect": true,
+          "rationale": "La geometalurgia busca conectar la geología con la operación para reducir riesgos y optimizar el flujo de caja."
+        },
+        {
+          "text": "Reducir los costos de perforación mediante el uso de mallas de voladura más amplias.",
+          "isCorrect": false,
+          "rationale": "Ampliar las mallas sin un sustento técnico suele empeorar la fragmentación, aumentando los costos en las etapas de molienda."
+        },
+        {
+          "text": "Mantener el yacimiento como un inventario estático para facilitar la planificación a largo plazo.",
+          "isCorrect": false,
+          "rationale": "El paradigma moderno ve el yacimiento como un sistema dinámico, no como un inventario estático."
+        }
+      ],
+      "hint": "Se busca eliminar la brecha entre el conocimiento del terreno y la ejecución en planta."
+    },
+    {
+      "question": "¿En qué consiste el concepto de 'chancado químico' dentro de la filosofía Mind to Mill?",
+      "answerOptions": [
+        {
+          "text": "En el uso de ácidos potentes para disolver la roca directamente en el tajo.",
+          "isCorrect": false,
+          "rationale": "El término no se refiere a lixiviación, sino a la aplicación de energía mediante explosivos para la fragmentación."
+        },
+        {
+          "text": "En la aplicación de reactivos químicos en las fajas transportadoras para ablandar el mineral.",
+          "isCorrect": false,
+          "rationale": "La fragmentación química ocurre durante la detonación, no como un tratamiento posterior en las fajas."
+        },
+        {
+          "text": "En utilizar la energía de los explosivos en la mina para reemplazar parte del trabajo mecánico de las chancadoras.",
+          "isCorrect": true,
+          "rationale": "Busca que la voladura sea la primera fase real de reducción de tamaño, optimizando el consumo energético global."
+        },
+        {
+          "text": "En el proceso de limpieza de impurezas mediante detonaciones controladas de baja intensidad.",
+          "isCorrect": false,
+          "rationale": "El objetivo primordial es la reducción de tamaño y la generación de finos, no la limpieza química."
+        }
+      ],
+      "hint": "Considere qué tipo de energía se libera durante una voladura y cómo afecta al tamaño de la roca."
+    },
+    {
+      "question": "Para maximizar la cinética de rotura en el molino SAG, ¿cuál es el porcentaje de finos (material $< 1$ pulgada) que se considera un objetivo operativo de clase mundial?",
+      "answerOptions": [
+        {
+          "text": "$25\\%$",
+          "isCorrect": false,
+          "rationale": "Este porcentaje se considera bajo para una operación optimizada y no alcanzaría a maximizar la capacidad del molino SAG."
+        },
+        {
+          "text": "$47\\%$",
+          "isCorrect": true,
+          "rationale": "Alcanzar un $47\\%$ de finos directamente de la voladura permite alimentar el molino SAG de forma óptima sin desgaste excesivo."
+        },
+        {
+          "text": "$60\\%$",
+          "isCorrect": false,
+          "rationale": "Un exceso de finos por encima del objetivo puede generar problemas de control de polvo y sobremolienda innecesaria."
+        },
+        {
+          "text": "$80\\%$",
+          "isCorrect": false,
+          "rationale": "Este valor es extremadamente alto para una etapa de voladura y resultaría en un uso ineficiente de explosivos."
+        }
+      ],
+      "hint": "Es un número específico que permite el equilibrio entre fragmentación y eficiencia energética en el molino."
+    },
+    {
+      "question": "Si una roca presenta un $P_{80}$ de $2.5$ pulgadas, ¿qué se está indicando sobre su granulometría?",
+      "answerOptions": [
+        {
+          "text": "Que el $80\\%$ del material fragmentado tiene un tamaño mayor a $2.5$ pulgadas.",
+          "isCorrect": false,
+          "rationale": "El indicador $P_{80}$ se refiere al material que pasa por la malla, no al que queda retenido."
+        },
+        {
+          "text": "Que el material tiene un peso específico de $2.5$ toneladas por metro cúbico.",
+          "isCorrect": false,
+          "rationale": "El $P_{80}$ es una métrica de tamaño de partícula, no de densidad o peso específico."
+        },
+        {
+          "text": "Que el $80\\%$ del material pasa por una malla de $2.5$ pulgadas.",
+          "isCorrect": true,
+          "rationale": "Esta medida asegura la homogeneidad necesaria para que el mineral sea procesado eficientemente en la planta."
+        },
+        {
+          "text": "Que se requiere un factor de carga de $2.5$ $kg/t$ para fragmentar dicha roca.",
+          "isCorrect": false,
+          "rationale": "El factor de carga o 'powder factor' es una variable de diseño, mientras que el $P_{80}$ es un resultado granulométrico."
+        }
+      ],
+      "hint": "Piense en la definición técnica de los tamaños de malla de paso."
+    },
+    {
+      "question": "¿Cuál es el rango estándar del factor de carga ($powder$ $factor$) recomendado para bancos de $15$ metros de altura según la línea base operativa?",
+      "answerOptions": [
+        {
+          "text": "$0.1$ a $0.2$ $kg/t$",
+          "isCorrect": false,
+          "rationale": "Este factor es insuficiente para lograr una fragmentación de alta calidad en la mayoría de los tipos de roca dura."
+        },
+        {
+          "text": "$0.4$ a $0.5$ $kg/t$",
+          "isCorrect": true,
+          "rationale": "Este rango permite un equilibrio óptimo para generar los finos necesarios y el $P_{80}$ objetivo en condiciones estándar."
+        },
+        {
+          "text": "$0.8$ a $1.0$ $kg/t$",
+          "isCorrect": false,
+          "rationale": "Un factor de carga tan alto podría resultar en una sobre-fragmentación costosa y daños a las paredes del tajo."
+        },
+        {
+          "text": "$1.2$ a $1.5$ $kg/t$",
+          "isCorrect": false,
+          "rationale": "Este nivel de energía explosiva es excesivo y económicamente inviable para operaciones de minado masivo convencionales."
+        }
+      ],
+      "hint": "Se trata de una 'receta base' que utiliza menos de un kilogramo por tonelada."
+    },
+    {
+      "question": "¿Cuál es la función principal de la sobreperforación ($overdrilling$) de $2$ metros por debajo del nivel del piso?",
+      "answerOptions": [
+        {
+          "text": "Aumentar el volumen total de mineral extraído por cada disparo.",
+          "isCorrect": false,
+          "rationale": "La sobreperforación no busca aumentar el volumen, sino facilitar el proceso de extracción posterior."
+        },
+        {
+          "text": "Facilitar el drenaje de aguas subterráneas hacia los niveles inferiores.",
+          "isCorrect": false,
+          "rationale": "Aunque puede ayudar indirectamente, su propósito técnico principal es geomecánico y operativo para los equipos de carguío."
+        },
+        {
+          "text": "Garantizar un piso uniforme para las palas al fragmentar la zona dura del taco del banco inferior.",
+          "isCorrect": true,
+          "rationale": "Esto evita que queden 'lomos' o zonas duras que dificulten el trabajo de las palas y dañen el equipo de transporte."
+        },
+        {
+          "text": "Permitir la colocación de sensores de IA que monitoreen la estabilidad de los taludes.",
+          "isCorrect": false,
+          "rationale": "Los sensores de trazabilidad se colocan en el frente de minado, no específicamente en el fondo de la sobreperforación."
+        }
+      ],
+      "hint": "Piense en las dificultades que enfrentan las palas de carguío si la base del banco no está bien fracturada."
+    },
+    {
+      "question": "¿Por qué se prefiere el uso de gravilla de rechazo ($pebbles$) en lugar de tierra común para el taco o $stemming$ del taladro?",
+      "answerOptions": [
+        {
+          "text": "Porque es un material más económico y fácil de obtener en cualquier mina.",
+          "isCorrect": false,
+          "rationale": "La gravilla suele requerir procesamiento o selección, lo que la hace técnicamente superior pero no necesariamente más barata que la tierra común."
+        },
+        {
+          "text": "Para mejorar la retención de la energía explosiva y controlar la onda aérea.",
+          "isCorrect": true,
+          "rationale": "La gravilla ofrece un mejor confinamiento, evitando que los gases escapen prematuramente por la parte superior del taladro."
+        },
+        {
+          "text": "Para evitar que el polvo de la tierra contamine el mineral que va a la planta.",
+          "isCorrect": false,
+          "rationale": "Aunque la limpieza es importante, el motivo técnico principal es la eficiencia en el uso de la energía del explosivo."
+        },
+        {
+          "text": "Porque permite que el $pH$ del mineral se mantenga estable durante el transporte.",
+          "isCorrect": false,
+          "rationale": "El material del taco no tiene un impacto significativo en la química de flotación o el $pH$ del mineral."
+        }
+      ],
+      "hint": "Considere cómo el confinamiento de los gases dentro del pozo afecta la fracturación de la roca."
+    },
+    {
+      "question": "En el contexto de la variabilidad geometalúrgica, ¿qué indica un valor alto de $SPI$ (SAG Power Index)?",
+      "answerOptions": [
+        {
+          "text": "Que la roca es muy fácil de fragmentar con explosivos en la mina.",
+          "isCorrect": false,
+          "rationale": "El $SPI$ es un indicador de molienda en planta, no de fragmentación por voladura en mina."
+        },
+        {
+          "text": "Que el mineral requiere un tiempo de residencia prolongado en el molino SAG, limitando la capacidad.",
+          "isCorrect": true,
+          "rationale": "Un $SPI$ elevado significa que la roca es dura para el molino, lo que genera cuellos de botella en el procesamiento."
+        },
+        {
+          "text": "Que el mineral contiene un alto porcentaje de metales pagables como oro y plata.",
+          "isCorrect": false,
+          "rationale": "El $SPI$ mide dureza y resistencia a la molienda, no la ley o el contenido metálico del mineral."
+        },
+        {
+          "text": "Que la roca tiene una baja resistencia a la compresión simple ($UCS$).",
+          "isCorrect": false,
+          "rationale": "A menudo ocurre lo contrario; rocas con alto $SPI$ pueden tener comportamientos distintos, pero no están inversamente correlacionadas por definición."
+        }
+      ],
+      "hint": "Relacione este índice con el tiempo que el mineral debe pasar dentro del molino para ser reducido."
+    },
+    {
+      "question": "¿Cuál es el 'descalce' ($mismatch$) que ocurre cuando el equipo de mina solo analiza el $UCS$ de una roca de $80$ MPa?",
+      "answerOptions": [
+        {
+          "text": "La mina considera que es roca dura, pero la planta la procesa rápidamente por su bajo Bond Index.",
+          "isCorrect": false,
+          "rationale": "El escenario descrito es el opuesto: $80$ MPa es dureza media para la mina, no dureza alta."
+        },
+        {
+          "text": "La mina la clasifica como dureza media, pero para el molino SAG puede ser extremadamente dura si tiene un $SPI$ alto.",
+          "isCorrect": true,
+          "rationale": "Esta discrepancia ocurre porque la resistencia a la fractura por explosivo ($UCS$) no siempre coincide con la resistencia a la molienda ($SPI$)."
+        },
+        {
+          "text": "La planta espera material fino, pero la mina entrega rocas de gran tamaño debido a fallas mecánicas.",
+          "isCorrect": false,
+          "rationale": "El 'mismatch' geometalúrgico se refiere a interpretaciones erróneas de las propiedades intrínsecas de la roca, no a fallas de equipo."
+        },
+        {
+          "text": "El concentrado final tendrá altas penalidades por arsénico a pesar de una buena fragmentación.",
+          "isCorrect": false,
+          "rationale": "Las penalidades químicas son independientes de la discrepancia de dureza entre $UCS$ y $SPI$."
+        }
+      ],
+      "hint": "Piense en cómo una roca puede ser fácil de romper con explosivos pero difícil de desgastar por fricción."
+    },
+    {
+      "question": "¿Qué función cumplen los 'trazadores físicos' o cazadores en el sistema de control en tiempo real?",
+      "answerOptions": [
+        {
+          "text": "Emiten señales para que las palas identifiquen las zonas de mayor ley de cobre.",
+          "isCorrect": false,
+          "rationale": "Su función es el seguimiento del flujo de material, no la identificación directa de leyes minerales."
+        },
+        {
+          "text": "Son dispositivos que ajustan automáticamente la dosis de reactivos en las celdas de flotación.",
+          "isCorrect": false,
+          "rationale": "Aunque ayudan a predecir qué material llegará, no controlan directamente las válvulas de reactivos."
+        },
+        {
+          "text": "Permiten vincular el comportamiento del mineral en el molino con su origen exacto ($hole$ $ID$) en la mina.",
+          "isCorrect": true,
+          "rationale": "Estos sensores viajan con el mineral para validar los modelos predictivos mediante el cruce de metadatos."
+        },
+        {
+          "text": "Miden la velocidad de penetración de la broca durante la fase de perforación.",
+          "isCorrect": false,
+          "rationale": "Esa función corresponde a sistemas como 'Smart Drill', no a los trazadores que viajan con la roca fragmentada."
+        }
+      ],
+      "hint": "Imagine un dispositivo que viaja desde el tajo hasta la planta escondido entre el mineral."
+    },
+    {
+      "question": "En el uso de inteligencia artificial para perforación, ¿qué variable se refiere a la velocidad con la que la broca avanza en la roca?",
+      "answerOptions": [
+        {
+          "text": "$Pull$ $down$",
+          "isCorrect": false,
+          "rationale": "El 'pull down' se refiere a la fuerza de empuje aplicada sobre la broca, no a su velocidad de avance."
+        },
+        {
+          "text": "$Torque$",
+          "isCorrect": false,
+          "rationale": "El torque es la fuerza de rotación aplicada, la cual varía según la resistencia del terreno."
+        },
+        {
+          "text": "$ROP$ ($Rate$ $of$ $Penetration$)",
+          "isCorrect": true,
+          "rationale": "La tasa de penetración es la métrica clave que la IA analiza para detectar cambios litológicos instantáneos."
+        },
+        {
+          "text": "$Bond$ $Index$",
+          "isCorrect": false,
+          "rationale": "El índice de Bond es una propiedad de laboratorio del mineral y no una variable de operación de la perforadora."
+        }
+      ],
+      "hint": "Es un acrónimo en inglés que describe la tasa de avance por unidad de tiempo."
+    },
+    {
+      "question": "¿Por qué es insuficiente aplicar una 'receta mágica' única de reactivos para todos los minerales de cobre?",
+      "answerOptions": [
+        {
+          "text": "Porque los reactivos pierden efectividad si se almacenan por mucho tiempo en la mina.",
+          "isCorrect": false,
+          "rationale": "La caducidad de los reactivos es un factor logístico, no la razón mineralógica detrás de la dosificación dinámica."
+        },
+        {
+          "text": "Porque especies como la bornita y la calcopirita tienen cinéticas y respuestas químicas distintas.",
+          "isCorrect": true,
+          "rationale": "Cada mineral interactúa de forma única con los colectores y espumantes, requiriendo 'llaves químicas' específicas."
+        },
+        {
+          "text": "Porque el costo de los colectores varía diariamente en el mercado internacional.",
+          "isCorrect": false,
+          "rationale": "El costo del reactivo no dicta su eficacia técnica sobre la especie mineralógica."
+        },
+        {
+          "text": "Porque el molino SAG requiere un $pH$ diferente dependiendo de si el mineral es duro o blando.",
+          "isCorrect": false,
+          "rationale": "El control de $pH$ es crítico en la etapa de flotación, no en la molienda SAG."
+        }
+      ],
+      "hint": "Considere que no todos los minerales de cobre reaccionan a la misma velocidad o de la misma manera."
+    },
+    {
+      "question": "¿Cuál es la ventaja de utilizar el 'protocolo de especies aisladas' en el laboratorio?",
+      "answerOptions": [
+        {
+          "text": "Permite determinar el valor comercial del concentrado sin necesidad de fundición.",
+          "isCorrect": false,
+          "rationale": "El valor comercial depende de negociaciones y precios de mercado, no de pruebas de laboratorio de especies puras."
+        },
+        {
+          "text": "Reduce la cantidad de energía eléctrica necesaria para la molienda de bolas.",
+          "isCorrect": false,
+          "rationale": "Este protocolo se enfoca en la química de flotación, no en el consumo energético de la molienda."
+        },
+        {
+          "text": "Elimina el 'ruido' de otros minerales para determinar la dosis óptima de reactivo para una especie específica.",
+          "isCorrect": true,
+          "rationale": "Al usar mezclas sintéticas (ej. mineral puro + cuarzo), se mide con precisión la recuperabilidad de la especie de interés."
+        },
+        {
+          "text": "Aumenta automáticamente el grado de liberación del mineral valioso en la planta.",
+          "isCorrect": false,
+          "rationale": "La liberación depende del tamaño de molienda; el protocolo solo ayuda a identificar la mejor química para lo que ya está liberado."
+        }
+      ],
+      "hint": "Se trata de un método para simplificar la complejidad de la roca real y estudiar un solo componente a la vez."
+    },
+    {
+      "question": "¿Cuál es el objetivo principal de la etapa de flotación denominada 'Scavenger'?",
+      "answerOptions": [
+        {
+          "text": "Lograr la máxima pureza del concentrado final eliminando toda la ganga.",
+          "isCorrect": false,
+          "rationale": "La limpieza final para aumentar la ley es el objetivo de la etapa 'Cleaner'."
+        },
+        {
+          "text": "Atrapar las partículas de mineral valioso que no pudieron ser recuperadas en la etapa Rougher.",
+          "isCorrect": true,
+          "rationale": "Funciona como una red de seguridad o 'barredor' para minimizar las pérdidas hacia los relaves."
+        },
+        {
+          "text": "Realizar el primer barrido agresivo para obtener el mayor volumen de concentrado.",
+          "isCorrect": false,
+          "rationale": "El barrido inicial y más agresivo es la función de la etapa 'Rougher'."
+        },
+        {
+          "text": "Ajustar el porcentaje de sólidos antes de enviar el material al espesador.",
+          "isCorrect": false,
+          "rationale": "Las etapas de flotación se definen por su función de recuperación o limpieza, no por el control de densidad final."
+        }
+      ],
+      "hint": "Piense en este proceso como una 'segunda oportunidad' para recuperar lo que se escapó."
+    },
+    {
+      "question": "¿Qué impacto tiene un control deficiente del $pH$ y del porcentaje de sólidos en las celdas de flotación?",
+      "answerOptions": [
+        {
+          "text": "Provoca que la roca se vuelva más resistente a la compresión simple ($UCS$).",
+          "isCorrect": false,
+          "rationale": "Estas variables afectan la química del proceso, no las propiedades mecánicas intrínsecas de la roca."
+        },
+        {
+          "text": "Aumenta el desgaste de las bolas de acero dentro del molino de bolas.",
+          "isCorrect": false,
+          "rationale": "El desgaste del molino depende de la dureza del mineral y el tiempo de operación, no del $pH$ de las celdas posteriores."
+        },
+        {
+          "text": "Inestabiliza la espuma, lo que puede causar la pérdida de mineral valioso o la captura de ganga.",
+          "isCorrect": true,
+          "rationale": "El $pH$ y los sólidos son los factores que dictan la estabilidad y selectividad de las burbujas de aire."
+        },
+        {
+          "text": "Genera penalidades por exceso de humedad en el contrato de venta del concentrado.",
+          "isCorrect": false,
+          "rationale": "Aunque están relacionados con el agua, la humedad del concentrado se controla en la etapa de filtrado, no directamente por el $pH$ de flotación."
+        }
+      ],
+      "hint": "Estas variables son las dueñas de la estabilidad en la parte superior de la celda donde se forma la nata mineralizada."
+    },
+    {
+      "question": "¿Qué beneficio ofrece la tecnología de 'flotación de partículas gruesas' (como el Hydrofloat)?",
+      "answerOptions": [
+        {
+          "text": "Permite obtener un concentrado con $0\\%$ de arsénico sin importar la fuente.",
+          "isCorrect": false,
+          "rationale": "La tecnología de flotación no elimina el arsénico si este forma parte de la estructura mineralógica."
+        },
+        {
+          "text": "Aumenta la dureza de la roca para que sea más fácil de transportar en camiones.",
+          "isCorrect": false,
+          "rationale": "No tiene sentido aumentar la dureza, y la flotación ocurre mucho después del transporte en camiones."
+        },
+        {
+          "text": "Permite procesar más tonelaje con menor gasto energético en molienda fina sin perder recuperación.",
+          "isCorrect": true,
+          "rationale": "Al flotar partículas más grandes, se ahorra energía al no tener que moler todo el material a tamaños muy finos."
+        },
+        {
+          "text": "Sustituye por completo el uso de colectores y espumantes en el circuito.",
+          "isCorrect": false,
+          "rationale": "Incluso con partículas gruesas, la química de superficie (reactivos) sigue siendo esencial para la adherencia a la burbuja."
+        }
+      ],
+      "hint": "Se relaciona con el procesamiento de mayor cantidad de roca sin necesidad de pulverizarla por completo."
+    },
+    {
+      "question": "En la valorización económica, ¿qué representan los conceptos de TC y RC?",
+      "answerOptions": [
+        {
+          "text": "El Tiempo de Ciclo ($TC$) y el Radio de Carga ($RC$) de los camiones mineros.",
+          "isCorrect": false,
+          "rationale": "En términos financieros de concentrados, estas siglas no se refieren al transporte de mina."
+        },
+        {
+          "text": "Los cargos por tratamiento y refinación que cobra la fundición.",
+          "isCorrect": true,
+          "rationale": "Son los costos deducidos del valor bruto para transformar el concentrado en metal puro."
+        },
+        {
+          "text": "La Tasa de Cobre ($TC$) y el Residuo de Carbono ($RC$) presentes en la espuma.",
+          "isCorrect": false,
+          "rationale": "Estas no son métricas comerciales estándar para la valorización del concentrado de cobre."
+        },
+        {
+          "text": "Los costos de Trituración ($TC$) y de Chancado ($RC$) realizados en la mina.",
+          "isCorrect": false,
+          "rationale": "Esos son costos operativos internos de la mina y no forman parte de la liquidación comercial con la fundición."
+        }
+      ],
+      "hint": "Son descuentos que aplica la fundición por realizar su trabajo industrial."
+    },
+    {
+      "question": "¿Cuál es el límite típico de arsénico en un concentrado a partir del cual las penalidades comerciales son muy severas?",
+      "answerOptions": [
+        {
+          "text": "$0.1\\%$",
+          "isCorrect": false,
+          "rationale": "Este nivel es muy bajo y generalmente se encuentra dentro de los rangos tolerables sin penalidades extremas."
+        },
+        {
+          "text": "$1\\%$",
+          "isCorrect": true,
+          "rationale": "Superar el $1\\%$ de arsénico conlleva penalidades altas debido a su toxicidad y los costos de manejo ambiental."
+        },
+        {
+          "text": "$5\\%$",
+          "isCorrect": false,
+          "rationale": "A este nivel, el concentrado podría ser incluso difícil de comercializar en mercados estándar sin procesos de mezcla complejos."
+        },
+        {
+          "text": "$10\\%$",
+          "isCorrect": false,
+          "rationale": "Un concentrado con este nivel de impureza sería considerado material peligroso y altamente penalizado, mucho más allá del límite inicial."
+        }
+      ],
+      "hint": "Es un porcentaje entero pequeño relacionado con la toxicidad ambiental."
+    },
+    {
+      "question": "¿En qué consiste la 'paradoja de la sílice' mencionada en la valorización de concentrados?",
+      "answerOptions": [
+        {
+          "text": "En que la sílice es valiosa en la mina pero no tiene utilidad alguna en la planta.",
+          "isCorrect": false,
+          "rationale": "La sílice generalmente se considera ganga (sin valor) tanto en la mina como en la planta."
+        },
+        {
+          "text": "En que se penaliza comercialmente por ser insoluble, pero la fundición la requiere como fundente térmico.",
+          "isCorrect": true,
+          "rationale": "Lo que el mercado castiga, una fundición específica puede necesitarlo para manejar la temperatura de sus hornos."
+        },
+        {
+          "text": "En que un exceso de sílice mejora la recuperación de oro pero disminuye la de cobre.",
+          "isCorrect": false,
+          "rationale": "No existe tal relación directa; la sílice suele ser perjudicial para la recuperación por flotación en general."
+        },
+        {
+          "text": "En que la sílice es necesaria para la estabilidad de la espuma pero contamina el producto final.",
+          "isCorrect": false,
+          "rationale": "La sílice no ayuda a la estabilidad de la espuma; de hecho, se busca deprimirla para que no flote."
+        }
+      ],
+      "hint": "Considere la diferencia entre un contrato comercial genérico y las necesidades técnicas reales de un horno de fundición."
+    },
+    {
+      "question": "¿Qué factor fundamental transforma un recurso mineral en una reserva mineral según el balance final?",
+      "answerOptions": [
+        {
+          "text": "El aumento del precio del cobre en la bolsa de metales.",
+          "isCorrect": false,
+          "rationale": "Aunque influye, la transformación técnica depende de la aplicación de los factores modificadores sobre el yacimiento."
+        },
+        {
+          "text": "La aplicación de factores modificadores como la metalurgia y los costos.",
+          "isCorrect": true,
+          "rationale": "Sin una respuesta metalúrgica viable y una viabilidad económica probada, el recurso no puede categorizarse como reserva."
+        },
+        {
+          "text": "El descubrimiento de nuevas vetas de mineral de alta ley en el mismo yacimiento.",
+          "isCorrect": false,
+          "rationale": "Esto aumentaría los recursos, pero no garantiza su conversión a reservas sin el análisis de viabilidad correspondiente."
+        },
+        {
+          "text": "La compra de nuevos equipos de perforación autónoma por parte de la organización.",
+          "isCorrect": false,
+          "rationale": "La tecnología de los equipos es secundaria frente a la definición técnica y económica de la reserva mineral."
+        }
+      ],
+      "hint": "Es el puente esencial que incluye la respuesta metalúrgica y el límite de corte."
+    }
+  ],
+  "topics": {
+    "covered": [
+      "Geometalurgia contemporánea",
+      "Filosofía Mind to Mill",
+      "Fragmentación y voladura",
+      "Caracterización geomecánica (UCS, SPI, Bond)",
+      "Trazabilidad e Inteligencia Artificial en minería",
+      "Dinámica de flotación y cinética mineralógica",
+      "Valorización económica del concentrado (BNC y penalidades)"
+    ],
+    "followUp": [
+      "Diseño de unidades geometalúrgicas (UGM)",
+      "Optimización de costos de fundición (TC/RC)",
+      "Tecnologías de flotación de partículas gruesas (Hydrofloat)",
+      "Modelamiento predictivo mediante metadatos de sensores",
+      "Gestión de impurezas críticas en concentrados de cobre"
+    ]
+  }
+}

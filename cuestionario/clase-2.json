@@ -1,0 +1,542 @@
+
+{
+  "quiz": [
+    {
+      "question": "¿Cuál es el objetivo principal de implementar una estrategia Mind to Mill en la industria minera?",
+      "answerOptions": [
+        {
+          "text": "Reducir la dependencia de la ley del mineral mediante la gestión de la variabilidad utilizando tecnología de punta.",
+          "isCorrect": true,
+          "rationale": "Esta estrategia busca integrar toda la cadena de valor para domar la variabilidad del mineral y asegurar la sostenibilidad económica y operativa."
+        },
+        {
+          "text": "Eliminar por completo el uso de hardware y sensores para depender exclusivamente de software de predicción.",
+          "isCorrect": false,
+          "rationale": "El sistema requiere un 'sistema nervioso operativo' compuesto tanto por software como por hardware y sensores especializados."
+        },
+        {
+          "text": "Priorizar la intuición humana del operador sobre los datos duros para ajustes en tiempo real.",
+          "isCorrect": false,
+          "rationale": "La transformación digital busca precisamente dejar atrás la intuición humana para adoptar un modelo impulsado 100% por datos."
+        },
+        {
+          "text": "Mantener las operaciones físicamente cerca de la mina para garantizar una supervisión constante.",
+          "isCorrect": false,
+          "rationale": "La tecnología actual permite centros de control remotos a miles de kilómetros, desplazando la necesidad de proximidad geográfica."
+        }
+      ],
+      "hint": "Se centra en la interconexión de la cadena de valor para manejar la incertidumbre del material."
+    },
+    {
+      "question": "En la evolución de los sistemas de control, ¿qué hito marcó el inicio de la capacidad analítica frente a la reactiva en la región?",
+      "answerOptions": [
+        {
+          "text": "La implementación de los sistemas de control experto.",
+          "isCorrect": true,
+          "rationale": "Estos sistemas permitieron pasar de comandos estáticos o flexibles a una inteligencia operativa capaz de aprender de la data en tiempo real."
+        },
+        {
+          "text": "La llegada de los controladores lógicos programables (PLC).",
+          "isCorrect": false,
+          "rationale": "Si bien los PLC dieron flexibilidad, todavía no representaban el nivel de análisis y aprendizaje de un sistema experto."
+        },
+        {
+          "text": "La automatización básica de comandos estáticos.",
+          "isCorrect": false,
+          "rationale": "Este fue el primer paso de la escalada, pero se limitaba a seguir instrucciones sin capacidad de ajuste o análisis."
+        },
+        {
+          "text": "La eliminación de las interfaces humano-máquina (HMI).",
+          "isCorrect": false,
+          "rationale": "Las HMI son facilitadores críticos que se han optimizado, no eliminado, para la toma de decisiones rápidas."
+        }
+      ],
+      "hint": "Considere la tecnología que permite el autoajuste y el aprendizaje en tiempo real."
+    },
+    {
+      "question": "Bajo un sistema de control inteligente, ¿cómo se gestiona la carga de mineral en comparación con el método tradicional?",
+      "answerOptions": [
+        {
+          "text": "Se utiliza un set point fijo en la faja transportadora para simplificar el proceso.",
+          "isCorrect": false,
+          "rationale": "El set point fijo es la técnica de la 'vieja escuela' que ignora la variabilidad del momento."
+        },
+        {
+          "text": "Se emplean hitómetros o balanzas de faja para modular la carga constantemente.",
+          "isCorrect": true,
+          "rationale": "El control inteligente busca exprimir la capacidad máxima mediante la modulación continua basada en datos de campo."
+        },
+        {
+          "text": "Se detiene la faja manualmente cada vez que hay variabilidad en la dureza.",
+          "isCorrect": false,
+          "rationale": "La detención manual es ineficiente y contraria a los principios de automatización y flujo continuo."
+        },
+        {
+          "text": "Se delega la decisión del flujo exclusivamente al operador de la chancadora primaria.",
+          "isCorrect": false,
+          "rationale": "El sistema experto busca la automatización mediante algoritmos, reduciendo la dependencia de la intervención humana directa."
+        }
+      ],
+      "hint": "Piense en la herramienta que permite medir y ajustar el peso del material en movimiento."
+    },
+    {
+      "question": "¿Cuál es el margen de error típico en el porcentaje de sólidos que logran estabilizar los algoritmos modernos?",
+      "answerOptions": [
+        {
+          "text": "$\\pm 15 \\%$",
+          "isCorrect": false,
+          "rationale": "Un margen tan amplio afectaría negativamente la eficiencia de la molienda y no representaría un control de alta precisión."
+        },
+        {
+          "text": "$\\pm 10 \\%$",
+          "isCorrect": false,
+          "rationale": "Aunque es mejor que el control manual, los sistemas expertos actuales alcanzan niveles de estabilización superiores."
+        },
+        {
+          "text": "$\\pm 5 \\%$",
+          "isCorrect": true,
+          "rationale": "Este margen mínimo de error garantiza una molienda estable y optimizada a pesar de la variabilidad del mineral."
+        },
+        {
+          "text": "$\\pm 1 \\%$",
+          "isCorrect": false,
+          "rationale": "Aunque es un objetivo ideal, el nivel de precisión mencionado como estándar alcanzable es del $5 \\%$."
+        }
+      ],
+      "hint": "Es un porcentaje de una sola cifra que representa una alta estabilidad."
+    },
+    {
+      "question": "¿Por qué el aprendizaje supervisado (Machine Learning) es vital en yacimientos polimetálicos?",
+      "answerOptions": [
+        {
+          "text": "Porque permite encontrar patrones complejos en mineralogías heterogéneas y tomar decisiones autónomas.",
+          "isCorrect": true,
+          "rationale": "La IA brilla en entornos de alta incertidumbre al predecir respuestas metalúrgicas donde hay múltiples metales mezclados."
+        },
+        {
+          "text": "Porque sustituye la necesidad de geólogos y metalurgistas en la planta.",
+          "isCorrect": false,
+          "rationale": "El éxito de la IA depende de un enfoque multidisciplinario donde los expertos humanos entrenan y validan los modelos."
+        },
+        {
+          "text": "Porque garantiza que el mineral siempre tenga la misma ley de cobre.",
+          "isCorrect": false,
+          "rationale": "La IA no cambia la naturaleza del mineral (la ley), sino que ayuda a gestionar la variabilidad de lo que se extrae."
+        },
+        {
+          "text": "Porque reduce el costo del software de gestión al simplificar los cálculos.",
+          "isCorrect": false,
+          "rationale": "El Machine Learning requiere procesar volúmenes masivos de datos, lo cual aumenta la complejidad del cálculo, no la simplifica."
+        }
+      ],
+      "hint": "Se relaciona con la capacidad de procesar la incertidumbre y la variedad de metales."
+    },
+    {
+      "question": "¿Cuál es la frecuencia de actualización de los modelos de Machine Learning en operaciones de clase mundial como Antamina?",
+      "answerOptions": [
+        {
+          "text": "Cada 24 horas al cierre del día operativo.",
+          "isCorrect": false,
+          "rationale": "Una actualización diaria sería demasiado lenta para reaccionar a los cambios de mineral turno a turno."
+        },
+        {
+          "text": "Cada 4 horas.",
+          "isCorrect": true,
+          "rationale": "Este ciclo permite que el sistema sea 'vivo' y retroalimente la operación casi en tiempo real para maximizar la recuperación."
+        },
+        {
+          "text": "Mensualmente, coincidiendo con los reportes financieros.",
+          "isCorrect": false,
+          "rationale": "Los reportes mensuales son estáticos y no sirven para la optimización operativa inmediata."
+        },
+        {
+          "text": "Cada vez que el operador detecta un cambio visual en el mineral.",
+          "isCorrect": false,
+          "rationale": "La actualización es automática y basada en data masiva, no dependiente de la detección visual humana."
+        }
+      ],
+      "hint": "Es un intervalo corto que permite ajustar la operación varias veces al día."
+    },
+    {
+      "question": "¿Qué función cumple el Mineral Flotation Test (MFT) dentro del sistema predictivo?",
+      "answerOptions": [
+        {
+          "text": "Predecir el volumen total de ventas de la compañía minera.",
+          "isCorrect": false,
+          "rationale": "El MFT se enfoca en parámetros técnicos de laboratorio, no en proyecciones comerciales o financieras."
+        },
+        {
+          "text": "Proporcionar los parámetros cinéticos exactos de laboratorio para alimentar el simulador.",
+          "isCorrect": true,
+          "rationale": "Sin la data dura del MFT sobre el comportamiento de las partículas, las predicciones del simulador (IGS) serían solo adivinanzas."
+        },
+        {
+          "text": "Controlar de forma remota las válvulas de agua en la planta de molienda.",
+          "isCorrect": false,
+          "rationale": "Esa es una función de los sistemas de control experto y PLCs, no de una prueba de flotación."
+        },
+        {
+          "text": "Sustituir el uso de cianuro en la recuperación de oro.",
+          "isCorrect": false,
+          "rationale": "El MFT es una herramienta de diagnóstico y obtención de datos, no un reactivo químico alternativo."
+        }
+      ],
+      "hint": "Considérelo como el proveedor de 'gasolina de alto octanaje' (datos) para el simulador."
+    },
+    {
+      "question": "Dentro de los parámetros cinéticos, ¿qué representa el factor $\\alpha$?",
+      "answerOptions": [
+        {
+          "text": "La recuperación máxima posible de un bloque de mineral.",
+          "isCorrect": false,
+          "rationale": "La recuperación máxima está representada por el parámetro $R_{max}$."
+        },
+        {
+          "text": "La velocidad promedio a la que flotan las partículas.",
+          "isCorrect": false,
+          "rationale": "La velocidad de flotación está definida por la constante $K$ promedio."
+        },
+        {
+          "text": "La distribución de la flotabilidad de las partículas.",
+          "isCorrect": true,
+          "rationale": "Este factor permite afinar el tiempo de residencia y maximizar la selectividad en las celdas de flotación."
+        },
+        {
+          "text": "El porcentaje de sólidos en la descarga del molino.",
+          "isCorrect": false,
+          "rationale": "Este es una variable operativa de molienda, no un parámetro cinético de flotación."
+        }
+      ],
+      "hint": "Indica cómo se reparte la propiedad de flotar entre los diferentes granos de mineral."
+    },
+    {
+      "question": "¿Cómo ayuda la Inteligencia Artificial a mejorar el modelo de bloques de una mina?",
+      "answerOptions": [
+        {
+          "text": "Eliminando la necesidad de realizar perforaciones diamantinas en el futuro.",
+          "isCorrect": false,
+          "rationale": "La perforación sigue siendo necesaria, pero la IA optimiza el uso de los datos obtenidos."
+        },
+        {
+          "text": "Poblando de datos las zonas donde no se pudieron extraer muestras físicas mediante covarianzas.",
+          "isCorrect": true,
+          "rationale": "Al encontrar relaciones matemáticas entre lo geológico y lo químico, la IA reduce la incertidumbre geoestadística."
+        },
+        {
+          "text": "Reduciendo el tamaño físico de los bloques para que la mina dure más años.",
+          "isCorrect": false,
+          "rationale": "El tamaño del bloque es una unidad de medida; cambiarlo no altera la cantidad física de mineral en el yacimiento."
+        },
+        {
+          "text": "Automatizando el movimiento de los camiones de acarreo sin usar GPS.",
+          "isCorrect": false,
+          "rationale": "Esta es una función de gestión de flota, distinta a la modelación geometalúrgica de los bloques."
+        }
+      ],
+      "hint": "Se refiere a llenar 'vacíos' de información utilizando relaciones matemáticas complejas."
+    },
+    {
+      "question": "¿En qué consiste el concepto de 'chancado químico' dentro de la estrategia Mind to Mill?",
+      "answerOptions": [
+        {
+          "text": "En el uso de ácidos fuertes para disolver la roca antes de que llegue a la planta.",
+          "isCorrect": false,
+          "rationale": "No se trata de disolución química, sino de fragmentación mecánica mediante energía liberada."
+        },
+        {
+          "text": "En utilizar la energía de los explosivos en el tajo para realizar el trabajo de fragmentación inicial.",
+          "isCorrect": true,
+          "rationale": "Es mucho más económico romper la roca con explosivos que intentar hacerlo mecánicamente con energía eléctrica en la planta."
+        },
+        {
+          "text": "En la aplicación de reactivos químicos en las fajas para ablandar el mineral.",
+          "isCorrect": false,
+          "rationale": "La estrategia se basa en la voladura controlada, no en tratamientos químicos superficiales del mineral extraído."
+        },
+        {
+          "text": "En un proceso de lixiviación acelerada mediante detonaciones controladas.",
+          "isCorrect": false,
+          "rationale": "El objetivo es la fragmentación para molienda, no la lixiviación directa en esta etapa."
+        }
+      ],
+      "hint": "Aprovecha una fuente de energía muy barata disponible en la fase de extracción."
+    },
+    {
+      "question": "¿Qué efecto negativo aguas abajo produce una voladura deficiente con presencia de bolonería excesiva?",
+      "answerOptions": [
+        {
+          "text": "Aumento de la velocidad de flotación en las celdas.",
+          "isCorrect": false,
+          "rationale": "La voladura afecta la fragmentación física, no directamente las propiedades químicas de flotación."
+        },
+        {
+          "text": "Disparo en la recirculación de pebbles y cuellos de botella en el molino SAG.",
+          "isCorrect": true,
+          "rationale": "La roca demasiado grande sobrecarga los sistemas de trituración mecánica y reduce la capacidad de tratamiento total."
+        },
+        {
+          "text": "Reducción del consumo de energía eléctrica en la chancadora primaria.",
+          "isCorrect": false,
+          "rationale": "Al contrario, procesar rocas más grandes requiere mucha más energía y esfuerzo mecánico."
+        },
+        {
+          "text": "Mejora en la estabilidad de los taludes del tajo.",
+          "isCorrect": false,
+          "rationale": "Una voladura mal ejecutada suele desestabilizar los taludes en lugar de mejorarlos."
+        }
+      ],
+      "hint": "Piense en el material que no puede ser molido y debe volver al proceso."
+    },
+    {
+      "question": "Ante un evento crítico como un 'tiro cortado' (misfire), ¿qué metodología se recomienda para el análisis de causa raíz?",
+      "answerOptions": [
+        {
+          "text": "El método ICAM.",
+          "isCorrect": true,
+          "rationale": "Este enfoque estructurado permite identificar si el error fue operativo o una deficiencia sistémica organizacional."
+        },
+        {
+          "text": "El análisis de varianza simple (ANOVA).",
+          "isCorrect": false,
+          "rationale": "ANOVA es una herramienta estadística, pero ICAM es un método específico de investigación de incidentes y causas raíz."
+        },
+        {
+          "text": "La observación directa del operador de turno.",
+          "isCorrect": false,
+          "rationale": "La observación es subjetiva y no constituye una metodología analítica profunda para resolver errores sistémicos."
+        },
+        {
+          "text": "El ajuste aleatorio del factor de carga.",
+          "isCorrect": false,
+          "rationale": "La improvisación es lo que la gestión inteligente busca eliminar para evitar riesgos y sobrecostos."
+        }
+      ],
+      "hint": "Es un acrónimo común en la gestión de incidentes industriales."
+    },
+    {
+      "question": "¿Por qué se considera una 'paradoja de inversión' el aumento del gasto en explosivos?",
+      "answerOptions": [
+        {
+          "text": "Porque gastar más en la mina incrementa linealmente el costo total de la onza de oro.",
+          "isCorrect": false,
+          "rationale": "La paradoja indica que el costo total disminuye, a pesar del aumento puntual en un insumo."
+        },
+        {
+          "text": "Porque un mayor gasto en explosivos aguas arriba reduce drásticamente los costos de procesamiento mecánico aguas abajo.",
+          "isCorrect": true,
+          "rationale": "El ahorro masivo de energía y tiempo en la planta compensa con creces el costo adicional de los explosivos."
+        },
+        {
+          "text": "Porque los explosivos son el insumo más caro de toda la operación minera.",
+          "isCorrect": false,
+          "rationale": "La energía eléctrica en la molienda es realmente el insumo de mayor peso económico."
+        },
+        {
+          "text": "Porque a mayor cantidad de explosivos, menor es la recuperación de finos en flotación.",
+          "isCorrect": false,
+          "rationale": "Una buena fragmentación suele facilitar la liberación del mineral y mejorar la recuperación."
+        }
+      ],
+      "hint": "Invertir un poco más al principio ahorra mucho dinero al final."
+    },
+    {
+      "question": "¿Qué incremento aproximado en el tonelaje procesado (throughput) se puede lograr al reducir la fragmentación de 8 a 5 pulgadas?",
+      "answerOptions": [
+        {
+          "text": "$5 \\%$",
+          "isCorrect": false,
+          "rationale": "El impacto de una fragmentación más fina es significativamente mayor a un simple $5 \\%$."
+        },
+        {
+          "text": "$10 \\%$",
+          "isCorrect": false,
+          "rationale": "Aunque es un avance, los datos operativos muestran que el potencial de optimización es superior."
+        },
+        {
+          "text": "$20 \\%$",
+          "isCorrect": true,
+          "rationale": "Este salto en la producción justifica plenamente el enfoque estratégico en la voladura controlada."
+        },
+        {
+          "text": "$50 \\%$",
+          "isCorrect": false,
+          "rationale": "Un incremento del $50 \\%$ es poco realista solo por el cambio en el tamaño de alimentación mencionado."
+        }
+      ],
+      "hint": "Es una quinta parte de la capacidad total."
+    },
+    {
+      "question": "¿Qué porcentaje del consumo total de energía de una operación minera puede representar solo la etapa de molienda?",
+      "answerOptions": [
+        {
+          "text": "Hasta un $30 \\%$",
+          "isCorrect": false,
+          "rationale": "Este porcentaje subestima el enorme peso energético que tiene la molienda mecánica en la planta."
+        },
+        {
+          "text": "Hasta un $60 \\%$",
+          "isCorrect": true,
+          "rationale": "La molienda es el consumidor crítico de energía, lo que hace que cualquier ahorro allí sea vital para la rentabilidad."
+        },
+        {
+          "text": "Exactamente el $7 \\%$",
+          "isCorrect": false,
+          "rationale": "El $7 \\%$ corresponde al consumo aproximado de energía de los explosivos en la mina, no de la planta."
+        },
+        {
+          "text": "Alrededor del $90 \\%$",
+          "isCorrect": false,
+          "rationale": "Aunque es alto, otros procesos como el transporte, chancado y flotación también consumen energía significativa."
+        }
+      ],
+      "hint": "Es más de la mitad del consumo energético total."
+    },
+    {
+      "question": "Comparando la eficiencia energética, ¿qué porcentaje de la energía total se consume en la fragmentación con explosivos frente a la conminución mecánica en planta?",
+      "answerOptions": [
+        {
+          "text": "Mina: $44 \\%$ / Planta: $7 \\%$",
+          "isCorrect": false,
+          "rationale": "Estos valores están invertidos; la planta consume mucho más que la voladura inicial."
+        },
+        {
+          "text": "Mina: $7 \\%$ / Planta: $44 \\%$",
+          "isCorrect": true,
+          "rationale": "Esta disparidad resalta por qué es estratégico adelantar el trabajo de rotura en la mina, donde es más barato."
+        },
+        {
+          "text": "Mina: $25 \\%$ / Planta: $25 \\%$",
+          "isCorrect": false,
+          "rationale": "La distribución energética es muy desigual debido a la ineficiencia relativa de los molinos mecánicos."
+        },
+        {
+          "text": "Mina: $2 \\%$ / Planta: $30 \\%$",
+          "isCorrect": false,
+          "rationale": "Aunque la planta consume más, el dato exacto de consumo en planta es mayor al $30 \\%$."
+        }
+      ],
+      "hint": "Piense en una relación aproximada de 1 a 6 a favor de la planta."
+    },
+    {
+      "question": "¿Qué beneficio adicional se reportó en operaciones como Oajone y Salobo al estabilizar la fragmentación?",
+      "answerOptions": [
+        {
+          "text": "Eliminación total del uso de bolas de acero en los molinos.",
+          "isCorrect": false,
+          "rationale": "La fragmentación ayuda, pero no elimina la necesidad de medios de molienda en procesos convencionales."
+        },
+        {
+          "text": "Estabilización de la densidad de pulpa y optimización del consumo de agua.",
+          "isCorrect": true,
+          "rationale": "Una alimentación constante y controlada permite que los procesos posteriores funcionen bajo condiciones ideales."
+        },
+        {
+          "text": "Aumento del costo operativo por tonelada tratada.",
+          "isCorrect": false,
+          "rationale": "El objetivo y resultado de estas operaciones fue precisamente la reducción de costos operativos."
+        },
+        {
+          "text": "Reducción de la vida útil de los componentes de la chancadora.",
+          "isCorrect": false,
+          "rationale": "Al recibir rocas más pequeñas y controladas, el desgaste de los equipos suele disminuir, prolongando su vida útil."
+        }
+      ],
+      "hint": "Se refiere a la mejora en la gestión de un recurso hídrico y la mezcla mineral-líquido."
+    },
+    {
+      "question": "En la pequeña minería, ¿cuál es el impacto de aplicar conceptos básicos de geometalurgia e IA en la recuperación de oro?",
+      "answerOptions": [
+        {
+          "text": "Elevar las tasas desde un $40 \\%$ a un $55 \\%$.",
+          "isCorrect": true,
+          "rationale": "Incluso a pequeña escala, la tecnología permite saltos cuantitativos en la eficiencia y ahorro de reactivos."
+        },
+        {
+          "text": "Reducir la recuperación para ahorrar en el uso de cianuro.",
+          "isCorrect": false,
+          "rationale": "El objetivo tecnológico es siempre aumentar la recuperación al mismo tiempo que se optimizan los insumos."
+        },
+        {
+          "text": "Mantener los procesos tradicionales pero con mayor cantidad de mano de obra.",
+          "isCorrect": false,
+          "rationale": "La aplicación de IA y PLCs busca la eficiencia mediante la automatización, no el aumento de labor manual."
+        },
+        {
+          "text": "Lograr una recuperación del $100 \\%$ de forma inmediata.",
+          "isCorrect": false,
+          "rationale": "Una recuperación total es termodinámicamente improbable; el salto mencionado es real y competitivo."
+        }
+      ],
+      "hint": "Es un incremento de 15 puntos porcentuales."
+    },
+    {
+      "question": "¿Qué consecuencia tiene para la cadena de producción el desvío del plan original mediante el 'descremado' del yacimiento?",
+      "answerOptions": [
+        {
+          "text": "Aumento inmediato de la rentabilidad a largo plazo.",
+          "isCorrect": false,
+          "rationale": "El descremado mejora el corto plazo pero destruye el valor y la resiliencia a largo plazo."
+        },
+        {
+          "text": "Generación de deudas operativas que pueden colapsar la producción futura.",
+          "isCorrect": true,
+          "rationale": "Ignorar el plan para sacar solo lo mejor genera ineficiencias que la planta no podrá procesar equilibradamente después."
+        },
+        {
+          "text": "Mejora en la precisión del modelo de bloques.",
+          "isCorrect": false,
+          "rationale": "El descremado es una decisión de ejecución, no afecta la precisión del modelo geológico inicial."
+        },
+        {
+          "text": "Reducción automática de la incertidumbre geometalúrgica.",
+          "isCorrect": false,
+          "rationale": "Al contrario, genera mayor caos operativo al no respetar las secuencias de mezcla planificadas."
+        }
+      ],
+      "hint": "Considere el impacto negativo de priorizar ganancias rápidas sobre la planificación."
+    },
+    {
+      "question": "¿Cuál es la 'Regla de Oro' de control mencionada en el caso del Molino 3 de Tintaya?",
+      "answerOptions": [
+        {
+          "text": "$50 \\%$ de sólidos y $50 \\%$ de agua.",
+          "isCorrect": false,
+          "rationale": "Esta proporción no coincide con el diseño optimizado del sistema experto de Tintaya."
+        },
+        {
+          "text": "$30 \\%$ de sólidos y $70 \\%$ de agua.",
+          "isCorrect": true,
+          "rationale": "Mantener esta relación exacta mediante ajustes automáticos fue la semilla de la inteligencia operacional en la planta."
+        },
+        {
+          "text": "$70 \\%$ de sólidos y $30 \\%$ de agua.",
+          "isCorrect": false,
+          "rationale": "Una carga tan alta de sólidos podría causar problemas de transporte y molienda ineficiente."
+        },
+        {
+          "text": "$100 \\%$ de mineral seco en la alimentación del molino.",
+          "isCorrect": false,
+          "rationale": "La molienda en este caso requiere agua para formar la pulpa necesaria para el proceso."
+        }
+      ],
+      "hint": "Es una proporción donde el agua predomina en volumen."
+    }
+  ],
+  "topics": {
+    "covered": [
+      "Inteligencia Artificial en minería",
+      "Optimización de la conminución",
+      "Estrategia Mind to Mill",
+      "Sistemas de control experto",
+      "Machine Learning y yacimientos polimetálicos",
+      "Geometalurgia y modelamiento de bloques",
+      "Eficiencia energética operativa"
+    ],
+    "followUp": [
+      "Diseño avanzado de mallas de voladura para fragmentación",
+      "Gestión de centros de control remoto y arquitectura informática",
+      "Simulación de procesos metalúrgicos mediante IGS",
+      "Análisis de causa raíz en minería con método ICAM"
+    ]
+  }
+}

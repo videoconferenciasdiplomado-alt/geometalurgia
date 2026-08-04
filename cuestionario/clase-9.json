@@ -1,0 +1,542 @@
+
+{
+  "quiz": [
+    {
+      "question": "¿Cuál es el objetivo principal de transitar de una gestión reactiva en la planta a un modelo geometalúrgico predictivo?",
+      "answerOptions": [
+        {
+          "text": "Reducir riesgos, predecir la producción y transformar la incertidumbre en parámetros confiables.",
+          "isCorrect": true,
+          "rationale": "El modelo geometalúrgico busca mitigar riesgos operativos y financieros mediante la previsión de variables antes del procesamiento."
+        },
+        {
+          "text": "Eliminar por completo la necesidad de realizar pruebas metalúrgicas de variabilidad.",
+          "isCorrect": false,
+          "rationale": "El modelo requiere de una base empírica sólida y exhaustiva de pruebas para ser funcional y confiable."
+        },
+        {
+          "text": "Aumentar los costos operativos de la mina para mejorar la estética del tajo.",
+          "isCorrect": false,
+          "rationale": "Aunque se pueden aumentar costos en áreas específicas como voladura, el fin es la rentabilidad global, no la estética."
+        },
+        {
+          "text": "Sustituir el mapeo geológico tradicional por simulaciones matemáticas puras.",
+          "isCorrect": false,
+          "rationale": "El modelo integra el mapeo geológico como un insumo vital para definir litologías y leyes, no lo reemplaza."
+        }
+      ],
+      "hint": "Piense en cómo las herramientas intelectuales ayudan a manejar el dinamismo constante del yacimiento."
+    },
+    {
+      "question": "¿Qué consecuencia directa tiene el uso de una baja densidad de muestras (entre 10 y 20 pruebas) en la validación del yacimiento?",
+      "answerOptions": [
+        {
+          "text": "Genera un nivel de riesgo crítico capaz de comprometer hasta un año de producción.",
+          "isCorrect": true,
+          "rationale": "La baja representatividad estadística aumenta la incertidumbre operativa y financiera a gran escala."
+        },
+        {
+          "text": "Reduce el margen de riesgo a un tiempo de respuesta de apenas dos semanas.",
+          "isCorrect": false,
+          "rationale": "Esta reducción de riesgo solo se logra aumentando significativamente el número de pruebas, usualmente a más de $240$."
+        },
+        {
+          "text": "Garantiza que la media y la varianza se mantengan constantes en todo el modelo.",
+          "isCorrect": false,
+          "rationale": "La estabilidad de la media y varianza es un supuesto de estacionariedad, no un resultado de tener pocas muestras."
+        },
+        {
+          "text": "Permite ignorar el análisis exploratorio de datos por la simplicidad del volumen de información.",
+          "isCorrect": false,
+          "rationale": "El análisis exploratorio de datos es ineludible sin importar la cantidad de datos para asegurar la calidad del modelo."
+        }
+      ],
+      "hint": "Considere la relación entre el volumen de validación estadística y la estabilidad operativa."
+    },
+    {
+      "question": "En el contexto de la geoestadística, ¿cuál es la función principal de la hipótesis de estacionariedad?",
+      "answerOptions": [
+        {
+          "text": "Asumir que las propiedades estadísticas como la media y la varianza son constantes en un dominio específico.",
+          "isCorrect": true,
+          "rationale": "Esta regla permite realizar predicciones espaciales en zonas no muestreadas basándose en la estabilidad del dominio."
+        },
+        {
+          "text": "Medir de forma exacta cómo se propagan las ondas de información a través de la roca.",
+          "isCorrect": false,
+          "rationale": "Esa es la función de la variografía a través del variograma, no de la estacionariedad."
+        },
+        {
+          "text": "Eliminar los valores atípicos que se salen de los rangos lógicos del modelo.",
+          "isCorrect": false,
+          "rationale": "La depuración de valores atípicos corresponde al análisis exploratorio de datos ($EDA$)."
+        },
+        {
+          "text": "Transformar variables basadas en el tiempo en indicadores de energía consumida.",
+          "isCorrect": false,
+          "rationale": "La transformación de variables se realiza mediante exponentes matemáticos específicos, no por la estacionariedad."
+        }
+      ],
+      "hint": "Se trata de un principio filosófico y técnico sobre la estabilidad de las reglas del juego en la geología."
+    },
+    {
+      "question": "¿Qué representa el variograma dentro del proceso de estimación espacial?",
+      "answerOptions": [
+        {
+          "text": "Una herramienta que cuantifica el incremento de la varianza en función de la distancia física.",
+          "isCorrect": true,
+          "rationale": "El variograma permite definir el radio de influencia y el alcance de cada dato puntual en el depósito."
+        },
+        {
+          "text": "Un algoritmo que otorga mayor peso estadístico a las muestras más alejadas del bloque vacío.",
+          "isCorrect": false,
+          "rationale": "La ponderación de datos para asignar valores a bloques vacíos es la función del Kriging."
+        },
+        {
+          "text": "Un método para identificar errores analíticos en las pruebas de laboratorio.",
+          "isCorrect": false,
+          "rationale": "La detección de errores analíticos es parte de los protocolos de control de calidad y del $EDA$."
+        },
+        {
+          "text": "Una técnica para promediar linealmente variables no aditivas como el tiempo de molienda.",
+          "isCorrect": false,
+          "rationale": "Promediar linealmente variables de tiempo es un error técnico que el modelo busca evitar."
+        }
+      ],
+      "hint": "Piense en la analogía de una piedra arrojada en un estanque y cómo se propagan sus ondas."
+    },
+    {
+      "question": "Al trabajar con variables de conminución basadas en el tiempo, ¿por qué se aplica el exponente $0.55$?",
+      "answerOptions": [
+        {
+          "text": "Para convertir una variable de tiempo en un proxy de energía que sea linealmente estimable por Kriging.",
+          "isCorrect": true,
+          "rationale": "Esto permite respetar las leyes de la termodinámica y evitar distorsiones físicas al promediar valores."
+        },
+        {
+          "text": "Para reducir sistemáticamente la media de la ley del mineral en yacimientos muy duros.",
+          "isCorrect": false,
+          "rationale": "El exponente no busca alterar las leyes de los metales, sino ajustar variables de proceso como el índice $SAC$."
+        },
+        {
+          "text": "Para suavizar la transición entre dominios que presentan un contacto de tipo blando.",
+          "isCorrect": false,
+          "rationale": "La suavización de transiciones se logra compartiendo datos entre bloques vecinos, no mediante este exponente."
+        },
+        {
+          "text": "Para detectar y corregir las derivas espaciales en los ejes $X$, $Y$ y $Z$.",
+          "isCorrect": false,
+          "rationale": "La corrección de derivas espaciales se realiza mediante el uso de $Swath$ $plots$."
+        }
+      ],
+      "hint": "Considere el problema de promediar directamente variables que miden resistencia o residencia."
+    },
+    {
+      "question": "¿Cuál es la característica principal de las unidades geometalúrgicas ($UGM$)?",
+      "answerOptions": [
+        {
+          "text": "Agrupar bloques que tienen una respuesta metalúrgica similar, independientemente de su apariencia visual.",
+          "isCorrect": true,
+          "rationale": "Las $UGM$ simplifican la complejidad geológica enfocándose en el comportamiento del material dentro de la planta."
+        },
+        {
+          "text": "Dividir el yacimiento exclusivamente según la ley de metal fino de cada bloque.",
+          "isCorrect": false,
+          "rationale": "El enfoque cambia de la simple ley de alimentación a la respuesta integral durante el procesamiento."
+        },
+        {
+          "text": "Utilizar únicamente datos de geofísica para definir la competencia de la roca.",
+          "isCorrect": false,
+          "rationale": "Las $UGM$ integran múltiples disciplinas, incluyendo geoquímica, mineralogía y metalurgia."
+        },
+        {
+          "text": "Mantener silos departamentales separados para evitar la contaminación de datos entre mina y planta.",
+          "isCorrect": false,
+          "rationale": "El modelo exige precisamente lo contrario: derribar silos y fomentar la sinergia multidisciplinaria."
+        }
+      ],
+      "hint": "Piense en el cambio de paradigma que prioriza el comportamiento en planta sobre la clasificación visual."
+    },
+    {
+      "question": "¿Qué define a un 'contacto duro' durante la delimitación de unidades en un modelo tridimensional?",
+      "answerOptions": [
+        {
+          "text": "Un salto brusco en los valores que exige una estimación matemática independiente para cada lado.",
+          "isCorrect": true,
+          "rationale": "En un contacto duro, las propiedades cambian radicalmente en distancias mínimas, impidiendo el intercambio de datos."
+        },
+        {
+          "text": "Una transición suave en la naturaleza que permite compartir datos entre bloques vecinos.",
+          "isCorrect": false,
+          "rationale": "Esa descripción corresponde a un contacto blando o rampa de transición."
+        },
+        {
+          "text": "La imposibilidad económica de realizar perforaciones en esa zona específica del yacimiento.",
+          "isCorrect": false,
+          "rationale": "El contacto se refiere al comportamiento de la variable en la frontera geológica, no a restricciones presupuestarias."
+        },
+        {
+          "text": "La aplicación de un factor de carga mayor en la voladura para facilitar el chancado.",
+          "isCorrect": false,
+          "rationale": "El uso de más explosivos es una estrategia operativa (chancado químico), no una definición de contacto espacial."
+        }
+      ],
+      "hint": "Imagine chocar contra una pared en comparación con subir por una rampa."
+    },
+    {
+      "question": "¿Para qué se utilizan específicamente los $Swath$ $plots$ en la validación de un modelo?",
+      "answerOptions": [
+        {
+          "text": "Para comparar promedios de muestras reales contra los del modelo matemático y corregir derivas espaciales.",
+          "isCorrect": true,
+          "rationale": "Funcionan como una ventana móvil que escanea los ejes para asegurar que el modelo sea fiel a la realidad física."
+        },
+        {
+          "text": "Para determinar el exponente exacto que convierte el tiempo en energía.",
+          "isCorrect": false,
+          "rationale": "El exponente $0.55$ es un estándar académicamente validado, no se deriva de los $Swath$ $plots$."
+        },
+        {
+          "text": "Para calcular el índice de moliendabilidad de Bond de forma automática.",
+          "isCorrect": false,
+          "rationale": "El índice de Bond es un resultado de pruebas de laboratorio metalúrgicas, no una técnica de validación espacial."
+        },
+        {
+          "text": "Para eliminar físicamente los bolones de roca antes de que lleguen a la planta de procesamiento.",
+          "isCorrect": false,
+          "rationale": "La eliminación de bolones es un objetivo de la voladura optimizada, no una función de un gráfico de validación."
+        }
+      ],
+      "hint": "Considere la necesidad de verificar que las matemáticas no sean 'castillos en el aire' frente a los datos de terreno."
+    },
+    {
+      "question": "En la estrategia de 'chancado químico', ¿cuál es el beneficio de aumentar el factor de carga en la voladura?",
+      "answerOptions": [
+        {
+          "text": "Evita el envío de rocas excesivamente duras a la planta, mejorando la rentabilidad global.",
+          "isCorrect": true,
+          "rationale": "Gastar más en explosivos en la mina puede prevenir colapsos operativos costosos y optimizar el flujo en planta."
+        },
+        {
+          "text": "Permite reducir el precio del oro y del cobre en el mercado internacional.",
+          "isCorrect": false,
+          "rationale": "Las estrategias operativas internas no tienen influencia sobre los precios de mercado globales."
+        },
+        {
+          "text": "Asegura que el tajo se mantenga visualmente ordenado y con costos de mina mínimos.",
+          "isCorrect": false,
+          "rationale": "El chancado químico prioriza el beneficio total sobre el ahorro aislado en los costos de minado."
+        },
+        {
+          "text": "Sustituye por completo el uso de molinos $SAC$ en la etapa de conminución.",
+          "isCorrect": false,
+          "rationale": "La voladura optimizada asiste al proceso de molienda, pero no reemplaza la infraestructura de la planta."
+        }
+      ],
+      "hint": "Es una decisión contraintuitiva donde gastar más en un área ahorra mucho más en otra."
+    },
+    {
+      "question": "Bajo un escenario de precios de metales extraordinariamente altos, ¿cuál es la prioridad estratégica recomendada?",
+      "answerOptions": [
+        {
+          "text": "Maximizar el flujo de masa y volumen para optimizar el Valor Presente Neto ($VPN$).",
+          "isCorrect": true,
+          "rationale": "Acelerar el movimiento de mineral permite monetizar los metales rápido, compensando posibles pérdidas marginales en recuperación."
+        },
+        {
+          "text": "Priorizar la recuperación del último porcentaje marginal de mineral sin importar la velocidad.",
+          "isCorrect": false,
+          "rationale": "Ir lento para maximizar la recuperación puede ser ineficiente financieramente cuando los precios permiten altas ganancias por volumen."
+        },
+        {
+          "text": "Reducir la disponibilidad mecánica para ahorrar en costos de mantenimiento preventivo.",
+          "isCorrect": false,
+          "rationale": "La disponibilidad mecánica es crítica; descuidarla destruiría la rentabilidad que se busca con la estrategia agresiva."
+        },
+        {
+          "text": "Incrementar el número de pruebas de variabilidad para detener la producción durante un año.",
+          "isCorrect": false,
+          "rationale": "Las pruebas de variabilidad buscan reducir el riesgo, no detener la producción innecesariamente."
+        }
+      ],
+      "hint": "Piense en cómo el tiempo y el volumen afectan la monetización rápida en mercados favorables."
+    },
+    {
+      "question": "¿Qué parámetros se evalúan específicamente para perfilar la fase de flotación en el modelo geometalúrgico?",
+      "answerOptions": [
+        {
+          "text": "La recuperación máxima ($R_{max}$), la constante de velocidad ($K$) y el parámetro de dispersión ($\\alpha$).",
+          "isCorrect": true,
+          "rationale": "Estos indicadores químicos permiten predecir cómo responderá el mineral una vez que entre en las celdas de flotación."
+        },
+        {
+          "text": "El índice $SPI$ y el índice de Bond ($BWi$) únicamente.",
+          "isCorrect": false,
+          "rationale": "El $SPI$ y el $BWi$ son parámetros físicos de la fase de conminución, no de la fase química de flotación."
+        },
+        {
+          "text": "La densidad de muestras y el error analítico de la geoestadística.",
+          "isCorrect": false,
+          "rationale": "Estos son criterios de calidad de datos y validación, no parámetros de respuesta metalúrgica en flotación."
+        },
+        {
+          "text": "El factor de carga y la disponibilidad de palas en la mina.",
+          "isCorrect": false,
+          "rationale": "Estos son parámetros operativos de la mina y mantenimiento, no de la química de la planta."
+        }
+      ],
+      "hint": "Considere los indicadores que miden la cinética y la eficiencia química del proceso."
+    },
+    {
+      "question": "¿Cuál es la función del Kriging en la construcción de la cuadrícula predictiva?",
+      "answerOptions": [
+        {
+          "text": "Minimizar la varianza del error ponderando los datos conocidos según su relevancia estadística.",
+          "isCorrect": true,
+          "rationale": "El Kriging actúa con precisión quirúrgica para poblar bloques vacíos con el menor margen de error posible."
+        },
+        {
+          "text": "Asumir que la media y la varianza son constantes en todo el yacimiento de forma lineal.",
+          "isCorrect": false,
+          "rationale": "Ese supuesto es la estacionariedad, que es la base previa para poder aplicar el Kriging."
+        },
+        {
+          "text": "Aumentar artificialmente las leyes de los metales para mejorar los reportes financieros.",
+          "isCorrect": false,
+          "rationale": "El Kriging es un método de estimación técnica, no una herramienta para distorsionar valores económicos."
+        },
+        {
+          "text": "Identificar las venas de mineral y definir la litología microscópica de la roca.",
+          "isCorrect": false,
+          "rationale": "La identificación de venas y litología es tarea del mapeo geológico y la geoquímica."
+        }
+      ],
+      "hint": "Se le conoce como la 'joya de la corona' de la estimación espacial por su capacidad para reducir errores."
+    },
+    {
+      "question": "¿Por qué es vital integrar el programa de mantenimiento en el modelo geometalúrgico?",
+      "answerOptions": [
+        {
+          "text": "Porque una falla mecánica exige ajustar la mezcla de minerales ($blending$) en tiempo real para evitar cuellos de botella.",
+          "isCorrect": true,
+          "rationale": "La sincronización entre mantenimiento y operación garantiza que la alimentación a la planta sea estable y rentable."
+        },
+        {
+          "text": "Porque el mantenimiento es el único departamento encargado de realizar las pruebas de variabilidad.",
+          "isCorrect": false,
+          "rationale": "Las pruebas de variabilidad suelen ser responsabilidad de geología y metalurgia, no de mantenimiento mecánico."
+        },
+        {
+          "text": "Porque permite ignorar los precios del mercado cuando una máquina se detiene en el taller.",
+          "isCorrect": false,
+          "rationale": "La estrategia debe estar alineada con los precios del mercado; las fallas mecánicas son un obstáculo a esa estrategia."
+        },
+        {
+          "text": "Porque las leyes de la termodinámica solo se aplican a los equipos de mantenimiento de la planta.",
+          "isCorrect": false,
+          "rationale": "Las leyes de la termodinámica se consideran en el tratamiento de variables de proceso como la conminución."
+        }
+      ],
+      "hint": "Piense en qué sucede con la alimentación de la planta si una pala crítica deja de funcionar."
+    },
+    {
+      "question": "¿Qué disciplina aporta el 'esqueleto' del yacimiento mediante datos cuantitativos sobre la competencia de la roca?",
+      "answerOptions": [
+        {
+          "text": "La geofísica.",
+          "isCorrect": true,
+          "rationale": "La geofísica permite mapear la dureza y competencia de la roca como una estructura base para el modelo."
+        },
+        {
+          "text": "La mineralogía.",
+          "isCorrect": false,
+          "rationale": "La mineralogía se enfoca en análisis microscópicos detallados, no en el mapeo cuantitativo de competencia a gran escala."
+        },
+        {
+          "text": "La geoestadística.",
+          "isCorrect": false,
+          "rationale": "La geoestadística es la herramienta matemática de integración y población de datos, no la fuente de datos físicos de competencia."
+        },
+        {
+          "text": "El análisis exploratorio de datos ($EDA$).",
+          "isCorrect": false,
+          "rationale": "El $EDA$ es un proceso de depuración y filtrado de datos, no una disciplina de adquisición de datos en terreno."
+        }
+      ],
+      "hint": "Es la especialidad que funciona como un escáner médico para ver la estructura dura del depósito."
+    },
+    {
+      "question": "El principio de 'Garbage In, Garbage Out' resalta la importancia de:",
+      "answerOptions": [
+        {
+          "text": "El rigor absoluto en la recolección de datos y protocolos de control de calidad ($QA/QC$).",
+          "isCorrect": true,
+          "rationale": "Si los cimientos empíricos son débiles, cualquier modelo matemático complejo fallará inevitablemente."
+        },
+        {
+          "text": "Eliminar la complejidad física del yacimiento para simplificar las matemáticas.",
+          "isCorrect": false,
+          "rationale": "El objetivo es representar fielmente la complejidad, no eliminarla o ignorarla."
+        },
+        {
+          "text": "Utilizar únicamente modelos matemáticos brillantes sin necesidad de datos de terreno.",
+          "isCorrect": false,
+          "rationale": "El texto advierte que hasta el modelo más brillante se desploma con datos defectuosos."
+        },
+        {
+          "text": "Priorizar la velocidad de recolección de muestras sobre la verificación exhaustiva.",
+          "isCorrect": false,
+          "rationale": "La recolección y verificación exhaustiva son precursores indispensables que no deben sacrificarse por velocidad."
+        }
+      ],
+      "hint": "Se refiere a la calidad del insumo que alimenta cualquier simulación predictiva."
+    },
+    {
+      "question": "¿Cuál es el rol estratégico del geometalurgista en la minería moderna?",
+      "answerOptions": [
+        {
+          "text": "Actuar como un mediador que conecta y alinea los indicadores de geología, mina, planta y mantenimiento.",
+          "isCorrect": true,
+          "rationale": "Su trabajo es traducir información técnica entre departamentos para optimizar el sistema de forma integral."
+        },
+        {
+          "text": "Realizar exclusivamente las perforaciones de cada metro cúbico del yacimiento.",
+          "isCorrect": false,
+          "rationale": "Perforar cada metro cúbico es económicamente inviable; el geometalurgista usa modelos para evitar esto."
+        },
+        {
+          "text": "Encargarse únicamente de la limpieza y depuración de la base de datos estadísticos.",
+          "isCorrect": false,
+          "rationale": "Aunque usa datos depurados, su rol es mucho más amplio y estratégico en la toma de decisiones operativas."
+        },
+        {
+          "text": "Garantizar que los costos de la mina sean los más bajos posibles, sin importar el impacto en planta.",
+          "isCorrect": false,
+          "rationale": "El geometalurgista busca la rentabilidad global, lo que a veces implica subir costos en una fase para salvar otra."
+        }
+      ],
+      "hint": "Considere la necesidad de derribar silos departamentales para lograr una sinergia total."
+    },
+    {
+      "question": "La geoestadística se describe como un 'salvavidas financiero' porque:",
+      "answerOptions": [
+        {
+          "text": "Permite poblar bloques vacíos mediante correlación espacial sin tener que perforar cada metro cúbico.",
+          "isCorrect": true,
+          "rationale": "Muestrear la totalidad del yacimiento llevaría a cualquier proyecto a la quiebra absoluta."
+        },
+        {
+          "text": "Asegura que el precio del metal siempre se mantenga por encima de los costos de producción.",
+          "isCorrect": false,
+          "rationale": "La geoestadística gestiona la incertidumbre técnica, pero no puede controlar los precios de mercado."
+        },
+        {
+          "text": "Elimina la necesidad de aplicar leyes termodinámicas en los procesos de conminución.",
+          "isCorrect": false,
+          "rationale": "La geoestadística es un puente matemático que debe trabajar en conjunto con las leyes físicas, no eliminarlas."
+        },
+        {
+          "text": "Garantiza que no existan variaciones en la media estadística de los dominios geológicos.",
+          "isCorrect": false,
+          "rationale": "La geoestadística requiere asumir estabilidad (estacionariedad), pero no puede garantizar que la naturaleza no varíe."
+        }
+      ],
+      "hint": "Piense en la imposibilidad económica y práctica de hacer un muestreo total del yacimiento."
+    },
+    {
+      "question": "¿Qué mide el índice $SPI$ en la fase de conminución?",
+      "answerOptions": [
+        {
+          "text": "La resistencia o 'pelea' que dará el mineral específicamente en el molino $SAC$.",
+          "isCorrect": true,
+          "rationale": "El $SPI$ (Power SAC Index) evalúa la dureza física del mineral frente a este tipo de molienda."
+        },
+        {
+          "text": "La recuperación máxima de metal precioso en las celdas de flotación.",
+          "isCorrect": false,
+          "rationale": "La recuperación máxima se mide a través de la prueba $MFT$ ($R_{max}$), no por el $SPI$."
+        },
+        {
+          "text": "El alcance de la influencia de un solo dato de perforación en el variograma.",
+          "isCorrect": false,
+          "rationale": "El radio de influencia es un concepto de variografía, mientras que el $SPI$ es una medición metalúrgica."
+        },
+        {
+          "text": "El valor presente neto ($VPN$) del proyecto según el precio del mercado.",
+          "isCorrect": false,
+          "rationale": "El $VPN$ es un indicador financiero global, no una medida de resistencia física de la roca."
+        }
+      ],
+      "hint": "Está relacionado con el esfuerzo energético requerido para moler la roca en molinos semiautógenos."
+    },
+    {
+      "question": "¿Cuál es la función del Análisis Exploratorio de Datos ($EDA$) antes de aplicar matemáticas avanzadas?",
+      "answerOptions": [
+        {
+          "text": "Identificar y purgar valores ilógicos y corregir errores analíticos.",
+          "isCorrect": true,
+          "rationale": "El $EDA$ actúa como un filtro de cuarentena para asegurar una base empírica fidedigna."
+        },
+        {
+          "text": "Transformar el modelo en un ciclo vivo de aprendizaje continuo mediante machine learning.",
+          "isCorrect": false,
+          "rationale": "El aprendizaje continuo es el resultado final del modelo, mientras que el $EDA$ es un paso intermedio de depuración."
+        },
+        {
+          "text": "Calcular directamente el valor numérico de los bloques vacíos en el modelo 3D.",
+          "isCorrect": false,
+          "rationale": "La asignación de valores a bloques vacíos es tarea del algoritmo de Kriging."
+        },
+        {
+          "text": "Definir si un contacto entre dominios es de tipo duro o blando.",
+          "isCorrect": false,
+          "rationale": "La definición de contactos se basa en análisis espaciales y geológicos, no solo en la depuración inicial de datos."
+        }
+      ],
+      "hint": "Piense en él como el 'Gran Guardián' que evita construir un rascacielos sobre arena movediza."
+    },
+    {
+      "question": "¿Por qué se afirma que el modelo geometalúrgico jamás es estático?",
+      "answerOptions": [
+        {
+          "text": "Porque es un ciclo vivo de aprendizaje continuo potenciado por herramientas como el machine learning.",
+          "isCorrect": true,
+          "rationale": "La variabilidad del yacimiento exige un dominio constante y una actualización permanente del modelo."
+        },
+        {
+          "text": "Porque los variogramas cambian de forma aleatoria cada vez que se procesa el mineral.",
+          "isCorrect": false,
+          "rationale": "Los variogramas miden el comportamiento espacial que, aunque complejo, busca ser modelado con rigor, no por azar."
+        },
+        {
+          "text": "Porque las leyes de la termodinámica se modifican según el precio del metal.",
+          "isCorrect": false,
+          "rationale": "Las leyes físicas son constantes; lo que cambia es la estrategia económica y la información que alimenta el modelo."
+        },
+        {
+          "text": "Porque las unidades geometalúrgicas se disuelven una vez que el mineral entra en la planta.",
+          "isCorrect": false,
+          "rationale": "Las unidades son herramientas de gestión que precisamente sirven para predecir el comportamiento dentro de la planta."
+        }
+      ],
+      "hint": "Considere la necesidad de dominar la variabilidad del yacimiento de forma constante."
+    }
+  ],
+  "topics": {
+    "covered": [
+      "Modelo Geometalúrgico Predictivo",
+      "Calidad de Datos y EDA",
+      "Geoestadística (Estacionariedad, Variografía, Kriging)",
+      "Tratamiento de Variables No Lineales",
+      "Unidades Geometalúrgicas (UGM)",
+      "Validación de Modelos (Swath Plots)",
+      "Estrategias Operativas y Económicas (VPN, Chancado Químico)"
+    ],
+    "followUp": [
+      "Implementación de Machine Learning en Minería",
+      "Protocolos de QA/QC en Muestreo Geológico",
+      "Termodinámica Aplicada a Procesos de Conminución",
+      "Optimización de Planes de Minado Basados en Variabilidad"
+    ]
+  }
+}

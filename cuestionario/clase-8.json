@@ -1,0 +1,544 @@
+
+{
+  "quiz": [
+    {
+      "question": "¿Cuál es el objetivo principal de la geometalurgia integrada dentro de la industria minera moderna?",
+      "answerOptions": [
+        {
+          "text": "Transformar la visión del yacimiento de solo leyes de metal a una perspectiva de roca total.",
+          "isCorrect": true,
+          "rationale": "La geometalurgia busca integrar atributos de procesamiento y geología para entender el comportamiento de toda la masa rocosa y mejorar la rentabilidad."
+        },
+        {
+          "text": "Sustituir los diseños de ingeniería por modelos geológicos tradicionales de alta precisión.",
+          "isCorrect": false,
+          "rationale": "La geometalurgia no busca eliminar la ingeniería, sino complementarla para evitar fracasos por ignorar la realidad del subsuelo."
+        },
+        {
+          "text": "Maximizar exclusivamente la ley del metal precioso ignorando los componentes de la ganga.",
+          "isCorrect": false,
+          "rationale": "Ignorar la ganga es justamente el error del modelo tradicional que la geometalurgia intenta corregir."
+        },
+        {
+          "text": "Reducir los costos de perforación mediante el uso de modelos estadísticos puramente teóricos.",
+          "isCorrect": false,
+          "rationale": "El enfoque se centra en el valor y la predicción operativa, no simplemente en reducir costos de perforación inicial."
+        }
+      ],
+      "hint": "Considere la transición de mirar solo el valor metálico a mirar toda la matriz mineral."
+    },
+    {
+      "question": "En el caso de la mina Tintaya, ¿qué factor hidrogeológico crítico provocó cuellos de botella en el circuito de chancado?",
+      "answerOptions": [
+        {
+          "text": "Humedades en el material superiores al $10\\%$ o $12\\%$.",
+          "isCorrect": true,
+          "rationale": "El exceso de agua en el material superó la capacidad de diseño, comprometiendo el procesamiento y el bombeo."
+        },
+        {
+          "text": "Una dureza extrema de la roca que el diseño canadiense no pudo procesar.",
+          "isCorrect": false,
+          "rationale": "Aunque la dureza es importante, el problema específico citado fue la humedad excesiva debido a la hidrogeología local."
+        },
+        {
+          "text": "La presencia masiva de arcillas expansivas en el frente de minado.",
+          "isCorrect": false,
+          "rationale": "Si bien las arcillas son problemáticas, el factor determinante en el circuito de chancado de Tintaya fue la humedad."
+        },
+        {
+          "text": "Bajas leyes de cobre que hicieron inviable el costo del procesamiento.",
+          "isCorrect": false,
+          "rationale": "El problema fue operativo y de diseño técnico ante la realidad del subsuelo, no un problema de leyes minerales."
+        }
+      ],
+      "hint": "Piense en el impacto del agua en el material que llega a la planta."
+    },
+    {
+      "question": "¿Qué implicación técnica tiene la frase 'la carne viene con hueso y pellejo' en el procesamiento mineralúrgico?",
+      "answerOptions": [
+        {
+          "text": "Que la matriz rocosa, incluyendo la ganga, dicta la eficiencia de todo el sistema de procesamiento.",
+          "isCorrect": true,
+          "rationale": "Reconoce que lo que entra a la planta es una asociación compleja donde los componentes sin valor económico afectan la operación."
+        },
+        {
+          "text": "Que es necesario separar físicamente el mineral del desmonte antes de que entre al molino.",
+          "isCorrect": false,
+          "rationale": "La frase sugiere que el material entra junto al proceso y debe ser entendido como un todo, no que la separación previa sea el foco."
+        },
+        {
+          "text": "Que el desmonte tiene el mismo valor económico que la mena en los mercados internacionales.",
+          "isCorrect": false,
+          "rationale": "El desmonte no tiene valor económico, pero sí tiene un impacto técnico y de costo en el proceso."
+        },
+        {
+          "text": "Que la molienda solo debe enfocarse en los elementos puros para evitar el desgaste de los equipos.",
+          "isCorrect": false,
+          "rationale": "Es imposible alimentar elementos puros; la planta siempre recibe una matriz mineralógica compleja."
+        }
+      ],
+      "hint": "Analice cómo influyen los componentes no valiosos en los equipos de planta."
+    },
+    {
+      "question": "De acuerdo con el impacto de los penalizadores, ¿cuál es el efecto principal de las arcillas expansivas?",
+      "answerOptions": [
+        {
+          "text": "Dificultar el espesamiento y el manejo de las pulpas, arruinando la recuperación.",
+          "isCorrect": true,
+          "rationale": "Las arcillas expansivas alteran las propiedades reológicas de la pulpa, afectando etapas críticas de separación sólido-líquido."
+        },
+        {
+          "text": "Aumentar drásticamente la dureza mecánica de la roca en el molino SAG.",
+          "isCorrect": false,
+          "rationale": "La dureza suele asociarse a minerales como la magnetita, mientras que las arcillas afectan la fluidez y sedimentación."
+        },
+        {
+          "text": "Consumir grandes cantidades de ácido durante el proceso de lixiviación.",
+          "isCorrect": false,
+          "rationale": "El consumo excesivo de ácido es característico de los carbonatos, como la calcita, no de las arcillas."
+        },
+        {
+          "text": "Secuestrar el oro mediante el fenómeno conocido como 'preg-robbing'.",
+          "isCorrect": false,
+          "rationale": "El 'preg-robbing' es provocado específicamente por el carbón orgánico."
+        }
+      ],
+      "hint": "Piense en cómo las partículas finas y plásticas afectan el flujo de los líquidos espesados."
+    },
+    {
+      "question": "Si una roca presenta un $0.5\\%$ de calcita, ¿cuál es el consumo potencial de ácido estimado por cada tonelada procesada?",
+      "answerOptions": [
+        {
+          "text": "$5$ kg de ácido.",
+          "isCorrect": true,
+          "rationale": "Incluso proporciones microscópicas de carbonatos tienen una capacidad de neutralización de ácido muy alta, elevando los costos."
+        },
+        {
+          "text": "$0.5$ kg de ácido.",
+          "isCorrect": false,
+          "rationale": "Este valor subestima el poder reactivo de los carbonatos frente a los ácidos de lixiviación."
+        },
+        {
+          "text": "$50$ kg de ácido.",
+          "isCorrect": false,
+          "rationale": "Aunque es un gran consumidor, $50$ kg sería una cifra exagerada para solo un $0.5\\%$ de presencia mineral."
+        },
+        {
+          "text": "$10$ kg de ácido.",
+          "isCorrect": false,
+          "rationale": "El valor técnico preciso mencionado para esa concentración específica es de la mitad de esta cifra."
+        }
+      ],
+      "hint": "Es una relación de $1$ a $10$ respecto al porcentaje mencionado."
+    },
+    {
+      "question": "¿Qué fenómeno metalúrgico es provocado por el carbón orgánico en la recuperación de metales preciosos?",
+      "answerOptions": [
+        {
+          "text": "Preg-robbing, donde el carbón secuestra el oro e impide su recuperación.",
+          "isCorrect": true,
+          "rationale": "El carbón orgánico actúa como un adsorbente que compite con el proceso de recuperación, atrapando el metal valioso."
+        },
+        {
+          "text": "Acidificación rápida de la pulpa, requiriendo mayor inyección de cal.",
+          "isCorrect": false,
+          "rationale": "La acidificación de la pulpa es una consecuencia típica de sulfuros como la marcasita."
+        },
+        {
+          "text": "Aumento de la dureza de la matriz rocosa, exigiendo más energía de molienda.",
+          "isCorrect": false,
+          "rationale": "El carbón orgánico no aumenta significativamente la dureza mecánica en comparación con silicatos o óxidos metálicos."
+        },
+        {
+          "text": "Neutralización de los reactivos de lixiviación mediante la formación de carbonatos.",
+          "isCorrect": false,
+          "rationale": "El carbón orgánico y los carbonatos (como la calcita) son componentes químicos distintos con impactos diferentes."
+        }
+      ],
+      "hint": "Considere un proceso donde el oro queda 'atrapado' por un agente externo."
+    },
+    {
+      "question": "¿Por qué se considera que el uso de muestras compuestas es un 'peligro latente' en la planificación minera?",
+      "answerOptions": [
+        {
+          "text": "Porque diluye estadísticamente la realidad y enmascara picos de variabilidad crítica.",
+          "isCorrect": true,
+          "rationale": "Al promediar intervalos, se pierde la información sobre zonas extremadamente duras o contaminadas que pueden paralizar la planta."
+        },
+        {
+          "text": "Porque incrementa excesivamente el tiempo de análisis en el laboratorio químico.",
+          "isCorrect": false,
+          "rationale": "Al contrario, los compósitos suelen usarse para reducir el número de muestras y tiempos, sacrificando precisión."
+        },
+        {
+          "text": "Porque las muestras compuestas son físicamente inestables para el logueo hiperespectral.",
+          "isCorrect": false,
+          "rationale": "La inestabilidad no es el problema, sino la pérdida de representatividad espacial y de comportamiento."
+        },
+        {
+          "text": "Porque requieren el uso de tecnologías lentas como la difracción de rayos X para ser validadas.",
+          "isCorrect": false,
+          "rationale": "La técnica de análisis es independiente de si la muestra es compuesta o sistemática; el riesgo es la pérdida de variabilidad."
+        }
+      ],
+      "hint": "Piense en lo que sucede con los datos extremos cuando se saca un promedio."
+    },
+    {
+      "question": "¿Qué ventaja ofrece el uso de un Sonic Logger en el núcleo de perforación?",
+      "answerOptions": [
+        {
+          "text": "Medir la velocidad de la onda P para definir perfiles geomecánicos de alta resolución.",
+          "isCorrect": true,
+          "rationale": "Permite capturar la variabilidad de la dureza y competencia de la roca sin destruir ni mezclar la muestra original."
+        },
+        {
+          "text": "Identificar la presencia de oro libre mediante espectroscopía de emisión rápida.",
+          "isCorrect": false,
+          "rationale": "El Sonic Logger se basa en ondas acústicas/mecánicas, no en espectroscopía para detectar elementos químicos."
+        },
+        {
+          "text": "Determinar el consumo exacto de reactivos químicos en una ventana de un minuto.",
+          "isCorrect": false,
+          "rationale": "La determinación de reactivos es una función de la mineralogía (FTIR/NIR) o pruebas metalúrgicas, no de la sónica."
+        },
+        {
+          "text": "Reemplazar completamente la necesidad de realizar logueo geológico manual.",
+          "isCorrect": false,
+          "rationale": "Es una herramienta de apoyo tecnológica que complementa el logueo, no necesariamente lo elimina en su totalidad."
+        }
+      ],
+      "hint": "Asocie la herramienta con la medición de propiedades físicas y mecánicas del material."
+    },
+    {
+      "question": "¿Cuál es el tiempo de procesamiento estimado para $10,000$ muestras usando tecnologías de alta frecuencia (FTIR/NIR) comparado con métodos tradicionales (XRD)?",
+      "answerOptions": [
+        {
+          "text": "Una semana frente a $175$ días.",
+          "isCorrect": true,
+          "rationale": "La tecnología hiperespectral permite un escaneo masivo y rápido, transformando meses de espera en días de trabajo."
+        },
+        {
+          "text": "Un mes frente a un año.",
+          "isCorrect": false,
+          "rationale": "Aunque es más rápido, la comparación específica destaca una eficiencia de una semana para un volumen de $10,000$ muestras."
+        },
+        {
+          "text": "$24$ horas frente a $30$ días.",
+          "isCorrect": false,
+          "rationale": "Incluso con alta tecnología, procesar $10,000$ muestras requiere aproximadamente una semana para mantener la sistematicidad."
+        },
+        {
+          "text": "Una semana frente a $45$ días.",
+          "isCorrect": false,
+          "rationale": "La disparidad es mucho mayor; los métodos tradicionales como el XRD son significativamente más lentos de lo sugerido aquí."
+        }
+      ],
+      "hint": "Busque la diferencia entre una unidad de tiempo semanal y casi medio año."
+    },
+    {
+      "question": "¿Cuál es el rol actual de la difracción de rayos X (XRD) ante la llegada de los sensores rápidos?",
+      "answerOptions": [
+        {
+          "text": "Actuar como 'árbitro de lujo' para calibraciones detalladas y validación de modelos.",
+          "isCorrect": true,
+          "rationale": "Se reserva para el control de calidad y precisión, mientras que los sensores rápidos manejan el volumen masivo de datos."
+        },
+        {
+          "text": "Ser la herramienta principal para el mapeo sistemático de toda la mina.",
+          "isCorrect": false,
+          "rationale": "Su lentitud la hace inviable para el mapeo sistemático masivo de miles de muestras en tiempos cortos."
+        },
+        {
+          "text": "Sustituir al logueo hiperespectral en la identificación de gangas críticas.",
+          "isCorrect": false,
+          "rationale": "El XRD es complementario; el logueo hiperespectral es el que lidera la velocidad en la identificación de gangas."
+        },
+        {
+          "text": "Proporcionar datos en tiempo real directamente en la correa transportadora.",
+          "isCorrect": false,
+          "rationale": "El XRD es un método de laboratorio lento que no se utiliza típicamente para mediciones en tiempo real en correas."
+        }
+      ],
+      "hint": "Piense en una función de supervisión y alta precisión en lugar de procesamiento masivo."
+    },
+    {
+      "question": "¿Qué variable metalúrgica está directamente dictada por el índice de dureza de la roca (como el SPI)?",
+      "answerOptions": [
+        {
+          "text": "El rendimiento del molino o throughput.",
+          "isCorrect": true,
+          "rationale": "La dureza determina qué tan rápido se puede procesar el material a través del sistema de molienda."
+        },
+        {
+          "text": "El grado de liberación de las partículas valiosas.",
+          "isCorrect": false,
+          "rationale": "La liberación está más relacionada con la textura de la roca que con el índice de dureza mecánica per se."
+        },
+        {
+          "text": "La cantidad de cal necesaria para neutralizar la pulpa.",
+          "isCorrect": false,
+          "rationale": "La cal se ajusta según la mineralogía ácida (sulfuros), no basándose en la dureza mecánica."
+        },
+        {
+          "text": "El balance final de recuperación de metal en las celdas.",
+          "isCorrect": false,
+          "rationale": "Aunque influye, la recuperación depende de múltiples factores químicos y texturales, no solo del rendimiento mecánico del molino."
+        }
+      ],
+      "hint": "Relacione la resistencia de la roca con la capacidad de procesamiento de la planta."
+    },
+    {
+      "question": "En el flujo de construcción de un modelo predictivo, ¿cuál es el paso final que cierra el ciclo?",
+      "answerOptions": [
+        {
+          "text": "Estimación espacial proyectando variables sobre la topografía real.",
+          "isCorrect": true,
+          "rationale": "Este paso permite ubicar geográficamente las predicciones metalúrgicas dentro del modelo de bloques de la mina."
+        },
+        {
+          "text": "Agrupamiento de datos mediante análisis de clústeres.",
+          "isCorrect": false,
+          "rationale": "El análisis de clústeres es el paso previo (paso 4) que organiza los datos antes de la estimación espacial."
+        },
+        {
+          "text": "Realización de ensayos metalúrgicos a gran escala.",
+          "isCorrect": false,
+          "rationale": "Los ensayos son el paso 3; proporcionan los datos necesarios para los pasos posteriores de modelado."
+        },
+        {
+          "text": "Logueo hiperespectral de los testigos de perforación.",
+          "isCorrect": false,
+          "rationale": "Este es el paso 2, centrado en la captura inicial de datos mineralógicos detallados."
+        }
+      ],
+      "hint": "Piense en el proceso de llevar los datos numéricos al mapa físico de la operación."
+    },
+    {
+      "question": "¿Qué técnica geoestadística es estrictamente necesaria para proyectar variables categóricas como las unidades geometalúrgicas?",
+      "answerOptions": [
+        {
+          "text": "Cokriging o simulaciones de indicadores.",
+          "isCorrect": true,
+          "rationale": "El kriging tradicional falla en variables categóricas (etiquetas), por lo que se requieren métodos específicos para este tipo de datos."
+        },
+        {
+          "text": "Kriging ordinario de bloques.",
+          "isCorrect": false,
+          "rationale": "El kriging ordinario es excelente para variables continuas como la ley, pero limitado para categorías."
+        },
+        {
+          "text": "Promedio ponderado por el inverso de la distancia.",
+          "isCorrect": false,
+          "rationale": "Este es un método determinístico simple que no ofrece la robustez necesaria para modelos geometalúrgicos complejos."
+        },
+        {
+          "text": "Regresión lineal multivariante basada en la litología.",
+          "isCorrect": false,
+          "rationale": "La regresión no es una técnica de estimación espacial geoestadística propiamente dicha para la construcción de modelos de bloques."
+        }
+      ],
+      "hint": "Busque el método especializado en 'etiquetas' o categorías en lugar de números continuos."
+    },
+    {
+      "question": "Utilizando la analogía de la cosecha de papa, ¿qué representan las 'unidades geometalúrgicas'?",
+      "answerOptions": [
+        {
+          "text": "Grupos de bloques con propiedades intrínsecas similares para facilitar la operación.",
+          "isCorrect": true,
+          "rationale": "Clasificar el material por su comportamiento permite predecir cómo reaccionará en la planta, al igual que clasificar papas por calidad."
+        },
+        {
+          "text": "Zonas de la mina que deben ser descartadas por su baja ley de metal.",
+          "isCorrect": false,
+          "rationale": "Las unidades geometalúrgicas incluyen todo el material (mena y ganga) para entender su procesamiento, no solo el descarte."
+        },
+        {
+          "text": "Diferentes tipos de maquinaria utilizados en la planta de procesos.",
+          "isCorrect": false,
+          "rationale": "La analogía se refiere al material rocoso que alimenta la planta, no a los equipos físicos."
+        },
+        {
+          "text": "Modelos teóricos que no requieren validación en terreno.",
+          "isCorrect": false,
+          "rationale": "Las unidades deben ser accionables y validadas constantemente contra el desempeño real."
+        }
+      ],
+      "hint": "Piense en cómo se organiza el material para que sea predecible y manejable."
+    },
+    {
+      "question": "¿Qué concepto filosófico se utiliza para describir la reconciliación entre el modelo geológico tradicional y la realidad operativa?",
+      "answerOptions": [
+        {
+          "text": "La negación de la negación.",
+          "isCorrect": true,
+          "rationale": "Este concepto ilustra la evolución técnica necesaria para dejar atrás modelos limitados y alcanzar una verdad técnica superior."
+        },
+        {
+          "text": "La tabula rasa operativa.",
+          "isCorrect": false,
+          "rationale": "No se trata de empezar de cero, sino de evolucionar y desafiar los modelos existentes de forma sistemática."
+        },
+        {
+          "text": "El imperativo categórico de la ley.",
+          "isCorrect": false,
+          "rationale": "Este es un concepto ético de Kant que no se relaciona con la reconciliación de datos en minería descrita."
+        },
+        {
+          "text": "La dialéctica del mineral puro.",
+          "isCorrect": false,
+          "rationale": "Aunque suena técnico, el término utilizado específicamente para cerrar la brecha de predicción fue el de Octavio Paz."
+        }
+      ],
+      "hint": "Se mencionó a un famoso autor mexicano para ilustrar este ciclo evolutivo."
+    },
+    {
+      "question": "En términos de costos operativos, ¿qué importancia tiene la etapa de molienda en una mina?",
+      "answerOptions": [
+        {
+          "text": "Puede representar hasta el $40\\%$ de los costos operativos totales.",
+          "isCorrect": true,
+          "rationale": "Debido al alto consumo de energía y desgaste de medios, la molienda es el factor de costo más crítico en la planta."
+        },
+        {
+          "text": "Es la etapa menos costosa debido a la automatización de los molinos SAG.",
+          "isCorrect": false,
+          "rationale": "Al contrario, el consumo energético de los molinos es masivo y constituye una carga financiera principal."
+        },
+        {
+          "text": "Su costo es insignificante comparado con el transporte por camiones.",
+          "isCorrect": false,
+          "rationale": "Aunque el transporte es caro, la molienda suele superar o igualar este peso en la estructura de costos de procesamiento."
+        },
+        {
+          "text": "Representa exactamente el $10\\%$ de la inversión en reactivos químicos.",
+          "isCorrect": false,
+          "rationale": "La molienda es un proceso mecánico y energético, no se mide típicamente como un porcentaje de los reactivos."
+        }
+      ],
+      "hint": "Considere que es la etapa que consume la mayor cantidad de energía eléctrica."
+    },
+    {
+      "question": "¿En qué consiste la técnica de 'conminución química' aplicada en la interfaz Mind to Mill?",
+      "answerOptions": [
+        {
+          "text": "Utilizar la energía de los explosivos para prefracturar la roca según su dureza desde el tajo.",
+          "isCorrect": true,
+          "rationale": "Ajustar la voladura permite adelantar el trabajo de fragmentación, reduciendo la carga mecánica en los molinos."
+        },
+        {
+          "text": "Inyectar ácidos directamente en el frente de minado para ablandar la roca.",
+          "isCorrect": false,
+          "rationale": "La conminución química se refiere al uso controlado de explosivos, no a la aplicación de ácidos solventes en la mina."
+        },
+        {
+          "text": "Agregar reactivos químicos en el molino para aumentar la velocidad de rotación.",
+          "isCorrect": false,
+          "rationale": "La velocidad del molino es un parámetro mecánico; la conminución química ocurre antes de que la roca llegue al molino."
+        },
+        {
+          "text": "Sustituir las bolas de acero del molino por compuestos químicos de alta densidad.",
+          "isCorrect": false,
+          "rationale": "Esta opción no tiene fundamento técnico; la conminución química es una estrategia de voladura inteligente."
+        }
+      ],
+      "hint": "Piense en cómo se usa la voladura para ahorrar energía en la planta."
+    },
+    {
+      "question": "En la comparativa entre un pórfido de alta ley ($1.3\\%$) y una brecha de menor ley ($1.2\\%$), ¿por qué la brecha resultó ser más rentable?",
+      "answerOptions": [
+        {
+          "text": "Por ser un material más blando que permitió un mayor tonelaje procesado y mejor recuperación.",
+          "isCorrect": true,
+          "rationale": "La eficiencia integral del proceso compensó la menor ley inicial gracias a menores costos energéticos y mayor velocidad."
+        },
+        {
+          "text": "Porque el pórfido contenía impurezas de carbón orgánico que anularon su valor.",
+          "isCorrect": false,
+          "rationale": "La causa principal descrita fue la diferencia en dureza y eficiencia de procesamiento, no contaminantes específicos."
+        },
+        {
+          "text": "Debido a que el precio del cobre aumentó repentinamente durante el minado de la brecha.",
+          "isCorrect": false,
+          "rationale": "El análisis se basa en propiedades técnicas intrínsecas de la roca, no en fluctuaciones del mercado."
+        },
+        {
+          "text": "Porque la brecha requería menos explosivos para su extracción inicial.",
+          "isCorrect": false,
+          "rationale": "Aunque es cierto, la mayor rentabilidad provino de la combinación de throughput y recuperación en la planta."
+        }
+      ],
+      "hint": "Considere la relación entre la facilidad de molienda y el volumen final de concentrado."
+    },
+    {
+      "question": "¿Cuál es el beneficio principal de implementar un 'Strategic Blending' o mezcla estratégica?",
+      "answerOptions": [
+        {
+          "text": "Estabilizar la alimentación a la planta y evitar paradas imprevistas del molino.",
+          "isCorrect": true,
+          "rationale": "Mezclar materiales de distinta competencia permite mantener un ritmo constante y optimizar el valor presente neto del proyecto."
+        },
+        {
+          "text": "Aumentar artificialmente la ley del mineral mezclándolo con material estéril.",
+          "isCorrect": false,
+          "rationale": "Mezclar con estéril diluye la ley; el blending busca optimizar el comportamiento físico y químico, no 'aumentar' la ley."
+        },
+        {
+          "text": "Reducir la necesidad de realizar análisis mineralógicos de alta frecuencia.",
+          "isCorrect": false,
+          "rationale": "El blending estratégico requiere, precisamente, de análisis precisos para saber qué materiales se están mezclando."
+        },
+        {
+          "text": "Eliminar por completo el uso de espesadores en el manejo de pulpas.",
+          "isCorrect": false,
+          "rationale": "El blending no elimina etapas del proceso, sino que las hace funcionar de manera más estable y predecible."
+        }
+      ],
+      "hint": "Piense en cómo la consistencia del material ayuda a la continuidad operativa."
+    },
+    {
+      "question": "¿Qué pilar fundamental de la geometalurgia moderna asegura que el modelo sea 'predictivo' y no 'reactivo'?",
+      "answerOptions": [
+        {
+          "text": "La estimación integrada mediante geoestadística avanzada y clústeres.",
+          "isCorrect": true,
+          "rationale": "Esta integración permite anticipar el comportamiento del material antes de que llegue a la planta basándose en datos robustos."
+        },
+        {
+          "text": "El uso exclusivo de la microscopía electrónica para todas las muestras.",
+          "isCorrect": false,
+          "rationale": "La microscopía es un método de validación lento, no es el pilar que permite la predicción masiva y operativa."
+        },
+        {
+          "text": "La dependencia de promedios históricos de producción de minas cercanas.",
+          "isCorrect": false,
+          "rationale": "La predictividad se basa en datos específicos del yacimiento actual, no en promedios de terceros."
+        },
+        {
+          "text": "El diseño de ingeniería basado únicamente en estándares internacionales de prestigio.",
+          "isCorrect": false,
+          "rationale": "Como enseña el caso Tintaya, el diseño prestigioso fracasa si no se alimenta de la realidad específica del subsuelo."
+        }
+      ],
+      "hint": "Considere la herramienta matemática que permite proyectar datos de puntos conocidos a zonas desconocidas."
+    }
+  ],
+  "topics": {
+    "covered": [
+      "Conceptos de Geometalurgia Integrada",
+      "Paradigma de la Roca Total",
+      "Identificación de Gangas Críticas",
+      "Tecnologías de Caracterización de Alta Frecuencia",
+      "Modelamiento Predictivo y Geoestadística",
+      "Optimización Mind to Mill",
+      "Impacto Económico y Rentabilidad en Minería"
+    ],
+    "followUp": [
+      "Reología de pulpas y manejo de arcillas expansivas",
+      "Química de lixiviación y consumo de reactivos por carbonatos",
+      "Geoestadística aplicada a variables categóricas",
+      "Diseño de mallas de perforación para conminución química",
+      "Estrategias de reconciliación de modelos de bloques"
+    ]
+  }
+}
+

@@ -1,0 +1,540 @@
+
+{
+  "quiz": [
+    {
+      "question": "¿Cuál es el cambio de paradigma fundamental que propone la geometalurgia moderna frente al enfoque histórico de silos operativos?",
+      "answerOptions": [
+        {
+          "text": "La transición de modelos geológicos estáticos a modelos geometalúrgicos dinámicos.",
+          "isCorrect": true,
+          "rationale": "La integración sistémica permite cuantificar la incertidumbre y predecir el comportamiento del mineral de forma continua."
+        },
+        {
+          "text": "La eliminación total del área de planeamiento de mina para centralizarla en metalurgia.",
+          "isCorrect": false,
+          "rationale": "El objetivo es la convergencia multidisciplinaria y no la eliminación de áreas críticas de la operación."
+        },
+        {
+          "text": "La sustitución de pruebas de laboratorio por estimaciones visuales de campo.",
+          "isCorrect": false,
+          "rationale": "La geometalurgia moderna se apoya fuertemente en datos empíricos y herramientas digitales avanzadas, no en subjetividad."
+        },
+        {
+          "text": "El enfoque exclusivo en la reducción de costos operativos sin considerar la incertidumbre.",
+          "isCorrect": false,
+          "rationale": "La cuantificación de la incertidumbre es una de las ventajas principales de los modelos dinámicos mencionados."
+        }
+      ],
+      "hint": "Piense en la evolución de la naturaleza de los modelos que representan el yacimiento."
+    },
+    {
+      "question": "En el contexto del análisis exploratorio de datos ($EDA$), ¿qué función principal cumple esta etapa inicial?",
+      "answerOptions": [
+        {
+          "text": "Servir como el cimiento sobre el cual se construyen hipótesis metalúrgicas sólidas.",
+          "isCorrect": true,
+          "rationale": "El $EDA$ permite transformar masas caóticas de números en conocimiento accionable y predictivo."
+        },
+        {
+          "text": "Reemplazar los modelos de bloques de tres dimensiones por tablas de Excel.",
+          "isCorrect": false,
+          "rationale": "El análisis exploratorio es una fase analítica que alimenta y mejora los modelos de bloques, no los sustituye."
+        },
+        {
+          "text": "Validar únicamente las leyes de corte finales sin analizar la variabilidad del mineral.",
+          "isCorrect": false,
+          "rationale": "Esta etapa se enfoca precisamente en entender la variabilidad y los secretos del yacimiento antes de definir cortes finales."
+        },
+        {
+          "text": "Actuar como un trámite matemático secundario que no afecta la cadena de valor.",
+          "isCorrect": false,
+          "rationale": "Sin este análisis riguroso, intentar optimizar la cadena de valor se describe como operar a ciegas."
+        }
+      ],
+      "hint": "Considere la relación entre la información cruda y la construcción de conocimiento real."
+    },
+    {
+      "question": "¿Qué fenómeno práctico se identifica mediante el uso del análisis exploratorio de datos respecto a las unidades litológicas?",
+      "answerOptions": [
+        {
+          "text": "La divergencia entre la clasificación geológica de manual y la respuesta real en la planta.",
+          "isCorrect": true,
+          "rationale": "El análisis revela que rocas clasificadas igual geológicamente pueden comportarse de forma distinta en el procesamiento."
+        },
+        {
+          "text": "La coincidencia absoluta y permanente entre la dureza de la roca y su coloración superficial.",
+          "isCorrect": false,
+          "rationale": "La respuesta metalúrgica suele ser independiente de clasificaciones geológicas tradicionales o visuales."
+        },
+        {
+          "text": "La reducción automática del consumo de reactivos sin necesidad de ajustes operativos.",
+          "isCorrect": false,
+          "rationale": "El análisis identifica variaciones pero no reduce el consumo por sí solo; requiere acciones posteriores."
+        },
+        {
+          "text": "La imposibilidad de predecir el comportamiento del mineral debido a la complejidad iónica.",
+          "isCorrect": false,
+          "rationale": "Al contrario, el análisis actúa como un puente que permite delimitar dominios y volver predecible el comportamiento."
+        }
+      ],
+      "hint": "Reflexione sobre cómo una roca se comporta en la teoría versus su entrada en el molino."
+    },
+    {
+      "question": "¿Cuál es la utilidad primordial de emplear boxplots e histogramas en la caracterización de parámetros críticos como la dureza?",
+      "answerOptions": [
+        {
+          "text": "Identificar valores atípicos ($outliers$) y entender la dispersión de los datos.",
+          "isCorrect": true,
+          "rationale": "Estas herramientas estadísticas clásicas permiten visualizar rápidamente qué tan variables son los parámetros de diseño."
+        },
+        {
+          "text": "Eliminar por completo la necesidad de realizar pruebas físicas de laboratorio.",
+          "isCorrect": false,
+          "rationale": "Estas herramientas analizan los datos obtenidos de las pruebas, no las reemplazan directamente."
+        },
+        {
+          "text": "Predecir el valor presente neto sin considerar los costos de minado.",
+          "isCorrect": false,
+          "rationale": "Los boxplots analizan distribuciones estadísticas de variables físicas o químicas, no cálculos de rentabilidad financiera global."
+        },
+        {
+          "text": "Determinar la ubicación exacta de los centroides en un modelo de agrupamiento.",
+          "isCorrect": false,
+          "rationale": "La definición de centroides es propia de algoritmos de $clustering$ y no de los gráficos estadísticos descriptivos."
+        }
+      ],
+      "hint": "Piense en la detección de datos anómalos y la variabilidad de la muestra."
+    },
+    {
+      "question": "¿Qué ventaja específica ofrecen los gráficos log-probabilísticos en el análisis de dominios geológicos?",
+      "answerOptions": [
+        {
+          "text": "Facilitar la identificación de traslapes o segregaciones entre diferentes distribuciones.",
+          "isCorrect": true,
+          "rationale": "Permiten decidir si dos dominios son lo suficientemente parecidos para agruparlos o si requieren tratamiento diferenciado."
+        },
+        {
+          "text": "Calcular automáticamente la distancia euclidiana entre los puntos de datos.",
+          "isCorrect": false,
+          "rationale": "Ese es un cálculo matemático interno de algoritmos de aprendizaje automático, no una función de estos gráficos."
+        },
+        {
+          "text": "Establecer los límites físicos finales de un tajo abierto mediante programación dinámica.",
+          "isCorrect": false,
+          "rationale": "La definición de límites económicos de un tajo corresponde a algoritmos como Lerchs-Grossman."
+        },
+        {
+          "text": "Reducir el costo de capital ($Capex$) mediante la modificación de la topografía.",
+          "isCorrect": false,
+          "rationale": "Los gráficos son herramientas de análisis de datos, no intervenciones físicas en el terreno."
+        }
+      ],
+      "hint": "Considere la comparación entre curvas de probabilidad de distintas zonas del yacimiento."
+    },
+    {
+      "question": "¿Cómo se define correctamente una Unidad Geometalúrgica ($UGM$) en el marco de una operación minera?",
+      "answerOptions": [
+        {
+          "text": "Como una configuración espacial definida por datos empíricos para garantizar el control de la respuesta metalúrgica.",
+          "isCorrect": true,
+          "rationale": "No es solo una zona en un mapa, sino una delimitación basada en el comportamiento real del mineral."
+        },
+        {
+          "text": "Como cualquier zona geográfica que se encuentre dentro de los límites de propiedad de la mina.",
+          "isCorrect": false,
+          "rationale": "La definición de $UGM$ depende de la homogeneidad de la respuesta metalúrgica, no de límites legales."
+        },
+        {
+          "text": "Como un grupo de bloques que comparten exclusivamente la misma altitud sobre el nivel del mar.",
+          "isCorrect": false,
+          "rationale": "La altitud no determina la respuesta metalúrgica; se requieren datos de mineralogía y leyes químicas."
+        },
+        {
+          "text": "Como una clasificación basada únicamente en la antigüedad geológica de la roca.",
+          "isCorrect": false,
+          "rationale": "La geometalurgia busca integrar la respuesta en planta, la cual puede variar incluso en rocas de la misma edad."
+        }
+      ],
+      "hint": "Evite definiciones puramente geográficas o temporales; busque la precisión operativa."
+    },
+    {
+      "question": "¿Qué factor de ajuste se aplica típicamente para extrapolar resultados de recuperación de laboratorio a escala industrial?",
+      "answerOptions": [
+        {
+          "text": "Un rango situado comúnmente entre $0.96$ y $0.97$.",
+          "isCorrect": true,
+          "rationale": "Este factor permite que las proyecciones sean un reflejo fiel de la realidad operativa y no simples fantasías de laboratorio."
+        },
+        {
+          "text": "Un valor fijo de $0.35$ para compensar la topografía.",
+          "isCorrect": false,
+          "rationale": "$0.35$ se menciona como un costo inicial por tonelada en un pad, no como un factor de escalamiento de recuperación."
+        },
+        {
+          "text": "Un factor multiplicador de $2.2$ para incrementar la rentabilidad.",
+          "isCorrect": false,
+          "rationale": "$2.2$ representa un pico de costo por tonelada debido a dificultades físicas, no un factor de escala."
+        },
+        {
+          "text": "Ninguno, ya que los resultados de laboratorio se replican exactamente en la planta industrial.",
+          "isCorrect": false,
+          "rationale": "La escala influye drásticamente; por ejemplo, una microcolumna de $30\\text{ cm}$ no se comporta igual que una pila de $4\\text{ m}$."
+        }
+      ],
+      "hint": "Busque el número que actúa como la pieza maestra para evitar errores operativos costosos."
+    },
+    {
+      "question": "Ante la escasez de muestras físicas, ¿cómo se puede poblar un modelo de bloques con estimaciones confiables de dureza?",
+      "answerOptions": [
+        {
+          "text": "Utilizando ecuaciones de regresión multivariable con elementos como $Fe$, $Mg$ y $Si$ como proxies.",
+          "isCorrect": true,
+          "rationale": "Aprovechar datos químicos abundantes para estimar parámetros físicos lentos de medir es una estrategia digital clave."
+        },
+        {
+          "text": "Realizando interpolaciones simples basadas únicamente en la ubicación de las muestras existentes.",
+          "isCorrect": false,
+          "rationale": "Las interpolaciones simples en condiciones de baja densidad de muestreo se describen como una receta para el desastre."
+        },
+        {
+          "text": "Deteniendo la producción hasta obtener una densidad de muestreo de una muestra diaria.",
+          "isCorrect": false,
+          "rationale": "Esto no es económicamente viable; se prefiere el uso de modelos predictivos para mantener la constancia del proceso."
+        },
+        {
+          "text": "Ignorando el parámetro de dureza en el diseño de los circuitos de conminución.",
+          "isCorrect": false,
+          "rationale": "La dureza es crítica para proyectar el gasto de energía y el diseño del circuito; no puede omitirse."
+        }
+      ],
+      "hint": "Considere el uso de información química abundante para predecir variables de costo elevado."
+    },
+    {
+      "question": "¿Qué plataforma tecnológica se menciona para el procesamiento de múltiples variables mediante aprendizaje automático no supervisado?",
+      "answerOptions": [
+        {
+          "text": "Orange Data Mining.",
+          "isCorrect": true,
+          "rationale": "Esta herramienta permite integrar mineralogía, leyes y coordenadas para trazar unidades geometalúrgicas preliminares."
+        },
+        {
+          "text": "Excel Avanzado.",
+          "isCorrect": false,
+          "rationale": "Aunque es útil, se menciona que el nivel de integración necesario sobrepasa la capacidad analítica tradicional humana."
+        },
+        {
+          "text": "Lerchs-Grossman v10.",
+          "isCorrect": false,
+          "rationale": "Lerchs-Grossman es un algoritmo de optimización de tajos, no una plataforma de minería de datos de aprendizaje automático."
+        },
+        {
+          "text": "Simulador Tintaya.",
+          "isCorrect": false,
+          "rationale": "Tintaya se menciona como un caso de estudio sobre contingencias en planta, no como una plataforma de software de $ML$."
+        }
+      ],
+      "hint": "Recuerde el nombre de la plataforma de minería de datos vinculada a la inteligencia artificial."
+    },
+    {
+      "question": "¿En qué consiste el segundo paso del flujo de trabajo del algoritmo de clustering K-means?",
+      "answerOptions": [
+        {
+          "text": "En la minimización de la distancia euclidiana entre cada dato y su centroide más cercano.",
+          "isCorrect": true,
+          "rationale": "Mediante ciclos automáticos, el sistema recalcula y mueve los centroides para agrupar datos con comportamiento homogéneo."
+        },
+        {
+          "text": "En la asignación aleatoria de puntos centrales denominados centroides.",
+          "isCorrect": false,
+          "rationale": "La asignación aleatoria corresponde al primer paso de la iteración de centroides."
+        },
+        {
+          "text": "En la división de la base de datos en un $80\\%$ para entrenamiento y un $20\\%$ para testeo.",
+          "isCorrect": false,
+          "rationale": "Esta división es un protocolo de fragmentación de datos para evitar el sobreajuste, no un paso interno de K-means."
+        },
+        {
+          "text": "En el cálculo del valor presente neto basado en la precedencia de bloques.",
+          "isCorrect": false,
+          "rationale": "Ese cálculo es propio de la optimización económica del tajo, no del agrupamiento de datos geometalúrgicos."
+        }
+      ],
+      "hint": "Piense en la acción que realiza el algoritmo tras haber soltado los puntos iniciales."
+    },
+    {
+      "question": "¿Cuál es el principal riesgo financiero asociado al fenómeno del sobreajuste ($overfitting$) en modelos predictivos?",
+      "answerOptions": [
+        {
+          "text": "Que el algoritmo pierda la capacidad de predecir resultados ante datos nuevos.",
+          "isCorrect": true,
+          "rationale": "Si un modelo se obsesiona con datos históricos, se vuelve inútil en la práctica para la planificación real."
+        },
+        {
+          "text": "Que el costo de las licencias de software de inteligencia artificial se duplique.",
+          "isCorrect": false,
+          "rationale": "El riesgo de $overfitting$ es técnico y predictivo, no está relacionado con el costo de adquisición de software."
+        },
+        {
+          "text": "Que se identifiquen demasiadas unidades geometalúrgicas en el mapa.",
+          "isCorrect": false,
+          "rationale": "El $overfitting$ se refiere a la falta de generalización del modelo, no necesariamente a la cantidad de grupos detectados."
+        },
+        {
+          "text": "Que el algoritmo ignore los costos de cierre de mina en el diseño inicial.",
+          "isCorrect": false,
+          "rationale": "La omisión de costos de cierre es un error de criterio económico en el planeamiento, no un fallo por sobreajuste algorítmico."
+        }
+      ],
+      "hint": "Reflexione sobre qué le sucede a un modelo que se 'memoriza' el pasado."
+    },
+    {
+      "question": "De acuerdo con el protocolo de fragmentación de datos, ¿qué porcentaje de la base de datos se reserva típicamente para el set de entrenamiento?",
+      "answerOptions": [
+        {
+          "text": "$80\\%$.",
+          "isCorrect": true,
+          "rationale": "Esta proporción permite que el algoritmo aprenda patrones suficientes antes de ser validado con el set de testeo."
+        },
+        {
+          "text": "$20\\%$.",
+          "isCorrect": false,
+          "rationale": "El $20\\%$ se reserva para el set de testeo o validación, ocultándolo del algoritmo durante su aprendizaje."
+        },
+        {
+          "text": "$100\\%$.",
+          "isCorrect": false,
+          "rationale": "Pasar la base completa para entrenar es una práctica incorrecta que no permite una validación imparcial."
+        },
+        {
+          "text": "$50\\%$.",
+          "isCorrect": false,
+          "rationale": "Aunque se podría usar, la regla estricta mencionada para asegurar robustez es la del $80/20$."
+        }
+      ],
+      "hint": "Es la mayor parte de la torta de datos utilizada para que el sistema aprenda los patrones."
+    },
+    {
+      "question": "¿Cuál es el objetivo principal del planeamiento minero en la etapa de definición de límites económicos?",
+      "answerOptions": [
+        {
+          "text": "Maximizar el valor presente neto ($VPN$) del activo.",
+          "isCorrect": true,
+          "rationale": "El planeamiento busca establecer los límites físicos y económicos exactos para que el negocio sea lo más rentable posible."
+        },
+        {
+          "text": "Garantizar que todos los bloques del yacimiento sean extraídos sin excepción.",
+          "isCorrect": false,
+          "rationale": "Solo se extraen los bloques que económicamente tienen sentido, evaluando si la ganancia cubre los costos de remoción."
+        },
+        {
+          "text": "Minimizar el uso de herramientas digitales para reducir gastos administrativos.",
+          "isCorrect": false,
+          "rationale": "Al contrario, se requiere una alta potencia de cálculo y algoritmos pesados para asegurar el éxito."
+        },
+        {
+          "text": "Priorizar la velocidad de extracción sobre la ley de cabeza.",
+          "isCorrect": false,
+          "rationale": "La eficiencia del diseño impacta directamente en la ley de cabeza y la rentabilidad neta; la velocidad no es el único factor."
+        }
+      ],
+      "hint": "Se trata de la métrica financiera estándar para medir el éxito económico de un proyecto a lo largo del tiempo."
+    },
+    {
+      "question": "¿Qué diferencia fundamental hace que el algoritmo de Lerchs-Grossman sea el estándar actual frente al cono flotante?",
+      "answerOptions": [
+        {
+          "text": "Utiliza programación dinámica y garantiza matemáticamente el máximo beneficio posible.",
+          "isCorrect": true,
+          "rationale": "A diferencia del cono flotante, considera rigurosamente la precedencia de los bloques para no dejar valor sobre la mesa."
+        },
+        {
+          "text": "Es un método puramente visual que no requiere potencia de cálculo.",
+          "isCorrect": false,
+          "rationale": "Ambos son algoritmos matemáticos, pero Lerchs-Grossman es significativamente más complejo y potente."
+        },
+        {
+          "text": "Permite ignorar los costos de remoción de sobrecarga ($stripping$).",
+          "isCorrect": false,
+          "rationale": "Ningún algoritmo serio ignora el costo de remoción, ya que es fundamental para determinar la viabilidad del bloque base."
+        },
+        {
+          "text": "Es un método iterativo que solo evalúa bloques de forma aislada.",
+          "isCorrect": false,
+          "rationale": "El enfoque iterativo y más limitado es característico del algoritmo de cono flotante."
+        }
+      ],
+      "hint": "Piense en la metodología de programación y en la garantía de rentabilidad total."
+    },
+    {
+      "question": "En el caso de la unidad Coimolache, ¿cuántos escenarios estratégicos se evaluaron para maximizar su $VPN$?",
+      "answerOptions": [
+        {
+          "text": "$640$ escenarios.",
+          "isCorrect": true,
+          "rationale": "Este número resultó de cruzar $20$ conos envolventes con $32$ leyes de corte diferentes."
+        },
+        {
+          "text": "$32$ escenarios.",
+          "isCorrect": false,
+          "rationale": "$32$ es el número de leyes de corte ($cut\\text{ off grades}$) evaluadas, no el total de escenarios estratégicos."
+        },
+        {
+          "text": "$20$ escenarios.",
+          "isCorrect": false,
+          "rationale": "$20$ es el número de conos envolventes utilizados en el análisis de sensibilidad."
+        },
+        {
+          "text": "$1000$ escenarios.",
+          "isCorrect": false,
+          "rationale": "Aunque es una cifra redonda, el análisis específico mencionado llegó exactamente a $640$ combinaciones."
+        }
+      ],
+      "hint": "Es el producto de multiplicar los conos envolventes por las leyes de corte evaluadas."
+    },
+    {
+      "question": "¿Por qué es destructivo para el valor de un proyecto omitir los costos de cierre y el capital de sostenimiento ($sustaining\\text{ capital}$) en el diseño inicial?",
+      "answerOptions": [
+        {
+          "text": "Porque se estaría diseñando la mina basándose en una rentabilidad fantasma que desaparecerá al final.",
+          "isCorrect": true,
+          "rationale": "Incluirlos desde el día 1 asegura que el proyecto sea económicamente viable durante todo su ciclo de vida real."
+        },
+        {
+          "text": "Porque esos costos deben ser cubiertos únicamente por el gobierno y no por la empresa.",
+          "isCorrect": false,
+          "rationale": "Los costos de cierre y sostenimiento son responsabilidad directa de la operación y variables críticas de diseño."
+        },
+        {
+          "text": "Porque incrementan la ley de cabeza de forma artificial.",
+          "isCorrect": false,
+          "rationale": "Estos son factores financieros y de inversión que afectan la rentabilidad neta, no la calidad geológica del mineral."
+        },
+        {
+          "text": "Porque el algoritmo de Lerchs-Grossman no permite introducirlos en fases posteriores.",
+          "isCorrect": false,
+          "rationale": "Más que una limitación del algoritmo, es un error de estrategia financiera del especialista."
+        }
+      ],
+      "hint": "Considere la veracidad de los beneficios proyectados si no se cuentan todos los gastos obligatorios."
+    },
+    {
+      "question": "¿Qué factor físico multiplicó el costo de construcción de un pad de lixiviación de $0.35$ a $2.2$ por tonelada?",
+      "answerOptions": [
+        {
+          "text": "Una topografía complicada.",
+          "isCorrect": true,
+          "rationale": "Los factores físicos de la superficie pueden disparar el $Capex$ de tal forma que un proyecto marginal deje de ser viable."
+        },
+        {
+          "text": "La escasez de agua en la zona.",
+          "isCorrect": false,
+          "rationale": "Aunque es un problema común, el salto específico de costo mencionado se atribuyó a la topografía del terreno."
+        },
+        {
+          "text": "El exceso de reactivos químicos en la pulpa.",
+          "isCorrect": false,
+          "rationale": "Este factor afecta la recuperación en la planta, no el costo de construcción física del pad."
+        },
+        {
+          "text": "La baja densidad de muestreo de los pozos.",
+          "isCorrect": false,
+          "rationale": "La densidad de muestreo afecta la certidumbre del modelo, no directamente el costo de infraestructura civil superficial."
+        }
+      ],
+      "hint": "Piense en las características del relieve del terreno donde se asienta la operación."
+    },
+    {
+      "question": "Según la experiencia en la planta de Tintaya, ¿cuál es la causa más común de una caída drástica en la recuperación metalúrgica?",
+      "answerOptions": [
+        {
+          "text": "Un exceso de reactivos y un mal manejo de la química de la pulpa.",
+          "isCorrect": true,
+          "rationale": "Contrario al instinto de añadir más químicos, el problema suele ser la saturación y la competencia iónica."
+        },
+        {
+          "text": "La falta de mantenimiento preventivo en los molinos de bolas.",
+          "isCorrect": false,
+          "rationale": "Aunque el mantenimiento es clave, el caso específico analiza las contingencias desde la química de flotación."
+        },
+        {
+          "text": "Una disminución imprevista en el precio internacional del metal.",
+          "isCorrect": false,
+          "rationale": "El precio afecta la economía del proyecto, pero no la eficiencia química de recuperación en la planta."
+        },
+        {
+          "text": "La ausencia total de colectores de cadena larga en el proceso.",
+          "isCorrect": false,
+          "rationale": "El problema no es la ausencia, sino que los iones interferentes reaccionan con ellos y los deprimen."
+        }
+      ],
+      "hint": "Cuestione el instinto común de 'echarle más químico' ante cualquier problema."
+    },
+    {
+      "question": "¿Cómo afectan los iones de magnesio ($Mg$), potasio ($K$) y calcio ($Ca$) al proceso de flotación?",
+      "answerOptions": [
+        {
+          "text": "Actúan como interferentes que reaccionan con los colectores, deprimiendo la flotación.",
+          "isCorrect": true,
+          "rationale": "La competencia iónica satura el sistema y evita que las burbujas carguen el mineral valioso."
+        },
+        {
+          "text": "Ayudan a estabilizar las burbujas para mejorar la recuperación de finos.",
+          "isCorrect": false,
+          "rationale": "Al contrario, su presencia excesiva colapsa el sistema y perjudica la carga de mineral."
+        },
+        {
+          "text": "Aumentan la dureza de la roca dentro de las celdas de flotación.",
+          "isCorrect": false,
+          "rationale": "La dureza es una propiedad física que se gestiona en conminución, no en la química de flotación."
+        },
+        {
+          "text": "Eliminan la necesidad de monitorear el potencial de $pH$ en tiempo real.",
+          "isCorrect": false,
+          "rationale": "Su presencia hace que el monitoreo del potencial de $pH$ sea aún más necesario para entender la naturaleza iónica."
+        }
+      ],
+      "hint": "Considere la interacción entre estos electrolitos y los reactivos encargados de atrapar el mineral."
+    },
+    {
+      "question": "¿Qué tecnologías permiten a la planta realizar ajustes dinámicos de dosificación mediante la caracterización de la pulpa en línea?",
+      "answerOptions": [
+        {
+          "text": "Fluorescencia y difracción de rayos X ($XRF$ y $XRD$).",
+          "isCorrect": true,
+          "rationale": "Estas herramientas otorgan visibilidad en tiempo real para dejar de operar por inercia y estabilizar la recuperación."
+        },
+        {
+          "text": "Sistemas de posicionamiento global ($GPS$) de alta precisión.",
+          "isCorrect": false,
+          "rationale": "El $GPS$ se usa para ubicación física, no para el análisis químico y mineralógico de pulpas líquidas."
+        },
+        {
+          "text": "Algoritmos de cono flotante aplicados a la molienda.",
+          "isCorrect": false,
+          "rationale": "El cono flotante es para diseño de tajo, no para caracterización química de materiales en planta."
+        },
+        {
+          "text": "Microcolumnas de lixiviación de $30\\text{ cm}$.",
+          "isCorrect": false,
+          "rationale": "Estas son herramientas de laboratorio para pruebas a pequeña escala, no tecnologías de monitoreo en línea."
+        }
+      ],
+      "hint": "Piense en métodos analíticos que utilizan rayos X para identificar elementos y fases minerales."
+    }
+  ],
+  "topics": {
+    "covered": [
+      "Geometalurgia estratégica",
+      "Análisis exploratorio de datos ($EDA$)",
+      "Machine learning en minería",
+      "Optimización de tajos y algoritmos",
+      "Control de contingencias en planta"
+    ],
+    "followUp": [
+      "Modelamiento geometalúrgico dinámico",
+      "Algoritmo de Lerchs-Grossman",
+      "Escalamiento industrial de recuperación",
+      "Química de pulpas e interferencia iónica"
+    ]
+  }
+}

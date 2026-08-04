@@ -1,0 +1,540 @@
+{
+  "quiz": [
+    {
+      "question": "¿Cuál es el cambio fundamental de paradigma al pasar de un modelo geológico tradicional a uno geometalúrgico holístico?",
+      "answerOptions": [
+        {
+          "text": "La incorporación de la metalurgia como un atributo espacial intrínseco del depósito.",
+          "isCorrect": true,
+          "rationale": "El modelo holístico deja de ver la metalurgia como un proceso externo de planta para tratarla como una característica propia de cada bloque del yacimiento."
+        },
+        {
+          "text": "El enfoque exclusivo en la ubicación espacial y la litología de la roca.",
+          "isCorrect": false,
+          "rationale": "Este enfoque corresponde al modelo geológico tradicional, el cual se considera insuficiente en el entorno complejo actual."
+        },
+        {
+          "text": "La eliminación total de la incertidumbre económica mediante fórmulas matemáticas simples.",
+          "isCorrect": false,
+          "rationale": "Aunque se busca reducir la incertidumbre, la disciplina va más allá de fórmulas simples y no elimina el riesgo por completo."
+        },
+        {
+          "text": "La priorización de las operaciones reactivas sobre el conocimiento predictivo.",
+          "isCorrect": false,
+          "rationale": "La evolución busca precisamente lo contrario: abandonar la cultura reactiva para adoptar una cultura de conocimiento predictivo."
+        }
+      ],
+      "hint": "Piense en cómo cambia el rol de la metalurgia dentro de la caracterización del yacimiento."
+    },
+    {
+      "question": "¿Cuáles son las cuatro piezas fundamentales de la convergencia multidisciplinaria en la excelencia geometalúrgica?",
+      "answerOptions": [
+        {
+          "text": "Geología, minería, metalurgia, y química analítica/logística.",
+          "isCorrect": true,
+          "rationale": "Estas cuatro áreas deben integrarse y desarmar sus silos operativos para administrar proactivamente la variabilidad del yacimiento."
+        },
+        {
+          "text": "Geotecnia, finanzas, recursos humanos y metalurgia.",
+          "isCorrect": false,
+          "rationale": "Aunque son importantes en una empresa, el modelo operativo central descrito se basa en la interacción técnica de geología, minería, metalurgia y química."
+        },
+        {
+          "text": "Exploración, perforación, mantenimiento y comercialización.",
+          "isCorrect": false,
+          "rationale": "Estos son procesos o áreas funcionales, pero no representan la 'tetralogía' de disciplinas técnicas que definen el modelo de bloques."
+        },
+        {
+          "text": "Topografía, medio ambiente, relaciones comunitarias y seguridad.",
+          "isCorrect": false,
+          "rationale": "Estas áreas son críticas para la licencia social, pero la sinergia técnica para la predicción de rendimiento recae en geología, minería, metalurgia y química."
+        }
+      ],
+      "hint": "Identifique las áreas técnicas que interactúan directamente desde el diseño del modelo hasta la trazabilidad de muestras."
+    },
+    {
+      "question": "¿Cuál es la principal diferencia estratégica entre aplicar el modelo geometalúrgico en un proyecto nuevo ($Greenfield$) frente a uno operativo ($Brownfield$)?",
+      "answerOptions": [
+        {
+          "text": "En proyectos nuevos nace de forma nativa desde la exploración, mientras que en minas existentes busca optimizar activos mediante datos históricos.",
+          "isCorrect": true,
+          "rationale": "El modelo se adapta a la etapa de vida de la mina, dictando el diseño de planta en proyectos nuevos o encontrando cuellos de botella en operaciones actuales."
+        },
+        {
+          "text": "Los proyectos $Greenfield$ solo usan datos de laboratorio, mientras que los $Brownfield$ usan solo datos de perforación.",
+          "isCorrect": false,
+          "rationale": "Ambos tipos de proyectos requieren una integración de múltiples fuentes de datos para ser efectivos."
+        },
+        {
+          "text": "La aplicación en minas operando es menos rentable debido a la falta de datos de exploración inicial.",
+          "isCorrect": false,
+          "rationale": "La recaracterización de datos históricos en minas operando suele ser sumamente rentable para optimizar el rendimiento diario."
+        },
+        {
+          "text": "Solo en los proyectos $Greenfield$ es necesario realizar protocolos de control de calidad ($QC$).",
+          "isCorrect": false,
+          "rationale": "El control de calidad es un requisito innegociable en todas las etapas para garantizar la viabilidad económica."
+        }
+      ],
+      "hint": "Considere cómo cambia el uso de la información según si la planta ya está construida o si apenas se va a diseñar."
+    },
+    {
+      "question": "En el contexto de la gestión de datos, ¿qué define específicamente al Aseguramiento de la Calidad ($QA$)?",
+      "answerOptions": [
+        {
+          "text": "Acciones físicas preventivas durante el muestreo y transporte para evitar sesgos.",
+          "isCorrect": true,
+          "rationale": "El $QA$ se enfoca en la prevención del error mediante protocolos cuidadosos antes de generar los datos analíticos."
+        },
+        {
+          "text": "Pruebas analíticas para verificar que los datos generados sean reales y precisos.",
+          "isCorrect": false,
+          "rationale": "La verificación de datos mediante pruebas es la función principal del Control de Calidad ($QC$), no del $QA$."
+        },
+        {
+          "text": "El uso exclusivo de algoritmos matemáticos para corregir errores de tipeo.",
+          "isCorrect": false,
+          "rationale": "El $QA$ se refiere a procesos físicos y preventivos, no a correcciones algorítmicas posteriores."
+        },
+        {
+          "text": "La auditoría externa de los resultados financieros de la planta.",
+          "isCorrect": false,
+          "rationale": "Aunque impacta en las finanzas, el $QA$ es un proceso técnico-operativo sobre la integridad física de las muestras."
+        }
+      ],
+      "hint": "Diferencie entre la acción de 'prevenir' un error y la acción de 'verificar' si el error ya ocurrió."
+    },
+    {
+      "question": "¿Qué función cumplen los 'blancos' dentro de la tríada defensiva del control de calidad ($QC$)?",
+      "answerOptions": [
+        {
+          "text": "Detectar la presencia de contaminación cruzada durante la preparación de la muestra.",
+          "isCorrect": true,
+          "rationale": "Al ser materiales estériles, cualquier valor mineral detectado en ellos indica que hubo contaminación de otras muestras en el proceso."
+        },
+        {
+          "text": "Medir la precisión y consistencia de los operadores al tomar la muestra en terreno.",
+          "isCorrect": false,
+          "rationale": "Esta función de medir la precisión de los operadores corresponde a los duplicados."
+        },
+        {
+          "text": "Auditar la calibración y exactitud de los equipos del laboratorio externo.",
+          "isCorrect": false,
+          "rationale": "La auditoría de exactitud y sesgo del laboratorio se realiza principalmente mediante el uso de estándares o materiales de referencia certificados."
+        },
+        {
+          "text": "Validar la trayectoria exacta de la perforación en el subsuelo.",
+          "isCorrect": false,
+          "rationale": "La trayectoria de perforación es validada por el flujo de datos del $survey$, no por el uso de materiales estériles."
+        }
+      ],
+      "hint": "Piense en qué sucedería si introduce un material que se sabe que no tiene mineral y luego este arroja resultados positivos."
+    },
+    {
+      "question": "¿Por qué es peligroso ignorar los valores atípicos ($outliers$) durante el análisis exploratorio de datos ($EDA$)?",
+      "answerOptions": [
+        {
+          "text": "Porque distorsionan la variografía y llevan a una sobreestimación irreal de los recursos.",
+          "isCorrect": true,
+          "rationale": "Un solo dato extremo mal depurado altera la matemática del alcance y la meseta, prometiendo rentabilidades que no existen."
+        },
+        {
+          "text": "Porque impiden que el software de modelamiento tridimensional se ejecute.",
+          "isCorrect": false,
+          "rationale": "El software procesará los datos, pero los resultados serán técnicamente incorrectos y financieramente peligrosos."
+        },
+        {
+          "text": "Porque aumentan innecesariamente el tiempo de procesamiento de las redes neuronales.",
+          "isCorrect": false,
+          "rationale": "El problema no es el tiempo de cómputo, sino la validez y sesgo de la estimación resultante."
+        },
+        {
+          "text": "Porque invalidan automáticamente la trazabilidad física de los testigos de perforación.",
+          "isCorrect": false,
+          "rationale": "La trazabilidad es un tema de protocolos $QA/QC$; el impacto del $outlier$ es matemático y estadístico sobre la estimación de la ley."
+        }
+      ],
+      "hint": "Considere el impacto de un dato extremadamente alto en el cálculo de promedios y proyecciones de rentabilidad."
+    },
+    {
+      "question": "¿Qué fenómeno describe el 'efecto pepita' ($nugget$ $effect$) en la geoestadística?",
+      "answerOptions": [
+        {
+          "text": "Una varianza extrema entre muestras tomadas a muy corta distancia.",
+          "isCorrect": true,
+          "rationale": "Especialmente en metales preciosos, partículas finas libres causan que muestras contiguas arrojen leyes radicalmente distintas."
+        },
+        {
+          "text": "La contaminación sistemática de muestras en el laboratorio por falta de estándares.",
+          "isCorrect": false,
+          "rationale": "Esto se refiere a un error de control de calidad o sesgo analítico, no a la varianza natural del yacimiento."
+        },
+        {
+          "text": "La tendencia de los operadores a seleccionar solo las mejores rocas para el análisis.",
+          "isCorrect": false,
+          "rationale": "Esto se define como un sesgo de muestreo, mientras que el efecto pepita es una característica intrínseca de la mineralización."
+        },
+        {
+          "text": "El aumento de la recuperación metalúrgica al encontrar pepitas de oro de gran tamaño.",
+          "isCorrect": false,
+          "rationale": "El efecto pepita es un desafío estadístico para la predicción, no un beneficio operativo directo."
+        }
+      ],
+      "hint": "Piense en la dificultad de predecir la ley del mineral cuando el metal no está distribuido de forma uniforme en el espacio."
+    },
+    {
+      "question": "De acuerdo con la clasificación de variables, ¿cuál de los siguientes ejemplos se considera una variable NO aditiva?",
+      "answerOptions": [
+        {
+          "text": "Recuperación metalúrgica.",
+          "isCorrect": true,
+          "rationale": "Parámetros como la recuperación, dureza o $pH$ no pueden promediarse aritméticamente de forma simple sin caer en falacias matemáticas."
+        },
+        {
+          "text": "Ley de cabeza de cobre.",
+          "isCorrect": false,
+          "rationale": "Las leyes de metales como el cobre o el hierro son variables aditivas que sí permiten promedios aritméticos para cálculos de inventario."
+        },
+        {
+          "text": "Tonelaje de mineral estéril.",
+          "isCorrect": false,
+          "rationale": "El tonelaje es una propiedad física que se puede sumar y promediar directamente en el balance de masas."
+        },
+        {
+          "text": "Concentración de oro en gramos por tonelada.",
+          "isCorrect": false,
+          "rationale": "Al igual que el cobre, la ley de oro se trata como una variable aditiva para la estimación de recursos."
+        }
+      ],
+      "hint": "Identifique el parámetro que depende fuertemente del contexto mineralógico y no solo de la cantidad de metal presente."
+    },
+    {
+      "question": "¿Cuál es la ventaja principal de utilizar Redes Neuronales Artificiales en lugar del $kriging$ tradicional?",
+      "answerOptions": [
+        {
+          "text": "Su capacidad para modelar comportamientos no lineales y asociaciones multivariables complejas.",
+          "isCorrect": true,
+          "rationale": "Las redes neuronales capturan relaciones que la estadística clásica no logra identificar por sí sola."
+        },
+        {
+          "text": "Que no requieren de un análisis exploratorio de datos previo.",
+          "isCorrect": false,
+          "rationale": "Toda metodología de estimación seria exige datos purificados y validados mediante $EDA$."
+        },
+        {
+          "text": "Su capacidad para funcionar sin necesidad de realizar compositación de muestras.",
+          "isCorrect": false,
+          "rationale": "La compositación es un paso innegociable para dar validez geoestadística a cualquier modelo, incluyendo redes neuronales."
+        },
+        {
+          "text": "Que garantizan que todas las variables se vuelvan aditivas automáticamente.",
+          "isCorrect": false,
+          "rationale": "Las redes neuronales ayudan a modelar la complejidad, pero no cambian la naturaleza física de las variables no aditivas."
+        }
+      ],
+      "hint": "Piense en situaciones donde la relación entre las variables no es una línea recta o una correlación simple."
+    },
+    {
+      "question": "¿Qué objetivo técnico se busca al realizar la compositación de los datos de perforación?",
+      "answerOptions": [
+        {
+          "text": "Lograr un soporte de volumen o masa equivalente ($similar$ $support$) para todas las muestras.",
+          "isCorrect": true,
+          "rationale": "La homogeneización en intervalos regulares elimina los sesgos provocados por tener muestras de diferentes longitudes."
+        },
+        {
+          "text": "Aumentar artificialmente la ley del mineral para mejorar la rentabilidad del proyecto.",
+          "isCorrect": false,
+          "rationale": "La compositación es un proceso de regularización estadística, no una manipulación para aumentar valores económicos."
+        },
+        {
+          "text": "Identificar la trayectoria exacta del taladro mediante sensores de fondo de pozo.",
+          "isCorrect": false,
+          "rationale": "La identificación de la trayectoria es responsabilidad del $survey$, no de la técnica de compositación de ensayos químicos."
+        },
+        {
+          "text": "Sustituir el uso de estándares y duplicados en el control de calidad.",
+          "isCorrect": false,
+          "rationale": "La compositación es un paso de preparación de datos para estimación, no reemplaza los protocolos de control de calidad analítica."
+        }
+      ],
+      "hint": "Piense en la importancia de 'emparejar la cancha' para que cada muestra tenga el mismo peso estadístico."
+    },
+    {
+      "question": "¿En qué consiste el proceso de 'escalamiento' en el modelamiento geometalúrgico?",
+      "answerOptions": [
+        {
+          "text": "Validar que los resultados de pruebas de laboratorio sean realistas y proyectables a escala industrial.",
+          "isCorrect": true,
+          "rationale": "Es el momento de la verdad donde se consideran las ineficiencias y el caos real de la planta frente a ambientes controlados."
+        },
+        {
+          "text": "Aumentar el tamaño de los bloques en el modelo para procesar los datos más rápido.",
+          "isCorrect": false,
+          "rationale": "El escalamiento se refiere a la aplicabilidad de resultados metalúrgicos, no a la manipulación del tamaño de celda en el software."
+        },
+        {
+          "text": "Multiplicar las leyes de los recursos por un factor de seguridad económica.",
+          "isCorrect": false,
+          "rationale": "Esto sería una práctica de ajuste financiero, no el proceso técnico de escalamiento de variables metalúrgicas."
+        },
+        {
+          "text": "Extender la vida útil de la mina mediante la compra de nuevos equipos.",
+          "isCorrect": false,
+          "rationale": "El escalamiento es un concepto metodológico de validación de datos, no una estrategia de adquisición de activos."
+        }
+      ],
+      "hint": "Considere la diferencia entre un experimento en un vaso de precipitados y el procesamiento de miles de toneladas por hora."
+    },
+    {
+      "question": "¿Qué información crítica proporciona el flujo de datos denominado $assay$?",
+      "answerOptions": [
+        {
+          "text": "La información química y litológica de las muestras.",
+          "isCorrect": true,
+          "rationale": "El $assay$ es el alma del modelo porque aporta los valores de leyes y tipos de roca obtenidos en el laboratorio y logueo."
+        },
+        {
+          "text": "Las coordenadas tridimensionales de arranque del sondaje.",
+          "isCorrect": false,
+          "rationale": "Las coordenadas de inicio del pozo son proporcionadas por el $collar$."
+        },
+        {
+          "text": "La trayectoria exacta y las desviaciones de la perforación en el subsuelo.",
+          "isCorrect": false,
+          "rationale": "La trayectoria y desviación son registradas por el flujo de datos del $survey$."
+        },
+        {
+          "text": "El costo por metro perforado y la logística de transporte de insumos.",
+          "isCorrect": false,
+          "rationale": "Esta es información administrativa y financiera, no parte de los flujos de datos técnicos del sondaje para el modelo."
+        }
+      ],
+      "hint": "Identifique qué componente del sondaje nos dice 'qué hay' y 'cuánto hay' en la roca."
+    },
+    {
+      "question": "¿Cuál es la principal ventaja de la perforación diamantina ($DDH$) sobre el aire reverso ($RC$)?",
+      "answerOptions": [
+        {
+          "text": "Obtención de testigos sólidos intactos para un logueo estructural y mineralógico preciso.",
+          "isCorrect": true,
+          "rationale": "Al recuperar el núcleo de roca, se pueden observar texturas y estructuras que los detritos ($chips$) no permiten ver."
+        },
+        {
+          "text": "Mayor velocidad de ejecución y menor impacto en el presupuesto operativo.",
+          "isCorrect": false,
+          "rationale": "Estas son ventajas de la perforación de aire reverso ($RC$), no de la diamantina."
+        },
+        {
+          "text": "La eliminación de la necesidad de realizar pruebas de control de calidad ($QC$).",
+          "isCorrect": false,
+          "rationale": "Independientemente del método de perforación, el $QC$ es innegociable para la validez de los datos."
+        },
+        {
+          "text": "La capacidad de perforar sin generar ningún tipo de residuo o lodo.",
+          "isCorrect": false,
+          "rationale": "Ambos métodos generan residuos; la elección depende de la calidad de información requerida y el presupuesto."
+        }
+      ],
+      "hint": "Piense en la diferencia entre estudiar una pieza completa de roca frente a estudiar solo pedazos triturados."
+    },
+    {
+      "question": "¿Qué representan los 'voxels' en el modelamiento tridimensional de un yacimiento?",
+      "answerOptions": [
+        {
+          "text": "Unidades volumétricas similares a píxeles pero con tres dimensiones.",
+          "isCorrect": true,
+          "rationale": "Los $voxels$ permiten representar volúmenes y atributos dentro de estructuras geológicas complejas de forma granular."
+        },
+        {
+          "text": "Mallas superficiales que envuelven la zona mineralizada.",
+          "isCorrect": false,
+          "rationale": "Las mallas o sólidos que envuelven la zona se conocen como $wireframes$."
+        },
+        {
+          "text": "Algoritmos matemáticos utilizados para el cálculo de variogramas.",
+          "isCorrect": false,
+          "rationale": "Los $voxels$ son elementos de representación espacial, no algoritmos de cálculo estadístico."
+        },
+        {
+          "text": "Materiales de referencia certificados para calibrar equipos de laboratorio.",
+          "isCorrect": false,
+          "rationale": "Esos materiales se denominan estándares, un concepto totalmente distinto a la representación gráfica 3D."
+        }
+      ],
+      "hint": "Piense en el equivalente tridimensional de los puntos que forman una imagen digital."
+    },
+    {
+      "question": "¿Cuál de los siguientes es uno de los 'tres objetivos de oro' al construir un modelo de bloques?",
+      "answerOptions": [
+        {
+          "text": "Predecir la producción diaria proyectando concentrados y recuperaciones.",
+          "isCorrect": true,
+          "rationale": "El modelo busca evitar sorpresas desagradables al estimar qué saldrá de la planta cada día."
+        },
+        {
+          "text": "Reducir el salario de los operadores mediante la automatización total.",
+          "isCorrect": false,
+          "rationale": "La optimización de costos es un beneficio, pero el objetivo técnico es la predicción y el planeamiento, no la reducción salarial directa."
+        },
+        {
+          "text": "Eliminar la necesidad de geólogos de exploración en el terreno.",
+          "isCorrect": false,
+          "rationale": "La geología es el pilar que da el marco genético al modelo; es indispensable, no eliminable."
+        },
+        {
+          "text": "Garantizar que el precio internacional del mineral se mantenga estable.",
+          "isCorrect": false,
+          "rationale": "El modelo de bloques gestiona la variabilidad interna del yacimiento, no tiene control sobre los precios del mercado externo."
+        }
+      ],
+      "hint": "Identifique el objetivo relacionado con la certidumbre operativa y el cumplimiento de metas de producción."
+    },
+    {
+      "question": "En el contexto de la gestión proactiva, ¿qué sucede cuando la metalurgia se incorpora como un 'paso paralelo' y no final?",
+      "answerOptions": [
+        {
+          "text": "Se define la cinética del mineral y se proyecta la recuperación antes de la extracción.",
+          "isCorrect": true,
+          "rationale": "Esta sinergia permite anticipar el rendimiento industrial en lugar de simplemente reaccionar a lo que llega a la planta."
+        },
+        {
+          "text": "Se aumenta el tiempo de espera para que la planta comience a operar.",
+          "isCorrect": false,
+          "rationale": "Al contrario, el conocimiento proactivo ayuda a optimizar procesos y evitar detenciones no programadas."
+        },
+        {
+          "text": "Se duplican los costos operativos al tener a metalurgistas trabajando en la mina.",
+          "isCorrect": false,
+          "rationale": "La integración multidisciplinaria reduce costos al evitar 'incendios' operativos y errores de planificación."
+        },
+        {
+          "text": "La geología estructural pierde relevancia frente a los ensayos químicos.",
+          "isCorrect": false,
+          "rationale": "La geología sigue siendo el lienzo base; la metalurgia añade una capa de información sobre ese lienzo."
+        }
+      ],
+      "hint": "Piense en el poder que da saber cómo se comportará una roca antes de que llegue al molino."
+    },
+    {
+      "question": "¿Cuál es la función principal de los Materiales de Referencia Certificados (Estándares)?",
+      "answerOptions": [
+        {
+          "text": "Auditar al laboratorio para asegurar que sus equipos estén calibrados y no tengan sesgos.",
+          "isCorrect": true,
+          "rationale": "Al conocer la concentración exacta de antemano, se puede verificar si el laboratorio reporta valores correctos."
+        },
+        {
+          "text": "Identificar si los detritos de aire reverso están mezclados incorrectamente.",
+          "isCorrect": false,
+          "rationale": "Aunque es parte del control, su objetivo principal es la exactitud analítica del laboratorio, no el método de perforación."
+        },
+        {
+          "text": "Proporcionar coordenadas exactas para el mapeo satelital del yacimiento.",
+          "isCorrect": false,
+          "rationale": "Los estándares son químicos y físicos, no herramientas de posicionamiento geográfico."
+        },
+        {
+          "text": "Evitar que la roca sea demasiado dura para el molino $Bond$.",
+          "isCorrect": false,
+          "rationale": "La dureza es una propiedad intrínseca; el estándar solo mide la calidad del dato químico que describe esa roca."
+        }
+      ],
+      "hint": "Piense en una muestra cuya respuesta ya es conocida a nivel global y se usa para 'poner a prueba' al laboratorio."
+    },
+    {
+      "question": "¿Qué representa el enfoque de 'roca total' mencionado como pilar final de la disciplina?",
+      "answerOptions": [
+        {
+          "text": "Ver todo el yacimiento como una unidad integral donde incluso las penalidades pueden ser subproductos rentables.",
+          "isCorrect": true,
+          "rationale": "Ejemplos como la sílice muestran que un elemento antes descartado puede ser un insumo valioso en el contexto adecuado."
+        },
+        {
+          "text": "Extraer cada gramo de roca sin importar su valor económico o ley de corte.",
+          "isCorrect": false,
+          "rationale": "El objetivo es la rentabilidad estratégica, no la extracción indiscriminada de material sin valor."
+        },
+        {
+          "text": "Ignorar la mineralogía óptica para enfocarse solo en la masa total de la roca.",
+          "isCorrect": false,
+          "rationale": "La mineralogía cuantitativa y óptica es clave para definir los dominios geometalúrgicos."
+        },
+        {
+          "text": "Construir modelos que solo funcionen para depósitos de hierro de gran volumen.",
+          "isCorrect": false,
+          "rationale": "El enfoque de roca total es una filosofía aplicable a cualquier tipo de yacimiento mineral."
+        }
+      ],
+      "hint": "Piense en la transformación de una 'penalidad operativa' en un 'producto rentable'."
+    },
+    {
+      "question": "¿Cómo se define la utilidad de los duplicados en el terreno?",
+      "answerOptions": [
+        {
+          "text": "Miden la precisión y consistencia de los operadores en el proceso de toma de muestras.",
+          "isCorrect": true,
+          "rationale": "Si dos muestras del mismo lugar dan resultados muy distintos por error humano, los duplicados lo revelarán."
+        },
+        {
+          "text": "Aseguran que no haya partículas de oro libre en las muestras estériles.",
+          "isCorrect": false,
+          "rationale": "Esto es función de los blancos, que verifican la ausencia de contaminación, no necesariamente la precisión operativa."
+        },
+        {
+          "text": "Sirven para reemplazar muestras que se perdieron durante el transporte logístico.",
+          "isCorrect": false,
+          "rationale": "Los duplicados son una herramienta de control estadístico, no un inventario de repuesto."
+        },
+        {
+          "text": "Permiten determinar la dureza de la roca sin usar el índice de $Bond$.",
+          "isCorrect": false,
+          "rationale": "La dureza requiere pruebas específicas; los duplicados solo validan la repetibilidad del muestreo de leyes o atributos."
+        }
+      ],
+      "hint": "Considere la importancia de saber si dos personas tomando la misma muestra obtienen el mismo resultado."
+    },
+    {
+      "question": "¿Cuál es la consecuencia financiera de una adquisición deficiente de datos primarios?",
+      "answerOptions": [
+        {
+          "text": "Se rompe la cadena de trazabilidad y se generan discrepancias entre las promesas del laboratorio y la realidad de la planta.",
+          "isCorrect": true,
+          "rationale": "Datos malos resultan en modelos que predicen recuperaciones altas que luego no se reflejan en el flujo de caja real."
+        },
+        {
+          "text": "Se reduce automáticamente el costo de perforación por metro.",
+          "isCorrect": false,
+          "rationale": "La mala calidad de datos no reduce costos, sino que destruye el valor y la viabilidad del proyecto a largo plazo."
+        },
+        {
+          "text": "El software de modelamiento implícito detectará y corregirá los errores automáticamente.",
+          "isCorrect": false,
+          "rationale": "Ningún software, por avanzado que sea, puede compensar la falta de integridad en los datos primarios que lo alimentan."
+        },
+        {
+          "text": "Aumenta el valor de las acciones de la empresa debido a la reducción de trámites burocráticos.",
+          "isCorrect": false,
+          "rationale": "La falta de protocolos serios genera desconfianza técnica y pone en riesgo la inversión financiera."
+        }
+      ],
+      "hint": "Piense en el impacto de basar un negocio millonario en información que no es real ni verificable."
+    }
+  ],
+  "topics": {
+    "covered": [
+      "Modelamiento Geometalúrgico Holístico",
+      "Convergencia Multidisciplinaria en Minería",
+      "Protocolos de Aseguramiento y Control de Calidad (QA/QC)",
+      "Análisis Exploratorio de Datos (EDA) y Outliers",
+      "Algoritmos de Estimación y Variables No Aditivas",
+      "Técnicas de Perforación y Flujos de Datos Técnicos"
+    ],
+    "followUp": [
+      "Geoestadística Multivariante Avanzada",
+      "Optimización de Circuitos de Molienda y Flotación",
+      "Mineralogía Cuantitativa Aplicada",
+      "Geomecánica en el Planeamiento Estratégico de Minado"
+    ]
+  }
+}
